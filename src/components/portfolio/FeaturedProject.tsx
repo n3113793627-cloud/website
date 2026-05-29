@@ -26,11 +26,11 @@ export function FeaturedProject() {
         </div>
 
         <div className="grid md:grid-cols-12 gap-6 md:gap-10">
-          <motion.div style={{ y: y1 }} className="md:col-span-8 aspect-[4/5] overflow-hidden bg-[var(--cherry)]">
+          <motion.div style={{ y: y1 }} className="md:col-span-8 overflow-hidden bg-[var(--cherry)]">
             <img
               src={aptoCerezo}
               alt="Apto Cerezo - diseño interior completo"
-              className="w-full h-full object-cover object-top"
+              className="w-full h-auto object-contain"
               loading="lazy"
             />
           </motion.div>

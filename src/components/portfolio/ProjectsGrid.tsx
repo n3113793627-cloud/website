@@ -40,7 +40,9 @@ export function ProjectsGrid() {
         <div className="flex items-end justify-between mb-16 flex-wrap gap-4">
           <div>
             <p className="eyebrow mb-4">— Selección de obra</p>
-            <h2 className="display text-5xl md:text-7xl">Otros <em className="italic text-[var(--clay)]">proyectos</em></h2>
+            <h2 className="display text-5xl md:text-7xl">
+              Otros <em className="italic text-[var(--clay)]">proyectos</em>
+            </h2>
           </div>
           <p className="text-sm text-muted-foreground max-w-sm">
             Una selección curada de trabajos recientes en diseño interior, mobiliario y
@@ -56,24 +58,55 @@ export function ProjectsGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className={`group relative overflow-hidden bg-muted ${p.span}`}
+              className={`group relative overflow-hidden bg-muted cursor-pointer ${p.span}`}
             >
-              <img
+              <motion.img
                 src={p.img}
                 alt={p.title}
                 loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.4s] group-hover:scale-105"
+                className="absolute inset-0 w-full h-full object-cover"
+                whileHover={{ scale: 1.06 }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
               />
+
+              {/* base gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-[rgba(20,10,5,0.8)] via-transparent to-transparent opacity-90" />
+
+              {/* hover overlay */}
+              <motion.div
+                className="absolute inset-0 bg-[rgba(20,10,5,0.45)]"
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.4 }}
+              />
+
               <div className="relative h-full flex flex-col justify-between p-6 md:p-8 text-[var(--cream)]">
                 <div className="flex justify-between items-start">
                   <span className="eyebrow text-[var(--cream)]/80">№ {p.n}</span>
                   <span className="text-xs text-[var(--cream)]/70">{p.year}</span>
                 </div>
+
                 <div>
-                  <p className="text-xs uppercase tracking-[0.2em] text-[var(--cream)]/70 mb-2">{p.type}</p>
+                  <p className="text-xs uppercase tracking-[0.2em] text-[var(--cream)]/70 mb-2">
+                    {p.type}
+                  </p>
                   <h3 className="display text-3xl md:text-5xl mb-3">{p.title}</h3>
-                  <p className="text-sm text-[var(--cream)]/85 max-w-md">{p.desc}</p>
+                  <motion.p
+                    className="text-sm text-[var(--cream)]/85 max-w-md"
+                    initial={{ opacity: 0, y: 8 }}
+                    whileHover={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.35 }}
+                  >
+                    {p.desc}
+                  </motion.p>
+                  <motion.span
+                    className="inline-flex items-center gap-2 mt-4 text-xs tracking-[0.18em] uppercase text-[var(--clay)] border-b border-[var(--clay)]/50 pb-0.5"
+                    initial={{ opacity: 0, x: -8 }}
+                    whileHover={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.35, delay: 0.05 }}
+                  >
+                    Ver proyecto →
+                  </motion.span>
                 </div>
               </div>
             </motion.article>
