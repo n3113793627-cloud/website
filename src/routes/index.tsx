@@ -1,29 +1,36 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Nav } from "@/components/portfolio/Nav";
+import { Hero } from "@/components/portfolio/Hero";
+import { Marquee } from "@/components/portfolio/Marquee";
+import { About } from "@/components/portfolio/About";
+import { FeaturedProject } from "@/components/portfolio/FeaturedProject";
+import { ProjectsGrid } from "@/components/portfolio/ProjectsGrid";
+import { Process } from "@/components/portfolio/Process";
+import { Contact } from "@/components/portfolio/Contact";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Natalia Ramírez — Arquitecta & Diseñadora de Interiores" },
+      { name: "description", content: "Portfolio de Natalia Ramírez. Arquitectura y diseño interior con calidez, propósito y mobiliario a medida desde Bogotá, Colombia." },
+      { property: "og:title", content: "Natalia Ramírez — Arquitecta & Diseñadora de Interiores" },
+      { property: "og:description", content: "Espacios que respiran, materia que cuenta historias. Diseño interior y mobiliario personalizado." },
     ],
   }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main className="bg-background text-foreground overflow-x-hidden">
+      <Nav />
+      <Hero />
+      <Marquee />
+      <About />
+      <FeaturedProject />
+      <ProjectsGrid />
+      <Process />
+      <Contact />
+    </main>
   );
 }
