@@ -45,10 +45,10 @@ export function Contact() {
             <div>
               <p className="eyebrow mb-2">WhatsApp</p>
               <a
-                href="https://wa.me/57"
+                href="https://wa.me/573118383064"
                 className="display text-2xl hover:text-[var(--clay)] transition-colors"
               >
-                +57 300 000 0000
+                +57 311 838 3064
               </a>
             </div>
             <div>
