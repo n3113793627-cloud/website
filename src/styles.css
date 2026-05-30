@@ -70,13 +70,13 @@
   --card-foreground: oklch(0.21 0.02 40);
   --popover: oklch(0.98 0.008 70);
   --popover-foreground: oklch(0.21 0.02 40);
-  --primary: oklch(0.55 0.13 40);          /* terracotta */
+  --primary: oklch(0.50 0.13 40);          /* terracotta */
   --primary-foreground: oklch(0.98 0.01 70);
   --secondary: oklch(0.45 0.09 45);        /* cherry wood */
   --secondary-foreground: oklch(0.98 0.01 70);
   --muted: oklch(0.92 0.018 70);
-  --muted-foreground: oklch(0.42 0.03 50);
-  --accent: oklch(0.62 0.16 45);           /* warm clay accent */
+  --muted-foreground: oklch(0.36 0.03 50);
+  --accent: oklch(0.50 0.13 40);           /* warm clay accent */
   --accent-foreground: oklch(0.98 0.01 70);
   --destructive: oklch(0.55 0.22 27);
   --destructive-foreground: oklch(0.98 0.01 70);
@@ -85,7 +85,7 @@
   --ring: oklch(0.55 0.13 40);
   --ink: oklch(0.18 0.015 40);
   --cream: oklch(0.965 0.012 70);
-  --clay: oklch(0.62 0.16 45);
+  --clay: oklch(0.48 0.14 40);
   --cherry: oklch(0.45 0.09 45);
   --font-display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
   --font-sans: "Inter", "Helvetica Neue", system-ui, sans-serif;

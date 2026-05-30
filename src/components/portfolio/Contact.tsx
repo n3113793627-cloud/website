@@ -82,7 +82,7 @@ export function Contact() {
             >
               <span className="display text-7xl text-[var(--clay)] mb-6">✦</span>
               <h3 className="display text-4xl mb-4">¡Gracias por escribir!</h3>
-              <p className="text-foreground/70 text-lg leading-relaxed max-w-sm">
+              <p className="text-foreground/85 text-lg leading-relaxed max-w-sm">
                 Recibí tu mensaje. Te respondo en menos de 48 horas para hablar de tu
                 proyecto.
               </p>

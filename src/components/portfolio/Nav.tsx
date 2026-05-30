@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
 const links = [
@@ -10,28 +10,47 @@ const links = [
 
 export function Nav() {
   const { scrollY } = useScroll();
-  const bg = useTransform(
-    scrollY,
-    [0, 200],
-    ["rgba(245, 238, 225, 0)", "rgba(245, 238, 225, 0.92)"],
-  );
-  const border = useTransform(scrollY, [0, 200], ["rgba(0,0,0,0)", "rgba(0,0,0,0.08)"]);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setIsScrolled(latest > 50);
+  });
 
   return (
     <>
-      <motion.header
-        style={{ backgroundColor: bg, borderBottomColor: border }}
-        className="fixed top-0 inset-x-0 z-50 backdrop-blur-sm border-b"
+      <header
+        className={`fixed inset-x-0 z-50 transition-all duration-500 ease-out flex justify-center ${
+          isScrolled ? "top-4 px-4" : "top-0 px-0"
+        }`}
       >
-        <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
-          <a href="#top" className="display text-xl tracking-tight text-ink">
-            Natalia <span className="italic text-[var(--clay)]">Ramírez</span>
+        <div 
+          className={`flex items-center justify-between transition-all duration-500 ease-out ${
+            isScrolled
+              ? "w-full max-w-5xl bg-[var(--cream)]/85 backdrop-blur-xl border border-black/5 shadow-[0_8px_30px_rgba(0,0,0,0.06)] rounded-full px-6 md:px-8 py-3"
+              : "w-full max-w-[1400px] bg-transparent px-6 md:px-10 py-6"
+          }`}
+        >
+          <a 
+            href="#top" 
+            className={`display tracking-tight transition-all duration-500 ${
+              isScrolled ? "text-xl text-ink" : "text-2xl text-white drop-shadow-md"
+            }`}
+          >
+            Natalia <span className={`italic transition-colors duration-500 ${isScrolled ? "text-[var(--clay)]" : "text-white/80"}`}>Ramírez</span>
           </a>
 
-          <nav className="hidden md:flex gap-10 text-sm text-foreground/80">
+          <nav className="hidden md:flex gap-8 text-[0.75rem] uppercase tracking-widest font-medium">
             {links.map((l) => (
-              <a key={l.href} href={l.href} className="hover:text-[var(--clay)] transition-colors">
+              <a 
+                key={l.href} 
+                href={l.href} 
+                className={`transition-colors duration-300 ${
+                  isScrolled 
+                    ? "text-foreground/75 hover:text-[var(--clay)]" 
+                    : "text-white/90 hover:text-white drop-shadow-sm"
+                }`}
+              >
                 {l.label}
               </a>
             ))}
@@ -39,7 +58,11 @@ export function Nav() {
 
           <a
             href="#contacto"
-            className="hidden md:inline-flex text-xs tracking-[0.2em] uppercase border border-foreground/30 px-4 py-2 hover:bg-foreground hover:text-background transition-colors"
+            className={`hidden md:inline-flex text-[0.65rem] tracking-[0.2em] uppercase px-5 py-2.5 rounded-full transition-all duration-300 ${
+              isScrolled
+                ? "bg-foreground text-background hover:bg-[var(--clay)] shadow-md"
+                : "border border-white/40 text-white hover:bg-white hover:text-black backdrop-blur-sm"
+            }`}
           >
             Trabajemos juntos
           </a>
@@ -51,19 +74,19 @@ export function Nav() {
           >
             <motion.span
               animate={open ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
-              className="block w-6 h-px bg-foreground origin-center"
+              className={`block w-6 h-[1.5px] origin-center transition-colors duration-300 ${open || isScrolled ? "bg-foreground" : "bg-white"}`}
             />
             <motion.span
               animate={open ? { opacity: 0 } : { opacity: 1 }}
-              className="block w-6 h-px bg-foreground"
+              className={`block w-6 h-[1.5px] transition-colors duration-300 ${open || isScrolled ? "bg-foreground" : "bg-white"}`}
             />
             <motion.span
               animate={open ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
-              className="block w-6 h-px bg-foreground origin-center"
+              className={`block w-6 h-[1.5px] origin-center transition-colors duration-300 ${open || isScrolled ? "bg-foreground" : "bg-white"}`}
             />
           </button>
         </div>
-      </motion.header>
+      </header>
 
       <AnimatePresence>
         {open && (
@@ -95,7 +118,7 @@ export function Nav() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="mt-14 self-start text-xs tracking-[0.2em] uppercase border border-foreground/30 px-5 py-3 hover:bg-foreground hover:text-background transition-colors"
+              className="mt-14 self-start text-xs tracking-[0.2em] uppercase border border-foreground/30 px-5 py-3 hover:bg-foreground hover:text-background transition-colors rounded-full"
             >
               Trabajemos juntos
             </motion.a>

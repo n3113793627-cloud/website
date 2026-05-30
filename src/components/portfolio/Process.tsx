@@ -54,7 +54,7 @@ export function Process() {
                   />
                   <span className="display text-6xl text-[var(--cream)]/25 block mb-4">{s.n}</span>
                   <h3 className="display text-3xl mb-3">{s.t}</h3>
-                  <p className="text-[var(--cream)]/75 leading-relaxed text-sm">{s.d}</p>
+                  <p className="text-[var(--cream)]/90 leading-relaxed text-sm">{s.d}</p>
                 </motion.div>
               ))}
             </div>

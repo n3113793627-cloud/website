@@ -83,11 +83,11 @@ export function ProjectsGrid() {
               <div className="relative h-full flex flex-col justify-between p-6 md:p-8 text-[var(--cream)]">
                 <div className="flex justify-between items-start">
                   <span className="eyebrow text-[var(--cream)]/80">№ {p.n}</span>
-                  <span className="text-xs text-[var(--cream)]/70">{p.year}</span>
+                  <span className="text-xs text-[var(--cream)]/85">{p.year}</span>
                 </div>
 
                 <div>
-                  <p className="text-xs uppercase tracking-[0.2em] text-[var(--cream)]/70 mb-2">
+                  <p className="text-xs uppercase tracking-[0.2em] text-[var(--cream)]/85 mb-2">
                     {p.type}
                   </p>
                   <h3 className="display text-3xl md:text-5xl mb-3">{p.title}</h3>
