@@ -23,7 +23,7 @@ export function Contact() {
       <div className="max-w-[1400px] mx-auto grid md:grid-cols-12 gap-16">
         <div className="md:col-span-5">
           <p className="eyebrow mb-6">— Hablemos</p>
-          <h2 className="display text-6xl md:text-[7rem] leading-[0.88]">
+          <h2 className="display text-[clamp(2.8rem,8vw,7rem)] leading-[0.88]">
             ¿Tienes un <em className="italic text-[var(--clay)]">espacio</em>
             <br /> en mente?
           </h2>
@@ -59,7 +59,7 @@ export function Contact() {
                 Disponible para proyectos en LATAM
               </p>
             </div>
-            <div className="flex gap-6 pt-2">
+            <div className="flex flex-wrap gap-6 pt-2">
               {["Instagram", "Behance", "LinkedIn", "Pinterest"].map((s) => (
                 <a
                   key={s}

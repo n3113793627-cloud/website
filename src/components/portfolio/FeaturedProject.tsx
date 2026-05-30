@@ -31,7 +31,7 @@ export function FeaturedProject() {
         <div className="flex items-end justify-between gap-6 border-b border-[var(--cream)]/10 pb-10">
           <div>
             <p className="eyebrow text-[var(--clay)] mb-3">Proyecto destacado · 01</p>
-            <h2 className="display text-6xl md:text-8xl leading-[0.9]">
+            <h2 className="display text-[clamp(2.5rem,7vw,8rem)] leading-[0.9]">
               Apto <em className="italic text-[var(--clay)]">Cerezo</em>
             </h2>
           </div>
@@ -81,7 +81,7 @@ export function FeaturedProject() {
             </div>
 
             {/* Images — flex-1 makes this block fill the remaining height */}
-            <div className="flex-1 grid grid-cols-2 grid-rows-2 gap-2 min-h-0">
+            <div className="flex-1 grid grid-cols-2 grid-rows-2 gap-2 min-h-[280px] md:min-h-0">
               <ParallaxImg src={detailImg}    alt="Detalle carpintería" speed={10} className="col-span-2 row-span-1 h-full" />
               <ParallaxImg src={kitchenImg}   alt="Cocina"              speed={12} className="col-span-1 row-span-1 h-full" />
               <ParallaxImg src={bedroomImg}   alt="Zona de descanso"    speed={8}  className="col-span-1 row-span-1 h-full" />

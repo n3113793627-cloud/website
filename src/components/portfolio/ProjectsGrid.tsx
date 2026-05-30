@@ -20,7 +20,7 @@ const projects = [
     year: "2024",
     img: bedroom,
     desc: "Refugio íntimo con paneles de cerezo y lino natural. Influencia japonesa, materialidad colombiana.",
-    span: "md:col-span-4 aspect-[3/5]",
+    span: "md:col-span-4 aspect-[4/3] md:aspect-[3/5]",
   },
   {
     n: "04",
