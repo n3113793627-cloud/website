@@ -1,11 +1,13 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { Nav } from "@/components/portfolio/Nav";
 import { Hero } from "@/components/portfolio/Hero";
 import { Marquee } from "@/components/portfolio/Marquee";
 import { About } from "@/components/portfolio/About";
+import { DesignPhilosophy } from "@/components/portfolio/DesignPhilosophy";
 import { FeaturedProject } from "@/components/portfolio/FeaturedProject";
-import { ProjectsGrid } from "@/components/portfolio/ProjectsGrid";
+import { BeforeAfter } from "@/components/portfolio/BeforeAfter";
 import { Process } from "@/components/portfolio/Process";
 import { Contact } from "@/components/portfolio/Contact";
 import { Footer } from "@/components/portfolio/Footer";
@@ -13,10 +15,10 @@ import { Footer } from "@/components/portfolio/Footer";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Natalia Ramírez — Arquitecta & Diseñadora de Interiores" },
-      { name: "description", content: "Portfolio de Natalia Ramírez. Arquitectura y diseño interior con calidez, propósito y mobiliario a medida desde Bogotá, Colombia." },
-      { property: "og:title", content: "Natalia Ramírez — Arquitecta & Diseñadora de Interiores" },
-      { property: "og:description", content: "Espacios que respiran, materia que cuenta historias. Diseño interior y mobiliario personalizado." },
+      { title: "Natalia Ramírez — Especialista en Neuroarquitectura y Diseño Interior" },
+      { name: "description", content: "Especialista en neuroarquitectura y diseño interior terapéutico desde Bogotá, Colombia. Espacios diseñados para potenciar el bienestar emocional, mental y físico." },
+      { property: "og:title", content: "Natalia Ramírez — Especialista en Neuroarquitectura & Diseño Interior" },
+      { property: "og:description", content: "Espacios que sanan, diseño que conecta. Especialización en neuroarquitectura como herramienta terapéutica y de bienestar." },
     ],
   }),
   component: Index,
@@ -34,6 +36,16 @@ function ScrollProgress() {
 }
 
 function Index() {
+  const [prefilledMessage, setPrefilledMessage] = useState("");
+
+  const handlePrefillMessage = (message: string) => {
+    setPrefilledMessage(message);
+    const contactSection = document.getElementById("contacto");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -46,11 +58,13 @@ function Index() {
       <Hero />
       <Marquee />
       <About />
-      <FeaturedProject />
-      <ProjectsGrid />
+      <DesignPhilosophy />
+      <FeaturedProject onInquire={handlePrefillMessage} />
+      <BeforeAfter />
       <Process />
-      <Contact />
+      <Contact prefilledMessage={prefilledMessage} />
       <Footer />
     </motion.main>
   );
 }
+

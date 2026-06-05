@@ -2,10 +2,10 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 const steps = [
-  { n: "01", t: "Escuchar", d: "Toda obra empieza por entender al habitante: rutina, deseos, restricciones, sueños." },
-  { n: "02", t: "Conceptualizar", d: "Bocetos, paletas, muestras de material. Definimos juntos el alma del proyecto." },
-  { n: "03", t: "Diseñar", d: "Planimetría detallada, renders 3D y especificaciones técnicas listas para construir." },
-  { n: "04", t: "Acompañar", d: "Coordinación con maestros y proveedores hasta el último remate. Cada detalle importa." },
+  { n: "01", t: "Análisis Sensorial", d: "Identificamos las necesidades biológicas y emocionales del habitante: niveles de estrés, rutinas circadianas y dinámicas de uso." },
+  { n: "02", t: "Bases Neuro", d: "Definimos paletas cromáticas estimulantes o relajantes, texturas orgánicas y un diseño de iluminación bio-compatible." },
+  { n: "03", t: "Diseño & Biofilia", d: "Modelamos el espacio en 3D incorporando formas suaves, geometría natural y vegetación para reducir la fatiga mental." },
+  { n: "04", t: "Planimetría Técnica", d: "Entregamos planos técnicos detallados y guías de compra listos para que tu equipo ejecute el espacio ideal." },
 ];
 
 export function Process() {
@@ -19,8 +19,8 @@ export function Process() {
         <div className="max-w-3xl mb-20">
           <p className="eyebrow text-[var(--cream)]/80 mb-4">— Proceso</p>
           <h2 className="display text-5xl md:text-7xl leading-[0.95]">
-            Del <em className="italic">primer trazo</em> a la{" "}
-            <em className="italic text-[var(--cream)]">última junta</em>.
+            Del <em className="italic">análisis sensorial</em> a la{" "}
+            <em className="italic text-[var(--cream)]">armonía cognitiva</em>.
           </h2>
         </div>
 

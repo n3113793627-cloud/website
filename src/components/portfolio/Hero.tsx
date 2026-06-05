@@ -33,12 +33,12 @@ export function Hero() {
           <span className="eyebrow text-[var(--cream)]/90">Portfolio · 2026</span>
         </div>
         <h1 className="display text-[var(--cream)] text-[clamp(2.8rem,6.5vw,6.5rem)] leading-[0.92] max-w-5xl">
-          Espacios que <em className="italic text-[var(--clay)]">respiran</em>,
-          <br /> materia que <em className="italic">cuenta historias.</em>
+          Espacios que <em className="italic text-[var(--clay)]">sanan</em>,
+          <br /> diseño que <em className="italic">conecta.</em>
         </h1>
         <p className="mt-8 max-w-xl text-[var(--cream)]/85 text-lg leading-relaxed">
-          Arquitecta y diseñadora de interiores. Cada metro cuadrado, una decisión
-          deliberada entre funcionalidad, calidez y carácter.
+          Arquitecta y diseñadora de interiores con enfoque en <strong>neuroarquitectura</strong>. 
+          Espacios concebidos como herramientas terapéuticas para potenciar el bienestar físico, emocional y cognitivo.
         </p>
       </motion.div>
 

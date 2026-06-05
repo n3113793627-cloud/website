@@ -1,10 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 type FormState = "idle" | "sending" | "sent" | "error";
 
-export function Contact() {
+interface ContactProps {
+  prefilledMessage?: string;
+}
+
+export function Contact({ prefilledMessage = "" }: ContactProps) {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+
+  useEffect(() => {
+    if (prefilledMessage) {
+      setForm((f) => ({ ...f, message: prefilledMessage }));
+    }
+  }, [prefilledMessage]);
   const [state, setState] = useState<FormState>("idle");
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {

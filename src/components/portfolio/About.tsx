@@ -35,8 +35,8 @@ export function About() {
         <div className="md:col-span-5 md:sticky md:top-32 self-start">
           <p className="eyebrow mb-6">— Sobre mí</p>
           <h2 className="display text-5xl md:text-7xl leading-[1] mb-10">
-            Diseño con <em className="italic text-[var(--clay)]">propósito</em>,
-            construyo con <em className="italic">consciencia</em>.
+            Diseño para la <em className="italic text-[var(--clay)]">mente</em>,
+            construyo para el <em className="italic">bienestar</em>.
           </h2>
         </div>
 
@@ -44,17 +44,18 @@ export function About() {
           <div className="space-y-6 text-lg leading-relaxed text-foreground/85 max-w-xl">
             <p>
               Soy <strong>Natalia Ramírez</strong>, arquitecta colombiana especializada en
-              diseño de interiores y mobiliario a medida. Mi trabajo nace de una obsesión:
-              que cada espacio responda con precisión a la vida de quien lo habita.
+              <strong> neuroarquitectura</strong> y diseño interior. Mi práctica combina los principios de la
+              neurociencia aplicada con el arte del diseño espacial, transformando los ambientes físicos en
+              herramientas terapéuticas activas para mejorar el ánimo, la cognición y la calma.
             </p>
             <p>
-              Creo en la calidez de los materiales nobles, en la honestidad de las líneas
-              limpias y en el poder transformador de un detalle bien resuelto. Trabajo con
-              maderas locales, paletas terrosas y soluciones multifuncionales que
-              aprovechan al máximo cada metro cuadrado.
+              Creo en el poder de la luz natural, la biofilia (conexión con la naturaleza), texturas orgánicas 
+              y maderas locales para influir de forma positiva en el sistema nervioso. Cada decisión sobre 
+              paletas de colores, distribución de mobiliario y materialidad se toma con rigor científico y 
+              delicadeza estética para favorecer la regulación emocional cotidiana.
             </p>
             <p className="text-muted-foreground text-base">
-              Bogotá, Colombia · Disponible para proyectos en LATAM
+              Bogotá, Colombia · Consultorías y proyectos internacionales a distancia
             </p>
           </div>
 
