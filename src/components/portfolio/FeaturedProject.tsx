@@ -16,7 +16,7 @@ import casinoProcess from "@/assets/casino-process.jpg";
 import casinoInteriorFinished from "@/assets/casino-interior-finished.png";
 import casinoFacadeFinished from "@/assets/casino-facade-finished.png";
 import cherryBlossom from "@/assets/cherry-blossom.png";
-import beachVideo from "@/assets/orange-hill-video-new.mp4";
+import beachVideo from "@/assets/troque_a_primeira_cena_das_cab.mp4";
 
 function AutoplayVideo({ src, className }: { src: string; className?: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -465,7 +465,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
               <div className="space-y-2">
                 <p className="text-[10px] text-[var(--clay)] uppercase tracking-widest font-mono font-bold">Atmósfera Sensorial: Brisa y atardecer</p>
                 <div className="relative overflow-hidden rounded-lg border border-[var(--cream)]/15 aspect-video shadow-lg group">
-                  <AutoplayVideo src={beachVideo} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <AutoplayVideo src={beachVideo} className="w-full h-full object-cover origin-top-left scale-[1.15] transition-transform duration-700 group-hover:scale-[1.20]" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[rgba(20,10,5,0.4)] to-transparent flex items-end p-3">
                     <p className="text-[10px] font-mono text-[var(--cream)]/90 tracking-wide">
                       San Andrés Isla · Entorno Natural
