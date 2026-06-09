@@ -208,22 +208,22 @@
 
 /* Estilos de la sección de Planos Técnicos */
 .portfolio-planos {
-  background-color: #0b0f19; /* Fondo oscuro moderno */
-  color: #ffffff;
-  padding: 100px 20px;
+  background-color: var(--ink); /* Fondo oscuro editorial */
+  color: var(--cream);
+  padding: 120px 20px;
 }
 
 .portfolio-planos h2 {
   font-family: var(--font-display);
-  font-size: 3rem;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
   text-align: center;
   margin-bottom: 8px;
-  color: #00ffcc; /* Un toque de color tecnológico/neón */
+  color: var(--cream);
 }
 
 .portfolio-planos .subtitle {
   text-align: center;
-  color: #8a99ad;
+  color: rgba(253, 251, 247, 0.7);
   margin-bottom: 50px;
   font-size: 1.1rem;
 }
@@ -237,9 +237,9 @@
 }
 
 .btn-filter {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #fff;
+  background: rgba(253, 251, 247, 0.03);
+  border: 1px solid rgba(253, 251, 247, 0.12);
+  color: var(--cream);
   padding: 10px 24px;
   border-radius: 30px;
   cursor: pointer;
@@ -248,10 +248,16 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.btn-filter:hover, .btn-filter.active {
-  background: #00ffcc;
-  color: #0b0f19;
-  box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
+.btn-filter:hover {
+  border-color: rgba(253, 251, 247, 0.35);
+  color: #fff;
+}
+
+.btn-filter.active {
+  background: var(--clay);
+  border-color: var(--clay);
+  color: var(--cream);
+  box-shadow: 0 4px 20px rgba(76, 50, 38, 0.25);
   font-weight: bold;
 }
 
@@ -266,17 +272,19 @@
 
 /* Tarjeta del Plano con animación */
 .plano-card {
-  background: #1e2640;
+  background: #1b1715; /* Fondo marrón oscuro de detalles */
+  border: 1px solid rgba(253, 251, 247, 0.06);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
   opacity: 1;
 }
 
 .plano-card:hover {
   transform: translateY(-8px) scale(1.01);
-  box-shadow: 0 20px 40px rgba(0, 255, 204, 0.15);
+  border-color: rgba(253, 251, 247, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 /* Contenedor de la imagen y del Rótulo oculto */
@@ -304,10 +312,10 @@
   right: 15px;
   width: 45%; 
   height: 25%;
-  background: rgba(11, 15, 25, 0.7); 
+  background: rgba(27, 23, 21, 0.85); 
   backdrop-filter: blur(10px); /* Aplica el borroso moderno */
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(253, 251, 247, 0.1);
   border-radius: 6px;
   display: flex;
   align-items: center;
@@ -318,7 +326,7 @@
 .rotulo-blur span {
   font-family: var(--font-mono);
   font-size: 0.7rem;
-  color: rgba(0, 255, 204, 0.85);
+  color: var(--clay);
   letter-spacing: 2px;
   text-transform: uppercase;
   font-weight: 600;
@@ -334,11 +342,12 @@
   margin: 0 0 10px 0;
   font-size: 1.5rem;
   font-weight: 400;
+  color: #fff;
 }
 
 .plano-info p {
   margin: 0;
-  color: #8a99ad;
+  color: rgba(253, 251, 247, 0.65);
   font-size: 0.95rem;
   line-height: 1.5;
 }

@@ -1,17 +1,29 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { Nav } from "@/components/portfolio/Nav";
 import { Hero } from "@/components/portfolio/Hero";
 import { Marquee } from "@/components/portfolio/Marquee";
 import { About } from "@/components/portfolio/About";
-import { DesignPhilosophy } from "@/components/portfolio/DesignPhilosophy";
-import { FeaturedProject } from "@/components/portfolio/FeaturedProject";
-import { BeforeAfter } from "@/components/portfolio/BeforeAfter";
 import { Process } from "@/components/portfolio/Process";
-import { TechnicalDrawings } from "@/components/portfolio/TechnicalDrawings";
-import { Contact } from "@/components/portfolio/Contact";
 import { Footer } from "@/components/portfolio/Footer";
+
+// Lazy-loaded components below the fold
+const DesignPhilosophy = lazy(() =>
+  import("@/components/portfolio/DesignPhilosophy").then((m) => ({ default: m.DesignPhilosophy }))
+);
+const FeaturedProject = lazy(() =>
+  import("@/components/portfolio/FeaturedProject").then((m) => ({ default: m.FeaturedProject }))
+);
+const BeforeAfter = lazy(() =>
+  import("@/components/portfolio/BeforeAfter").then((m) => ({ default: m.BeforeAfter }))
+);
+const TechnicalDrawings = lazy(() =>
+  import("@/components/portfolio/TechnicalDrawings").then((m) => ({ default: m.TechnicalDrawings }))
+);
+const Contact = lazy(() =>
+  import("@/components/portfolio/Contact").then((m) => ({ default: m.Contact }))
+);
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -59,12 +71,29 @@ function Index() {
       <Hero />
       <Marquee />
       <About />
-      <DesignPhilosophy />
-      <FeaturedProject onInquire={handlePrefillMessage} />
-      <BeforeAfter />
+      
+      <Suspense fallback={<div className="h-[600px] bg-[var(--ink)] animate-pulse" />}>
+        <DesignPhilosophy />
+      </Suspense>
+
+      <Suspense fallback={<div className="h-[1200px] bg-[var(--ink)] animate-pulse" />}>
+        <FeaturedProject onInquire={handlePrefillMessage} />
+      </Suspense>
+
+      <Suspense fallback={<div className="h-[500px] bg-background animate-pulse" />}>
+        <BeforeAfter />
+      </Suspense>
+
       <Process />
-      <TechnicalDrawings />
-      <Contact prefilledMessage={prefilledMessage} />
+
+      <Suspense fallback={<div className="h-[700px] bg-[var(--ink)] animate-pulse" />}>
+        <TechnicalDrawings />
+      </Suspense>
+
+      <Suspense fallback={<div className="h-[600px] bg-background animate-pulse" />}>
+        <Contact prefilledMessage={prefilledMessage} />
+      </Suspense>
+
       <Footer />
     </motion.main>
   );

@@ -2,31 +2,20 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // --- ARCHITECTURAL PDFS ---
-// @ts-ignore
 import ar103Pdf from "@/assets/AR103.pdf";
-// @ts-ignore
 import ar201Pdf from "@/assets/AR201.pdf";
-// @ts-ignore
 import ar301Pdf from "@/assets/AR301.pdf";
-// @ts-ignore
 import ar302Pdf from "@/assets/AR302.pdf";
 
 // --- STRUCTURAL PDFS ---
-// @ts-ignore
 import es604Pdf from "@/assets/ES604.pdf";
-// @ts-ignore
 import es606Pdf from "@/assets/ES606.pdf";
-// @ts-ignore
 import es609Pdf from "@/assets/ES609.pdf";
-// @ts-ignore
 import es617Pdf from "@/assets/ES617.pdf";
 
 // --- INSTALLATIONS PDFS ---
-// @ts-ignore
 import el804Pdf from "@/assets/EL804.pdf";
-// @ts-ignore
 import el805Pdf from "@/assets/EL805.pdf";
-// @ts-ignore
 import el806Pdf from "@/assets/EL806.pdf";
 
 // Preview Image Assets
@@ -179,8 +168,17 @@ export function TechnicalDrawings() {
   return (
     <section className="portfolio-planos relative overflow-hidden" id="planos-tecnicos">
       <div className="container mx-auto px-4 max-w-[1400px]">
-        <h2>Mi Trabajo Técnico</h2>
-        <p className="subtitle">Planos y proyectos de ingeniería / arquitectura</p>
+        <div className="max-w-3xl mb-16">
+          <p className="eyebrow text-[var(--clay)] mb-4">— Rigor Técnico</p>
+          <h2 className="display text-5xl md:text-7xl text-white">
+            Planos y detalle:
+            <br />
+            Mi trabajo <em className="italic text-[var(--clay)]">técnico</em>.
+          </h2>
+          <p className="text-[var(--cream)]/75 mt-6 text-sm md:text-base max-w-xl leading-relaxed">
+            La neuroarquitectura exige precisión de ejecución constructiva. Aquí comparto los planos técnicos de distribución, estructuras e instalaciones que sustentam el diseño terapéutico de cada espacio.
+          </p>
+        </div>
 
         {/* Filtros Modernos */}
         <div className="filters flex justify-center gap-4 flex-wrap mb-10">
@@ -231,16 +229,16 @@ export function TechnicalDrawings() {
                       <span>Confidencial</span>
                     </div>
                     {/* Código del plano flotante */}
-                    <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md text-[#00ffcc] text-xs font-mono font-bold px-3 py-1 rounded border border-[#00ffcc]/30">
+                    <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md text-[var(--clay)] text-xs font-mono font-bold px-3 py-1 rounded border border-[var(--clay)]/30">
                       {plano.code}
                     </div>
                   </div>
                   <div className="plano-info p-5">
-                    <span className="text-[10px] uppercase tracking-widest text-[#00ffcc] font-semibold block mb-2">
+                    <span className="text-[10px] uppercase tracking-widest text-[var(--clay)] font-semibold block mb-2">
                       {plano.categoryLabel}
                     </span>
                     <h3 className="text-xl font-semibold mb-2 text-white">{plano.title}</h3>
-                    <p className="text-[#8a99ad] text-sm leading-relaxed">{plano.description}</p>
+                    <p className="text-[var(--cream)]/65 text-sm leading-relaxed">{plano.description}</p>
                   </div>
                 </motion.div>
               ))
@@ -248,7 +246,7 @@ export function TechnicalDrawings() {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="col-span-full text-center py-16 text-[#8a99ad] font-mono text-sm"
+                className="col-span-full text-center py-16 text-[var(--cream)]/50 font-mono text-sm"
               >
                 Próximamente planos para esta categoría.
               </motion.div>
@@ -283,13 +281,13 @@ export function TechnicalDrawings() {
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.95, y: 10 }}
               transition={{ type: "spring", damping: 25, stiffness: 220 }}
-              className="relative max-w-6xl w-full h-[85vh] bg-[#111625] rounded-xl flex flex-col overflow-hidden shadow-2xl border border-white/10"
+              className="relative max-w-6xl w-full h-[85vh] bg-[var(--ink)] rounded-xl flex flex-col overflow-hidden shadow-2xl border border-white/10"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Encabezado del visor */}
-              <div className="p-5 border-b border-white/10 flex flex-wrap gap-4 items-center justify-between bg-[#0b0f19]">
+              <div className="p-5 border-b border-white/10 flex flex-wrap gap-4 items-center justify-between bg-[#1b1715]">
                 <div>
-                  <span className="text-xs font-mono text-[#00ffcc] font-bold tracking-wider uppercase">
+                  <span className="text-xs font-mono text-[var(--clay)] font-bold tracking-wider uppercase">
                     Visor de Plano Técnico · {selectedPlano.code}
                   </span>
                   <h3 className="text-xl font-display text-white mt-1">{selectedPlano.title}</h3>
@@ -299,7 +297,7 @@ export function TechnicalDrawings() {
                     href={selectedPlano.pdfUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-[#00ffcc] hover:bg-[#00e6b8] text-[#0b0f19] px-4 py-2 rounded font-semibold text-xs tracking-wider uppercase transition-colors flex items-center gap-2"
+                    className="bg-[var(--clay)] hover:bg-[var(--clay)]/90 text-[var(--cream)] px-4 py-2 rounded font-semibold text-xs tracking-wider uppercase transition-colors flex items-center gap-2"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -331,7 +329,7 @@ export function TechnicalDrawings() {
               </div>
 
               {/* Pie del visor */}
-              <div className="p-4 bg-[#0b0f19] border-t border-white/10 text-center text-xs text-[#8a99ad] font-mono">
+              <div className="p-4 bg-[#1b1715] border-t border-white/10 text-center text-xs text-[var(--cream)]/65 font-mono">
                 Puedes hacer zoom, imprimir o guardar el plano utilizando los controles nativos del visor PDF.
               </div>
             </motion.div>
