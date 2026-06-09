@@ -4,7 +4,7 @@ import aptoCerezo from "@/assets/apto-cerezo.png";
 import detailImg from "@/assets/project-detail-1.jpg";
 import kitchenImg from "@/assets/project-kitchen.jpg";
 import bedroomImg from "@/assets/project-bedroom.jpg";
-import sanAndresRender from "@/assets/san-andres-render.png";
+import sanAndresRender from "@/assets/diseño.png";
 import sanAndresInfo1Part1 from "@/assets/san-andres-info-1-part1.png";
 import sanAndresInfo1Part2 from "@/assets/san-andres-info-1-part2.png";
 import sanAndresInfo1Part3 from "@/assets/san-andres-info-1-part3.png";
