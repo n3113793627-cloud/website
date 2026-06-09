@@ -9,6 +9,7 @@ import { DesignPhilosophy } from "@/components/portfolio/DesignPhilosophy";
 import { FeaturedProject } from "@/components/portfolio/FeaturedProject";
 import { BeforeAfter } from "@/components/portfolio/BeforeAfter";
 import { Process } from "@/components/portfolio/Process";
+import { TechnicalDrawings } from "@/components/portfolio/TechnicalDrawings";
 import { Contact } from "@/components/portfolio/Contact";
 import { Footer } from "@/components/portfolio/Footer";
 
@@ -62,6 +63,7 @@ function Index() {
       <FeaturedProject onInquire={handlePrefillMessage} />
       <BeforeAfter />
       <Process />
+      <TechnicalDrawings />
       <Contact prefilledMessage={prefilledMessage} />
       <Footer />
     </motion.main>
