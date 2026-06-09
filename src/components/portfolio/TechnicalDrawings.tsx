@@ -187,9 +187,8 @@ export function TechnicalDrawings() {
             Mi trabajo <em className="italic text-[var(--clay)]">técnico</em>.
           </h2>
           <p className="text-[var(--cream)]/75 mt-6 text-sm md:text-base max-w-xl leading-relaxed">
-            La neuroarquitectura exige precisión de ejecución constructiva. Aquí comparto los planos
-            técnicos de distribución, estructuras e instalaciones que sustentam el diseño
-            terapéutico de cada espacio.
+            Aquí comparto una selección de los últimos planos técnicos de distribución, estructuras
+            e instalaciones en los que he trabajado recientemente.
           </p>
         </div>
 
@@ -226,34 +225,27 @@ export function TechnicalDrawings() {
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.35, ease: "easeInOut" }}
                   key={plano.id}
-                  className={`plano-card ${plano.category} cursor-zoom-in`}
+                  className={`plano-card ${plano.category} cursor-zoom-in p-6 flex flex-col justify-between min-h-[220px] transition-all hover:border-[var(--clay)]/40`}
                   onClick={() => setSelectedPlano(plano)}
                 >
-                  <div className="plano-img-wrapper relative overflow-hidden aspect-[4/3] bg-slate-900">
-                    <div className="absolute inset-0 bg-blue-900/10 mix-blend-overlay z-10 pointer-events-none" />
-                    <img
-                      src={plano.previewImage}
-                      alt={plano.title}
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-105 opacity-90"
-                      loading="lazy"
-                    />
-                    {/* Capa que oculta el rótulo/membrete de forma elegante */}
-                    <div className="rotulo-blur">
-                      <span>Confidencial</span>
+                  <div>
+                    <div className="flex justify-between items-start mb-4">
+                      <span className="text-[10px] uppercase tracking-widest text-[var(--clay)] font-semibold font-mono">
+                        {plano.categoryLabel}
+                      </span>
+                      <div className="bg-black/30 text-[var(--clay)] text-xs font-mono font-bold px-3 py-1 rounded border border-[var(--clay)]/20">
+                        {plano.code}
+                      </div>
                     </div>
-                    {/* Código del plano flotante */}
-                    <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md text-[var(--clay)] text-xs font-mono font-bold px-3 py-1 rounded border border-[var(--clay)]/30">
-                      {plano.code}
-                    </div>
-                  </div>
-                  <div className="plano-info p-5">
-                    <span className="text-[10px] uppercase tracking-widest text-[var(--clay)] font-semibold block mb-2">
-                      {plano.categoryLabel}
-                    </span>
-                    <h3 className="text-xl font-semibold mb-2 text-white">{plano.title}</h3>
-                    <p className="text-[var(--cream)]/65 text-sm leading-relaxed">
+                    <h3 className="text-xl font-semibold mb-2 text-white leading-snug">
+                      {plano.title}
+                    </h3>
+                    <p className="text-[var(--cream)]/65 text-sm leading-relaxed mb-6">
                       {plano.description}
                     </p>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs font-mono text-[var(--clay)] uppercase tracking-wider group-hover:text-white transition-colors mt-auto">
+                    <span>Visualizar plano →</span>
                   </div>
                 </motion.div>
               ))
