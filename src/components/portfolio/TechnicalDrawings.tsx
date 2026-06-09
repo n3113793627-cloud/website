@@ -47,7 +47,8 @@ const planosData: Plano[] = [
     title: "Planta Arquitectónica General",
     category: "arquitectura",
     categoryLabel: "Arquitectura",
-    description: "Distribución de muros, accesos, zonificación de flujos y modulación del espacio para optimizar la luz natural.",
+    description:
+      "Distribución de muros, accesos, zonificación de flujos y modulación del espacio para optimizar la luz natural.",
     pdfUrl: ar103Pdf,
     previewImage: imgFloorplan,
   },
@@ -57,7 +58,8 @@ const planosData: Plano[] = [
     title: "Fachadas y Cortes Generales",
     category: "arquitectura",
     categoryLabel: "Arquitectura",
-    description: "Secciones transversales que detallan las alturas, la relación con el terreno y la estrategia de ventilación cruzada.",
+    description:
+      "Secciones transversales que detallan las alturas, la relación con el terreno y la estrategia de ventilación cruzada.",
     pdfUrl: ar201Pdf,
     previewImage: imgSanAndres1,
   },
@@ -67,7 +69,8 @@ const planosData: Plano[] = [
     title: "Detalles de Carpintería y Mobiliario",
     category: "arquitectura",
     categoryLabel: "Arquitectura",
-    description: "Plano técnico detallado para la fabricación del mobiliario integrado y ensambles de carpintería fija.",
+    description:
+      "Plano técnico detallado para la fabricación del mobiliario integrado y ensambles de carpintería fija.",
     pdfUrl: ar301Pdf,
     previewImage: imgSanAndres2,
   },
@@ -77,7 +80,8 @@ const planosData: Plano[] = [
     title: "Especificación de Acabados y Cielorrasos",
     category: "arquitectura",
     categoryLabel: "Arquitectura",
-    description: "Distribución de puntos de iluminación bio-compatible, selección de texturas mate y cielorrasos acústicos.",
+    description:
+      "Distribución de puntos de iluminación bio-compatible, selección de texturas mate y cielorrasos acústicos.",
     pdfUrl: ar302Pdf,
     previewImage: imgSanAndres3,
   },
@@ -89,7 +93,8 @@ const planosData: Plano[] = [
     title: "Cimentación y Vigas de Amarre",
     category: "estructuras",
     categoryLabel: "Estructuras",
-    description: "Plano estructural de cimentación, zapatas, vigas de amarre y especificaciones de concreto reforzado.",
+    description:
+      "Plano estructural de cimentación, zapatas, vigas de amarre y especificaciones de concreto reforzado.",
     pdfUrl: es604Pdf,
     previewImage: imgSanAndres4,
   },
@@ -99,7 +104,8 @@ const planosData: Plano[] = [
     title: "Pórticos Estructurales y Refuerzos",
     category: "estructuras",
     categoryLabel: "Estructuras",
-    description: "Detalle de pórticos estructurales de carga, armadura de refuerzo y acero de alta resistencia.",
+    description:
+      "Detalle de pórticos estructurales de carga, armadura de refuerzo y acero de alta resistencia.",
     pdfUrl: es606Pdf,
     previewImage: imgSanAndres5,
   },
@@ -109,7 +115,8 @@ const planosData: Plano[] = [
     title: "Detalles de Vigas y Nudos Constructivos",
     category: "estructuras",
     categoryLabel: "Estructuras",
-    description: "Detalles y despieces de vigas principales, estribos y encuentros de nudos estructurales.",
+    description:
+      "Detalles y despieces de vigas principales, estribos y encuentros de nudos estructurales.",
     pdfUrl: es609Pdf,
     previewImage: imgSanAndres6,
   },
@@ -119,7 +126,8 @@ const planosData: Plano[] = [
     title: "Estructura y Modulación de Entrepiso / Cubierta",
     category: "estructuras",
     categoryLabel: "Estructuras",
-    description: "Plano de apoyos estructurales, viguetas de madera de soporte y detalles de anclajes de cubierta.",
+    description:
+      "Plano de apoyos estructurales, viguetas de madera de soporte y detalles de anclajes de cubierta.",
     pdfUrl: es617Pdf,
     previewImage: imgCasinoProcess,
   },
@@ -131,7 +139,8 @@ const planosData: Plano[] = [
     title: "Red de Tomacorrientes y Datos",
     category: "instalaciones",
     categoryLabel: "Instalaciones",
-    description: "Plano de canalizaciones eléctricas de fuerza, tomas reguladas y distribución de red de datos estructurales.",
+    description:
+      "Plano de canalizaciones eléctricas de fuerza, tomas reguladas y distribución de red de datos estructurales.",
     pdfUrl: el804Pdf,
     previewImage: imgFloorplan,
   },
@@ -141,7 +150,8 @@ const planosData: Plano[] = [
     title: "Distribución de Alumbrado e Iluminación",
     category: "instalaciones",
     categoryLabel: "Instalaciones",
-    description: "Zonificación de circuitos de iluminación, control de encendido y diseño lumínico bio-compatible y terapéutico.",
+    description:
+      "Zonificación de circuitos de iluminación, control de encendido y diseño lumínico bio-compatible y terapéutico.",
     pdfUrl: el805Pdf,
     previewImage: imgSanAndres1,
   },
@@ -151,7 +161,8 @@ const planosData: Plano[] = [
     title: "Diagrama Unifilar y Cuadro de Cargas",
     category: "instalaciones",
     categoryLabel: "Instalaciones",
-    description: "Esquema unifilar del tablero de distribución eléctrica, balance de fases y especificaciones de cuadros de carga.",
+    description:
+      "Esquema unifilar del tablero de distribución eléctrica, balance de fases y especificaciones de cuadros de carga.",
     pdfUrl: el806Pdf,
     previewImage: imgSanAndres6,
   },
@@ -162,7 +173,7 @@ export function TechnicalDrawings() {
   const [selectedPlano, setSelectedPlano] = useState<Plano | null>(null);
 
   const filteredPlanos = planosData.filter(
-    (plano) => activeCategory === "todos" || plano.category === activeCategory
+    (plano) => activeCategory === "todos" || plano.category === activeCategory,
   );
 
   return (
@@ -176,7 +187,9 @@ export function TechnicalDrawings() {
             Mi trabajo <em className="italic text-[var(--clay)]">técnico</em>.
           </h2>
           <p className="text-[var(--cream)]/75 mt-6 text-sm md:text-base max-w-xl leading-relaxed">
-            La neuroarquitectura exige precisión de ejecución constructiva. Aquí comparto los planos técnicos de distribución, estructuras e instalaciones que sustentam el diseño terapéutico de cada espacio.
+            La neuroarquitectura exige precisión de ejecución constructiva. Aquí comparto los planos
+            técnicos de distribución, estructuras e instalaciones que sustentam el diseño
+            terapéutico de cada espacio.
           </p>
         </div>
 
@@ -199,7 +212,7 @@ export function TechnicalDrawings() {
         </div>
 
         {/* Grilla de planos con Framer Motion */}
-        <motion.div 
+        <motion.div
           layout
           className="planos-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-[1000px] mx-auto justify-center"
         >
@@ -238,7 +251,9 @@ export function TechnicalDrawings() {
                       {plano.categoryLabel}
                     </span>
                     <h3 className="text-xl font-semibold mb-2 text-white">{plano.title}</h3>
-                    <p className="text-[var(--cream)]/65 text-sm leading-relaxed">{plano.description}</p>
+                    <p className="text-[var(--cream)]/65 text-sm leading-relaxed">
+                      {plano.description}
+                    </p>
                   </div>
                 </motion.div>
               ))
@@ -330,7 +345,8 @@ export function TechnicalDrawings() {
 
               {/* Pie del visor */}
               <div className="p-4 bg-[#1b1715] border-t border-white/10 text-center text-xs text-[var(--cream)]/65 font-mono">
-                Puedes hacer zoom, imprimir o guardar el plano utilizando los controles nativos del visor PDF.
+                Puedes hacer zoom, imprimir o guardar el plano utilizando los controles nativos del
+                visor PDF.
               </div>
             </motion.div>
           </motion.div>

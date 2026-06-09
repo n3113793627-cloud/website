@@ -43,8 +43,6 @@ function AutoplayVideo({ src, className }: { src: string; className?: string }) 
   );
 }
 
-
-
 interface ComparisonSliderProps {
   beforeImg: string;
   afterImg: string;
@@ -52,7 +50,12 @@ interface ComparisonSliderProps {
   afterLabel?: string;
 }
 
-function ComparisonSlider({ beforeImg, afterImg, beforeLabel = "Antes", afterLabel = "Después" }: ComparisonSliderProps) {
+function ComparisonSlider({
+  beforeImg,
+  afterImg,
+  beforeLabel = "Antes",
+  afterLabel = "Después",
+}: ComparisonSliderProps) {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -158,14 +161,29 @@ function ComparisonSlider({ beforeImg, afterImg, beforeLabel = "Antes", afterLab
   );
 }
 
-
-function ParallaxImg({ src, alt, speed = 12, className = "" }: { src: string; alt: string; speed?: number; className?: string }) {
+function ParallaxImg({
+  src,
+  alt,
+  speed = 12,
+  className = "",
+}: {
+  src: string;
+  alt: string;
+  speed?: number;
+  className?: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [`-${speed}%`, `${speed}%`]);
   return (
     <div ref={ref} className={`overflow-hidden ${className}`}>
-      <motion.img src={src} alt={alt} loading="lazy" style={{ y, scale: 1.25 }} className="w-full h-full object-cover" />
+      <motion.img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        style={{ y, scale: 1.25 }}
+        className="w-full h-full object-cover"
+      />
     </div>
   );
 }
@@ -239,22 +257,33 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
   }, [lightboxImages]);
 
   const ref1 = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: scroll1 } = useScroll({ target: ref1, offset: ["start end", "end start"] });
+  const { scrollYProgress: scroll1 } = useScroll({
+    target: ref1,
+    offset: ["start end", "end start"],
+  });
   const yLeft1 = useTransform(scroll1, [0, 1], ["0%", "-12%"]);
 
   const ref2 = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: scroll2 } = useScroll({ target: ref2, offset: ["start end", "end start"] });
+  const { scrollYProgress: scroll2 } = useScroll({
+    target: ref2,
+    offset: ["start end", "end start"],
+  });
   const yLeft2 = useTransform(scroll2, [0, 1], ["0%", "-8%"]);
 
   const ref3 = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: scroll3 } = useScroll({ target: ref3, offset: ["start end", "end start"] });
+  const { scrollYProgress: scroll3 } = useScroll({
+    target: ref3,
+    offset: ["start end", "end start"],
+  });
   const yLeft3 = useTransform(scroll3, [0, 1], ["0%", "-8%"]);
-
 
   return (
     <div id="proyectos" className="bg-[var(--ink)] text-[var(--cream)]">
       {/* Proyecto 01: Apto Cerezo */}
-      <section ref={ref1} className="py-12 md:py-16 px-6 md:px-10 border-b border-[var(--cream)]/10">
+      <section
+        ref={ref1}
+        className="py-12 md:py-16 px-6 md:px-10 border-b border-[var(--cream)]/10"
+      >
         <div className="max-w-[1400px] mx-auto space-y-10">
           {/* Header */}
           <div className="flex items-end justify-between gap-6 border-b border-[var(--cream)]/10 pb-10">
@@ -273,8 +302,13 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
           <div className="grid md:grid-cols-2 gap-8 md:gap-6 items-start">
             {/* Left: main image (collage) with hotspots */}
             <div className="relative overflow-hidden bg-[var(--cherry)] rounded-lg border border-[var(--cream)]/10 shadow-lg group">
-              <img src={aptoCerezo} alt="Apto Cerezo Plano y Collage" className="w-full h-auto" loading="lazy" />
-              
+              <img
+                src={aptoCerezo}
+                alt="Apto Cerezo Plano y Collage"
+                className="w-full h-auto"
+                loading="lazy"
+              />
+
               <Hotspot
                 x="25%"
                 y="75%"
@@ -283,7 +317,8 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                     project: "Apto Cerezo",
                     title: "Biombo Divisor Flotante",
                     decision: "Estructuración espacial porosa mediante biombo de madera",
-                    rationale: "En apartamentos pequeños, las paredes sólidas tradicionales restringen la luz e inducen una fatiga espacial claustrofóbica. Este divisor central actúa como diafragma espacial: permite ver a través de él para ampliar la percepción de profundidad (lo cual relaja el nervio óptico) mientras delimita zonas sin bloquear la ventilación ni la luz natural circadiana.",
+                    rationale:
+                      "En apartamentos pequeños, las paredes sólidas tradicionales restringen la luz e inducen una fatiga espacial claustrofóbica. Este divisor central actúa como diafragma espacial: permite ver a través de él para ampliar la percepción de profundidad (lo cual relaja el nervio óptico) mientras delimita zonas sin bloquear la ventilación ni la luz natural circadiana.",
                     pillar: "Agencia Espacial y Fluidez Visual",
                   })
                 }
@@ -296,8 +331,10 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                   setActiveHotspot({
                     project: "Apto Cerezo",
                     title: "Textura de Cerezo y Tonos Mate",
-                    decision: "Uso estratégico de melamina de madera clara y acabados de baja saturación",
-                    rationale: "Los contrastes visuales altos e intensos disparan micro-alertas en el cerebro de forma constante. La melamina de cerezo mate absorbe y dispersa la iluminación en lugar de reflejarla bruscamente. Esto activa el tacto visual de la corteza somatosensorial de forma equilibrada, promoviendo una sensación de serenidad física inmediata y disminuyendo los niveles basales de cortisol.",
+                    decision:
+                      "Uso estratégico de melamina de madera clara y acabados de baja saturación",
+                    rationale:
+                      "Los contrastes visuales altos e intensos disparan micro-alertas en el cerebro de forma constante. La melamina de cerezo mate absorbe y dispersa la iluminación en lugar de reflejarla bruscamente. Esto activa el tacto visual de la corteza somatosensorial de forma equilibrada, promoviendo una sensación de serenidad física inmediata y disminuyendo los niveles basales de cortisol.",
                     pillar: "Estimulación Sensorial Controlada",
                   })
                 }
@@ -306,9 +343,24 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
 
             {/* Right: sub-images grid (Detail, Kitchen, Bedroom) next to it */}
             <div className="grid grid-cols-2 grid-rows-2 gap-2 min-h-[320px] md:min-h-[450px]">
-              <ParallaxImg src={detailImg}    alt="Detalle carpintería" speed={10} className="col-span-2 row-span-1 h-full rounded" />
-              <ParallaxImg src={kitchenImg}   alt="Cocina"              speed={12} className="col-span-1 row-span-1 h-full rounded" />
-              <ParallaxImg src={bedroomImg}   alt="Zona de descanso"    speed={8}  className="col-span-1 row-span-1 h-full rounded" />
+              <ParallaxImg
+                src={detailImg}
+                alt="Detalle carpintería"
+                speed={10}
+                className="col-span-2 row-span-1 h-full rounded"
+              />
+              <ParallaxImg
+                src={kitchenImg}
+                alt="Cocina"
+                speed={12}
+                className="col-span-1 row-span-1 h-full rounded"
+              />
+              <ParallaxImg
+                src={bedroomImg}
+                alt="Zona de descanso"
+                speed={8}
+                className="col-span-1 row-span-1 h-full rounded"
+              />
             </div>
           </div>
 
@@ -318,14 +370,17 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             <div className="md:col-span-7 flex flex-col gap-6">
               <div className="space-y-4">
                 <p className="text-[var(--cream)]/85 leading-relaxed">
-                  "Apto Cerezo" es un ejercicio de <strong>neuroarquitectura aplicada a espacios compactos</strong>. 
-                  Nace del desafío de optimizar un apartamento reducido, estructurando el espacio para disminuir 
-                  la fatiga visual y favorecer la calma mental a través de un biombo central multifuncional que divide sin obstruir.
+                  "Apto Cerezo" es un ejercicio de{" "}
+                  <strong>neuroarquitectura aplicada a espacios compactos</strong>. Nace del desafío
+                  de optimizar un apartamento reducido, estructurando el espacio para disminuir la
+                  fatiga visual y favorecer la calma mental a través de un biombo central
+                  multifuncional que divide sin obstruir.
                 </p>
                 <p className="text-[var(--cream)]/70 leading-relaxed text-sm">
-                  La elección de melamina de cerezo claro y texturas naturales fue estratégica: tonos y materialidades 
-                  de baja saturación que reducen el cortisol en sangre, promoviendo el bienestar sensorial y respetando 
-                  el ingreso de luz natural para regular los ritmos circadianos.
+                  La elección de melamina de cerezo claro y texturas naturales fue estratégica:
+                  tonos y materialidades de baja saturación que reducen el cortisol en sangre,
+                  promoviendo el bienestar sensorial y respetando el ingreso de luz natural para
+                  regular los ritmos circadianos.
                 </p>
               </div>
 
@@ -337,7 +392,9 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                   { label: "Piezas", value: "11 módulos" },
                 ].map((item) => (
                   <div key={item.label}>
-                    <p className="text-[10px] text-[var(--cream)]/65 uppercase tracking-widest mb-1">{item.label}</p>
+                    <p className="text-[10px] text-[var(--cream)]/65 uppercase tracking-widest mb-1">
+                      {item.label}
+                    </p>
                     <p className="display text-2xl text-[var(--cream)]">{item.value}</p>
                   </div>
                 ))}
@@ -347,10 +404,16 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             {/* Columna Derecha: CTA */}
             <div className="md:col-span-5 flex flex-col justify-between h-full pt-4">
               <p className="text-xs text-[var(--cream)]/60 leading-relaxed mb-6">
-                El biombo central divisor actúa como regulador espacial y visual, permitiendo la reconfiguración del espacio según la hora del día y la necesidad de privacidad o integración de la usuaria.
+                El biombo central divisor actúa como regulador espacial y visual, permitiendo la
+                reconfiguración del espacio según la hora del día y la necesidad de privacidad o
+                integración de la usuaria.
               </p>
               <button
-                onClick={() => onInquire("Hola Natalia, estuve revisando tu portafolio y en especial el proyecto del Apto Cerezo. Me pareció excelente tu enfoque en neuroarquitectura para espacios reducidos. Me gustaría que nos pusiéramos en contacto para conversar sobre una oportunidad de colaboración.")}
+                onClick={() =>
+                  onInquire(
+                    "Hola Natalia, estuve revisando tu portafolio y en especial el proyecto del Apto Cerezo. Me pareció excelente tu enfoque en neuroarquitectura para espacios reducidos. Me gustaría que nos pusiéramos en contacto para conversar sobre una oportunidad de colaboración.",
+                  )
+                }
                 className="self-start text-xs tracking-[0.2em] uppercase border-b border-[var(--clay)] pb-1 text-[var(--clay)] hover:opacity-70 transition-opacity text-left font-semibold mt-2"
               >
                 ¿Tienes un proyecto similar? →
@@ -395,8 +458,13 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
 
         {/* Fila Superior: Render que ocupa toda la pantalla (Ancho completo real) con hotspots */}
         <div className="w-full relative group aspect-[21/9] md:h-[65vh] md:aspect-auto overflow-hidden shadow-2xl">
-          <img src={sanAndresRender} alt="Centro Orange Hill Render" className="w-full h-full object-cover" loading="lazy" />
-          
+          <img
+            src={sanAndresRender}
+            alt="Centro Orange Hill Render"
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+
           <Hotspot
             x="45%"
             y="72%"
@@ -405,7 +473,8 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                 project: "Centro Orange Hill",
                 title: "Cabañas Flotantes sobre Pilotes",
                 decision: "Elevación volumétrica de madera estructural sobre pilotes",
-                rationale: "Separar la cabaña del suelo natural no solo responde a criterios hidráulicos de la isla, sino que psicológicamente produce levedad y desconexión del ruido terrestre. Elevar las unidades genera una perspectiva aérea que aminora la sensación de vulnerabilidad, estimulando la sensación de resguardo y control del habitante.",
+                rationale:
+                  "Separar la cabaña del suelo natural no solo responde a criterios hidráulicos de la isla, sino que psicológicamente produce levedad y desconexión del ruido terrestre. Elevar las unidades genera una perspectiva aérea que aminora la sensación de vulnerabilidad, estimulando la sensación de resguardo y control del habitante.",
                 pillar: "Territorialidad and Amplitud Aérea",
               })
             }
@@ -418,8 +487,10 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
               setActiveHotspot({
                 project: "Centro Orange Hill",
                 title: "Patios Internos de Biofilia",
-                decision: "Jardines interiores integrados con vegetación local y ventilación cruzada",
-                rationale: "El contacto visual directo y el aroma de la vegetación nativa estimulan el nervio vago y reducen de manera drástica las ondas beta (asociadas a la ansiedad) a favor de las ondas alfa (relajación). En cuidados paliativos, esto funciona como un analgésico ambiental, reduciendo la percepción del dolor físico e induciendo la meditación espontánea.",
+                decision:
+                  "Jardines interiores integrados con vegetación local y ventilación cruzada",
+                rationale:
+                  "El contacto visual directo y el aroma de la vegetación nativa estimulan el nervio vago y reducen de manera drástica las ondas beta (asociadas a la ansiedad) a favor de las ondas alfa (relajación). En cuidados paliativos, esto funciona como un analgésico ambiental, reduciendo la percepción del dolor físico e induciendo la meditación espontánea.",
                 pillar: "Biofilia y Recuperación Sensorial",
               })
             }
@@ -434,14 +505,18 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             <div className="md:col-span-7 flex flex-col gap-6">
               <div className="space-y-4">
                 <p className="text-[var(--cream)]/90 text-base md:text-lg leading-relaxed">
-                  "Centro Orange Hill" es un santuario de <strong>cuidados paliativos y sanación sensorial</strong> en San Andrés Isla. 
-                  Nace de la necesidad de diseñar espacios que satisfagan las necesidades espirituales y emocionales de pacientes críticos, 
-                  aliviando el sufrimiento mediante estímulos cognitivos y el entorno natural.
+                  "Centro Orange Hill" es un santuario de{" "}
+                  <strong>cuidados paliativos y sanación sensorial</strong> en San Andrés Isla. Nace
+                  de la necesidad de diseñar espacios que satisfagan las necesidades espirituales y
+                  emocionales de pacientes críticos, aliviando el sufrimiento mediante estímulos
+                  cognitivos y el entorno natural.
                 </p>
                 <p className="text-[var(--cream)]/75 text-sm md:text-base leading-relaxed">
-                  La propuesta integra cabañas modulares de madera elevadas sobre pilotes que reinterpretan la arquitectura isleña tradicional. 
-                  Los volúmenes están estratégicamente rotados hacia el mar e incorporan patios internos con abundante vegetación (biofilia), 
-                  lo cual reduce el cortisol en sangre y facilita la calma y la meditación profunda.
+                  La propuesta integra cabañas modulares de madera elevadas sobre pilotes que
+                  reinterpretan la arquitectura isleña tradicional. Los volúmenes están
+                  estratégicamente rotados hacia el mar e incorporan patios internos con abundante
+                  vegetación (biofilia), lo cual reduce el cortisol en sangre y facilita la calma y
+                  la meditación profunda.
                 </p>
               </div>
 
@@ -453,7 +528,9 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                   { label: "Cabañas", value: "Modulares" },
                 ].map((item) => (
                   <div key={item.label}>
-                    <p className="text-[10px] text-[var(--cream)]/65 uppercase tracking-widest mb-1">{item.label}</p>
+                    <p className="text-[10px] text-[var(--cream)]/65 uppercase tracking-widest mb-1">
+                      {item.label}
+                    </p>
                     <p className="display text-xl text-[var(--cream)] font-bold">{item.value}</p>
                   </div>
                 ))}
@@ -463,9 +540,14 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             {/* Columna Derecha: Video y CTA */}
             <div className="md:col-span-5 flex flex-col gap-6">
               <div className="space-y-2">
-                <p className="text-[10px] text-[var(--clay)] uppercase tracking-widest font-mono font-bold">Atmósfera Sensorial: Brisa y atardecer</p>
+                <p className="text-[10px] text-[var(--clay)] uppercase tracking-widest font-mono font-bold">
+                  Atmósfera Sensorial: Brisa y atardecer
+                </p>
                 <div className="relative overflow-hidden rounded-lg border border-[var(--cream)]/15 aspect-video shadow-lg group">
-                  <AutoplayVideo src={beachVideo} className="w-full h-full object-cover origin-top-left scale-[1.15] transition-transform duration-700 group-hover:scale-[1.20]" />
+                  <AutoplayVideo
+                    src={beachVideo}
+                    className="w-full h-full object-cover origin-top-left scale-[1.15] transition-transform duration-700 group-hover:scale-[1.20]"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-[rgba(20,10,5,0.4)] to-transparent flex items-end p-3">
                     <p className="text-[10px] font-mono text-[var(--cream)]/90 tracking-wide">
                       San Andrés Isla · Entorno Natural
@@ -475,7 +557,11 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
               </div>
 
               <button
-                onClick={() => onInquire("Hola Natalia, estuve revisando tu portafolio y en especial el proyecto de San Andrés (Centro Orange Hill). Me pareció increíble cómo integras la neuroarquitectura y la biofilia para el cuidado de la salud. Me gustaría que nos pusiéramos en contacto para conversar sobre una oportunidad de colaboración.")}
+                onClick={() =>
+                  onInquire(
+                    "Hola Natalia, estuve revisando tu portafolio y en especial el proyecto de San Andrés (Centro Orange Hill). Me pareció increíble cómo integras la neuroarquitectura y la biofilia para el cuidado de la salud. Me gustaría que nos pusiéramos en contacto para conversar sobre una oportunidad de colaboración.",
+                  )
+                }
                 className="self-start text-xs tracking-[0.2em] uppercase border-b border-[var(--clay)] pb-1 text-[var(--clay)] hover:opacity-70 transition-opacity text-left font-semibold mt-2"
               >
                 ¿Colaboramos en este proyecto? →
@@ -488,34 +574,43 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
                 <p className="eyebrow text-[var(--clay)] mb-2">— Análisis y Esquema Técnico</p>
-                <h3 className="display text-3xl md:text-4xl">Programa y Experiencia en el Espacio</h3>
+                <h3 className="display text-3xl md:text-4xl">
+                  Programa y Experiencia en el Espacio
+                </h3>
               </div>
               <p className="text-xs text-[var(--cream)]/60 max-w-sm leading-relaxed font-mono">
-                Haz clic sobre cualquiera de las láminas para ampliarla en alta definición y leer detenidamente el análisis clínico-espacial.
+                Haz clic sobre cualquiera de las láminas para ampliarla en alta definición y leer
+                detenidamente el análisis clínico-espacial.
               </p>
             </div>
 
             <div className="bg-[#EAEAEA] text-[#111111] rounded-3xl p-6 md:p-10 shadow-2xl max-w-7xl mx-auto my-8 border border-white/5">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
                 {/* Lámina 1 */}
-                <div 
-                  onClick={() => setLightboxImages([sanAndresInfo1Part1, sanAndresInfo1Part2, sanAndresInfo1Part3])}
+                <div
+                  onClick={() =>
+                    setLightboxImages([
+                      sanAndresInfo1Part1,
+                      sanAndresInfo1Part2,
+                      sanAndresInfo1Part3,
+                    ])
+                  }
                   className="group relative flex flex-col items-center justify-center cursor-zoom-in transition-all duration-300 hover:scale-[1.01]"
                 >
                   <div className="w-full flex flex-col gap-0 rounded-lg shadow-md overflow-hidden max-h-[70vh] md:max-h-[78vh] relative bg-white">
-                    <img 
-                      src={sanAndresInfo1Part1} 
-                      alt="Lámina de Análisis Clínico-Espacial - Parte 1" 
+                    <img
+                      src={sanAndresInfo1Part1}
+                      alt="Lámina de Análisis Clínico-Espacial - Parte 1"
                       className="w-full h-auto block"
                     />
-                    <img 
-                      src={sanAndresInfo1Part2} 
-                      alt="Lámina de Análisis Clínico-Espacial - Parte 2" 
+                    <img
+                      src={sanAndresInfo1Part2}
+                      alt="Lámina de Análisis Clínico-Espacial - Parte 2"
                       className="w-full h-auto block"
                     />
-                    <img 
-                      src={sanAndresInfo1Part3} 
-                      alt="Lámina de Análisis Clínico-Espacial - Parte 3" 
+                    <img
+                      src={sanAndresInfo1Part3}
+                      alt="Lámina de Análisis Clínico-Espacial - Parte 3"
                       className="w-full h-auto block"
                     />
                     {/* Fade overlay */}
@@ -523,7 +618,18 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                   </div>
                   {/* Botón flotante 'Clic para ampliar' */}
                   <div className="absolute bottom-6 bg-black/75 hover:bg-black/95 text-white text-xs px-4 py-2.5 rounded-full flex items-center gap-2 shadow-lg backdrop-blur-sm transition-all duration-300 group-hover:scale-105 font-mono tracking-wider z-10">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="w-3.5 h-3.5"
+                    >
                       <circle cx="11" cy="11" r="8"></circle>
                       <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
@@ -532,24 +638,30 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                 </div>
 
                 {/* Lámina 2 */}
-                <div 
-                  onClick={() => setLightboxImages([sanAndresInfo2Part1, sanAndresInfo2Part2, sanAndresInfo2Part3])}
+                <div
+                  onClick={() =>
+                    setLightboxImages([
+                      sanAndresInfo2Part1,
+                      sanAndresInfo2Part2,
+                      sanAndresInfo2Part3,
+                    ])
+                  }
                   className="group relative flex flex-col items-center justify-center cursor-zoom-in transition-all duration-300 hover:scale-[1.01]"
                 >
                   <div className="w-full flex flex-col gap-0 rounded-lg shadow-md overflow-hidden max-h-[70vh] md:max-h-[78vh] relative bg-white">
-                    <img 
-                      src={sanAndresInfo2Part1} 
-                      alt="Lámina de Análisis Clínico-Espacial - Parte 2" 
+                    <img
+                      src={sanAndresInfo2Part1}
+                      alt="Lámina de Análisis Clínico-Espacial - Parte 2"
                       className="w-full h-auto block"
                     />
-                    <img 
-                      src={sanAndresInfo2Part2} 
-                      alt="Lámina de Análisis Clínico-Espacial - Parte 2" 
+                    <img
+                      src={sanAndresInfo2Part2}
+                      alt="Lámina de Análisis Clínico-Espacial - Parte 2"
                       className="w-full h-auto block"
                     />
-                    <img 
-                      src={sanAndresInfo2Part3} 
-                      alt="Lámina de Análisis Clínico-Espacial - Parte 2" 
+                    <img
+                      src={sanAndresInfo2Part3}
+                      alt="Lámina de Análisis Clínico-Espacial - Parte 2"
                       className="w-full h-auto block"
                     />
                     {/* Fade overlay */}
@@ -557,7 +669,18 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                   </div>
                   {/* Botón flotante 'Clic para ampliar' */}
                   <div className="absolute bottom-6 bg-black/75 hover:bg-black/95 text-white text-xs px-4 py-2.5 rounded-full flex items-center gap-2 shadow-lg backdrop-blur-sm transition-all duration-300 group-hover:scale-105 font-mono tracking-wider z-10">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="w-3.5 h-3.5"
+                    >
                       <circle cx="11" cy="11" r="8"></circle>
                       <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
@@ -571,10 +694,19 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
           {/* Metadata footer */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-[var(--cream)]/15 pt-10">
             {[
-              { k: "Materiales", v: "Madera estructural local, celosías tradicionales y ventilación cruzada" },
-              { k: "Enfoque Neuro", v: "Biofilia activa, reducción de cortisol y psicología del color" },
+              {
+                k: "Materiales",
+                v: "Madera estructural local, celosías tradicionales y ventilación cruzada",
+              },
+              {
+                k: "Enfoque Neuro",
+                v: "Biofilia activa, reducción de cortisol y psicología del color",
+              },
               { k: "Pieza clave", v: "Módulos habitacionales elevados y patios de meditación" },
-              { k: "Áreas", v: "Terapia espiritual · Módulos habitacionales · Senderos y paisajismo" },
+              {
+                k: "Áreas",
+                v: "Terapia espiritual · Módulos habitacionales · Senderos y paisajismo",
+              },
             ].map((d) => (
               <div key={d.k}>
                 <p className="eyebrow text-[var(--clay)] mb-2">{d.k}</p>
@@ -605,7 +737,9 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
           {/* Fila Superior: Comparaciones de Antes y Después en Grid de 2 Columnas */}
           <div className="grid md:grid-cols-2 gap-8 md:gap-12">
             <div className="space-y-4">
-              <p className="text-[10px] text-[var(--clay)] uppercase tracking-widest font-mono font-bold">— Fachada: Propuesta de Diseño (Render)</p>
+              <p className="text-[10px] text-[var(--clay)] uppercase tracking-widest font-mono font-bold">
+                — Fachada: Propuesta de Diseño (Render)
+              </p>
               <div className="relative w-full aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-lg border border-[var(--cream)]/10 shadow-lg bg-muted group">
                 <img
                   src={casinoRender}
@@ -613,7 +747,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
-                
+
                 <Hotspot
                   x="38%"
                   y="45%"
@@ -622,7 +756,8 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                       project: "Casino The Lounge",
                       title: "Fachada Paramétrica en Ondas",
                       decision: "Celosía de paneles de aluminio compuesto ondulado",
-                      rationale: "Evolutivamente, el cerebro asocia las formas de líneas duras y esquinas afiladas con amenazas (objetos punzantes o dientes). Las fachadas orgánicas curvas estimulan el giro de la mirada sin sobresaltos. En un contexto comercial de ocio nocturno, esto disminuye las barreras defensivas subconscientes y genera una transición fluida hacia el interior.",
+                      rationale:
+                        "Evolutivamente, el cerebro asocia las formas de líneas duras y esquinas afiladas con amenazas (objetos punzantes o dientes). Las fachadas orgánicas curvas estimulan el giro de la mirada sin sobresaltos. En un contexto comercial de ocio nocturno, esto disminuye las barreras defensivas subconscientes y genera una transición fluida hacia el interior.",
                       pillar: "Geometría de Curvas Orgánicas",
                     })
                   }
@@ -636,7 +771,8 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                       project: "Casino The Lounge",
                       title: "Iluminación LED Indirecta",
                       decision: "Luminarias LED integradas y retroiluminación en fachada comercial",
-                      rationale: "La iluminación directa dura genera cansancio mental e incomodidad social. Diseñé un esquema de luz indirecta de baja intensidad en tonos ámbar. La luz ámbar y cálida (2700K o menos) estimula las glándulas que inducen a la calma, promoviendo una experiencia social elegante, segura y de mayor permanencia voluntaria.",
+                      rationale:
+                        "La iluminación directa dura genera cansancio mental e incomodidad social. Diseñé un esquema de luz indirecta de baja intensidad en tonos ámbar. La luz ámbar y cálida (2700K o menos) estimula las glándulas que inducen a la calma, promoviendo una experiencia social elegante, segura y de mayor permanencia voluntaria.",
                       pillar: "Ritmos de Luz y Psicología Ambiental",
                     })
                   }
@@ -644,7 +780,9 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
               </div>
             </div>
             <div className="space-y-4">
-              <p className="text-[10px] text-[var(--clay)] uppercase tracking-widest font-mono font-bold">— Interior: Proceso vs Acabado Final</p>
+              <p className="text-[10px] text-[var(--clay)] uppercase tracking-widest font-mono font-bold">
+                — Interior: Proceso vs Acabado Final
+              </p>
               <ComparisonSlider
                 beforeImg={casinoProcess}
                 afterImg={casinoInteriorFinished}
@@ -660,10 +798,19 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             <div className="md:col-span-7 flex flex-col gap-6">
               <div className="space-y-4">
                 <p className="text-[var(--cream)]/85 leading-relaxed">
-                  "Casino The Lounge" es un proyecto de <strong>rediseño integral y comercial</strong>. El encargo consistió en transformar la fachada exterior y todo el interior de una edificación que funcionaba previamente como restaurante, convirtiéndola en un club de juego premium en Bogotá.
+                  "Casino The Lounge" es un proyecto de{" "}
+                  <strong>rediseño integral y comercial</strong>. El encargo consistió en
+                  transformar la fachada exterior y todo el interior de una edificación que
+                  funcionaba previamente como restaurante, convirtiéndola en un club de juego
+                  premium en Bogotá.
                 </p>
                 <p className="text-[var(--cream)]/70 leading-relaxed text-sm">
-                  La fachada se concibió con líneas orgánicas y celosías retroiluminadas con iluminación LED indirecta, logrando un impacto escénico nocturno único. El interiorismo maximiza la fluidez espacial, zonificando acústicamente las salas de juego y aplicando psicología ambiental a través de muros de cuarcita retroiluminada en tonos dorados/ámbar para promover la calma y el confort térmico y mental.
+                  La fachada se concibió con líneas orgánicas y celosías retroiluminadas con
+                  iluminación LED indirecta, logrando un impacto escénico nocturno único. El
+                  interiorismo maximiza la fluidez espacial, zonificando acústicamente las salas de
+                  juego y aplicando psicología ambiental a través de muros de cuarcita
+                  retroiluminada en tonos dorados/ámbar para promover la calma y el confort térmico
+                  y mental.
                 </p>
               </div>
 
@@ -675,7 +822,9 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                   { label: "Tipo", value: "Fachada & Interior" },
                 ].map((item) => (
                   <div key={item.label}>
-                    <p className="text-[10px] text-[var(--cream)]/65 uppercase tracking-widest mb-1">{item.label}</p>
+                    <p className="text-[10px] text-[var(--cream)]/65 uppercase tracking-widest mb-1">
+                      {item.label}
+                    </p>
                     <p className="display text-xl text-[var(--cream)] font-bold">{item.value}</p>
                   </div>
                 ))}
@@ -685,10 +834,16 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             {/* Columna Derecha: CTA */}
             <div className="md:col-span-5 flex flex-col justify-between h-full pt-4">
               <p className="text-xs text-[var(--cream)]/60 leading-relaxed mb-6">
-                El paso de restaurante a casino implicó una reingeniería acústica y una planificación lumínica circadiana social, reduciendo la estimulación invasiva para favorecer una experiencia inmersiva elegante y controlada.
+                El paso de restaurante a casino implicó una reingeniería acústica y una
+                planificación lumínica circadiana social, reduciendo la estimulación invasiva para
+                favorecer una experiencia inmersiva elegante y controlada.
               </p>
               <button
-                onClick={() => onInquire("Hola Natalia, estuve revisando tu portafolio y en especial el proyecto del Casino The Lounge en Bogotá. Me pareció excelente el diseño de la fachada frontal y el interiorismo. Me gustaría que nos pusiéramos en contacto para conversar sobre una oportunidad de colaboración.")}
+                onClick={() =>
+                  onInquire(
+                    "Hola Natalia, estuve revisando tu portafolio y en especial el proyecto del Casino The Lounge en Bogotá. Me pareció excelente el diseño de la fachada frontal y el interiorismo. Me gustaría que nos pusiéramos en contacto para conversar sobre una oportunidad de colaboración.",
+                  )
+                }
                 className="self-start text-xs tracking-[0.2em] uppercase border-b border-[var(--clay)] pb-1 text-[var(--clay)] hover:opacity-70 transition-opacity text-left font-semibold"
               >
                 ¿Quieres rediseñar tu espacio comercial? →
@@ -699,8 +854,14 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
           {/* Metadata footer */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-[var(--cream)]/15 pt-10">
             {[
-              { k: "Materiales", v: "Paneles de aluminio compuesto, cuarcita retroiluminada, maderas nobles y cuero" },
-              { k: "Enfoque Neuro", v: "Psicología del color ámbar, zonificación acústica activa y ritmos sociales" },
+              {
+                k: "Materiales",
+                v: "Paneles de aluminio compuesto, cuarcita retroiluminada, maderas nobles y cuero",
+              },
+              {
+                k: "Enfoque Neuro",
+                v: "Psicología del color ámbar, zonificación acústica activa y ritmos sociales",
+              },
               { k: "Pieza clave", v: "Fachada de ondas paramétricas y paneles de luz de cuarcita" },
               { k: "Áreas", v: "Fachada principal · Salón de Poker · Barra de tragos · Zona VIP" },
             ].map((d) => (
@@ -716,7 +877,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
       {/* Lightbox / Visor de Imagen a Pantalla Completa */}
       <AnimatePresence>
         {lightboxImages && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -725,7 +886,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             onClick={() => setLightboxImages(null)}
           >
             {/* Botón de cierre */}
-            <button 
+            <button
               className="fixed top-6 right-6 text-white bg-black/50 hover:bg-black/80 transition-colors w-12 h-12 rounded-full flex items-center justify-center text-3xl font-mono shadow-2xl z-[120]"
               onClick={(e) => {
                 e.stopPropagation();
@@ -736,7 +897,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             </button>
 
             {/* Imagen ampliada scrollable */}
-            <motion.div 
+            <motion.div
               initial={{ scale: 0.95, y: 10 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.95, y: 10 }}
@@ -744,23 +905,23 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
               className="relative max-w-[95vw] md:max-w-6xl w-full bg-[#FDFBF7] rounded-xl p-4 md:p-6 shadow-2xl my-auto cursor-default transition-all duration-300"
               onClick={(e) => e.stopPropagation()}
             >
-              <div 
+              <div
                 ref={lightboxContainerRef}
                 className="max-h-[76vh] overflow-auto scrollbar-thin pr-1 flex justify-center items-start bg-black/5 rounded-lg p-2"
               >
-                <div 
+                <div
                   className="flex flex-col gap-0 select-none items-center bg-white"
-                  style={{ 
-                    width: `${zoomPercent}%`, 
+                  style={{
+                    width: `${zoomPercent}%`,
                     minWidth: "100%",
                   }}
                 >
                   {lightboxImages.map((src, index) => (
-                    <img 
+                    <img
                       key={index}
-                      src={src} 
-                      alt={`Lámina Ampliada Parte ${index + 1}`} 
-                      className="w-full h-auto block object-contain transition-all duration-300" 
+                      src={src}
+                      alt={`Lámina Ampliada Parte ${index + 1}`}
+                      className="w-full h-auto block object-contain transition-all duration-300"
                       loading="eager"
                     />
                   ))}
@@ -768,7 +929,9 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
               </div>
               <div className="mt-4 pt-3 border-t border-black/10 flex flex-wrap gap-4 justify-between items-center text-[10px] font-mono text-black/60 uppercase tracking-wider">
                 <div className="flex flex-wrap items-center gap-4">
-                  <span className="hidden sm:inline">Desliza o usa [Ctrl + Rueda] para zoom libre (hasta 500%)</span>
+                  <span className="hidden sm:inline">
+                    Desliza o usa [Ctrl + Rueda] para zoom libre (hasta 500%)
+                  </span>
                   <div className="flex bg-black/5 rounded p-0.5 border border-black/10">
                     {[
                       { val: 100, label: "100% (Ajustar)" },
@@ -789,8 +952,8 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                     ))}
                   </div>
                 </div>
-                <button 
-                  onClick={() => setLightboxImages(null)} 
+                <button
+                  onClick={() => setLightboxImages(null)}
                   className="text-[var(--clay)] font-bold hover:underline"
                 >
                   Cerrar vista [×]
@@ -841,7 +1004,9 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
 
                 <div className="space-y-6">
                   <div>
-                    <span className="eyebrow text-[var(--clay)] text-[10px]">Cómo Pienso la Solución</span>
+                    <span className="eyebrow text-[var(--clay)] text-[10px]">
+                      Cómo Pienso la Solución
+                    </span>
                     <h3 className="display text-3xl md:text-4xl text-white mt-2 leading-[1.05]">
                       {activeHotspot.title}
                     </h3>

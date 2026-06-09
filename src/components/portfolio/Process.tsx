@@ -2,10 +2,26 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 const steps = [
-  { n: "01", t: "Análisis Sensorial", d: "Identificamos las necesidades biológicas y emocionales del habitante: niveles de estrés, rutinas circadianas y dinámicas de uso." },
-  { n: "02", t: "Bases Neuro", d: "Definimos paletas cromáticas estimulantes o relajantes, texturas orgánicas y un diseño de iluminación bio-compatible." },
-  { n: "03", t: "Diseño & Biofilia", d: "Modelamos el espacio en 3D incorporando formas suaves, geometría natural y vegetación para reducir la fatiga mental." },
-  { n: "04", t: "Planimetría Técnica", d: "Entregamos planos técnicos detallados y guías de compra listos para que tu equipo ejecute el espacio ideal." },
+  {
+    n: "01",
+    t: "Análisis Sensorial",
+    d: "Identificamos las necesidades biológicas y emocionales del habitante: niveles de estrés, rutinas circadianas y dinámicas de uso.",
+  },
+  {
+    n: "02",
+    t: "Bases Neuro",
+    d: "Definimos paletas cromáticas estimulantes o relajantes, texturas orgánicas y un diseño de iluminación bio-compatible.",
+  },
+  {
+    n: "03",
+    t: "Diseño & Biofilia",
+    d: "Modelamos el espacio en 3D incorporando formas suaves, geometría natural y vegetación para reducir la fatiga mental.",
+  },
+  {
+    n: "04",
+    t: "Planimetría Técnica",
+    d: "Entregamos planos técnicos detallados y guías de compra listos para que tu equipo ejecute el espacio ideal.",
+  },
 ];
 
 export function Process() {
@@ -14,7 +30,11 @@ export function Process() {
   const lineWidth = useTransform(scrollYProgress, [0.1, 0.7], ["0%", "100%"]);
 
   return (
-    <section id="proceso" ref={ref} className="py-32 md:py-40 px-6 md:px-10 bg-[var(--cherry)] text-[var(--cream)]">
+    <section
+      id="proceso"
+      ref={ref}
+      className="py-32 md:py-40 px-6 md:px-10 bg-[var(--cherry)] text-[var(--cream)]"
+    >
       <div className="max-w-[1400px] mx-auto">
         <div className="max-w-3xl mb-20">
           <p className="eyebrow text-[var(--cream)]/80 mb-4">— Proceso</p>

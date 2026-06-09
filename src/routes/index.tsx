@@ -10,28 +10,41 @@ import { Footer } from "@/components/portfolio/Footer";
 
 // Lazy-loaded components below the fold
 const DesignPhilosophy = lazy(() =>
-  import("@/components/portfolio/DesignPhilosophy").then((m) => ({ default: m.DesignPhilosophy }))
+  import("@/components/portfolio/DesignPhilosophy").then((m) => ({ default: m.DesignPhilosophy })),
 );
 const FeaturedProject = lazy(() =>
-  import("@/components/portfolio/FeaturedProject").then((m) => ({ default: m.FeaturedProject }))
+  import("@/components/portfolio/FeaturedProject").then((m) => ({ default: m.FeaturedProject })),
 );
 const BeforeAfter = lazy(() =>
-  import("@/components/portfolio/BeforeAfter").then((m) => ({ default: m.BeforeAfter }))
+  import("@/components/portfolio/BeforeAfter").then((m) => ({ default: m.BeforeAfter })),
 );
 const TechnicalDrawings = lazy(() =>
-  import("@/components/portfolio/TechnicalDrawings").then((m) => ({ default: m.TechnicalDrawings }))
+  import("@/components/portfolio/TechnicalDrawings").then((m) => ({
+    default: m.TechnicalDrawings,
+  })),
 );
 const Contact = lazy(() =>
-  import("@/components/portfolio/Contact").then((m) => ({ default: m.Contact }))
+  import("@/components/portfolio/Contact").then((m) => ({ default: m.Contact })),
 );
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Natalia Ramírez — Especialista en Neuroarquitectura y Diseño Interior" },
-      { name: "description", content: "Especialista en neuroarquitectura y diseño interior terapéutico desde Bogotá, Colombia. Espacios diseñados para potenciar el bienestar emocional, mental y físico." },
-      { property: "og:title", content: "Natalia Ramírez — Especialista en Neuroarquitectura & Diseño Interior" },
-      { property: "og:description", content: "Espacios que sanan, diseño que conecta. Especialización en neuroarquitectura como herramienta terapéutica y de bienestar." },
+      {
+        name: "description",
+        content:
+          "Especialista en neuroarquitectura y diseño interior terapéutico desde Bogotá, Colombia. Espacios diseñados para potenciar el bienestar emocional, mental y físico.",
+      },
+      {
+        property: "og:title",
+        content: "Natalia Ramírez — Especialista en Neuroarquitectura & Diseño Interior",
+      },
+      {
+        property: "og:description",
+        content:
+          "Espacios que sanan, diseño que conecta. Especialización en neuroarquitectura como herramienta terapéutica y de bienestar.",
+      },
     ],
   }),
   component: Index,
@@ -71,7 +84,7 @@ function Index() {
       <Hero />
       <Marquee />
       <About />
-      
+
       <Suspense fallback={<div className="h-[600px] bg-[var(--ink)] animate-pulse" />}>
         <DesignPhilosophy />
       </Suspense>
@@ -98,4 +111,3 @@ function Index() {
     </motion.main>
   );
 }
-

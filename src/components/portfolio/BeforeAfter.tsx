@@ -56,8 +56,9 @@ export function BeforeAfter() {
           </div>
           <div className="md:col-span-6">
             <p className="text-muted-foreground text-sm md:text-base max-w-md leading-relaxed">
-              Arrastra el selector central de izquierda a derecha para descubrir cómo la neuroarquitectura 
-              transforma un espacio frío y desestructurado en un refugio terapéutico diseñado para la calma.
+              Arrastra el selector central de izquierda a derecha para descubrir cómo la
+              neuroarquitectura transforma un espacio frío y desestructurado en un refugio
+              terapéutico diseñado para la calma.
             </p>
           </div>
         </div>
@@ -124,7 +125,7 @@ export function BeforeAfter() {
             style={{ left: `${sliderPosition}%` }}
           >
             {/* Handle Button */}
-            <div 
+            <div
               className={`absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-14 h-14 rounded-full bg-white border-2 border-[var(--clay)] text-[var(--clay)] flex items-center justify-center shadow-2xl backdrop-blur-md transition-transform duration-200 ${
                 isDragging ? "scale-95 bg-[var(--cream)]" : "hover:scale-110"
               }`}

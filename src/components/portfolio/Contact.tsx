@@ -38,8 +38,8 @@ export function Contact({ prefilledMessage = "" }: ContactProps) {
             <br /> en mente?
           </h2>
           <p className="mt-10 text-lg text-foreground/80 max-w-lg leading-relaxed">
-            Cuéntame sobre tu proyecto. Una conversación inicial es siempre gratis —
-            es donde empiezan las mejores casas.
+            Cuéntame sobre tu proyecto. Una conversación inicial es siempre gratis — es donde
+            empiezan las mejores casas.
           </p>
 
           <div className="mt-14 space-y-8">
@@ -93,8 +93,7 @@ export function Contact({ prefilledMessage = "" }: ContactProps) {
               <span className="display text-7xl text-[var(--clay)] mb-6">✦</span>
               <h3 className="display text-4xl mb-4">¡Gracias por escribir!</h3>
               <p className="text-foreground/85 text-lg leading-relaxed max-w-sm">
-                Recibí tu mensaje. Te respondo en menos de 48 horas para hablar de tu
-                proyecto.
+                Recibí tu mensaje. Te respondo en menos de 48 horas para hablar de tu proyecto.
               </p>
             </motion.div>
           ) : (
@@ -142,7 +141,9 @@ export function Contact({ prefilledMessage = "" }: ContactProps) {
                 ) : (
                   <>
                     Enviar mensaje
-                    <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                    <span className="transition-transform duration-300 group-hover:translate-x-1">
+                      →
+                    </span>
                   </>
                 )}
               </button>

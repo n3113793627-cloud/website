@@ -25,30 +25,35 @@ export function Nav() {
           isScrolled ? "top-4 px-4" : "top-0 px-0"
         }`}
       >
-        <div 
+        <div
           className={`flex items-center justify-between transition-all duration-500 ease-out ${
             isScrolled
               ? "w-full max-w-5xl bg-[var(--cream)]/85 backdrop-blur-xl border border-black/5 shadow-[0_8px_30px_rgba(0,0,0,0.06)] rounded-full px-6 md:px-8 py-3"
               : "w-full max-w-[1400px] bg-transparent px-6 md:px-10 py-6"
           }`}
         >
-          <a 
-            href="#top" 
+          <a
+            href="#top"
             className={`display tracking-tight transition-all duration-500 ${
               isScrolled ? "text-xl text-ink" : "text-2xl text-white drop-shadow-md"
             }`}
           >
-            Natalia <span className={`italic transition-colors duration-500 ${isScrolled ? "text-[var(--clay)]" : "text-white/80"}`}>Ramírez</span>
+            Natalia{" "}
+            <span
+              className={`italic transition-colors duration-500 ${isScrolled ? "text-[var(--clay)]" : "text-white/80"}`}
+            >
+              Ramírez
+            </span>
           </a>
 
           <nav className="hidden md:flex gap-8 text-[0.75rem] uppercase tracking-widest font-medium">
             {links.map((l) => (
-              <a 
-                key={l.href} 
-                href={l.href} 
+              <a
+                key={l.href}
+                href={l.href}
                 className={`transition-colors duration-300 ${
-                  isScrolled 
-                    ? "text-foreground/75 hover:text-[var(--clay)]" 
+                  isScrolled
+                    ? "text-foreground/75 hover:text-[var(--clay)]"
                     : "text-white/90 hover:text-white drop-shadow-sm"
                 }`}
               >

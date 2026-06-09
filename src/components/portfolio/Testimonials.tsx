@@ -55,7 +55,10 @@ export function Testimonials() {
   };
 
   return (
-    <section id="testimonios" className="py-32 md:py-40 px-6 md:px-10 bg-background overflow-hidden border-t border-foreground/5">
+    <section
+      id="testimonios"
+      className="py-32 md:py-40 px-6 md:px-10 bg-background overflow-hidden border-t border-foreground/5"
+    >
       <div className="max-w-[1400px] mx-auto grid md:grid-cols-12 gap-12 items-center">
         {/* Left column: Section label and header */}
         <div className="md:col-span-5 space-y-6">
@@ -64,7 +67,8 @@ export function Testimonials() {
             La voz de <em className="italic text-[var(--clay)]">quienes habitan</em> sus espacios.
           </h2>
           <p className="text-muted-foreground text-sm md:text-base max-w-sm leading-relaxed">
-            La mejor prueba del diseño es la vida diaria de quienes confían en el estudio. Testimonios reales de proyectos terminados.
+            La mejor prueba del diseño es la vida diaria de quienes confían en el estudio.
+            Testimonios reales de proyectos terminados.
           </p>
 
           {/* Navigation buttons */}
@@ -74,14 +78,18 @@ export function Testimonials() {
               className="w-12 h-12 rounded-full border border-foreground/15 flex items-center justify-center hover:bg-foreground hover:text-background transition-all duration-300 group"
               aria-label="Testimonio anterior"
             >
-              <span className="transition-transform duration-300 group-hover:-translate-x-1 font-semibold text-lg">←</span>
+              <span className="transition-transform duration-300 group-hover:-translate-x-1 font-semibold text-lg">
+                ←
+              </span>
             </button>
             <button
               onClick={next}
               className="w-12 h-12 rounded-full border border-foreground/15 flex items-center justify-center hover:bg-foreground hover:text-background transition-all duration-300 group"
               aria-label="Testimonio siguiente"
             >
-              <span className="transition-transform duration-300 group-hover:translate-x-1 font-semibold text-lg">→</span>
+              <span className="transition-transform duration-300 group-hover:translate-x-1 font-semibold text-lg">
+                →
+              </span>
             </button>
           </div>
         </div>

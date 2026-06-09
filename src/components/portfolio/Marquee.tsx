@@ -19,7 +19,10 @@ export function Marquee() {
         transition={{ duration: 28, ease: "linear", repeat: Infinity }}
       >
         {repeated.map((w, i) => (
-          <span key={i} className="text-[0.65rem] text-foreground/35 shrink-0 tracking-[0.25em] uppercase">
+          <span
+            key={i}
+            className="text-[0.65rem] text-foreground/35 shrink-0 tracking-[0.25em] uppercase"
+          >
             {w} <span className="text-[var(--clay)]/50 mx-4">✦</span>
           </span>
         ))}

@@ -37,8 +37,9 @@ export function Hero() {
           <br /> diseño que <em className="italic">conecta.</em>
         </h1>
         <p className="mt-8 max-w-xl text-[var(--cream)]/85 text-lg leading-relaxed">
-          Arquitecta y diseñadora de interiores con enfoque en <strong>neuroarquitectura</strong>. 
-          Espacios concebidos como herramientas terapéuticas para potenciar el bienestar físico, emocional y cognitivo.
+          Arquitecta y diseñadora de interiores con enfoque en <strong>neuroarquitectura</strong>.
+          Espacios concebidos como herramientas terapéuticas para potenciar el bienestar físico,
+          emocional y cognitivo.
         </p>
       </motion.div>
 
