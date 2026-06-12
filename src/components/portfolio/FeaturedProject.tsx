@@ -288,10 +288,10 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
           {/* Header */}
           <div className="flex items-end justify-between gap-6 border-b border-[var(--cream)]/10 pb-10">
             <div>
-              <p className="eyebrow text-[var(--clay)] mb-3">Proyecto destacado · 01</p>
-              <h2 className="display text-[clamp(2.5rem,7vw,8rem)] leading-[0.9]">
-                Apto <em className="italic text-[var(--clay)]">Cerezo</em>
-              </h2>
+              <p className="eyebrow text-[var(--clay-light)] mb-3">Proyecto destacado · 01</p>
+              <h3 className="display text-4xl md:text-6xl text-white leading-tight">
+                Apto <em className="italic text-[var(--clay-light)]">Cerezo</em>
+              </h3>
             </div>
             <div className="hidden md:block text-right text-sm text-[var(--cream)]/85 space-y-1">
               <p>Diseño interior integral · Mobiliario personalizado</p>
@@ -414,7 +414,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                     "Hola Natalia, estuve revisando tu portafolio y en especial el proyecto del Apto Cerezo. Me pareció excelente tu enfoque en neuroarquitectura para espacios reducidos. Me gustaría que nos pusiéramos en contacto para conversar sobre una oportunidad de colaboración.",
                   )
                 }
-                className="self-start text-xs tracking-[0.2em] uppercase border-b border-[var(--clay)] pb-1 text-[var(--clay)] hover:opacity-70 transition-opacity text-left font-semibold mt-2"
+                className="self-start text-xs tracking-[0.2em] uppercase border-b border-[var(--clay-light)] pb-1 text-[var(--clay-light)] hover:opacity-70 transition-opacity text-left font-semibold mt-2"
               >
                 ¿Tienes un proyecto similar? →
               </button>
@@ -430,7 +430,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
               { k: "Áreas", v: "Cocina · Sala · Zona social · Baño" },
             ].map((d) => (
               <div key={d.k}>
-                <p className="eyebrow text-[var(--clay)] mb-2">{d.k}</p>
+                <p className="eyebrow text-[var(--clay-light)] mb-2">{d.k}</p>
                 <p className="text-[var(--cream)]/90 text-sm">{d.v}</p>
               </div>
             ))}
@@ -444,10 +444,10 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
         <div className="max-w-[1400px] mx-auto px-6 md:px-10 mb-10">
           <div className="flex items-end justify-between gap-6 border-b border-[var(--cream)]/10 pb-10">
             <div>
-              <p className="eyebrow text-[var(--clay)] mb-3">Proyecto destacado · 02</p>
-              <h2 className="display text-[clamp(2.5rem,7vw,7.5rem)] leading-[0.9]">
-                Centro <em className="italic text-[var(--clay)]">Orange Hill</em>
-              </h2>
+              <p className="eyebrow text-[var(--clay-light)] mb-3">Proyecto destacado · 02</p>
+              <h3 className="display text-4xl md:text-6xl text-white leading-tight">
+                Centro <em className="italic text-[var(--clay-light)]">Orange Hill</em>
+              </h3>
             </div>
             <div className="hidden md:block text-right text-sm text-[var(--cream)]/85 space-y-1">
               <p>Equipamiento Paliativo · Neuroarquitectura</p>
@@ -490,7 +490,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                 decision:
                   "Jardines interiores integrados con vegetación local y ventilación cruzada",
                 rationale:
-                  "El contacto visual directo y el aroma de la vegetación nativa estimulan el nervio vago y reducen de manera drástica las ondas beta (asociadas a la ansiedad) a favor de las ondas alfa (relajación). En cuidados paliativos, esto funciona como un analgésico ambiental, reduciendo la percepción del dolor físico e induciendo la meditación espontánea.",
+                  "El contacto visual directo y el aroma de la vegetación nativa estimulan el nervio vago y reducen de manera drástica las ondas beta (asociadas a la ansiedad) a favor de las ondas alfa (relaxación). En cuidados paliativos, esto funciona como un analgésico ambiental, reduciendo la percepción del dolor físico e induciendo la meditación espontánea.",
                 pillar: "Biofilia y Recuperación Sensorial",
               })
             }
@@ -540,7 +540,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             {/* Columna Derecha: Video y CTA */}
             <div className="md:col-span-5 flex flex-col gap-6">
               <div className="space-y-2">
-                <p className="text-[10px] text-[var(--clay)] uppercase tracking-widest font-mono font-bold">
+                <p className="text-[10px] text-[var(--clay-light)] uppercase tracking-widest font-mono font-bold">
                   Atmósfera Sensorial: Brisa y atardecer
                 </p>
                 <div className="relative overflow-hidden rounded-lg border border-[var(--cream)]/15 aspect-video shadow-lg group">
@@ -562,7 +562,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                     "Hola Natalia, estuve revisando tu portafolio y en especial el proyecto de San Andrés (Centro Orange Hill). Me pareció increíble cómo integras la neuroarquitectura y la biofilia para el cuidado de la salud. Me gustaría que nos pusiéramos en contacto para conversar sobre una oportunidad de colaboración.",
                   )
                 }
-                className="self-start text-xs tracking-[0.2em] uppercase border-b border-[var(--clay)] pb-1 text-[var(--clay)] hover:opacity-70 transition-opacity text-left font-semibold mt-2"
+                className="self-start text-xs tracking-[0.2em] uppercase border-b border-[var(--clay-light)] pb-1 text-[var(--clay-light)] hover:opacity-70 transition-opacity text-left font-semibold mt-2"
               >
                 ¿Colaboramos en este proyecto? →
               </button>
@@ -572,8 +572,10 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
           {/* Fila Inferior: Láminas Explicativas en Tarjeta Lado a Lado */}
           <div className="border-t border-[var(--cream)]/15 pt-12 space-y-6">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-              <div>
-                <p className="eyebrow text-[var(--clay)] mb-2">— Análisis y Esquema Técnico</p>
+              <div className="space-y-4">
+                <p className="eyebrow text-[var(--clay-light)] mb-2">
+                  — Análisis y Esquema Técnico
+                </p>
                 <h3 className="display text-3xl md:text-4xl">
                   Programa y Experiencia en el Espacio
                 </h3>
@@ -709,7 +711,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
               },
             ].map((d) => (
               <div key={d.k}>
-                <p className="eyebrow text-[var(--clay)] mb-2">{d.k}</p>
+                <p className="eyebrow text-[var(--clay-light)] mb-2">{d.k}</p>
                 <p className="text-[var(--cream)]/90 text-sm">{d.v}</p>
               </div>
             ))}
@@ -723,10 +725,10 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
           {/* Header */}
           <div className="flex items-end justify-between gap-6 border-b border-[var(--cream)]/10 pb-10">
             <div>
-              <p className="eyebrow text-[var(--clay)] mb-3">Proyecto destacado · 03</p>
-              <h2 className="display text-[clamp(2.5rem,7vw,7.5rem)] leading-[0.9]">
-                Casino <em className="italic text-[var(--clay)]">The Lounge</em>
-              </h2>
+              <p className="eyebrow text-[var(--clay-light)] mb-3">Proyecto destacado · 03</p>
+              <h3 className="display text-4xl md:text-6xl text-white leading-tight">
+                Casino <em className="italic text-[var(--clay-light)]">The Lounge</em>
+              </h3>
             </div>
             <div className="hidden md:block text-right text-sm text-[var(--cream)]/85 space-y-1">
               <p>Fachada comercial e interiorismo integral</p>
@@ -737,7 +739,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
           {/* Fila Superior: Comparaciones de Antes y Después en Grid de 2 Columnas */}
           <div className="grid md:grid-cols-2 gap-8 md:gap-12">
             <div className="space-y-4">
-              <p className="text-[10px] text-[var(--clay)] uppercase tracking-widest font-mono font-bold">
+              <p className="text-[10px] text-[var(--clay-light)] uppercase tracking-widest font-mono font-bold">
                 — Fachada: Propuesta de Diseño (Render)
               </p>
               <div className="relative w-full aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-lg border border-[var(--cream)]/10 shadow-lg bg-muted group">
@@ -780,7 +782,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
               </div>
             </div>
             <div className="space-y-4">
-              <p className="text-[10px] text-[var(--clay)] uppercase tracking-widest font-mono font-bold">
+              <p className="text-[10px] text-[var(--clay-light)] uppercase tracking-widest font-mono font-bold">
                 — Interior: Proceso vs Acabado Final
               </p>
               <ComparisonSlider
@@ -844,7 +846,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                     "Hola Natalia, estuve revisando tu portafolio y en especial el proyecto del Casino The Lounge en Bogotá. Me pareció excelente el diseño de la fachada frontal y el interiorismo. Me gustaría que nos pusiéramos en contacto para conversar sobre una oportunidad de colaboración.",
                   )
                 }
-                className="self-start text-xs tracking-[0.2em] uppercase border-b border-[var(--clay)] pb-1 text-[var(--clay)] hover:opacity-70 transition-opacity text-left font-semibold"
+                className="self-start text-xs tracking-[0.2em] uppercase border-b border-[var(--clay-light)] pb-1 text-[var(--clay-light)] hover:opacity-70 transition-opacity text-left font-semibold"
               >
                 ¿Quieres rediseñar tu espacio comercial? →
               </button>
@@ -866,7 +868,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
               { k: "Áreas", v: "Fachada principal · Salón de Poker · Barra de tragos · Zona VIP" },
             ].map((d) => (
               <div key={d.k}>
-                <p className="eyebrow text-[var(--clay)] mb-2">{d.k}</p>
+                <p className="eyebrow text-[var(--clay-light)] mb-2">{d.k}</p>
                 <p className="text-[var(--cream)]/90 text-sm">{d.v}</p>
               </div>
             ))}
@@ -986,7 +988,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
               <div className="space-y-8">
                 <div className="flex justify-between items-start">
                   <div>
-                    <span className="font-mono text-[9px] text-[var(--clay)] uppercase tracking-[0.2em]">
+                    <span className="font-mono text-[9px] text-[var(--clay-light)] uppercase tracking-[0.2em]">
                       {activeHotspot.project}
                     </span>
                     <p className="text-[var(--cream)]/60 text-[9px] font-mono tracking-[0.2em] uppercase mt-1">
@@ -1004,7 +1006,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
 
                 <div className="space-y-6">
                   <div>
-                    <span className="eyebrow text-[var(--clay)] text-[10px]">
+                    <span className="eyebrow text-[var(--clay-light)] text-[10px]">
                       Cómo Pienso la Solución
                     </span>
                     <h3 className="display text-3xl md:text-4xl text-white mt-2 leading-[1.05]">
@@ -1013,7 +1015,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                   </div>
 
                   <div className="bg-white/5 p-4 rounded-lg border border-white/5 space-y-2">
-                    <span className="text-[8px] font-mono uppercase tracking-widest text-[var(--clay)] block">
+                    <span className="text-[8px] font-mono uppercase tracking-widest text-[var(--clay-light)] block">
                       Decisión Ejecutada:
                     </span>
                     <p className="text-sm font-semibold text-white leading-relaxed">
@@ -1036,7 +1038,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
               <div className="border-t border-white/10 pt-6 space-y-4">
                 <div className="flex justify-between items-center text-[10px] font-mono text-[var(--cream)]/40 uppercase">
                   <span>Pilar Relacionado:</span>
-                  <span className="text-[var(--clay)] font-bold">{activeHotspot.pillar}</span>
+                  <span className="text-[var(--clay-light)] font-bold">{activeHotspot.pillar}</span>
                 </div>
                 <button
                   onClick={() => {
@@ -1046,7 +1048,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                       contactSection.scrollIntoView({ behavior: "smooth" });
                     }
                   }}
-                  className="w-full text-center text-xs tracking-[0.2em] uppercase border border-[var(--clay)] text-[var(--clay)] hover:bg-[var(--clay)] hover:text-white px-6 py-4.5 transition-all duration-300 font-semibold"
+                  className="w-full text-center text-xs tracking-[0.2em] uppercase border border-[var(--clay-light)] text-[var(--clay-light)] hover:bg-[var(--clay-light)] hover:text-[#1b1715] px-6 py-4.5 transition-all duration-300 font-semibold"
                 >
                   Discutir este enfoque →
                 </button>

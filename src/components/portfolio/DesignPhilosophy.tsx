@@ -49,7 +49,7 @@ const pillars: Pillar[] = [
           className="absolute w-52 h-52 rounded-full"
         />
         <div className="relative z-10 flex flex-col items-center text-center">
-          <span className="font-mono text-[10px] text-[var(--clay)] uppercase tracking-[0.2em] mb-2">
+          <span className="font-mono text-[10px] text-[var(--clay-light)] uppercase tracking-[0.2em] mb-2">
             Simulación Espectral
           </span>
           <span className="text-[var(--cream)]/80 text-xs font-mono">
@@ -260,9 +260,9 @@ export function DesignPhilosophy() {
 
       <div className="max-w-[1400px] mx-auto relative z-10">
         <div className="max-w-3xl mb-16 md:mb-20">
-          <p className="eyebrow text-[var(--clay)] mb-4">— Enfoque Científico</p>
+          <p className="eyebrow text-[var(--clay-light)] mb-4">— Enfoque Científico</p>
           <h2 className="display text-5xl md:text-7xl leading-[0.95]">
-            Cómo <em className="italic text-[var(--clay)]">pienso</em> el espacio:
+            Cómo <em className="italic text-[var(--clay-light)]">pienso</em> el espacio:
             <br />
             Los pilares de la <em className="italic">neuroarquitectura</em>.
           </h2>
@@ -286,13 +286,13 @@ export function DesignPhilosophy() {
                     onClick={() => setActiveTab(p.id)}
                     className={`group text-left p-5 md:p-6 rounded-xl border transition-all duration-300 flex items-start justify-between ${
                       isActive
-                        ? "bg-white/5 border-[var(--clay)] text-white shadow-lg"
+                        ? "bg-white/5 border-[var(--clay-light)] text-white shadow-lg"
                         : "border-white/5 bg-transparent text-[var(--cream)]/60 hover:text-white hover:border-white/10"
                     }`}
                   >
                     <div className="flex items-start gap-4">
                       <span
-                        className={`font-mono text-sm ${isActive ? "text-[var(--clay)] font-bold" : "text-[var(--cream)]/40"}`}
+                        className={`font-mono text-sm ${isActive ? "text-[var(--clay-light)] font-bold" : "text-[var(--cream)]/40"}`}
                       >
                         {p.n}
                       </span>
@@ -301,14 +301,14 @@ export function DesignPhilosophy() {
                           {p.t}
                         </h3>
                         <span
-                          className={`font-mono text-[9px] uppercase tracking-wider ${isActive ? "text-[var(--clay)]" : "text-[var(--cream)]/40"}`}
+                          className={`font-mono text-[9px] uppercase tracking-wider ${isActive ? "text-[var(--clay-light)]" : "text-[var(--cream)]/40"}`}
                         >
                           {p.scientificTerm}
                         </span>
                       </div>
                     </div>
                     <span
-                      className={`text-xl transition-transform duration-300 ${isActive ? "text-[var(--clay)] translate-x-1" : "text-[var(--cream)]/20 group-hover:translate-x-1"}`}
+                      className={`text-xl transition-transform duration-300 ${isActive ? "text-[var(--clay-light)] translate-x-1" : "text-[var(--cream)]/20 group-hover:translate-x-1"}`}
                     >
                       →
                     </span>
@@ -333,7 +333,7 @@ export function DesignPhilosophy() {
                   {/* Text descriptions */}
                   <div className="md:col-span-7 space-y-6">
                     <div>
-                      <span className="eyebrow text-[var(--clay)] text-[10px]">
+                      <span className="eyebrow text-[var(--clay-light)] text-[10px]">
                         El Principio Biológico
                       </span>
                       <h4 className="display text-3xl md:text-4xl mt-2 mb-3 text-white">
@@ -362,7 +362,7 @@ export function DesignPhilosophy() {
 
                 <div className="grid md:grid-cols-12 gap-6 border-t border-white/10 pt-6 mt-8 items-end">
                   <div className="md:col-span-7">
-                    <span className="eyebrow text-[var(--clay)] text-[9px]">
+                    <span className="eyebrow text-[var(--clay-light)] text-[9px]">
                       Aplicación en mis Proyectos
                     </span>
                     <p className="text-[var(--cream)]/90 text-xs mt-2 leading-relaxed">
@@ -373,7 +373,7 @@ export function DesignPhilosophy() {
                     <p className="text-[10px] text-[var(--cream)]/80 italic leading-relaxed text-left">
                       "{activePillar.citation}"
                     </p>
-                    <p className="text-[8px] font-mono text-[var(--clay)] uppercase tracking-wider mt-2">
+                    <p className="text-[8px] font-mono text-[var(--clay-light)] uppercase tracking-wider mt-2">
                       — {activePillar.citationAuthor}
                     </p>
                   </div>

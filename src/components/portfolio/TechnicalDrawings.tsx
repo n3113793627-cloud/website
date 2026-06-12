@@ -180,11 +180,11 @@ export function TechnicalDrawings() {
     <section className="portfolio-planos relative overflow-hidden" id="planos-tecnicos">
       <div className="container mx-auto px-4 max-w-[1400px]">
         <div className="max-w-3xl mb-16">
-          <p className="eyebrow text-[var(--clay)] mb-4">— Rigor Técnico</p>
+          <p className="eyebrow text-[var(--clay-light)] mb-4">— Rigor Técnico</p>
           <h2 className="display text-5xl md:text-7xl text-white">
             Planos y detalle:
             <br />
-            Mi trabajo <em className="italic text-[var(--clay)]">técnico</em>.
+            Mi trabajo <em className="italic text-[var(--clay-light)]">técnico</em>.
           </h2>
           <p className="text-[var(--cream)]/75 mt-6 text-sm md:text-base max-w-xl leading-relaxed">
             Aquí comparto una selección de los últimos planos técnicos de distribución, estructuras
@@ -225,15 +225,15 @@ export function TechnicalDrawings() {
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.35, ease: "easeInOut" }}
                   key={plano.id}
-                  className={`plano-card ${plano.category} cursor-zoom-in p-6 flex flex-col justify-between min-h-[220px] transition-all hover:border-[var(--clay)]/40`}
+                  className={`plano-card ${plano.category} group cursor-zoom-in p-6 flex flex-col justify-between min-h-[220px] transition-all hover:border-[var(--clay-light)]/40`}
                   onClick={() => setSelectedPlano(plano)}
                 >
                   <div>
                     <div className="flex justify-between items-start mb-4">
-                      <span className="text-[10px] uppercase tracking-widest text-[var(--clay)] font-semibold font-mono">
+                      <span className="text-[10px] uppercase tracking-widest text-[var(--clay-light)] font-semibold font-mono">
                         {plano.categoryLabel}
                       </span>
-                      <div className="bg-black/30 text-[var(--clay)] text-xs font-mono font-bold px-3 py-1 rounded border border-[var(--clay)]/20">
+                      <div className="bg-black/30 text-[var(--clay-light)] text-xs font-mono font-bold px-3 py-1 rounded border border-[var(--clay-light)]/20">
                         {plano.code}
                       </div>
                     </div>
@@ -244,7 +244,7 @@ export function TechnicalDrawings() {
                       {plano.description}
                     </p>
                   </div>
-                  <div className="flex items-center gap-2 text-xs font-mono text-[var(--clay)] uppercase tracking-wider group-hover:text-white transition-colors mt-auto">
+                  <div className="flex items-center gap-2 text-xs font-mono text-[var(--clay-light)] uppercase tracking-wider group-hover:text-white transition-colors mt-auto">
                     <span>Visualizar plano →</span>
                   </div>
                 </motion.div>
@@ -294,7 +294,7 @@ export function TechnicalDrawings() {
               {/* Encabezado del visor */}
               <div className="p-5 border-b border-white/10 flex flex-wrap gap-4 items-center justify-between bg-[#1b1715]">
                 <div>
-                  <span className="text-xs font-mono text-[var(--clay)] font-bold tracking-wider uppercase">
+                  <span className="text-xs font-mono text-[var(--clay-light)] font-bold tracking-wider uppercase">
                     Visor de Plano Técnico · {selectedPlano.code}
                   </span>
                   <h3 className="text-xl font-display text-white mt-1">{selectedPlano.title}</h3>
