@@ -2,7 +2,6 @@ import { motion, useInView, useMotionValue, useSpring, animate } from "framer-mo
 import { useRef, useEffect } from "react";
 
 const stats = [
-  { n: 20, suffix: "+", l: "Proyectos entregados" },
   { n: 5, suffix: "", l: "Años de práctica" },
   { n: 100, suffix: "%", l: "Diseño a medida" },
 ];
@@ -61,7 +60,7 @@ export function About() {
             </p>
           </div>
 
-          <div className="mt-14 grid grid-cols-3 gap-6 max-w-xl">
+          <div className="mt-14 grid grid-cols-2 gap-6 max-w-xl">
             {stats.map((s) => (
               <motion.div
                 key={s.l}
