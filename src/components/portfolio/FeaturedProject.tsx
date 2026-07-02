@@ -296,16 +296,198 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
 
   return (
     <div id="proyectos" className="bg-[var(--ink)] text-[var(--cream)]">
-      {/* Proyecto 01: Apto Cerezo */}
+      {/* Proyecto 01: TRÍPODE */}
       <section
         ref={ref1}
+        className="py-16 md:py-24 px-6 md:px-10 border-b border-[var(--cream)]/10"
+      >
+        <div className="max-w-[1400px] mx-auto space-y-16">
+          {/* Header */}
+          <div className="flex items-end justify-between gap-6 border-b border-[var(--cream)]/10 pb-10">
+            <div>
+              <p className="eyebrow text-[var(--clay-light)] mb-3">Proyecto destacado · 01</p>
+              <h3 className="display text-4xl md:text-6xl text-white leading-tight">
+                TRÍPODE
+              </h3>
+            </div>
+            <div className="hidden md:block text-right text-sm text-[var(--cream)]/85 space-y-1">
+              <p>Mobiliario como Herramienta Arquitectónica</p>
+              <p>Bogotá · 2026</p>
+            </div>
+          </div>
+
+          {/* Intro Narrative text (Editorial layout, large font) */}
+          <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
+            <div className="md:col-span-8 space-y-6">
+              <h4 className="display text-2xl md:text-4xl text-white leading-relaxed italic font-light">
+                "¿Puede un solo sistema organizar la manera en que habitamos un apartamento compacto?"
+              </h4>
+              <p className="text-[var(--cream)]/85 text-base md:text-lg leading-relaxed">
+                TRÍPODE es una propuesta donde el mobiliario deja de ser un objeto independiente para convertirse en una herramienta arquitectónica capaz de organizar el espacio, definir privacidad, optimizar materiales y mejorar la experiencia de habitar.
+              </p>
+            </div>
+            <div className="md:col-span-4 bg-white/5 p-6 rounded-lg border border-white/5 shadow-md">
+              <p className="text-[10px] text-[var(--clay-light)] uppercase tracking-widest font-mono mb-4">Información del Sistema</p>
+              <div className="space-y-4">
+                {[
+                  { label: "Tipología", value: "Mobiliario Arquitectónico" },
+                  { label: "Desafío", value: "Viviendas Compactas" },
+                  { label: "Funciones", value: "Descansar · Trabajar · Compartir" }
+                ].map((stat) => (
+                  <div key={stat.label} className="border-b border-white/10 pb-2 last:border-0 last:pb-0">
+                    <p className="text-[9px] text-[var(--cream)]/60 uppercase tracking-wider">{stat.label}</p>
+                    <p className="text-sm font-semibold text-white mt-0.5">{stat.value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Video conceptual (GIF) - Seccion de Video */}
+          <div className="space-y-6">
+            <div className="max-w-3xl">
+              <p className="eyebrow text-[var(--clay-light)] mb-3">— Esencia del Movimiento</p>
+              <p className="text-sm text-[var(--cream)]/75 leading-relaxed">
+                El sistema se origina a partir de tres acciones cotidianas y esenciales de la vivienda: <strong>Descansar</strong>, <strong>Trabajar</strong> y <strong>Compartir</strong>. Estas funciones se conectan a través de una única estructura que optimiza el espacio, reduce el desperdicio de materiales y unifica el lenguaje formal bajo un mismo concepto.
+              </p>
+            </div>
+            <div className="relative w-full aspect-[16/9] overflow-hidden rounded-xl border border-[var(--cream)]/15 shadow-2xl bg-black/40">
+              <img
+                src={tripodeGif}
+                alt="Video Conceptual TRÍPODE"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[rgba(20,10,5,0.5)] via-transparent to-transparent flex items-end p-6">
+                <div className="flex items-center gap-4 text-xs font-mono text-[var(--cream)]/90">
+                  <span className="h-2 w-2 rounded-full bg-[var(--clay)] animate-pulse" />
+                  <span>TRÍPODE · Registro Conceptual Animado</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Imagen conceptual - Detenerse a entender el concepto */}
+          <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-center pt-8">
+            <div className="md:col-span-5 space-y-6">
+              <p className="eyebrow text-[var(--clay-light)]">— Estructuración Espacial</p>
+              <h3 className="display text-3xl md:text-4xl text-white leading-tight">
+                El sistema sobre el objeto
+              </h3>
+              <p className="text-sm text-[var(--cream)]/75 leading-relaxed">
+                En lugar de concebir el mobiliario como una suma de muebles independientes (cama, escritorio, sofá) que fragmentan el apartamento, TRÍPODE opera como un <strong>sistema arquitectónico unificado</strong>. Actúa como un diafragma o núcleo activo: un solo volumen estructural regula las circulaciones, define los niveles de privacidad y se convierte en el soporte de las distintas actividades diarias.
+              </p>
+            </div>
+            <div className="md:col-span-7 relative overflow-hidden bg-white/5 rounded-xl border border-[var(--cream)]/10 shadow-xl group cursor-zoom-in"
+                 onClick={() => setLightboxImages([tripodeConcept])}>
+              <img
+                src={tripodeConcept}
+                alt="Esquema conceptual TRÍPODE"
+                className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-102"
+                loading="lazy"
+              />
+              <div className="absolute bottom-4 right-4 bg-black/75 hover:bg-black/95 text-white text-[9px] px-3 py-2 rounded-full flex items-center gap-1.5 shadow-lg backdrop-blur-sm transition-all duration-300 font-mono tracking-wider">
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <span>Clic para ampliar</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Antes y Después (Primer Ángulo) */}
+          <div className="border-t border-[var(--cream)]/15 pt-12 space-y-6">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+              <div className="space-y-2">
+                <p className="eyebrow text-[var(--clay-light)]">— Ángulo 01: Reconfiguración del Núcleo</p>
+                <h3 className="display text-3xl md:text-4xl text-white">
+                  Transformación y Orden Espacial
+                </h3>
+              </div>
+              <p className="text-xs text-[var(--cream)]/60 max-w-sm leading-relaxed font-mono">
+                Desliza la barra central para comparar cómo el sistema organiza el espacio de forma porosa, aportando privacidad y eliminando la fatiga de la saturación visual.
+              </p>
+            </div>
+            <ComparisonSlider
+              beforeImg={tripode1Antes}
+              afterImg={tripode1Despues}
+              beforeLabel="Estado Inicial (Antes)"
+              afterLabel="Sistema TRÍPODE (Después)"
+            />
+          </div>
+
+          {/* Antes y Después (Segundo Ángulo) */}
+          <div className="space-y-6 pt-4">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+              <div className="space-y-2">
+                <p className="eyebrow text-[var(--clay-light)]">— Ángulo 02: Transición Funcional</p>
+                <h3 className="display text-3xl md:text-4xl text-white">
+                  Redefinición de los Límites
+                </h3>
+              </div>
+              <p className="text-xs text-[var(--cream)]/60 max-w-sm leading-relaxed font-mono">
+                Observa cómo el mueble se convierte en arquitectura, redefiniendo la relación entre la zona de descanso, el espacio social y el área de trabajo continuo.
+              </p>
+            </div>
+            <ComparisonSlider
+              beforeImg={tripode2Antes}
+              afterImg={tripode2Despues}
+              beforeLabel="Vacío Espacial (Antes)"
+              afterLabel="Solución TRÍPODE (Después)"
+            />
+          </div>
+
+          {/* Reflexión Final y Metadatos */}
+          <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start mt-8 pt-8 border-t border-[var(--cream)]/15">
+            <div className="md:col-span-7 flex flex-col gap-6">
+              <p className="text-base text-[var(--cream)]/90 leading-relaxed font-light font-sans">
+                TRÍPODE no busca simplemente aumentar los metros cuadrados útiles de una vivienda compacta; busca <strong>aumentar radicalmente la calidad del espacio habitable</strong> a través del diseño de alta precisión. El mobiliario deja de concebirse como un objeto estático o decorativo para convertirse en <strong>arquitectura activa y performativa</strong>.
+              </p>
+            </div>
+
+            <div className="md:col-span-5 flex flex-col justify-between h-full pt-4">
+              <p className="text-xs text-[var(--cream)]/60 leading-relaxed mb-6 font-sans">
+                Este caso de estudio demuestra el potencial del diseño sistémico para reconfigurar el habitar contemporáneo, equilibrando las necesidades cognitivas de trabajo y descanso en un mismo plano continuo.
+              </p>
+              <button
+                onClick={() =>
+                  onInquire(
+                    "Hola Natalia, estuve leyendo el case study del proyecto TRÍPODE en tu portafolio. Me pareció sumamente interesante tu enfoque para transformar la habitabilidad en viviendas compactas mediante este sistema de mobiliario arquitectónico. Me gustaría que conversáramos sobre cómo implementar este tipo de soluciones en nuestros futuros proyectos."
+                  )
+                }
+                className="self-start text-xs tracking-[0.2em] uppercase border-b border-[var(--clay-light)] pb-1 text-[var(--clay-light)] hover:opacity-70 transition-opacity text-left font-semibold mt-2"
+              >
+                ¿Quieres implementar TRÍPODE? →
+              </button>
+            </div>
+          </div>
+
+          {/* Metadata footer */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-[var(--cream)]/15 pt-10">
+            {[
+              { k: "Materiales", v: "Madera multilaminada de abedul, acero termolacado y textiles lavables" },
+              { k: "Enfoque Neuro", v: "Flexibilidad cognitiva, reducción de desorden visual y zonificación" },
+              { k: "Pieza clave", v: "Estructura auto-portante unificada de triple apoyo" },
+              { k: "Áreas", v: "Dormitorio compacto · Oficina flexible · Estar social" },
+            ].map((d) => (
+              <div key={d.k}>
+                <p className="eyebrow text-[var(--clay-light)] mb-2">{d.k}</p>
+                <p className="text-[var(--cream)]/90 text-sm">{d.v}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+      {/* Proyecto 02: Apto Cerezo */}
+      <section
+        ref={ref2}
         className="py-12 md:py-16 px-6 md:px-10 border-b border-[var(--cream)]/10"
       >
         <div className="max-w-[1400px] mx-auto space-y-10">
           {/* Header */}
           <div className="flex items-end justify-between gap-6 border-b border-[var(--cream)]/10 pb-10">
             <div>
-              <p className="eyebrow text-[var(--clay-light)] mb-3">Proyecto destacado · 01</p>
+              <p className="eyebrow text-[var(--clay-light)] mb-3">Proyecto destacado · 02</p>
               <h3 className="display text-4xl md:text-6xl text-white leading-tight">
                 Apto <em className="italic text-[var(--clay-light)]">Cerezo</em>
               </h3>
@@ -455,13 +637,13 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
         </div>
       </section>
 
-      {/* Proyecto 02: Centro Orange Hill */}
-      <section ref={ref2} className="py-12 md:py-16 border-b border-[var(--cream)]/10 px-0">
+      {/* Proyecto 03: Centro Orange Hill */}
+      <section ref={ref3} className="py-12 md:py-16 border-b border-[var(--cream)]/10 px-0">
         {/* Header (Contenedor limitado) */}
         <div className="max-w-[1400px] mx-auto px-6 md:px-10 mb-10">
           <div className="flex items-end justify-between gap-6 border-b border-[var(--cream)]/10 pb-10">
             <div>
-              <p className="eyebrow text-[var(--clay-light)] mb-3">Proyecto destacado · 02</p>
+              <p className="eyebrow text-[var(--clay-light)] mb-3">Proyecto destacado · 03</p>
               <h3 className="display text-4xl md:text-6xl text-white leading-tight">
                 Centro <em className="italic text-[var(--clay-light)]">Orange Hill</em>
               </h3>
@@ -736,13 +918,13 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
         </div>
       </section>
 
-      {/* Proyecto 03: Casino The Lounge */}
-      <section ref={ref3} className="py-12 md:py-16 px-6 md:px-10">
+      {/* Proyecto 04: Casino The Lounge */}
+      <section ref={ref4} className="py-12 md:py-16 px-6 md:px-10">
         <div className="max-w-[1400px] mx-auto space-y-10">
           {/* Header */}
           <div className="flex items-end justify-between gap-6 border-b border-[var(--cream)]/10 pb-10">
             <div>
-              <p className="eyebrow text-[var(--clay-light)] mb-3">Proyecto destacado · 03</p>
+              <p className="eyebrow text-[var(--clay-light)] mb-3">Proyecto destacado · 04</p>
               <h3 className="display text-4xl md:text-6xl text-white leading-tight">
                 Casino <em className="italic text-[var(--clay-light)]">The Lounge</em>
               </h3>
@@ -892,188 +1074,6 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
           </div>
         </div>
       </section>
-
-      {/* Proyecto 04: TRÍPODE */}
-      <section
-        ref={ref4}
-        className="py-16 md:py-24 px-6 md:px-10 border-b border-[var(--cream)]/10"
-      >
-        <div className="max-w-[1400px] mx-auto space-y-16">
-          {/* Header */}
-          <div className="flex items-end justify-between gap-6 border-b border-[var(--cream)]/10 pb-10">
-            <div>
-              <p className="eyebrow text-[var(--clay-light)] mb-3">Proyecto destacado · 04</p>
-              <h3 className="display text-4xl md:text-6xl text-white leading-tight">
-                TRÍPODE
-              </h3>
-            </div>
-            <div className="hidden md:block text-right text-sm text-[var(--cream)]/85 space-y-1">
-              <p>Mobiliario como Herramienta Arquitectónica</p>
-              <p>Bogotá · 2026</p>
-            </div>
-          </div>
-
-          {/* Intro Narrative text (Editorial layout, large font) */}
-          <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
-            <div className="md:col-span-8 space-y-6">
-              <h4 className="display text-2xl md:text-4xl text-white leading-relaxed italic font-light">
-                "¿Puede un solo sistema organizar la manera en que habitamos un apartamento compacto?"
-              </h4>
-              <p className="text-[var(--cream)]/85 text-base md:text-lg leading-relaxed">
-                TRÍPODE es una propuesta donde el mobiliario deja de ser un objeto independiente para convertirse en una herramienta arquitectónica capaz de organizar el espacio, definir privacidad, optimizar materiales y mejorar la experiencia de habitar.
-              </p>
-            </div>
-            <div className="md:col-span-4 bg-white/5 p-6 rounded-lg border border-white/5 shadow-md">
-              <p className="text-[10px] text-[var(--clay-light)] uppercase tracking-widest font-mono mb-4">Información del Sistema</p>
-              <div className="space-y-4">
-                {[
-                  { label: "Tipología", value: "Mobiliario Arquitectónico" },
-                  { label: "Desafío", value: "Viviendas Compactas" },
-                  { label: "Funciones", value: "Descansar · Trabajar · Compartir" }
-                ].map((stat) => (
-                  <div key={stat.label} className="border-b border-white/10 pb-2 last:border-0 last:pb-0">
-                    <p className="text-[9px] text-[var(--cream)]/60 uppercase tracking-wider">{stat.label}</p>
-                    <p className="text-sm font-semibold text-white mt-0.5">{stat.value}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Video conceptual (GIF) - Seccion de Video */}
-          <div className="space-y-6">
-            <div className="max-w-3xl">
-              <p className="eyebrow text-[var(--clay-light)] mb-3">— Esencia del Movimiento</p>
-              <p className="text-sm text-[var(--cream)]/75 leading-relaxed">
-                El sistema se origina a partir de tres acciones cotidianas y esenciales de la vivienda: <strong>Descansar</strong>, <strong>Trabajar</strong> y <strong>Compartir</strong>. Estas funciones se conectan a través de una única estructura que optimiza el espacio, reduce el desperdicio de materiales y unifica el lenguaje formal bajo un mismo concepto.
-              </p>
-            </div>
-            <div className="relative w-full aspect-[16/9] overflow-hidden rounded-xl border border-[var(--cream)]/15 shadow-2xl bg-black/40">
-              <img
-                src={tripodeGif}
-                alt="Video Conceptual TRÍPODE"
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[rgba(20,10,5,0.5)] via-transparent to-transparent flex items-end p-6">
-                <div className="flex items-center gap-4 text-xs font-mono text-[var(--cream)]/90">
-                  <span className="h-2 w-2 rounded-full bg-[var(--clay)] animate-pulse" />
-                  <span>TRÍPODE · Registro Conceptual Animado</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Imagen conceptual - Detenerse a entender el concepto */}
-          <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-center pt-8">
-            <div className="md:col-span-5 space-y-6">
-              <p className="eyebrow text-[var(--clay-light)]">— Estructuración Espacial</p>
-              <h3 className="display text-3xl md:text-4xl text-white leading-tight">
-                El sistema sobre el objeto
-              </h3>
-              <p className="text-sm text-[var(--cream)]/75 leading-relaxed">
-                En lugar de concebir el mobiliario como una suma de muebles independientes (cama, escritorio, sofá) que fragmentan el apartamento, TRÍPODE opera como un <strong>sistema arquitectónico unificado</strong>. Actúa como un diafragma o núcleo activo: un solo volumen estructural regula las circulaciones, define los niveles de privacidad y se convierte en el soporte de las distintas actividades diarias.
-              </p>
-            </div>
-            <div className="md:col-span-7 relative overflow-hidden bg-white/5 rounded-xl border border-[var(--cream)]/10 shadow-xl group cursor-zoom-in"
-                 onClick={() => setLightboxImages([tripodeConcept])}>
-              <img
-                src={tripodeConcept}
-                alt="Esquema conceptual TRÍPODE"
-                className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-102"
-                loading="lazy"
-              />
-              <div className="absolute bottom-4 right-4 bg-black/75 hover:bg-black/95 text-white text-[9px] px-3 py-2 rounded-full flex items-center gap-1.5 shadow-lg backdrop-blur-sm transition-all duration-300 font-mono tracking-wider">
-                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <span>Clic para ampliar</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Antes y Después (Primer Ángulo) */}
-          <div className="border-t border-[var(--cream)]/15 pt-12 space-y-6">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-              <div className="space-y-2">
-                <p className="eyebrow text-[var(--clay-light)]">— Ángulo 01: Reconfiguración del Núcleo</p>
-                <h3 className="display text-3xl md:text-4xl text-white">
-                  Transformación y Orden Espacial
-                </h3>
-              </div>
-              <p className="text-xs text-[var(--cream)]/60 max-w-sm leading-relaxed font-mono">
-                Desliza la barra central para comparar cómo el sistema organiza el espacio de forma porosa, aportando privacidad y eliminando la fatiga de la saturación visual.
-              </p>
-            </div>
-            <ComparisonSlider
-              beforeImg={tripode1Antes}
-              afterImg={tripode1Despues}
-              beforeLabel="Estado Inicial (Antes)"
-              afterLabel="Sistema TRÍPODE (Después)"
-            />
-          </div>
-
-          {/* Antes y Después (Segundo Ángulo) */}
-          <div className="space-y-6 pt-4">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-              <div className="space-y-2">
-                <p className="eyebrow text-[var(--clay-light)]">— Ángulo 02: Transición Funcional</p>
-                <h3 className="display text-3xl md:text-4xl text-white">
-                  Redefinición de los Límites
-                </h3>
-              </div>
-              <p className="text-xs text-[var(--cream)]/60 max-w-sm leading-relaxed font-mono">
-                Observa cómo el mueble se convierte en arquitectura, redefiniendo la relación entre la zona de descanso, el espacio social y el área de trabajo continuo.
-              </p>
-            </div>
-            <ComparisonSlider
-              beforeImg={tripode2Antes}
-              afterImg={tripode2Despues}
-              beforeLabel="Vacío Espacial (Antes)"
-              afterLabel="Solución TRÍPODE (Después)"
-            />
-          </div>
-
-          {/* Reflexión Final y Metadatos */}
-          <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start mt-8 pt-8 border-t border-[var(--cream)]/15">
-            <div className="md:col-span-7 flex flex-col gap-6">
-              <p className="text-base text-[var(--cream)]/90 leading-relaxed font-light font-sans">
-                TRÍPODE no busca simplemente aumentar los metros cuadrados útiles de una vivienda compacta; busca <strong>aumentar radicalmente la calidad del espacio habitable</strong> a través del diseño de alta precisión. El mobiliario deja de concebirse como un objeto estático o decorativo para convertirse en <strong>arquitectura activa y performativa</strong>.
-              </p>
-            </div>
-
-            <div className="md:col-span-5 flex flex-col justify-between h-full pt-4">
-              <p className="text-xs text-[var(--cream)]/60 leading-relaxed mb-6 font-sans">
-                Este caso de estudio demuestra el potencial del diseño sistémico para reconfigurar el habitar contemporáneo, equilibrando las necesidades cognitivas de trabajo y descanso en un mismo plano continuo.
-              </p>
-              <button
-                onClick={() =>
-                  onInquire(
-                    "Hola Natalia, estuve leyendo el case study del proyecto TRÍPODE en tu portafolio. Me pareció sumamente interesante tu enfoque para transformar la habitabilidad en viviendas compactas mediante este sistema de mobiliario arquitectónico. Me gustaría que conversáramos sobre cómo implementar este tipo de soluciones en nuestros futuros proyectos."
-                  )
-                }
-                className="self-start text-xs tracking-[0.2em] uppercase border-b border-[var(--clay-light)] pb-1 text-[var(--clay-light)] hover:opacity-70 transition-opacity text-left font-semibold mt-2"
-              >
-                ¿Quieres implementar TRÍPODE? →
-              </button>
-            </div>
-          </div>
-
-          {/* Metadata footer */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-[var(--cream)]/15 pt-10">
-            {[
-              { k: "Materiales", v: "Madera multilaminada de abedul, acero termolacado y textiles lavables" },
-              { k: "Enfoque Neuro", v: "Flexibilidad cognitiva, reducción de desorden visual y zonificación" },
-              { k: "Pieza clave", v: "Estructura auto-portante unificada de triple apoyo" },
-              { k: "Áreas", v: "Dormitorio compacto · Oficina flexible · Estar social" },
-            ].map((d) => (
-              <div key={d.k}>
-                <p className="eyebrow text-[var(--clay-light)] mb-2">{d.k}</p>
-                <p className="text-[var(--cream)]/90 text-sm">{d.v}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
 
       {/* Lightbox / Visor de Imagen a Pantalla Completa */}
       <AnimatePresence>
