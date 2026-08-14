@@ -52,9 +52,9 @@ export function Hero() {
             VER PROYECTOS
           </a>
           <a
-            href="/cv.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/documents/CV_Natalia_Ramirez_Diaz_ES.pdf"
+            download="CV_Natalia_Ramirez_Diaz_ES.pdf"
+            aria-label="Descargar currículum de Natalia Ramírez Díaz en PDF"
             className="inline-flex items-center justify-center text-[0.65rem] tracking-[0.2em] font-medium uppercase px-7 py-3 border border-[var(--cream)]/40 text-[var(--cream)] hover:bg-[var(--cream)] hover:text-[var(--ink)] transition-all duration-300 rounded-full"
           >
             DESCARGAR CV

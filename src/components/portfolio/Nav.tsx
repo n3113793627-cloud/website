@@ -63,16 +63,16 @@ export function Nav() {
           </nav>
 
           <a
-            href="/cv.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/documents/CV_Natalia_Ramirez_Diaz_ES.pdf"
+            download="CV_Natalia_Ramirez_Diaz_ES.pdf"
+            aria-label="Descargar currículum de Natalia Ramírez Díaz en PDF"
             className={`hidden md:inline-flex text-[0.65rem] tracking-[0.2em] uppercase px-5 py-2.5 rounded-full transition-all duration-300 ${
               isScrolled
                 ? "bg-foreground text-background hover:bg-[var(--clay)] shadow-md"
                 : "border border-white/40 text-white hover:bg-white hover:text-black backdrop-blur-sm"
             }`}
           >
-            Descargar CV
+            DESCARGAR CV
           </a>
 
           <button
