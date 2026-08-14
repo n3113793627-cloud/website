@@ -505,81 +505,76 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
         ref={ref1}
         className="py-10 md:py-16 px-6 md:px-10 border-b border-[var(--cream)]/10 scroll-mt-28"
       >
-        <div className="max-w-[1400px] mx-auto space-y-12">
-          {/* 1. ENCABEZADO Y HERO VISUAL */}
-          <div className="flex items-end justify-between gap-6 border-b border-[var(--cream)]/10 pb-6">
-            <div>
-              <p className="eyebrow text-[var(--clay-light)] mb-2">PROYECTO DESTACADO · 01</p>
-              <h3 className="display text-4xl md:text-6xl text-white leading-tight">
-                TRÍPODE
-              </h3>
-            </div>
-            <div className="hidden md:block text-right text-sm text-[var(--cream)]/85 space-y-1 font-mono">
-              <p>Mobiliario como herramienta arquitectónica</p>
-              <p>Bogotá · 2026</p>
-            </div>
-          </div>
-
-          {/* Hero Image - Gran Formato */}
-          <div className="space-y-3">
-            <div
-              className="relative w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden bg-white/5 rounded-xl border border-white/10 shadow-2xl flex items-center justify-center p-4 cursor-zoom-in group"
-              onClick={() => {
-                setLightboxGallery([tripode1, tripode2, tripodeConcept]);
-                setLightboxIndex(0);
-              }}
-            >
-              <img
-                src={tripode1}
-                alt="Vista general del sistema TRÍPODE"
-                className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-[1.01]"
-                loading="eager"
-              />
-              <div className="absolute bottom-4 right-4 bg-black/75 hover:bg-black/95 text-white text-[9px] px-3 py-2 rounded-full flex items-center gap-1.5 shadow-lg backdrop-blur-sm transition-all duration-300 font-mono tracking-wider">
-                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <span>Clic para ampliar</span>
+        <div className="max-w-[1400px] mx-auto space-y-16 md:space-y-28">
+          {/* 1. ENCABEZADO Y SÍNTESIS */}
+          <div className="space-y-8">
+            <div className="flex items-end justify-between gap-6 border-b border-[var(--cream)]/10 pb-6">
+              <div>
+                <p className="eyebrow text-[var(--clay-light)] mb-2">PROYECTO DESTACADO · 01</p>
+                <h3 className="display text-4xl md:text-6xl text-white leading-tight">
+                  TRÍPODE
+                </h3>
+              </div>
+              <div className="hidden md:block text-right text-sm text-[var(--cream)]/85 space-y-1 font-mono">
+                <p>Mobiliario como herramienta arquitectónica</p>
+                <p>Bogotá · 2026</p>
               </div>
             </div>
-            <p className="text-xs text-[var(--cream)]/60 italic px-2">Vista general del sistema TRÍPODE</p>
+
+            <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start pt-2">
+              <div className="md:col-span-8 space-y-4">
+                <h4 className="display text-2xl md:text-3xl text-white leading-relaxed italic font-light">
+                  "¿Puede un solo sistema organizar la manera en que habitamos un apartamento compacto?"
+                </h4>
+                <p className="text-[var(--cream)]/85 text-base leading-relaxed">
+                  TRÍPODE es una propuesta donde el mobiliario deja de ser un objeto independiente para convertirse en una herramienta arquitectónica capaz de organizar el espacio, definir privacidad, optimizar materiales y mejorar la experiencia de habitar.
+                </p>
+              </div>
+              <div className="md:col-span-4 bg-white/5 p-5 rounded-lg border border-white/5 shadow-md">
+                <p className="text-[10px] text-[var(--clay-light)] uppercase tracking-widest font-mono mb-3">Ficha Técnica</p>
+                <div className="space-y-3">
+                  {[
+                    { label: "Tipo", value: "Proyecto Conceptual" },
+                    { label: "Rol", value: "Arquitectura e Interiorismo" },
+                    { label: "Herramientas", value: "AutoCAD · Revit · SketchUp" },
+                    { label: "Año", value: "2026" },
+                    { label: "Alcance", value: "Diseño espacial y de mobiliario" }
+                  ].map((stat) => (
+                    <div key={stat.label} className="border-b border-white/10 pb-1.5 last:border-0 last:pb-0">
+                      <p className="text-[9px] text-[var(--cream)]/60 uppercase tracking-wider">{stat.label}</p>
+                      <p className="text-xs font-semibold text-white mt-0.5">{stat.value}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* 2. SÍNTESIS DEL PROYECTO */}
-          <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start pt-4">
-            <div className="md:col-span-8 space-y-4">
-              <h4 className="display text-2xl md:text-3xl text-white leading-relaxed italic font-light">
-                "¿Puede un solo sistema organizar la manera en que habitamos un apartamento compacto?"
-              </h4>
-              <p className="text-[var(--cream)]/85 text-base leading-relaxed">
-                TRÍPODE es una propuesta donde el mobiliario deja de ser un objeto independiente para convertirse en una herramienta arquitectónica capaz de organizar el espacio, definir privacidad, optimizar materiales y mejorar la experiencia de habitar.
+          {/* 2. VIDEO CONCEPTUAL */}
+          <div className="space-y-4">
+            <div className="max-w-3xl">
+              <h3 className="display text-2xl md:text-3xl text-white mb-2">
+                Registro conceptual animado
+              </h3>
+              <p className="text-sm text-[var(--cream)]/75 leading-relaxed">
+                El sistema se origina a partir de tres acciones cotidianas y esenciales de la vivienda: descansar, trabajar y compartir. Estas funciones se conectan a través de una única estructura que optimiza el espacio y unifica el lenguaje formal.
               </p>
             </div>
-            <div className="md:col-span-4 bg-white/5 p-5 rounded-lg border border-white/5 shadow-md">
-              <p className="text-[10px] text-[var(--clay-light)] uppercase tracking-widest font-mono mb-3">Ficha Técnica</p>
-              <div className="space-y-3">
-                {[
-                  { label: "Tipo", value: "Proyecto Conceptual" },
-                  { label: "Rol", value: "Arquitectura e Interiorismo" },
-                  { label: "Herramientas", value: "AutoCAD · Revit · SketchUp" },
-                  { label: "Año", value: "2026" },
-                  { label: "Alcance", value: "Diseño espacial y de mobiliario" }
-                ].map((stat) => (
-                  <div key={stat.label} className="border-b border-white/10 pb-1.5 last:border-0 last:pb-0">
-                    <p className="text-[9px] text-[var(--cream)]/60 uppercase tracking-wider">{stat.label}</p>
-                    <p className="text-xs font-semibold text-white mt-0.5">{stat.value}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <GifPlayer
+              gifSrc={tripodeGif}
+              alt="Video conceptual TRÍPODE"
+              caption="Registro conceptual: descansar, trabajar y compartir"
+            />
           </div>
 
-          {/* 3. SISTEMA ARQUITECTÓNICO */}
-          <div className="space-y-6 pt-6">
+          {/* 3. LÁMINA DEL SISTEMA */}
+          <div className="space-y-6">
             <div className="max-w-3xl">
-              <h3 className="display text-3xl md:text-4xl text-white mb-2">
+              <h3 className="display text-2xl md:text-3xl text-white mb-2">
                 El sistema sobre el objeto
               </h3>
               <p className="text-sm text-[var(--cream)]/75 leading-relaxed">
-                En lugar de concebir el mobiliario como una suma de muebles independientes (cama, escritorio, sofá) que fragmentan el apartamento, TRÍPODE opera como un <strong>sistema arquitectónico unificado</strong>. Actúa como un diafragma o núcleo activo: un solo volumen estructural regula las circulaciones, define los niveles de privacidad y se convierte en el soporte de las distintas actividades diarias.
+                En lugar de concebir el mobiliario como una suma de muebles independientes que fragmentan el apartamento, TRÍPODE opera como un sistema unificado. Un solo volumen regula las circulaciones y se convierte en el soporte de las actividades diarias.
               </p>
             </div>
             
@@ -587,35 +582,25 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
               <div className="relative w-full aspect-[4/3] md:aspect-[16/9] overflow-hidden bg-white rounded-xl border border-white/10 shadow-2xl flex items-center justify-center p-4">
                 <img
                   src={tripodeConcept}
-                  alt="Sistema unificado: trabajar, compartir y descansar"
+                  alt="TRÍPODE como sistema arquitectónico unificado"
                   className="max-w-full max-h-full object-contain"
                   loading="lazy"
                 />
                 <button
                   onClick={() => {
-                    setLightboxGallery([tripode1, tripode2, tripodeConcept]);
-                    setLightboxIndex(2);
+                    setLightboxGallery([tripodeConcept, tripode1Antes, tripode1Despues, tripode2Antes, tripode2Despues]);
+                    setLightboxIndex(0);
                   }}
-                  className="absolute bottom-4 right-4 bg-black/85 hover:bg-black/95 text-white text-[10px] px-4 py-2.5 rounded-full flex items-center gap-1.5 shadow-lg backdrop-blur-sm transition-all duration-300 font-mono tracking-wider border border-white/10"
+                  className="absolute bottom-4 right-4 bg-black/85 hover:bg-black/95 text-white text-[10px] px-4 py-2.5 rounded-full flex items-center gap-1.5 shadow-lg backdrop-blur-sm transition-all duration-300 font-mono tracking-wider border border-white/10 cursor-pointer"
                 >
                   AMPLIAR LÁMINA
                 </button>
               </div>
-              <p className="text-xs text-[var(--cream)]/60 italic px-2">Sistema unificado: trabajar, compartir y descansar</p>
+              <p className="text-xs text-[var(--cream)]/60 italic px-2">TRÍPODE como sistema arquitectónico unificado</p>
             </div>
           </div>
 
-          {/* 4. VIDEO CONCEPTUAL */}
-          <div className="pt-6">
-            <GifPlayer
-              gifSrc={tripodeGif}
-              posterSrc={tripodeConcept}
-              alt="Video conceptual TRÍPODE"
-              caption="Video conceptual: descansar, trabajar y compartir"
-            />
-          </div>
-
-          {/* 5. TRANSFORMACIÓN 01 (Díptico) */}
+          {/* 4. TRANSFORMACIÓN 01 */}
           <Diptico
             title="Transformación y orden espacial"
             subtitle="— Ángulo 01: Reconfiguración del Núcleo"
@@ -624,12 +609,12 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             beforeLabel="Estado existente"
             afterLabel="Propuesta TRÍPODE"
             onOpenImage={(img) => {
-              setLightboxGallery([tripode1Antes, tripode1Despues]);
-              setLightboxIndex(img === tripode1Antes ? 0 : 1);
+              setLightboxGallery([tripodeConcept, tripode1Antes, tripode1Despues, tripode2Antes, tripode2Despues]);
+              setLightboxIndex(img === tripode1Antes ? 1 : 2);
             }}
           />
 
-          {/* 6. TRANSFORMACIÓN 02 (Díptico) */}
+          {/* 5. TRANSFORMACIÓN 02 */}
           <Diptico
             title="Redefinición de los límites"
             subtitle="— Ángulo 02: Transición Funcional"
@@ -638,134 +623,52 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             beforeLabel="Estado existente"
             afterLabel="Propuesta TRÍPODE"
             onOpenImage={(img) => {
-              setLightboxGallery([tripode2Antes, tripode2Despues]);
-              setLightboxIndex(img === tripode2Antes ? 0 : 1);
+              setLightboxGallery([tripodeConcept, tripode1Antes, tripode1Despues, tripode2Antes, tripode2Despues]);
+              setLightboxIndex(img === tripode2Antes ? 3 : 4);
             }}
           />
 
-          {/* 7. GALERÍA TÉCNICA */}
-          <div className="border-t border-[var(--cream)]/15 pt-12 space-y-8">
-            <div className="max-w-3xl">
-              <p className="eyebrow text-[var(--clay-light)] mb-3">— Lectura técnica</p>
-              <h3 className="display text-3xl md:text-4xl text-white mb-2">
-                Lectura completa del sistema
-              </h3>
-            </div>
-            
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Axonometría 1 */}
-              <div className="space-y-3">
-                <div
-                  className="relative w-full aspect-[4/3] md:aspect-[16/10] overflow-hidden bg-white/5 rounded-xl border border-white/10 shadow-xl flex items-center justify-center p-4 cursor-zoom-in group"
-                  onClick={() => {
-                    setLightboxGallery([tripode1, tripode2, tripodeConcept]);
-                    setLightboxIndex(0);
-                  }}
-                >
-                  <img
-                    src={tripode1}
-                    alt="Primera vista axonométrica"
-                    className="max-w-full max-h-full object-contain"
-                    loading="lazy"
-                  />
-                  <button
-                    className="absolute bottom-4 right-4 bg-black/85 hover:bg-black/95 text-white text-[9px] px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg backdrop-blur-sm transition-all duration-300 font-mono"
-                  >
-                    Ampliar
-                  </button>
-                </div>
-                <p className="text-xs text-[var(--cream)]/60 italic px-2">1. Primera vista axonométrica: perspectiva general del sistema autoportante</p>
+          {/* 6. CIERRE Y SIGUIENTE PROYECTO */}
+          <div className="space-y-12">
+            <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start mt-8 pt-8 border-t border-[var(--cream)]/15">
+              <div className="md:col-span-7 flex flex-col gap-6">
+                <p className="text-base text-[var(--cream)]/90 leading-relaxed font-light font-sans">
+                  TRÍPODE no busca simplemente aumentar los metros cuadrados útiles de una vivienda compacta; busca <strong>aumentar radicalmente la calidad del espacio habitable</strong> a través del diseño de alta precisión. El mobiliario deja de concebirse como un objeto estático o decorativo para convertirse en <strong>arquitectura activa y performativa</strong>.
+                </p>
               </div>
 
-              {/* Axonometría 2 */}
-              <div className="space-y-3">
-                <div
-                  className="relative w-full aspect-[4/3] md:aspect-[16/10] overflow-hidden bg-white/5 rounded-xl border border-white/10 shadow-xl flex items-center justify-center p-4 cursor-zoom-in group"
-                  onClick={() => {
-                    setLightboxGallery([tripode1, tripode2, tripodeConcept]);
-                    setLightboxIndex(1);
-                  }}
-                >
-                  <img
-                    src={tripode2}
-                    alt="Segunda vista axonométrica"
-                    className="max-w-full max-h-full object-contain"
-                    loading="lazy"
-                  />
-                  <button
-                    className="absolute bottom-4 right-4 bg-black/85 hover:bg-black/95 text-white text-[9px] px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg backdrop-blur-sm transition-all duration-300 font-mono"
-                  >
-                    Ampliar
-                  </button>
-                </div>
-                <p className="text-xs text-[var(--cream)]/60 italic px-2">2. Segunda vista axonométrica: perspectiva desde el ángulo opuesto de estudio</p>
-              </div>
-            </div>
-
-            {/* Plano/Elevación técnica a ancho completo */}
-            <div className="space-y-3 pt-4">
-              <div
-                className="relative w-full aspect-[4/3] md:aspect-[21/9] overflow-hidden bg-white rounded-xl border border-white/10 shadow-xl flex items-center justify-center p-6 cursor-zoom-in group"
-                onClick={() => {
-                  setLightboxGallery([tripode1, tripode2, tripodeConcept]);
-                  setLightboxIndex(2);
-                }}
-              >
-                <img
-                  src={tripodeConcept}
-                  alt="Plano y elevación técnica"
-                  className="max-w-full max-h-full object-contain"
-                  loading="lazy"
-                />
+              <div className="md:col-span-5 flex flex-col justify-between h-full pt-4">
+                <p className="text-xs text-[var(--cream)]/60 leading-relaxed mb-6 font-sans">
+                  Este caso de estudio demuestra el potencial del diseño sistémico para reconfigurar el habitar contemporáneo, equilibrando las necesidades de trabajo y descanso en un mismo plano continuo.
+                </p>
                 <button
-                  className="absolute bottom-4 right-4 bg-black/85 hover:bg-black/95 text-white text-[9px] px-4 py-2.5 rounded-full flex items-center gap-1.5 shadow-lg backdrop-blur-sm transition-all duration-300 font-mono tracking-wider"
+                  onClick={() => {
+                    const el = document.getElementById("apto-cerezo");
+                    if (el) {
+                      el.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
+                  className="self-start text-xs tracking-[0.2em] uppercase border-b border-[var(--clay-light)] pb-1 text-[var(--clay-light)] hover:opacity-70 transition-opacity text-left font-semibold mt-2 cursor-pointer"
                 >
-                  AMPLIAR LÁMINA
+                  Siguiente proyecto: Apto Cerezo →
                 </button>
               </div>
-              <p className="text-xs text-[var(--cream)]/60 italic px-2">3. Distribución técnica: plano de modulación, cotas y elevación del núcleo habitable</p>
-            </div>
-          </div>
-
-          {/* 8. CIERRE Y SIGUIENTE PROYECTO */}
-          <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start mt-8 pt-8 border-t border-[var(--cream)]/15">
-            <div className="md:col-span-7 flex flex-col gap-6">
-              <p className="text-base text-[var(--cream)]/90 leading-relaxed font-light font-sans">
-                TRÍPODE no busca simplemente aumentar los metros cuadrados útiles de una vivienda compacta; busca <strong>aumentar radicalmente la calidad del espacio habitable</strong> a través del diseño de alta precisión. El mobiliario deja de concebirse como un objeto estático o decorativo para convertirse en <strong>arquitectura activa y performativa</strong>.
-              </p>
             </div>
 
-            <div className="md:col-span-5 flex flex-col justify-between h-full pt-4">
-              <p className="text-xs text-[var(--cream)]/60 leading-relaxed mb-6 font-sans">
-                Este caso de estudio demuestra el potencial del diseño sistémico para reconfigurar el habitar contemporáneo, equilibrando las necesidades de trabajo y descanso en un mismo plano continuo.
-              </p>
-              <button
-                onClick={() => {
-                  const el = document.getElementById("apto-cerezo");
-                  if (el) {
-                    el.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-                className="self-start text-xs tracking-[0.2em] uppercase border-b border-[var(--clay-light)] pb-1 text-[var(--clay-light)] hover:opacity-70 transition-opacity text-left font-semibold mt-2"
-              >
-                SIGUIENTE PROYECTO: APTO CEREZO →
-              </button>
+            {/* Ficha inferior */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-[var(--cream)]/15 pt-10">
+              {[
+                { k: "Materiales", v: "Madera multilaminada de abedul, acero termolacado y textiles lavables" },
+                { k: "Criterios de Diseño", v: "Flexibilidad, orden visual y zonificación" },
+                { k: "Pieza clave", v: "Estructura auto-portante unificada de triple apoyo" },
+                { k: "Áreas", v: "Dormitorio compacto · Oficina flexible · Estar social" },
+              ].map((d) => (
+                <div key={d.k}>
+                  <p className="eyebrow text-[var(--clay-light)] mb-2">{d.k}</p>
+                  <p className="text-[var(--cream)]/90 text-sm">{d.v}</p>
+                </div>
+              ))}
             </div>
-          </div>
-
-          {/* Ficha inferior */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-[var(--cream)]/15 pt-10">
-            {[
-              { k: "Materiales", v: "Madera multilaminada de abedul, acero termolacado y textiles lavables" },
-              { k: "Criterios de Diseño", v: "Flexibilidad, orden visual y zonificación" },
-              { k: "Pieza clave", v: "Estructura auto-portante unificada de triple apoyo" },
-              { k: "Áreas", v: "Dormitorio compacto · Oficina flexible · Estar social" },
-            ].map((d) => (
-              <div key={d.k}>
-                <p className="eyebrow text-[var(--clay-light)] mb-2">{d.k}</p>
-                <p className="text-[var(--cream)]/90 text-sm">{d.v}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
