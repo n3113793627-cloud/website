@@ -21,7 +21,10 @@ export function Hero() {
           playsInline
           className="w-full h-full object-cover scale-[1.15] origin-top-left"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(30,15,8,0.15)] via-transparent to-[rgba(30,15,8,0.55)]" />
+        {/* Multi-directional overlay to guarantee text readability (top, bottom, and left sides) */}
+        <div className="absolute inset-0 bg-[rgba(18,10,6,0.25)]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[rgba(18,10,6,0.85)] via-[rgba(18,10,6,0.35)] to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(18,10,6,0.5)] via-transparent to-[rgba(18,10,6,0.65)]" />
       </motion.div>
 
       <motion.div
@@ -30,26 +33,42 @@ export function Hero() {
       >
         <div className="flex items-center gap-3 mb-6">
           <span className="h-px w-12 bg-[var(--cream)]/70" />
-          <span className="eyebrow text-[var(--cream)]/90">Portfolio · 2026</span>
+          <span className="eyebrow text-[var(--cream)]/90">PORTAFOLIO · 2026</span>
         </div>
         <h1 className="display text-[var(--cream)] text-[clamp(2.8rem,6.5vw,6.5rem)] leading-[0.92] max-w-5xl">
-          Espacios que <em className="italic text-[var(--clay)]">sanan</em>,
-          <br /> diseño que <em className="italic">conecta.</em>
+          Arquitectura que <em className="italic text-[var(--clay)]">cuida</em>,
+          <br /> diseño que conecta.
         </h1>
         <p className="mt-8 max-w-xl text-[var(--cream)]/85 text-lg leading-relaxed">
-          Arquitecta y diseñadora de interiores con enfoque en <strong>neuroarquitectura</strong>.
-          Espacios concebidos como herramientas terapéuticas para potenciar el bienestar físico,
-          emocional y cognitivo.
+          Arquitecta y diseñadora de interiores especializada en <strong>neuroarquitectura</strong>.
+          Combino diseño interior, documentación técnica y BIM para crear espacios humanos,
+          funcionales y sensibles.
         </p>
+        <div className="mt-10 flex flex-wrap gap-4 z-20">
+          <a
+            href="#proyectos"
+            className="inline-flex items-center justify-center text-[0.65rem] tracking-[0.2em] font-medium uppercase px-7 py-3 bg-[var(--cream)] text-[var(--ink)] hover:bg-[var(--clay)] hover:text-[var(--cream)] transition-all duration-300 rounded-full"
+          >
+            VER PROYECTOS
+          </a>
+          <a
+            href="/cv.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center text-[0.65rem] tracking-[0.2em] font-medium uppercase px-7 py-3 border border-[var(--cream)]/40 text-[var(--cream)] hover:bg-[var(--cream)] hover:text-[var(--ink)] transition-all duration-300 rounded-full"
+          >
+            DESCARGAR CV
+          </a>
+        </div>
       </motion.div>
 
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.2, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-[var(--cream)]/70 text-xs tracking-[0.3em] uppercase"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-[var(--cream)]/70 text-xs tracking-[0.3em] uppercase whitespace-nowrap"
       >
-        ↓ Desplaza
+        ↓ EXPLORAR PROYECTOS
       </motion.div>
     </section>
   );

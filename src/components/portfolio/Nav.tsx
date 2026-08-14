@@ -63,14 +63,16 @@ export function Nav() {
           </nav>
 
           <a
-            href="#contacto"
+            href="/cv.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className={`hidden md:inline-flex text-[0.65rem] tracking-[0.2em] uppercase px-5 py-2.5 rounded-full transition-all duration-300 ${
               isScrolled
                 ? "bg-foreground text-background hover:bg-[var(--clay)] shadow-md"
                 : "border border-white/40 text-white hover:bg-white hover:text-black backdrop-blur-sm"
             }`}
           >
-            Trabajemos juntos
+            Descargar CV
           </a>
 
           <button

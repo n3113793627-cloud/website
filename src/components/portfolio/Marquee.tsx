@@ -8,22 +8,34 @@ const words = [
   "Detalle Artesanal",
 ];
 
-const repeated = [...words, ...words, ...words, ...words];
-
 export function Marquee() {
   return (
-    <div className="border-y border-foreground/15 bg-[var(--cream)] overflow-hidden">
+    <div className="border-y border-foreground/15 bg-[var(--cream)] overflow-hidden flex whitespace-nowrap">
       <motion.div
-        className="flex gap-16 py-6 whitespace-nowrap"
-        animate={{ x: ["0%", "-25%"] }}
-        transition={{ duration: 28, ease: "linear", repeat: Infinity }}
+        className="flex gap-16 py-6 shrink-0 pr-16"
+        animate={{ x: ["0%", "-100%"] }}
+        transition={{ duration: 25, ease: "linear", repeat: Infinity }}
       >
-        {repeated.map((w, i) => (
+        {words.map((w, i) => (
           <span
-            key={i}
-            className="text-[0.65rem] text-foreground/35 shrink-0 tracking-[0.25em] uppercase"
+            key={`a-${i}`}
+            className="text-[0.65rem] text-foreground/50 shrink-0 tracking-[0.25em] uppercase"
           >
-            {w} <span className="text-[var(--clay)]/50 mx-4">✦</span>
+            {w} <span className="text-[var(--clay)]/65 mx-4">✦</span>
+          </span>
+        ))}
+      </motion.div>
+      <motion.div
+        className="flex gap-16 py-6 shrink-0 pr-16"
+        animate={{ x: ["0%", "-100%"] }}
+        transition={{ duration: 25, ease: "linear", repeat: Infinity }}
+      >
+        {words.map((w, i) => (
+          <span
+            key={`b-${i}`}
+            className="text-[0.65rem] text-foreground/50 shrink-0 tracking-[0.25em] uppercase"
+          >
+            {w} <span className="text-[var(--clay)]/65 mx-4">✦</span>
           </span>
         ))}
       </motion.div>
