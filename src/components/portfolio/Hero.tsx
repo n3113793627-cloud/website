@@ -36,13 +36,13 @@ export function Hero() {
           <span className="eyebrow text-[var(--cream)]/90">PORTAFOLIO · 2026</span>
         </div>
         <h1 className="display text-[var(--cream)] text-[clamp(2.8rem,6.5vw,6.5rem)] leading-[0.92] max-w-5xl">
-          Arquitectura que <em className="italic text-[var(--clay)]">cuida</em>,
+          Arquitectura que <em className="italic text-[var(--clay)]">cuida,</em>
           <br /> diseño que conecta.
         </h1>
         <p className="mt-8 max-w-xl text-[var(--cream)]/85 text-lg leading-relaxed">
-          Arquitecta y diseñadora de interiores especializada en <strong>neuroarquitectura</strong>.
-          Combino diseño interior, documentación técnica y BIM para crear espacios humanos,
-          funcionales y sensibles.
+          Arquitecta y diseñadora de interiores con experiencia en diseño interior,
+          documentación técnica y BIM, y especial interés en la neuroarquitectura.
+          Creo espacios humanos, funcionales y sensibles.
         </p>
         <div className="mt-10 flex flex-wrap gap-4 z-20">
           <a
