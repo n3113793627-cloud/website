@@ -46,37 +46,54 @@ export function Contact({ prefilledMessage = "" }: ContactProps) {
             <div>
               <p className="eyebrow mb-2">Email directo</p>
               <a
-                href="mailto:hola@nataliaramirez.co"
+                href="mailto:nataliaramirez1799@gmail.com"
                 className="display text-2xl hover:text-[var(--clay)] transition-colors"
               >
-                hola@nataliaramirez.co
+                nataliaramirez1799@gmail.com
               </a>
             </div>
             <div>
               <p className="eyebrow mb-2">WhatsApp</p>
               <a
-                href="https://wa.me/573118383064"
+                href="https://wa.me/5513978103416"
                 className="display text-2xl hover:text-[var(--clay)] transition-colors"
               >
-                +57 311 838 3064
+                +55 (13) 97810-3416
               </a>
             </div>
             <div>
-              <p className="eyebrow mb-2">Estudio</p>
+              <p className="eyebrow mb-2">Base</p>
               <p className="text-foreground/80">
-                Bogotá, Colombia
+                Santos, São Paulo, Brasil
                 <br />
-                Disponible para proyectos en LATAM
+                Disponible para proyectos remotos en LATAM
               </p>
             </div>
             <div className="flex flex-wrap gap-6 pt-2">
-              {["Instagram", "Behance", "LinkedIn", "Pinterest"].map((s) => (
+              {[
+                {
+                  name: "Instagram",
+                  href: "https://www.instagram.com/narq.space/",
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                },
+                { name: "Behance", href: "#" },
+                {
+                  name: "LinkedIn",
+                  href: "https://www.linkedin.com/in/nataliaramirezdiazz/",
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                },
+                { name: "Pinterest", href: "#" },
+              ].map((s) => (
                 <a
-                  key={s}
-                  href="#"
+                  key={s.name}
+                  href={s.href}
+                  target={s.target}
+                  rel={s.rel}
                   className="text-sm border-b border-foreground/30 pb-1 hover:text-[var(--clay)] hover:border-[var(--clay)] transition-colors"
                 >
-                  {s}
+                  {s.name}
                 </a>
               ))}
             </div>
