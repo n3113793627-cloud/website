@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import aptoCerezo from "@/assets/apto-cerezo.png";
 import detailImg from "@/assets/project-detail-1.jpg";
@@ -231,9 +231,10 @@ function Hotspot({ x, y, onClick }: { x: string; y: string; onClick: () => void 
   );
 }
 
-interface DipticoProps {
+interface TransformationPairProps {
   title: string;
   subtitle: string;
+  description?: string;
   beforeImg: string;
   afterImg: string;
   beforeLabel?: string;
@@ -241,65 +242,130 @@ interface DipticoProps {
   onOpenImage: (img: string) => void;
 }
 
-function Diptico({
+function TransformationPair({
   title,
   subtitle,
+  description,
   beforeImg,
   afterImg,
   beforeLabel = "Estado existente",
   afterLabel = "Propuesta TRÍPODE",
   onOpenImage,
-}: DipticoProps) {
+}: TransformationPairProps) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
-    <div className="space-y-6 pt-8 border-t border-[var(--cream)]/10">
-      <div className="space-y-1">
-        <p className="eyebrow text-[var(--clay-light)]">{subtitle}</p>
-        <h3 className="display text-3xl md:text-4xl text-white">
+    <div className="space-y-8 pt-10 border-t border-[var(--cream)]/10">
+      {/* Header and description outside */}
+      <div className="space-y-2">
+        <p className="eyebrow text-[var(--clay-light)] tracking-widest text-xs uppercase">{subtitle}</p>
+        <h3 className="display text-3xl md:text-4xl text-white font-medium">
           {title}
         </h3>
+        {description && (
+          <p className="text-sm text-[var(--cream)]/75 max-w-3xl font-sans mt-1">
+            {description}
+          </p>
+        )}
       </div>
-      
-      <div className="grid md:grid-cols-2 gap-6 items-stretch">
-        {/* Left: Before Image */}
-        <div className="space-y-2 flex flex-col justify-between">
-          <div
-            className="relative w-full overflow-hidden rounded-xl border border-white/5 bg-black/10 flex items-center justify-center cursor-zoom-in group aspect-[4/3]"
+
+      {/* Main Grid: stack on mobile (<900px), grid minmax(0, 1fr) 72px minmax(0, 1fr) on desktop */}
+      <div className="w-full max-w-[1550px] mx-auto flex flex-col min-[900px]:grid min-[900px]:grid-cols-[1fr_72px_1fr] items-center gap-6 min-[900px]:gap-0">
+        
+        {/* Card Left: Before */}
+        <div className="w-full flex flex-col space-y-3">
+          {/* Card Header outside */}
+          <div className="flex items-baseline gap-2 font-mono">
+            <span className="text-xs text-[var(--cream)]/40">01</span>
+            <span className="text-[10px] text-[var(--cream)]/60 uppercase tracking-wider font-semibold">
+              {beforeLabel}
+            </span>
+          </div>
+          {/* Image Wrapper */}
+          <button
             onClick={() => onOpenImage(beforeImg)}
+            className="w-full relative overflow-hidden rounded-xl border border-white/10 bg-black/20 flex items-center justify-center cursor-zoom-in group transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EFA07F] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ink)]"
+            aria-label={`Ampliar ${beforeLabel}`}
           >
             <img
               src={beforeImg}
               alt={beforeLabel}
-              className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.01]"
+              className="w-full h-auto max-h-[500px] object-contain rounded-xl transition-transform duration-500 group-hover:scale-[1.01]"
               loading="lazy"
             />
-            <span className="absolute top-3 left-3 bg-black/70 text-[var(--cream)]/90 text-[8px] font-mono tracking-widest px-2 py-1 rounded uppercase">
-              {beforeLabel}
-            </span>
-            <div className="absolute bottom-3 right-3 bg-black/75 text-white text-[8px] px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-mono">
-              Ampliar
+            {/* Soft border styling */}
+            <div className="absolute inset-0 rounded-xl border border-white/5 pointer-events-none" />
+            <div className="absolute bottom-3 right-3 bg-black/75 text-[var(--cream)] text-[9px] font-mono px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              AMPLIAR
             </div>
+          </button>
+        </div>
+
+        {/* Connector: Arrow indicator */}
+        <div className="flex flex-col items-center justify-center w-full min-[900px]:h-full px-2 py-4 min-[900px]:py-0 select-none">
+          <span className="text-[8px] font-mono tracking-widest text-[#EFA07F] uppercase mb-2 font-bold">
+            TRANSFORMACIÓN
+          </span>
+          <div className="relative flex items-center justify-center w-full min-[900px]:w-[72px]">
+            {/* Line extending animation */}
+            <motion.div
+              className="absolute h-px bg-[#EFA07F]/30 left-0 right-0 hidden min-[900px]:block"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.6, ease: "easeOut" }}
+            />
+            {/* Line extending animation vertical for mobile */}
+            <motion.div
+              className="absolute w-px bg-[#EFA07F]/30 top-0 bottom-0 min-[900px]:hidden"
+              initial={{ scaleY: 0 }}
+              whileInView={{ scaleY: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.6, ease: "easeOut" }}
+            />
+            {/* Circle and simple arrow */}
+            <motion.div
+              className="relative z-10 w-11 h-11 rounded-full bg-[#1c1411] border border-[#EFA07F]/40 flex items-center justify-center text-[#EFA07F] font-bold text-base shadow-md"
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: shouldReduceMotion ? 0 : 0.2, duration: shouldReduceMotion ? 0 : 0.4, type: "spring" }}
+              aria-hidden="true"
+            >
+              {/* Desktop arrow right, mobile arrow down */}
+              <span className="hidden min-[900px]:inline">→</span>
+              <span className="min-[900px]:hidden">↓</span>
+            </motion.div>
           </div>
         </div>
 
-        {/* Right: After Image */}
-        <div className="space-y-2 flex flex-col justify-between">
-          <div
-            className="relative w-full overflow-hidden rounded-xl border border-white/5 bg-black/10 flex items-center justify-center cursor-zoom-in group aspect-[4/3]"
+        {/* Card Right: After */}
+        <div className="w-full flex flex-col space-y-3">
+          {/* Card Header outside */}
+          <div className="flex items-baseline gap-2 font-mono">
+            <span className="text-xs text-[#EFA07F]">02</span>
+            <span className="text-[10px] text-[#EFA07F] uppercase tracking-wider font-semibold">
+              {afterLabel}
+            </span>
+          </div>
+          {/* Image Wrapper */}
+          <button
             onClick={() => onOpenImage(afterImg)}
+            className="w-full relative overflow-hidden rounded-xl border border-white/10 bg-black/20 flex items-center justify-center cursor-zoom-in group transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EFA07F] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ink)]"
+            aria-label={`Ampliar ${afterLabel}`}
           >
             <img
               src={afterImg}
               alt={afterLabel}
-              className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.01]"
+              className="w-full h-auto max-h-[500px] object-contain rounded-xl transition-transform duration-500 group-hover:scale-[1.01]"
               loading="lazy"
             />
-            <span className="absolute top-3 left-3 bg-[var(--clay)] text-white text-[8px] font-mono tracking-widest px-2 py-1 rounded uppercase font-bold">
-              {afterLabel}
-            </span>
-            <div className="absolute bottom-3 right-3 bg-black/75 text-white text-[8px] px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-mono">
-              Ampliar
+            {/* Soft border styling */}
+            <div className="absolute inset-0 rounded-xl border border-white/5 pointer-events-none" />
+            <div className="absolute bottom-3 right-3 bg-black/75 text-[var(--cream)] text-[9px] font-mono px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              AMPLIAR
             </div>
-          </div>
+          </button>
         </div>
       </div>
     </div>
@@ -601,9 +667,10 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
           </div>
 
           {/* 4. TRANSFORMACIÓN 01 */}
-          <Diptico
+          <TransformationPair
             title="Transformación y orden espacial"
             subtitle="— Ángulo 01: Reconfiguración del Núcleo"
+            description="Del espacio fragmentado a un sistema que integra descanso, almacenamiento y uso cotidiano."
             beforeImg={tripode1Antes}
             afterImg={tripode1Despues}
             beforeLabel="Estado existente"
@@ -615,9 +682,10 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
           />
 
           {/* 5. TRANSFORMACIÓN 02 */}
-          <Diptico
+          <TransformationPair
             title="Redefinición de los límites"
             subtitle="— Ángulo 02: Transición Funcional"
+            description="De la interferencia visual a una transición limpia y fluida que se adapta al ritmo de vida."
             beforeImg={tripode2Antes}
             afterImg={tripode2Despues}
             beforeLabel="Estado existente"
