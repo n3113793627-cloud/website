@@ -1,31 +1,9 @@
-import { motion, useInView, useMotionValue, useSpring, animate } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 
-const stats = [
-  { n: 5, suffix: "", l: "Años de práctica" },
-  { n: 100, suffix: "%", l: "Diseño a medida" },
+const credentials = [
+  { year: "2023", label: "Arquitecta · Universidad de América" },
+  { year: "2024", label: "Matrícula profesional · CPNAA Colombia" },
 ];
-
-function AnimatedNumber({ target, suffix }: { target: number; suffix: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  const mv = useMotionValue(0);
-  const spring = useSpring(mv, { stiffness: 80, damping: 20 });
-
-  useEffect(() => {
-    if (!inView) return;
-    const controls = animate(mv, target, { duration: 1.4, ease: "easeOut" });
-    return controls.stop;
-  }, [inView, mv, target]);
-
-  useEffect(() => {
-    return spring.on("change", (v) => {
-      if (ref.current) ref.current.textContent = Math.round(v) + suffix;
-    });
-  }, [spring, suffix]);
-
-  return <span ref={ref}>0{suffix}</span>;
-}
 
 export function About() {
   return (
@@ -34,36 +12,33 @@ export function About() {
         <div className="md:col-span-5 md:sticky md:top-32 self-start">
           <p className="eyebrow mb-6">— Sobre mí</p>
           <h2 className="display text-5xl md:text-7xl leading-[1] mb-10">
-            Diseño para la <em className="italic text-[var(--clay)]">mente</em>, construyo para el{" "}
-            <em className="italic">bienestar</em>.
+            <em className="italic text-[var(--clay)]">Sensibilidad</em> para diseñar,
+            <br /> precisión para construir.
           </h2>
         </div>
 
         <div className="md:col-span-7 md:pt-4">
           <div className="space-y-6 text-lg leading-relaxed text-foreground/85 max-w-xl">
             <p>
-              Soy <strong>Natalia Ramírez</strong>, arquitecta colombiana especializada en
-              <strong> neuroarquitectura</strong> y diseño interior. Mi práctica combina los
-              principios de la neurociencia aplicada con el arte del diseño espacial, transformando
-              los ambientes físicos en herramientas terapéuticas activas para mejorar el ánimo, la
-              cognición y la calma.
+              Soy <strong>Natalia Ramírez Díaz</strong>, arquitecta colombiana radicada en Brasil,
+              con experiencia en diseño arquitectónico, interiores y documentación técnica para
+              proyectos residenciales, comerciales e institucionales.
             </p>
             <p>
-              Creo en el poder de la luz natural, la biofilia (conexión con la naturaleza), texturas
-              orgánicas y maderas locales para influir de forma positiva en el sistema nervioso.
-              Cada decisión sobre paletas de colores, distribución de mobiliario y materialidad se
-              toma con rigor científico y delicadeza estética para favorecer la regulación emocional
-              cotidiana.
+              Mi trabajo combina sensibilidad espacial y rigor técnico. Desarrollo planos, detalles
+              constructivos, modelos 3D y propuestas de diseño con AutoCAD, Revit y SketchUp. Me
+              interesa especialmente comprender cómo los espacios influyen en el bienestar y en la
+              experiencia cotidiana de las personas.
             </p>
             <p className="text-muted-foreground text-base">
-              Bogotá, Colombia · Consultorías y proyectos internacionales a distancia
+              Brasil · Disponible para oportunidades presenciales o remotas
             </p>
           </div>
 
           <div className="mt-14 grid grid-cols-2 gap-6 max-w-xl">
-            {stats.map((s) => (
+            {credentials.map((c) => (
               <motion.div
-                key={s.l}
+                key={c.label}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
@@ -71,9 +46,9 @@ export function About() {
                 className="border-t border-foreground/20 pt-4"
               >
                 <div className="display text-4xl text-[var(--clay)]">
-                  <AnimatedNumber target={s.n} suffix={s.suffix} />
+                  {c.year}
                 </div>
-                <div className="text-xs text-muted-foreground mt-2 leading-tight">{s.l}</div>
+                <div className="text-xs text-muted-foreground mt-2 leading-tight">{c.label}</div>
               </motion.div>
             ))}
           </div>

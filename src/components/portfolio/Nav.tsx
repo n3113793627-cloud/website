@@ -40,7 +40,9 @@ export function Nav() {
           >
             Natalia{" "}
             <span
-              className={`italic transition-colors duration-500 ${isScrolled ? "text-[var(--clay)]" : "text-white/80"}`}
+              className={`italic transition-colors duration-500 ${
+                isScrolled ? "text-[oklch(0.38_0.11_40)]" : "text-white/90"
+              }`}
             >
               Ramírez
             </span>
