@@ -1,5 +1,5 @@
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const links = [
   { href: "#about", label: "Sobre mí" },
@@ -13,16 +13,42 @@ export function Nav() {
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mediaQuery.matches);
+    const listener = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    mediaQuery.addEventListener("change", listener);
+    return () => mediaQuery.removeEventListener("change", listener);
+  }, []);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 50);
+    
+    // Hide when scrolling down, show when scrolling up
+    if (latest > lastScrollY && latest > 150) {
+      setIsVisible(false);
+    } else {
+      setIsVisible(true);
+    }
+    setLastScrollY(latest);
   });
+
+  const handleFocus = () => {
+    setIsVisible(true);
+  };
 
   return (
     <>
       <header
-        className={`fixed inset-x-0 z-50 transition-all duration-500 ease-out flex justify-center ${
+        onFocus={handleFocus}
+        className={`fixed inset-x-0 z-50 flex justify-center ${
           isScrolled ? "top-4 px-4" : "top-0 px-0"
+        } ${isVisible || open ? "translate-y-0" : "-translate-y-full"} ${
+          prefersReducedMotion ? "" : "transition-all duration-500 ease-out"
         }`}
       >
         <div
