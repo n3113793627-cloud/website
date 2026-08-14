@@ -1,14 +1,16 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { useRef } from "react";
 import heroVideo from "@/assets/mp_.mp4";
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1.05, 1.2]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", shouldReduceMotion ? "0%" : "30%"]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1.02, shouldReduceMotion ? 1.02 : 1.1]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", shouldReduceMotion ? "0%" : "-20%"]);
 
   return (
     <section ref={ref} id="top" className="relative h-[85vh] overflow-hidden pt-20">
@@ -20,14 +22,35 @@ export function Hero() {
           muted
           playsInline
           className="w-full h-full object-cover scale-[1.15] origin-top-left"
+          preload="metadata"
         />
-        {/* Multi-directional overlay to guarantee text readability (top, bottom, and left sides) */}
-        <div className="absolute inset-0 bg-[rgba(18,10,6,0.25)]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[rgba(18,10,6,0.85)] via-[rgba(18,10,6,0.35)] to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(18,10,6,0.5)] via-transparent to-[rgba(18,10,6,0.65)]" />
+        {/* Horizontal editorial gradient for desktop */}
+        <div
+          className="absolute inset-0 hidden md:block"
+          style={{
+            background: "linear-gradient(90deg, rgba(23,12,8,0.90) 0%, rgba(23,12,8,0.78) 48%, rgba(23,12,8,0.55) 72%, rgba(23,12,8,0.30) 100%)",
+          }}
+        />
+        {/* Subtle top vertical gradient to protect navbar readability */}
+        <div
+          className="absolute top-0 inset-x-0 h-32 pointer-events-none"
+          style={{
+            background: "linear-gradient(180deg, rgba(23,12,8,0.65) 0%, rgba(23,12,8,0) 100%)",
+          }}
+        />
+        {/* Uniform darker overlay for mobile reading safety */}
+        <div
+          className="absolute inset-0 block md:hidden"
+          style={{
+            background: "linear-gradient(180deg, rgba(23,12,8,0.92) 0%, rgba(23,12,8,0.75) 100%)",
+          }}
+        />
       </motion.div>
 
       <motion.div
+        initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
         style={{ y: textY, opacity }}
         className="relative z-10 h-full flex flex-col justify-end pb-16 md:pb-20 px-6 md:px-10 max-w-[1400px] mx-auto"
       >
@@ -35,19 +58,22 @@ export function Hero() {
           <span className="h-px w-12 bg-[var(--cream)]/70" />
           <span className="eyebrow text-[var(--cream)]/90">PORTAFOLIO · 2026</span>
         </div>
-        <h1 className="display text-[var(--cream)] text-[clamp(2.8rem,6.5vw,6.5rem)] leading-[0.92] max-w-5xl">
-          Arquitectura que <em className="italic text-[var(--clay)]">cuida,</em>
-          <br /> diseño que conecta.
+        <h1 className="display text-[var(--cream)] text-[clamp(3.4rem,6.4vw,7.8rem)] leading-[1.05] md:leading-[0.92] max-w-[850px] tracking-tight">
+          Arquitectura que <span className="italic text-[var(--accent-on-dark)] whitespace-nowrap">cuida,</span>
+          <br className="hidden md:inline" /> diseño que conecta.
         </h1>
-        <p className="mt-8 max-w-xl text-[var(--cream)]/85 text-lg leading-relaxed">
-          Arquitecta y diseñadora de interiores con experiencia en diseño interior,
-          documentación técnica y BIM, y especial interés en la neuroarquitectura.
-          Creo espacios humanos, funcionales y sensibles.
+        <p className="mt-8 max-w-[650px] text-[var(--cream)]/90 text-[16px] md:text-[19px] leading-[1.55]">
+          Arquitecta y diseñadora de interiores con experiencia en documentación técnica, modelado 3D y coordinación interdisciplinaria. Trabajo con AutoCAD, Revit y SketchUp, con especial interés en cómo el espacio influye en el bienestar.
         </p>
         <div className="mt-10 flex flex-wrap gap-4 z-20">
           <a
             href="#proyectos"
-            className="inline-flex items-center justify-center text-[0.65rem] tracking-[0.2em] font-medium uppercase px-7 py-3 bg-[var(--cream)] text-[var(--ink)] hover:bg-[var(--clay)] hover:text-[var(--cream)] transition-all duration-300 rounded-full"
+            onClick={(e) => {
+              e.preventDefault();
+              const el = document.getElementById("proyectos");
+              if (el) el.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="inline-flex items-center justify-center text-[0.7rem] tracking-[0.2em] font-semibold uppercase px-8 py-4 bg-[var(--cream)] text-[var(--ink)] hover:bg-[#EFA07F] hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EFA07F] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ink)] transition-all duration-300 rounded-full min-h-[44px] min-w-[150px] cursor-pointer"
           >
             VER PROYECTOS
           </a>
@@ -55,21 +81,27 @@ export function Hero() {
             href="/documents/CV_Natalia_Ramirez_Diaz_ES.pdf"
             download="CV_Natalia_Ramirez_Diaz_ES.pdf"
             aria-label="Descargar currículum de Natalia Ramírez Díaz en PDF"
-            className="inline-flex items-center justify-center text-[0.65rem] tracking-[0.2em] font-medium uppercase px-7 py-3 border border-[var(--cream)]/40 text-[var(--cream)] hover:bg-[var(--cream)] hover:text-[var(--ink)] transition-all duration-300 rounded-full"
+            className="inline-flex items-center justify-center text-[0.7rem] tracking-[0.2em] font-semibold uppercase px-8 py-4 border border-[var(--cream)]/40 text-[var(--cream)] hover:bg-[var(--cream)] hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EFA07F] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ink)] transition-all duration-300 rounded-full min-h-[44px] min-w-[150px] cursor-pointer"
           >
             DESCARGAR CV
           </a>
         </div>
       </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
+      <motion.a
+        href="#proyectos"
+        onClick={(e) => {
+          e.preventDefault();
+          const el = document.getElementById("proyectos");
+          if (el) el.scrollIntoView({ behavior: "smooth" });
+        }}
+        className="hero-indicator absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-[var(--cream)]/80 hover:text-[#EFA07F] focus-visible:text-[#EFA07F] focus-visible:outline-none text-xs tracking-[0.3em] uppercase whitespace-nowrap transition-colors duration-300 font-semibold cursor-pointer"
+        initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-[var(--cream)]/70 text-xs tracking-[0.3em] uppercase whitespace-nowrap"
+        transition={{ delay: 0.8, duration: 0.6, ease: "easeOut" }}
       >
         ↓ EXPLORAR PROYECTOS
-      </motion.div>
+      </motion.a>
     </section>
   );
 }

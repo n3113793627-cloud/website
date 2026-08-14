@@ -60,6 +60,11 @@ export function Nav() {
         >
           <a
             href="#top"
+            onClick={(e) => {
+              e.preventDefault();
+              const el = document.getElementById("top");
+              if (el) el.scrollIntoView({ behavior: "smooth" });
+            }}
             className={`display tracking-tight transition-all duration-500 ${
               isScrolled ? "text-xl text-ink" : "text-2xl text-white drop-shadow-md"
             }`}

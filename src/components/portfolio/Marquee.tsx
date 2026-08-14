@@ -1,5 +1,3 @@
-import { motion } from "framer-motion";
-
 const words = [
   "Diseño Interior",
   "Arquitectura",
@@ -10,35 +8,27 @@ const words = [
 
 export function Marquee() {
   return (
-    <div className="border-y border-foreground/15 bg-[var(--cream)] overflow-hidden flex whitespace-nowrap">
-      <motion.div
-        className="flex gap-16 py-6 shrink-0 pr-16"
-        animate={{ x: ["0%", "-100%"] }}
-        transition={{ duration: 25, ease: "linear", repeat: Infinity }}
-      >
+    <div className="border-y border-foreground/15 bg-[var(--cream)] overflow-hidden flex whitespace-nowrap pause-marquee w-full select-none">
+      <div className="animate-marquee flex gap-12 py-3 pr-12">
         {words.map((w, i) => (
           <span
             key={`a-${i}`}
-            className="text-[0.65rem] text-foreground/50 shrink-0 tracking-[0.25em] uppercase"
+            className="text-[0.7rem] text-foreground/75 shrink-0 tracking-[0.15em] uppercase font-semibold"
           >
-            {w} <span className="text-[var(--clay)]/65 mx-4">✦</span>
+            {w} <span className="text-[var(--clay)]/80 mx-4">✦</span>
           </span>
         ))}
-      </motion.div>
-      <motion.div
-        className="flex gap-16 py-6 shrink-0 pr-16"
-        animate={{ x: ["0%", "-100%"] }}
-        transition={{ duration: 25, ease: "linear", repeat: Infinity }}
-      >
+      </div>
+      <div className="animate-marquee flex gap-12 py-3 pr-12" aria-hidden="true">
         {words.map((w, i) => (
           <span
             key={`b-${i}`}
-            className="text-[0.65rem] text-foreground/50 shrink-0 tracking-[0.25em] uppercase"
+            className="text-[0.7rem] text-foreground/75 shrink-0 tracking-[0.15em] uppercase font-semibold"
           >
-            {w} <span className="text-[var(--clay)]/65 mx-4">✦</span>
+            {w} <span className="text-[var(--clay)]/80 mx-4">✦</span>
           </span>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }

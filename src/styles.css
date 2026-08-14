@@ -60,6 +60,7 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-clay-light: var(--clay-light);
+  --color-accent-on-dark: var(--accent-on-dark);
 }
 
 :root {
@@ -89,6 +90,7 @@
   --clay: oklch(0.48 0.14 40);
   --clay-light: oklch(0.78 0.08 40);
   --cherry: oklch(0.45 0.09 45);
+  --accent-on-dark: oklch(0.74 0.14 40);
   --font-display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
   --font-sans: "Inter", "Helvetica Neue", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
@@ -140,6 +142,7 @@
   --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
+  --accent-on-dark: oklch(0.74 0.14 40);
 }
 
 @layer base {
@@ -363,4 +366,41 @@
   color: rgba(253, 251, 247, 0.65);
   font-size: 0.95rem;
   line-height: 1.5;
+}
+
+/* Custom Marquee Animation Layout & Keyframes */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.pause-marquee:hover .animate-marquee,
+.pause-marquee:focus-within .animate-marquee {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none !important;
+    transform: none !important;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* Hide hero indicator on small viewports vertically to avoid overlaps */
+@media (max-height: 700px) {
+  .hero-indicator {
+    display: none !important;
+  }
 }
