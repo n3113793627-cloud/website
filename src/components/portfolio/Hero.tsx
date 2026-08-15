@@ -10,10 +10,9 @@ export function Hero() {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", shouldReduceMotion ? "0%" : "30%"]);
   const scale = useTransform(scrollYProgress, [0, 1], [1.02, shouldReduceMotion ? 1.02 : 1.1]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", shouldReduceMotion ? "0%" : "-20%"]);
 
   return (
-    <section ref={ref} id="top" className="relative h-[85vh] overflow-hidden pt-20">
+    <section ref={ref} id="top" className="hero overflow-hidden">
       <motion.div style={{ y, scale }} className="absolute inset-0">
         <video
           src={heroVideo}
@@ -28,7 +27,8 @@ export function Hero() {
         <div
           className="absolute inset-0 hidden md:block"
           style={{
-            background: "linear-gradient(90deg, rgba(23,12,8,0.90) 0%, rgba(23,12,8,0.78) 48%, rgba(23,12,8,0.55) 72%, rgba(23,12,8,0.30) 100%)",
+            background:
+              "linear-gradient(90deg, rgba(23,12,8,0.90) 0%, rgba(23,12,8,0.78) 48%, rgba(23,12,8,0.55) 72%, rgba(23,12,8,0.30) 100%)",
           }}
         />
         {/* Subtle top vertical gradient to protect navbar readability */}
@@ -47,46 +47,52 @@ export function Hero() {
         />
       </motion.div>
 
-      <motion.div
-        initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        style={{ y: textY, opacity }}
-        className="relative z-10 h-full flex flex-col justify-end pb-16 md:pb-20 px-6 md:px-10 max-w-[1400px] mx-auto"
-      >
-        <div className="flex items-center gap-3 mb-6">
-          <span className="h-px w-12 bg-[var(--cream)]/70" />
-          <span className="eyebrow text-[var(--cream)]/90">PORTAFOLIO · 2026</span>
-        </div>
-        <h1 className="display text-[var(--cream)] text-[clamp(3.4rem,6.4vw,7.8rem)] leading-[1.05] md:leading-[0.92] max-w-[850px] tracking-tight">
-          Arquitectura que <span className="italic text-[var(--accent-on-dark)] whitespace-nowrap">cuida,</span>
-          <br className="hidden md:inline" /> diseño que conecta.
-        </h1>
-        <p className="mt-8 max-w-[650px] text-[var(--cream)]/90 text-[16px] md:text-[19px] leading-[1.55]">
-          Arquitecta y diseñadora de interiores con experiencia en documentación técnica, modelado 3D y coordinación interdisciplinaria. Trabajo con AutoCAD, Revit y SketchUp, con especial interés en cómo el espacio influye en el bienestar.
-        </p>
-        <div className="mt-10 flex flex-wrap gap-4 z-20">
-          <a
-            href="#proyectos"
-            onClick={(e) => {
-              e.preventDefault();
-              const el = document.getElementById("proyectos");
-              if (el) el.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="inline-flex items-center justify-center text-[0.7rem] tracking-[0.2em] font-semibold uppercase px-8 py-4 bg-[var(--cream)] text-[var(--ink)] hover:bg-[#EFA07F] hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EFA07F] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ink)] transition-all duration-300 rounded-full min-h-[44px] min-w-[150px] cursor-pointer"
-          >
-            VER PROYECTOS
-          </a>
-          <a
-            href="/documents/CV_Natalia_Ramirez_Diaz_ES.pdf"
-            download="CV_Natalia_Ramirez_Diaz_ES.pdf"
-            aria-label="Descargar currículum de Natalia Ramírez Díaz en PDF"
-            className="inline-flex items-center justify-center text-[0.7rem] tracking-[0.2em] font-semibold uppercase px-8 py-4 border border-[var(--cream)]/40 text-[var(--cream)] hover:bg-[var(--cream)] hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EFA07F] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ink)] transition-all duration-300 rounded-full min-h-[44px] min-w-[150px] cursor-pointer"
-          >
-            DESCARGAR CV
-          </a>
-        </div>
-      </motion.div>
+      <div className="hero-content mx-auto max-w-[1400px]">
+        <motion.div
+          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          style={{ opacity }}
+          className="w-full flex flex-col items-start px-6 md:px-10"
+        >
+          <div className="flex items-center gap-3 mb-6">
+            <span className="h-px w-12 bg-[var(--cream)]/70" />
+            <span className="eyebrow text-[var(--cream)]/90">PORTAFOLIO · 2026</span>
+          </div>
+          <h1 className="hero-title display text-[var(--cream)]">
+            Arquitectura que{" "}
+            <span className="hero-accent italic text-[var(--accent-on-dark)]">cuida,</span>{" "}
+            <br className="hero-desktop-break" />
+            diseño que conecta.
+          </h1>
+          <p className="hero-paragraph text-[var(--cream)]/90">
+            Arquitecta y diseñadora de interiores con experiencia en documentación técnica, modelado
+            3D y coordinación interdisciplinaria. Trabajo con AutoCAD, Revit y SketchUp, con
+            especial interés en cómo el espacio influye en el bienestar.
+          </p>
+          <div className="hero-buttons">
+            <a
+              href="#proyectos"
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById("proyectos");
+                if (el) el.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="inline-flex items-center justify-center text-[0.7rem] tracking-[0.2em] font-semibold uppercase px-8 py-4 bg-[var(--cream)] text-[var(--ink)] hover:bg-[#EFA07F] hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EFA07F] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ink)] transition-all duration-300 rounded-full min-h-[44px] min-w-[150px] cursor-pointer"
+            >
+              VER PROYECTOS
+            </a>
+            <a
+              href="/documents/CV_Natalia_Ramirez_Diaz_ES.pdf"
+              download="CV_Natalia_Ramirez_Diaz_ES.pdf"
+              aria-label="Descargar currículum de Natalia Ramírez Díaz en PDF"
+              className="inline-flex items-center justify-center text-[0.7rem] tracking-[0.2em] font-semibold uppercase px-8 py-4 border border-[var(--cream)]/40 text-[var(--cream)] hover:bg-[var(--cream)] hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EFA07F] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ink)] transition-all duration-300 rounded-full min-h-[44px] min-w-[150px] cursor-pointer"
+            >
+              DESCARGAR CV
+            </a>
+          </div>
+        </motion.div>
+      </div>
 
       <motion.a
         href="#proyectos"
