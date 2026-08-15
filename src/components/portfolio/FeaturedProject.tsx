@@ -19,7 +19,6 @@ import cherryBlossom from "@/assets/cherry-blossom.png";
 import beachVideo from "@/assets/troque_a_primeira_cena_das_cab.mp4";
 
 // TRÍPODE project assets
-import tripodeGif from "@/assets/TRÍPODE.gif";
 import tripodeConcept from "@/assets/TRÍPODE.png";
 import tripode1Antes from "@/assets/TRÍPODE (1)_antes.png";
 import tripode1Despues from "@/assets/TRÍPODE (1)_despues.png";
@@ -27,7 +26,6 @@ import tripode2Antes from "@/assets/TRÍPODE (2)_antes.png";
 import tripode2Despues from "@/assets/TRÍPODE (2)_despues.png";
 import tripode1 from "@/assets/TRÍPODE (1).png";
 import tripode2 from "@/assets/TRÍPODE (2).png";
-
 
 function AutoplayVideo({ src, className }: { src: string; className?: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -258,20 +256,17 @@ function TransformationPair({
     <div className="space-y-8 pt-10 border-t border-[var(--cream)]/10">
       {/* Header and description outside */}
       <div className="space-y-2">
-        <p className="eyebrow text-[var(--clay-light)] tracking-widest text-xs uppercase">{subtitle}</p>
-        <h3 className="display text-3xl md:text-4xl text-white font-medium">
-          {title}
-        </h3>
+        <p className="eyebrow text-[var(--clay-light)] tracking-widest text-xs uppercase">
+          {subtitle}
+        </p>
+        <h3 className="display text-3xl md:text-4xl text-white font-medium">{title}</h3>
         {description && (
-          <p className="text-sm text-[var(--cream)]/75 max-w-3xl font-sans mt-1">
-            {description}
-          </p>
+          <p className="text-sm text-[var(--cream)]/75 max-w-3xl font-sans mt-1">{description}</p>
         )}
       </div>
 
       {/* Main Grid: stack on mobile (<900px), grid minmax(0, 1fr) 72px minmax(0, 1fr) on desktop */}
       <div className="w-full max-w-[1550px] mx-auto flex flex-col min-[900px]:grid min-[900px]:grid-cols-[1fr_72px_1fr] items-center gap-6 min-[900px]:gap-0">
-        
         {/* Card Left: Before */}
         <div className="w-full flex flex-col space-y-3">
           {/* Card Header outside */}
@@ -329,7 +324,11 @@ function TransformationPair({
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: shouldReduceMotion ? 0 : 0.2, duration: shouldReduceMotion ? 0 : 0.4, type: "spring" }}
+              transition={{
+                delay: shouldReduceMotion ? 0 : 0.2,
+                duration: shouldReduceMotion ? 0 : 0.4,
+                type: "spring",
+              }}
               aria-hidden="true"
             >
               {/* Desktop arrow right, mobile arrow down */}
@@ -372,96 +371,165 @@ function TransformationPair({
   );
 }
 
-function GifPlayer({
-  gifSrc,
-  posterSrc,
-  alt,
-  caption,
-}: {
-  gifSrc: string;
-  posterSrc: string;
-  alt: string;
-  caption: string;
-}) {
-  const [isPlaying, setIsPlaying] = useState(false);
+function TripodeVideoPlayer() {
+  const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const [posterFailed, setPosterFailed] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
+  const [showPlayButton, setShowPlayButton] = useState(true);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
-    if (!isPlaying) return;
+    const video = videoRef.current;
+    if (!video || shouldReduceMotion) {
+      if (video) {
+        video.autoplay = false;
+      }
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry.isIntersecting) {
+        if (entry.isIntersecting) {
+          video
+            .play()
+            .then(() => {
+              setIsPlaying(true);
+              setShowPlayButton(false);
+              setHasStarted(true);
+            })
+            .catch((err) => {
+              console.log("Autoplay was blocked or failed:", err);
+              setShowPlayButton(true);
+            });
+        } else {
+          video.pause();
           setIsPlaying(false);
         }
       },
-      { threshold: 0.1 }
+      {
+        threshold: 0.5,
+      },
     );
+
     if (containerRef.current) {
       observer.observe(containerRef.current);
     }
-    return () => observer.disconnect();
-  }, [isPlaying]);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [shouldReduceMotion]);
+
+  const handlePlayClick = () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video
+      .play()
+      .then(() => {
+        setIsPlaying(true);
+        setShowPlayButton(false);
+        setHasStarted(true);
+      })
+      .catch((err) => {
+        console.error("Play failed:", err);
+      });
+  };
+
+  const handleVideoPlay = () => {
+    setIsPlaying(true);
+    setShowPlayButton(false);
+    setHasStarted(true);
+  };
+
+  const handleVideoPause = () => {
+    setIsPlaying(false);
+    setShowPlayButton(true);
+  };
+
+  const handleVideoError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
+    setHasError(true);
+    console.error("Error loading video from path: /media/tripode/tripode-conceptual.mp4", e);
+  };
+
+  if (hasError) {
+    return (
+      <div className="flex flex-col items-center justify-center p-6 bg-[#120e0c] border border-[var(--primary)]/20 rounded-2xl w-full max-w-[1280px] mx-auto text-center space-y-4 min-h-[220px]">
+        <p className="text-[var(--cream)]/90 font-medium">El video no pudo cargarse.</p>
+        <button
+          onClick={() => {
+            setHasError(false);
+            setPosterFailed(false);
+            setHasStarted(false);
+            setShowPlayButton(true);
+            setTimeout(() => {
+              if (videoRef.current) {
+                videoRef.current.load();
+              }
+            }, 100);
+          }}
+          className="px-6 py-2.5 bg-[var(--primary)] hover:bg-[#EFA07F] text-[var(--cream)] hover:text-[var(--ink)] font-semibold text-xs tracking-wider rounded-full transition-all duration-300 cursor-pointer min-h-[44px] min-w-[120px]"
+        >
+          REINTENTAR
+        </button>
+      </div>
+    );
+  }
 
   return (
-    <div ref={containerRef} className="space-y-3">
-      <div className="relative w-full aspect-[16/9] overflow-hidden rounded-xl border border-[var(--cream)]/15 shadow-2xl bg-black/40 flex items-center justify-center">
-        {isPlaying ? (
-          <img src={gifSrc} alt={alt} className="w-full h-full object-contain" />
-        ) : (
-          <img src={posterSrc} alt={alt} className="w-full h-full object-contain opacity-60" />
-        )}
-        
-        {/* Controls Overlay */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          {!isPlaying ? (
-            <button
-              onClick={() => setIsPlaying(true)}
-              className="w-16 h-16 rounded-full bg-[var(--clay)]/90 hover:bg-[var(--clay)] text-white flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 border border-white/20 group/play"
-              aria-label="Reproducir video"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="translate-x-0.5 group-hover/play:scale-105 transition-transform"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </button>
-          ) : (
-            <button
-              onClick={() => setIsPlaying(false)}
-              className="absolute bottom-4 right-4 bg-black/75 hover:bg-black/95 text-white text-[10px] px-3.5 py-2 rounded-full flex items-center gap-1.5 shadow-lg backdrop-blur-sm transition-all duration-300 font-mono tracking-wider border border-white/10"
-              aria-label="Pausar"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="10"
-                height="10"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <rect x="6" y="4" width="4" height="16"></rect>
-                <rect x="14" y="4" width="4" height="16"></rect>
-              </svg>
-              <span>PAUSAR</span>
-            </button>
-          )}
-        </div>
-        
-        {/* Status Indicator */}
-        <div className="absolute bottom-4 left-4 flex items-center gap-2 text-[10px] font-mono text-[var(--cream)]/80 bg-black/40 px-2.5 py-1 rounded-md backdrop-blur-xs">
-          <span className={`h-1.5 w-1.5 rounded-full ${isPlaying ? "bg-emerald-400 animate-pulse" : "bg-[var(--clay)]"}`} />
-          <span>{isPlaying ? "REPRODUCIENDO" : "VISTA PREVIA"}</span>
-        </div>
-      </div>
-      <p className="text-xs text-[var(--cream)]/60 italic px-2">{caption}</p>
+    <div
+      ref={containerRef}
+      className="relative mx-auto w-full max-w-[1280px] rounded-2xl border border-[var(--primary)]/20 bg-[#120e0c] overflow-hidden shadow-2xl flex items-center justify-center"
+      style={{
+        aspectRatio: "1/1",
+        maxHeight: "72svh",
+      }}
+    >
+      <video
+        ref={videoRef}
+        src="/media/tripode/tripode-conceptual.mp4"
+        muted
+        playsInline
+        loop
+        preload="metadata"
+        controls
+        aria-label="Video conceptual del sistema TRÍPODE"
+        onError={handleVideoError}
+        onPlay={handleVideoPlay}
+        onPause={handleVideoPause}
+        className="w-full h-full object-contain max-h-[72svh] z-0"
+      />
+
+      {!hasStarted && !posterFailed && (
+        <img
+          src="/media/tripode/tripode-poster.jpg"
+          onError={() => setPosterFailed(true)}
+          alt=""
+          className="absolute inset-0 w-full h-full object-contain z-10 pointer-events-none"
+        />
+      )}
+
+      {showPlayButton && !isPlaying && (
+        <button
+          onClick={handlePlayClick}
+          className="absolute w-16 h-16 rounded-full bg-[var(--primary)] hover:bg-[#EFA07F] text-white flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-105 border border-white/20 z-20 focus-visible:ring-4 focus-visible:ring-[#EFA07F] focus-visible:outline-none min-w-[44px] min-h-[44px] cursor-pointer"
+          aria-label="Reproducir video conceptual de TRÍPODE"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="translate-x-0.5 text-white"
+          >
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </button>
+      )}
     </div>
   );
 }
@@ -562,7 +630,6 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
   });
   const yLeft4 = useTransform(scroll4, [0, 1], ["0%", "-8%"]);
 
-
   return (
     <div id="proyectos" className="bg-[var(--ink)] text-[var(--cream)]">
       {/* Proyecto 01: TRÍPODE */}
@@ -577,9 +644,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             <div className="flex items-end justify-between gap-6 border-b border-[var(--cream)]/10 pb-6">
               <div>
                 <p className="eyebrow text-[var(--clay-light)] mb-2">PROYECTO DESTACADO · 01</p>
-                <h3 className="display text-4xl md:text-6xl text-white leading-tight">
-                  TRÍPODE
-                </h3>
+                <h3 className="display text-4xl md:text-6xl text-white leading-tight">TRÍPODE</h3>
               </div>
               <div className="hidden md:block text-right text-sm text-[var(--cream)]/85 space-y-1 font-mono">
                 <p>Mobiliario como herramienta arquitectónica</p>
@@ -590,24 +655,34 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start pt-2">
               <div className="md:col-span-8 space-y-4">
                 <h4 className="display text-2xl md:text-3xl text-white leading-relaxed italic font-light">
-                  "¿Puede un solo sistema organizar la manera en que habitamos un apartamento compacto?"
+                  "¿Puede un solo sistema organizar la manera en que habitamos un apartamento
+                  compacto?"
                 </h4>
                 <p className="text-[var(--cream)]/85 text-base leading-relaxed">
-                  TRÍPODE es una propuesta donde el mobiliario deja de ser un objeto independiente para convertirse en una herramienta arquitectónica capaz de organizar el espacio, definir privacidad, optimizar materiales y mejorar la experiencia de habitar.
+                  TRÍPODE es una propuesta donde el mobiliario deja de ser un objeto independiente
+                  para convertirse en una herramienta arquitectónica capaz de organizar el espacio,
+                  definir privacidad, optimizar materiales y mejorar la experiencia de habitar.
                 </p>
               </div>
               <div className="md:col-span-4 bg-white/5 p-5 rounded-lg border border-white/5 shadow-md">
-                <p className="text-[10px] text-[var(--clay-light)] uppercase tracking-widest font-mono mb-3">Ficha Técnica</p>
+                <p className="text-[10px] text-[var(--clay-light)] uppercase tracking-widest font-mono mb-3">
+                  Ficha Técnica
+                </p>
                 <div className="space-y-3">
                   {[
                     { label: "Tipo", value: "Proyecto Conceptual" },
                     { label: "Rol", value: "Arquitectura e Interiorismo" },
                     { label: "Herramientas", value: "AutoCAD · Revit · SketchUp" },
                     { label: "Año", value: "2026" },
-                    { label: "Alcance", value: "Diseño espacial y de mobiliario" }
+                    { label: "Alcance", value: "Diseño espacial y de mobiliario" },
                   ].map((stat) => (
-                    <div key={stat.label} className="border-b border-white/10 pb-1.5 last:border-0 last:pb-0">
-                      <p className="text-[9px] text-[var(--cream)]/60 uppercase tracking-wider">{stat.label}</p>
+                    <div
+                      key={stat.label}
+                      className="border-b border-white/10 pb-1.5 last:border-0 last:pb-0"
+                    >
+                      <p className="text-[9px] text-[var(--cream)]/60 uppercase tracking-wider">
+                        {stat.label}
+                      </p>
                       <p className="text-xs font-semibold text-white mt-0.5">{stat.value}</p>
                     </div>
                   ))}
@@ -617,20 +692,23 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
           </div>
 
           {/* 2. VIDEO CONCEPTUAL */}
-          <div className="space-y-4">
-            <div className="max-w-3xl">
-              <h3 className="display text-2xl md:text-3xl text-white mb-2">
+          <div className="space-y-6 py-12 md:py-16">
+            <div className="max-w-[850px] mx-auto text-left">
+              <h3 className="display text-2xl md:text-3xl text-white mb-4">
                 Registro conceptual animado
               </h3>
               <p className="text-sm text-[var(--cream)]/75 leading-relaxed">
-                El sistema se origina a partir de tres acciones cotidianas y esenciales de la vivienda: descansar, trabajar y compartir. Estas funciones se conectan a través de una única estructura que optimiza el espacio y unifica el lenguaje formal.
+                El sistema se origina a partir de tres acciones cotidianas y esenciales de la
+                vivienda: descansar, trabajar y compartir. Estas funciones se conectan a través de
+                una única estructura que optimiza el espacio y unifica el lenguaje formal.
               </p>
             </div>
-            <GifPlayer
-              gifSrc={tripodeGif}
-              alt="Video conceptual TRÍPODE"
-              caption="Registro conceptual: descansar, trabajar y compartir"
-            />
+            <div className="mt-6 md:mt-8">
+              <TripodeVideoPlayer />
+              <p className="text-[10px] md:text-xs text-[var(--cream)]/50 italic text-center mt-4 tracking-wide">
+                Descansar · Trabajar · Compartir — secuencia conceptual del sistema TRÍPODE
+              </p>
+            </div>
           </div>
 
           {/* 3. LÁMINA DEL SISTEMA */}
@@ -640,10 +718,12 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                 El sistema sobre el objeto
               </h3>
               <p className="text-sm text-[var(--cream)]/75 leading-relaxed">
-                En lugar de concebir el mobiliario como una suma de muebles independientes que fragmentan el apartamento, TRÍPODE opera como un sistema unificado. Un solo volumen regula las circulaciones y se convierte en el soporte de las actividades diarias.
+                En lugar de concebir el mobiliario como una suma de muebles independientes que
+                fragmentan el apartamento, TRÍPODE opera como un sistema unificado. Un solo volumen
+                regula las circulaciones y se convierte en el soporte de las actividades diarias.
               </p>
             </div>
-            
+
             <div className="space-y-3">
               <div className="relative w-full aspect-[4/3] md:aspect-[16/9] overflow-hidden bg-white rounded-xl border border-white/10 shadow-2xl flex items-center justify-center p-4">
                 <img
@@ -654,7 +734,13 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                 />
                 <button
                   onClick={() => {
-                    setLightboxGallery([tripodeConcept, tripode1Antes, tripode1Despues, tripode2Antes, tripode2Despues]);
+                    setLightboxGallery([
+                      tripodeConcept,
+                      tripode1Antes,
+                      tripode1Despues,
+                      tripode2Antes,
+                      tripode2Despues,
+                    ]);
                     setLightboxIndex(0);
                   }}
                   className="absolute bottom-4 right-4 bg-black/85 hover:bg-black/95 text-white text-[10px] px-4 py-2.5 rounded-full flex items-center gap-1.5 shadow-lg backdrop-blur-sm transition-all duration-300 font-mono tracking-wider border border-white/10 cursor-pointer"
@@ -662,7 +748,9 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                   AMPLIAR LÁMINA
                 </button>
               </div>
-              <p className="text-xs text-[var(--cream)]/60 italic px-2">TRÍPODE como sistema arquitectónico unificado</p>
+              <p className="text-xs text-[var(--cream)]/60 italic px-2">
+                TRÍPODE como sistema arquitectónico unificado
+              </p>
             </div>
           </div>
 
@@ -676,7 +764,13 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             beforeLabel="Estado existente"
             afterLabel="Propuesta TRÍPODE"
             onOpenImage={(img) => {
-              setLightboxGallery([tripodeConcept, tripode1Antes, tripode1Despues, tripode2Antes, tripode2Despues]);
+              setLightboxGallery([
+                tripodeConcept,
+                tripode1Antes,
+                tripode1Despues,
+                tripode2Antes,
+                tripode2Despues,
+              ]);
               setLightboxIndex(img === tripode1Antes ? 1 : 2);
             }}
           />
@@ -691,7 +785,13 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             beforeLabel="Estado existente"
             afterLabel="Propuesta TRÍPODE"
             onOpenImage={(img) => {
-              setLightboxGallery([tripodeConcept, tripode1Antes, tripode1Despues, tripode2Antes, tripode2Despues]);
+              setLightboxGallery([
+                tripodeConcept,
+                tripode1Antes,
+                tripode1Despues,
+                tripode2Antes,
+                tripode2Despues,
+              ]);
               setLightboxIndex(img === tripode2Antes ? 3 : 4);
             }}
           />
@@ -701,13 +801,20 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start mt-8 pt-8 border-t border-[var(--cream)]/15">
               <div className="md:col-span-7 flex flex-col gap-6">
                 <p className="text-base text-[var(--cream)]/90 leading-relaxed font-light font-sans">
-                  TRÍPODE no busca simplemente aumentar los metros cuadrados útiles de una vivienda compacta; busca <strong>aumentar radicalmente la calidad del espacio habitable</strong> a través del diseño de alta precisión. El mobiliario deja de concebirse como un objeto estático o decorativo para convertirse en <strong>arquitectura activa y performativa</strong>.
+                  TRÍPODE no busca simplemente aumentar los metros cuadrados útiles de una vivienda
+                  compacta; busca{" "}
+                  <strong>aumentar radicalmente la calidad del espacio habitable</strong> a través
+                  del diseño de alta precisión. El mobiliario deja de concebirse como un objeto
+                  estático o decorativo para convertirse en{" "}
+                  <strong>arquitectura activa y performativa</strong>.
                 </p>
               </div>
 
               <div className="md:col-span-5 flex flex-col justify-between h-full pt-4">
                 <p className="text-xs text-[var(--cream)]/60 leading-relaxed mb-6 font-sans">
-                  Este caso de estudio demuestra el potencial del diseño sistémico para reconfigurar el habitar contemporáneo, equilibrando las necesidades de trabajo y descanso en un mismo plano continuo.
+                  Este caso de estudio demuestra el potencial del diseño sistémico para reconfigurar
+                  el habitar contemporáneo, equilibrando las necesidades de trabajo y descanso en un
+                  mismo plano continuo.
                 </p>
                 <button
                   onClick={() => {
@@ -726,7 +833,10 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             {/* Ficha inferior */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-[var(--cream)]/15 pt-10">
               {[
-                { k: "Materiales", v: "Madera multilaminada de abedul, acero termolacado y textiles lavables" },
+                {
+                  k: "Materiales",
+                  v: "Madera multilaminada de abedul, acero termolacado y textiles lavables",
+                },
                 { k: "Criterios de Diseño", v: "Flexibilidad, orden visual y zonificación" },
                 { k: "Pieza clave", v: "Estructura auto-portante unificada de triple apoyo" },
                 { k: "Áreas", v: "Dormitorio compacto · Oficina flexible · Estar social" },
@@ -740,7 +850,6 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
           </div>
         </div>
       </section>
-
 
       {/* Proyecto 02: Apto Cerezo */}
       <section
@@ -1454,19 +1563,25 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                   className="max-w-full max-h-full object-contain select-none transition-all duration-300"
                   style={{ transform: `scale(${zoomPercent / 100})` }}
                 />
-                
+
                 {/* Navigation arrows */}
                 {lightboxGallery.length > 1 && (
                   <>
                     <button
-                      onClick={(e) => { e.stopPropagation(); handlePrevImage(); }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handlePrevImage();
+                      }}
                       className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/60 hover:bg-black/85 text-white flex items-center justify-center border border-white/10 shadow-lg cursor-pointer transition-transform hover:scale-105 active:scale-95 text-lg font-bold"
                       aria-label="Imagen anterior"
                     >
                       ←
                     </button>
                     <button
-                      onClick={(e) => { e.stopPropagation(); handleNextImage(); }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleNextImage();
+                      }}
                       className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/60 hover:bg-black/85 text-white flex items-center justify-center border border-white/10 shadow-lg cursor-pointer transition-transform hover:scale-105 active:scale-95 text-lg font-bold"
                       aria-label="Imagen siguiente"
                     >
@@ -1484,9 +1599,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                       Imagen {lightboxIndex + 1} de {lightboxGallery.length}
                     </span>
                   )}
-                  <span className="hidden sm:inline">
-                    Usa las flechas [←] [→] o haz zoom
-                  </span>
+                  <span className="hidden sm:inline">Usa las flechas [←] [→] o haz zoom</span>
                   <div className="flex bg-black/20 rounded p-0.5 border border-white/10">
                     {[
                       { val: 100, label: "100%" },

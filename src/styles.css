@@ -521,3 +521,18 @@
     font-size: clamp(3.5rem, 4.8vw, 5.25rem);
   }
 }
+
+/* Contact Section Typography */
+.contact-title {
+  font-size: clamp(3.25rem, 12vw, 3.75rem); /* Mobile: 52px to 60px */
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  max-width: 480px;
+}
+
+@media (min-width: 768px) {
+  .contact-title {
+    font-size: clamp(3.5rem, 6.5vw, 7rem); /* Desktop fluid */
+  }
+}
