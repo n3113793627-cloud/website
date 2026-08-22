@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -11,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { LanguageProvider } from "../context/LanguageContext";
 
 function NotFoundComponent() {
   return (
@@ -100,8 +102,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  const routerState = useRouterState();
+  const pathname = routerState?.location?.pathname || "";
+
+  let lang = "es";
+  if (pathname.startsWith("/pt")) {
+    lang = "pt";
+  } else if (pathname.startsWith("/en")) {
+    lang = "en";
+  }
+
   return (
-    <html lang="en">
+    <html lang={lang}>
       <head>
         <HeadContent />
       </head>
@@ -115,11 +127,22 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const routerState = useRouterState();
+  const pathname = routerState?.location?.pathname || "";
+
+  let currentLang: "es" | "pt" | "en" = "es";
+  if (pathname.startsWith("/pt")) {
+    currentLang = "pt";
+  } else if (pathname.startsWith("/en")) {
+    currentLang = "en";
+  }
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <LanguageProvider currentLang={currentLang}>
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }

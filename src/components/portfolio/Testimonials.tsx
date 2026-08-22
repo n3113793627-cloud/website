@@ -1,33 +1,13 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const testimonials = [
-  {
-    quote:
-      "El biombo-biblioteca a medida que diseñó Natalia transformó completamente nuestra sala. Logró darle orden, funcionalidad y calidez a un espacio de apenas 60m². Su atención al detalle en la carpintería es insuperable.",
-    author: "Juan Felipe Ortiz",
-    project: "Cliente de Apto Cerezo",
-    role: "Bogotá, Colombia",
-  },
-  {
-    quote:
-      "Recomiendo a Natalia 100% por su honestidad con los materiales y su profesionalismo. La asesoría inicial y el desglose de presupuesto nos ayudaron a definir el alcance del proyecto sin sorpresas durante la ejecución.",
-    author: "María Camila Restrepo",
-    project: "Cliente de Casa Terracota",
-    role: "Bogotá, Colombia",
-  },
-  {
-    quote:
-      "Natalia nos acompañó en cada etapa: desde el render inicial en 3D hasta el último remate de carpintería e iluminación en nuestra habitación. El resultado tiene la calidez perfecta y aprovecha cada metro cuadrado.",
-    author: "Andrés & Sofía",
-    project: "Clientes de Dormitorio Sereno",
-    role: "Medellín, Colombia",
-  },
-];
+import { useLanguage } from "../../context/LanguageContext";
 
 export function Testimonials() {
+  const { t } = useLanguage();
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1); // 1 = right, -1 = left
+
+  const testimonials = t.testimonials.items;
 
   const slideVariants = {
     enter: (dir: number) => ({
@@ -62,21 +42,22 @@ export function Testimonials() {
       <div className="max-w-[1400px] mx-auto grid md:grid-cols-12 gap-12 items-center">
         {/* Left column: Section label and header */}
         <div className="md:col-span-5 space-y-6">
-          <p className="eyebrow">— Opiniones</p>
+          <p className="eyebrow">{t.testimonials.label}</p>
           <h2 className="display text-5xl md:text-7xl leading-tight">
-            La voz de <em className="italic text-[var(--clay)]">quienes habitan</em> sus espacios.
+            {t.testimonials.title}
+            <em className="italic text-[var(--clay)]">{t.testimonials.titleItalic}</em>
+            {t.testimonials.title2}
           </h2>
           <p className="text-muted-foreground text-sm md:text-base max-w-sm leading-relaxed">
-            La mejor prueba del diseño es la vida diaria de quienes confían en el estudio.
-            Testimonios reales de proyectos terminados.
+            {t.testimonials.description}
           </p>
 
           {/* Navigation buttons */}
           <div className="flex gap-4 pt-4">
             <button
               onClick={prev}
-              className="w-12 h-12 rounded-full border border-foreground/15 flex items-center justify-center hover:bg-foreground hover:text-background transition-all duration-300 group"
-              aria-label="Testimonio anterior"
+              className="w-12 h-12 rounded-full border border-foreground/15 flex items-center justify-center hover:bg-foreground hover:text-background transition-all duration-300 group cursor-pointer"
+              aria-label={t.testimonials.prev}
             >
               <span className="transition-transform duration-300 group-hover:-translate-x-1 font-semibold text-lg">
                 ←
@@ -84,8 +65,8 @@ export function Testimonials() {
             </button>
             <button
               onClick={next}
-              className="w-12 h-12 rounded-full border border-foreground/15 flex items-center justify-center hover:bg-foreground hover:text-background transition-all duration-300 group"
-              aria-label="Testimonio siguiente"
+              className="w-12 h-12 rounded-full border border-foreground/15 flex items-center justify-center hover:bg-foreground hover:text-background transition-all duration-300 group cursor-pointer"
+              aria-label={t.testimonials.next}
             >
               <span className="transition-transform duration-300 group-hover:translate-x-1 font-semibold text-lg">
                 →
@@ -142,10 +123,10 @@ export function Testimonials() {
                   setDirection(i > index ? 1 : -1);
                   setIndex(i);
                 }}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
+                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                   i === index ? "w-8 bg-[var(--clay)]" : "w-1.5 bg-foreground/15"
                 }`}
-                aria-label={`Ir al testimonio ${i + 1}`}
+                aria-label={`Go to testimonial ${i + 1}`}
               />
             ))}
           </div>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useLanguage } from "../../context/LanguageContext";
 
 type FormState = "idle" | "sending" | "error";
 
@@ -8,6 +9,7 @@ interface ContactProps {
 }
 
 export function Contact({ prefilledMessage = "" }: ContactProps) {
+  const { language, t } = useLanguage();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -39,8 +41,6 @@ export function Contact({ prefilledMessage = "" }: ContactProps) {
     setState("sending");
     // Simulate check/sending attempt
     await new Promise((r) => setTimeout(r, 800));
-    // Since there's no backend/provider configured, we intentionally set it to error state
-    // and preserve what the user wrote.
     setState("error");
   }
 
@@ -52,13 +52,26 @@ export function Contact({ prefilledMessage = "" }: ContactProps) {
       <div className="max-w-[1360px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
         {/* BLOCK A: Title & Introduction */}
         <div className="col-span-1 row-start-1 md:col-span-5 md:col-start-1 md:row-start-1 self-start space-y-6">
-          <p className="eyebrow">— HABLEMOS</p>
+          <p className="eyebrow">{t.contact.label}</p>
           <h2 className="contact-title display text-foreground">
-            ¿Trabajamos <span className="italic text-[var(--primary)]">juntos</span>?
+            {language === "es" && (
+              <>
+                ¿Trabajamos <span className="italic text-[var(--primary)]">juntos</span>?
+              </>
+            )}
+            {language === "pt" && (
+              <>
+                Vamos trabalhar <span className="italic text-[var(--primary)]">juntos</span>?
+              </>
+            )}
+            {language === "en" && (
+              <>
+                Let's work <span className="italic text-[var(--primary)]">together</span>.
+              </>
+            )}
           </h2>
           <p className="text-foreground/80 text-base md:text-lg leading-relaxed max-w-[450px]">
-            Estoy abierta a oportunidades laborales, colaboraciones profesionales y proyectos de
-            arquitectura e interiorismo. Cuéntame brevemente qué necesitas y conversemos.
+            {t.contact.description}
           </p>
         </div>
 
@@ -66,57 +79,48 @@ export function Contact({ prefilledMessage = "" }: ContactProps) {
         <div className="col-span-1 row-start-2 md:col-span-7 md:col-start-6 md:row-start-1 md:row-span-2 self-start">
           <div className="p-8 md:p-12 bg-[#ede7e1] border border-foreground/5 rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.015)] space-y-8">
             <div>
-              <h3 className="display text-xl md:text-2xl text-foreground">
-                Cuéntame cómo podemos colaborar
-              </h3>
+              <h3 className="display text-xl md:text-2xl text-foreground">{t.contact.formTitle}</h3>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <FormField
-                  label="Nombre"
+                  label={t.contact.nameLabel}
                   name="name"
                   type="text"
                   value={form.name}
                   onChange={handleChange}
                   required
-                  placeholder="Tu nombre completo"
+                  placeholder={t.contact.namePlaceholder}
                 />
                 <FormField
-                  label="Correo electrónico"
+                  label={t.contact.emailLabel}
                   name="email"
                   type="email"
                   value={form.email}
                   onChange={handleChange}
                   required
-                  placeholder="ejemplo@correo.com"
+                  placeholder={t.contact.emailPlaceholder}
                 />
               </div>
 
               <FormSelect
-                label="Motivo del contacto"
+                label={t.contact.reasonLabel}
                 name="reason"
                 value={form.reason}
                 onChange={handleChange}
                 required
-                options={[
-                  { value: "Oportunidad laboral", label: "Oportunidad laboral" },
-                  { value: "Colaboración profesional", label: "Colaboración profesional" },
-                  {
-                    value: "Proyecto de arquitectura o interiorismo",
-                    label: "Proyecto de arquitectura o interiorismo",
-                  },
-                  { value: "Otro", label: "Otro" },
-                ]}
+                options={t.contact.reasons.map((r) => ({ value: r, label: r }))}
+                placeholder={t.contact.reasonSelect}
               />
 
               <FormTextArea
-                label="Mensaje"
+                label={t.contact.messageLabel}
                 name="message"
                 value={form.message}
                 onChange={handleChange}
                 required
-                placeholder="Cuéntame brevemente sobre la oportunidad, colaboración o proyecto..."
+                placeholder={t.contact.messagePlaceholder}
               />
 
               {state === "error" && (
@@ -125,15 +129,12 @@ export function Contact({ prefilledMessage = "" }: ContactProps) {
                   animate={{ opacity: 1, y: 0 }}
                   className="p-4 bg-[var(--primary)]/10 border border-[var(--primary)]/20 rounded-xl text-foreground text-sm space-y-2"
                 >
-                  <p className="font-semibold text-[oklch(0.38_0.11_40)]">
-                    El formulario de contacto no está configurado.
-                  </p>
+                  <p className="font-semibold text-[oklch(0.38_0.11_40)]">{t.contact.errorTitle}</p>
                   <p className="text-foreground/80 leading-relaxed text-xs">
-                    Para activar los envíos automáticos se requiere configurar variables de entorno
-                    para un proveedor de correo (como Resend o EmailJS) en la base de código.
+                    {t.contact.errorMessage}
                   </p>
                   <p className="text-foreground/80 text-xs">
-                    Por favor, contáctame directamente usando los enlaces directos o escribe a:{" "}
+                    {t.contact.errorContactDirect}{" "}
                     <a
                       href="mailto:nataliaramirez1799@gmail.com"
                       className="underline hover:text-[var(--primary)] font-semibold"
@@ -152,10 +153,10 @@ export function Contact({ prefilledMessage = "" }: ContactProps) {
                 {state === "sending" ? (
                   <>
                     <span className="w-4 h-4 border border-current border-t-transparent rounded-full animate-spin" />
-                    Enviando…
+                    {t.contact.sending}
                   </>
                 ) : (
-                  <>Enviar mensaje →</>
+                  <>{t.contact.sendButton}</>
                 )}
               </button>
             </form>
@@ -166,7 +167,7 @@ export function Contact({ prefilledMessage = "" }: ContactProps) {
         <div className="col-span-1 row-start-3 md:col-span-5 md:col-start-1 md:row-start-2 self-start space-y-8 mt-8 md:mt-6">
           <div className="space-y-6">
             <div>
-              <p className="eyebrow mb-2">Email directo</p>
+              <p className="eyebrow mb-2">{t.contact.directEmail}</p>
               <a
                 href="mailto:nataliaramirez1799@gmail.com"
                 className="display text-xl md:text-2xl hover:text-[var(--primary)] transition-colors focus-visible:text-[var(--primary)] focus-visible:outline-none"
@@ -175,7 +176,7 @@ export function Contact({ prefilledMessage = "" }: ContactProps) {
               </a>
             </div>
             <div>
-              <p className="eyebrow mb-2">WhatsApp</p>
+              <p className="eyebrow mb-2">{t.contact.whatsapp}</p>
               <a
                 href="https://wa.me/5513978103416"
                 target="_blank"
@@ -186,7 +187,7 @@ export function Contact({ prefilledMessage = "" }: ContactProps) {
               </a>
             </div>
             <div>
-              <p className="eyebrow mb-2">LinkedIn</p>
+              <p className="eyebrow mb-2">{t.contact.linkedin}</p>
               <a
                 href="https://www.linkedin.com/in/nataliaramirezdiazz/"
                 target="_blank"
@@ -197,13 +198,11 @@ export function Contact({ prefilledMessage = "" }: ContactProps) {
               </a>
             </div>
             <div>
-              <p className="eyebrow mb-2">Ubicación</p>
+              <p className="eyebrow mb-2">{t.contact.location}</p>
               <p className="text-foreground/80 leading-relaxed text-sm md:text-base">
-                Santos, São Paulo, Brasil
+                {t.contact.locationValue}
                 <br />
-                <span className="text-foreground/60 text-xs">
-                  Disponible para proyectos remotos en LATAM
-                </span>
+                <span className="text-foreground/60 text-xs">{t.contact.locationSub}</span>
               </p>
             </div>
           </div>
@@ -259,6 +258,7 @@ function FormSelect({
   onChange,
   required,
   options,
+  placeholder,
 }: {
   label: string;
   name: string;
@@ -266,6 +266,7 @@ function FormSelect({
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   required?: boolean;
   options: { value: string; label: string }[];
+  placeholder: string;
 }) {
   return (
     <div className="flex flex-col gap-2 w-full">
@@ -285,7 +286,7 @@ function FormSelect({
           className="w-full h-[52px] pl-4 pr-10 rounded-lg bg-[var(--cream)] border border-foreground/20 text-foreground text-base transition-all duration-200 hover:border-foreground/40 focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/15 focus:outline-none appearance-none cursor-pointer"
         >
           <option value="" disabled>
-            Selecciona una opción...
+            {placeholder}
           </option>
           {options.map((opt) => (
             <option key={opt.value} value={opt.value}>

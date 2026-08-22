@@ -1,12 +1,16 @@
-const words = [
-  "Diseño Interior",
-  "Arquitectura",
-  "Mobiliario a Medida",
-  "Espacios Reducidos",
-  "Detalle Artesanal",
-];
+import { useLanguage } from "../../context/LanguageContext";
 
 export function Marquee() {
+  const { t } = useLanguage();
+
+  const words = [
+    t.marquee.interiorDesign,
+    t.marquee.architecture,
+    t.marquee.customFurniture,
+    t.marquee.smallSpaces,
+    t.marquee.craftedDetail,
+  ];
+
   return (
     <div className="border-y border-foreground/15 bg-[var(--cream)] overflow-hidden flex whitespace-nowrap pause-marquee w-full select-none">
       <div className="animate-marquee flex gap-12 py-3 pr-12">

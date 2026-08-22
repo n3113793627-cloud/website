@@ -1,33 +1,14 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-
-const steps = [
-  {
-    n: "01",
-    t: "Análisis Sensorial",
-    d: "Identificamos las necesidades biológicas y emocionales del habitante: niveles de estrés, rutinas circadianas y dinámicas de uso.",
-  },
-  {
-    n: "02",
-    t: "Bases Neuro",
-    d: "Definimos paletas cromáticas estimulantes o relajantes, texturas orgánicas y un diseño de iluminación bio-compatible.",
-  },
-  {
-    n: "03",
-    t: "Diseño & Biofilia",
-    d: "Modelamos el espacio en 3D incorporando formas suaves, geometría natural y vegetación para reducir la fatiga mental.",
-  },
-  {
-    n: "04",
-    t: "Planimetría Técnica",
-    d: "Entregamos planos técnicos detallados y guías de compra listos para que tu equipo ejecute el espacio ideal.",
-  },
-];
+import { useLanguage } from "../../context/LanguageContext";
 
 export function Process() {
+  const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const lineWidth = useTransform(scrollYProgress, [0.1, 0.7], ["0%", "100%"]);
+
+  const steps = t.process.steps;
 
   return (
     <section
@@ -37,10 +18,13 @@ export function Process() {
     >
       <div className="max-w-[1400px] mx-auto">
         <div className="max-w-3xl mb-20">
-          <p className="eyebrow text-[var(--cream)]/80 mb-4">— Proceso</p>
+          <p className="eyebrow text-[var(--cream)]/80 mb-4">{t.process.label}</p>
           <h2 className="display text-5xl md:text-7xl leading-[0.95]">
-            Del <em className="italic">análisis sensorial</em> a la{" "}
-            <em className="italic text-[var(--cream)]">armonía cognitiva</em>.
+            {t.process.title1}
+            <em className="italic">{t.process.titleItalic1}</em>
+            {t.process.title2}
+            <em className="italic text-[var(--cream)]">{t.process.titleItalic2}</em>
+            {t.process.title3}
           </h2>
         </div>
 

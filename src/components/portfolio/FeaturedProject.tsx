@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import { useLanguage } from "../../context/LanguageContext";
 import aptoCerezo from "@/assets/apto-cerezo.png";
 import detailImg from "@/assets/project-detail-1.jpg";
 import kitchenImg from "@/assets/project-kitchen.jpg";
@@ -59,12 +60,12 @@ interface ComparisonSliderProps {
   afterLabel?: string;
 }
 
-function ComparisonSlider({
-  beforeImg,
-  afterImg,
-  beforeLabel = "Antes",
-  afterLabel = "Después",
-}: ComparisonSliderProps) {
+function ComparisonSlider({ beforeImg, afterImg, beforeLabel, afterLabel }: ComparisonSliderProps) {
+  const { language } = useLanguage();
+  const defBefore = language === "es" ? "Antes" : language === "pt" ? "Antes" : "Before";
+  const defAfter = language === "es" ? "Después" : language === "pt" ? "Depois" : "After";
+  const bLabel = beforeLabel || defBefore;
+  const aLabel = afterLabel || defAfter;
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -113,7 +114,7 @@ function ComparisonSlider({
       {/* AFTER Image (Base) */}
       <img
         src={afterImg}
-        alt={afterLabel}
+        alt={aLabel}
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         loading="lazy"
       />
@@ -130,7 +131,7 @@ function ComparisonSlider({
       >
         <img
           src={beforeImg}
-          alt={beforeLabel}
+          alt={bLabel}
           className="absolute inset-0 w-full h-full object-cover pointer-events-none"
           loading="lazy"
         />
@@ -246,11 +247,26 @@ function TransformationPair({
   description,
   beforeImg,
   afterImg,
-  beforeLabel = "Estado existente",
-  afterLabel = "Propuesta TRÍPODE",
+  beforeLabel,
+  afterLabel,
   onOpenImage,
 }: TransformationPairProps) {
+  const { language, t } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
+  const defBefore =
+    language === "es"
+      ? "Estado existente"
+      : language === "pt"
+        ? "Estado existente"
+        : "Existing state";
+  const defAfter =
+    language === "es"
+      ? "Propuesta TRÍPODE"
+      : language === "pt"
+        ? "Proposta TRÍPODE"
+        : "TRÍPODE Proposal";
+  const bLabel = beforeLabel || defBefore;
+  const aLabel = afterLabel || defAfter;
 
   return (
     <div className="space-y-8 pt-10 border-t border-[var(--cream)]/10">
@@ -280,18 +296,24 @@ function TransformationPair({
           <button
             onClick={() => onOpenImage(beforeImg)}
             className="w-full relative overflow-hidden rounded-xl border border-white/10 bg-black/20 flex items-center justify-center cursor-zoom-in group transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EFA07F] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ink)]"
-            aria-label={`Ampliar ${beforeLabel}`}
+            aria-label={
+              language === "es"
+                ? `Ampliar ${bLabel}`
+                : language === "pt"
+                  ? `Ampliar ${bLabel}`
+                  : `Enlarge ${bLabel}`
+            }
           >
             <img
               src={beforeImg}
-              alt={beforeLabel}
+              alt={bLabel}
               className="w-full h-auto max-h-[500px] object-contain rounded-xl transition-transform duration-500 group-hover:scale-[1.01]"
               loading="lazy"
             />
             {/* Soft border styling */}
             <div className="absolute inset-0 rounded-xl border border-white/5 pointer-events-none" />
             <div className="absolute bottom-3 right-3 bg-black/75 text-[var(--cream)] text-[9px] font-mono px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              AMPLIAR
+              {language === "en" ? "ENLARGE" : "AMPLIAR"}
             </div>
           </button>
         </div>
@@ -351,18 +373,24 @@ function TransformationPair({
           <button
             onClick={() => onOpenImage(afterImg)}
             className="w-full relative overflow-hidden rounded-xl border border-white/10 bg-black/20 flex items-center justify-center cursor-zoom-in group transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EFA07F] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ink)]"
-            aria-label={`Ampliar ${afterLabel}`}
+            aria-label={
+              language === "es"
+                ? `Ampliar ${aLabel}`
+                : language === "pt"
+                  ? `Ampliar ${aLabel}`
+                  : `Enlarge ${aLabel}`
+            }
           >
             <img
               src={afterImg}
-              alt={afterLabel}
+              alt={aLabel}
               className="w-full h-auto max-h-[500px] object-contain rounded-xl transition-transform duration-500 group-hover:scale-[1.01]"
               loading="lazy"
             />
             {/* Soft border styling */}
             <div className="absolute inset-0 rounded-xl border border-white/5 pointer-events-none" />
             <div className="absolute bottom-3 right-3 bg-black/75 text-[var(--cream)] text-[9px] font-mono px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              AMPLIAR
+              {language === "en" ? "ENLARGE" : "AMPLIAR"}
             </div>
           </button>
         </div>
@@ -372,6 +400,7 @@ function TransformationPair({
 }
 
 function TripodeVideoPlayer() {
+  const { t } = useLanguage();
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -496,7 +525,7 @@ function TripodeVideoPlayer() {
         loop
         preload="metadata"
         controls
-        aria-label="Video conceptual del sistema TRÍPODE"
+        aria-label={t.projects.tripode.videoAria}
         onError={handleVideoError}
         onPlay={handleVideoPlay}
         onPause={handleVideoPause}
@@ -516,7 +545,7 @@ function TripodeVideoPlayer() {
         <button
           onClick={handlePlayClick}
           className="absolute w-16 h-16 rounded-full bg-[var(--primary)] hover:bg-[#EFA07F] text-white flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-105 border border-white/20 z-20 focus-visible:ring-4 focus-visible:ring-[#EFA07F] focus-visible:outline-none min-w-[44px] min-h-[44px] cursor-pointer"
-          aria-label="Reproducir video conceptual de TRÍPODE"
+          aria-label={t.projects.tripode.videoBtnAria}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -535,6 +564,7 @@ function TripodeVideoPlayer() {
 }
 
 export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => void }) {
+  const { language, t } = useLanguage();
   const [lightboxImages, setLightboxImages] = useState<string[] | null>(null);
   const [lightboxGallery, setLightboxGallery] = useState<string[] | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number>(0);
@@ -643,38 +673,46 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
           <div className="space-y-8">
             <div className="flex items-end justify-between gap-6 border-b border-[var(--cream)]/10 pb-6">
               <div>
-                <p className="eyebrow text-[var(--clay-light)] mb-2">PROYECTO DESTACADO · 01</p>
-                <h3 className="display text-4xl md:text-6xl text-white leading-tight">TRÍPODE</h3>
+                <p className="eyebrow text-[var(--clay-light)] mb-2">{t.projects.tripode.tag}</p>
+                <h3 className="display text-4xl md:text-6xl text-white leading-tight">
+                  {t.projects.tripode.title}
+                </h3>
               </div>
               <div className="hidden md:block text-right text-sm text-[var(--cream)]/85 space-y-1 font-mono">
-                <p>Mobiliario como herramienta arquitectónica</p>
-                <p>Bogotá · 2026</p>
+                <p>{t.projects.tripode.concept}</p>
+                <p>{t.projects.tripode.location}</p>
               </div>
             </div>
 
             <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start pt-2">
               <div className="md:col-span-8 space-y-4">
                 <h4 className="display text-2xl md:text-3xl text-white leading-relaxed italic font-light">
-                  "¿Puede un solo sistema organizar la manera en que habitamos un apartamento
-                  compacto?"
+                  "{t.projects.tripode.question.replace('"', "")}"
                 </h4>
                 <p className="text-[var(--cream)]/85 text-base leading-relaxed">
-                  TRÍPODE es una propuesta donde el mobiliario deja de ser un objeto independiente
-                  para convertirse en una herramienta arquitectónica capaz de organizar el espacio,
-                  definir privacidad, optimizar materiales y mejorar la experiencia de habitar.
+                  {t.projects.tripode.synthesis}
                 </p>
               </div>
               <div className="md:col-span-4 bg-white/5 p-5 rounded-lg border border-white/5 shadow-md">
                 <p className="text-[10px] text-[var(--clay-light)] uppercase tracking-widest font-mono mb-3">
-                  Ficha Técnica
+                  {t.projects.tripode.techSheet}
                 </p>
                 <div className="space-y-3">
                   {[
-                    { label: "Tipo", value: "Proyecto Conceptual" },
-                    { label: "Rol", value: "Arquitectura e Interiorismo" },
-                    { label: "Herramientas", value: "AutoCAD · Revit · SketchUp" },
-                    { label: "Año", value: "2026" },
-                    { label: "Alcance", value: "Diseño espacial y de mobiliario" },
+                    {
+                      label: t.projects.tripode.stats.tipo,
+                      value: t.projects.tripode.stats.tipoVal,
+                    },
+                    { label: t.projects.tripode.stats.rol, value: t.projects.tripode.stats.rolVal },
+                    {
+                      label: t.projects.tripode.stats.herramientas,
+                      value: t.projects.tripode.stats.herramientasVal,
+                    },
+                    { label: t.projects.tripode.stats.ano, value: t.projects.tripode.stats.anoVal },
+                    {
+                      label: t.projects.tripode.stats.alcance,
+                      value: t.projects.tripode.stats.alcanceVal,
+                    },
                   ].map((stat) => (
                     <div
                       key={stat.label}
@@ -695,18 +733,16 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
           <div className="space-y-6 py-12 md:py-16">
             <div className="max-w-[850px] mx-auto text-left">
               <h3 className="display text-2xl md:text-3xl text-white mb-4">
-                Registro conceptual animado
+                {t.projects.tripode.videoTitle}
               </h3>
               <p className="text-sm text-[var(--cream)]/75 leading-relaxed">
-                El sistema se origina a partir de tres acciones cotidianas y esenciales de la
-                vivienda: descansar, trabajar y compartir. Estas funciones se conectan a través de
-                una única estructura que optimiza el espacio y unifica el lenguaje formal.
+                {t.projects.tripode.videoDesc}
               </p>
             </div>
             <div className="mt-6 md:mt-8">
               <TripodeVideoPlayer />
               <p className="text-[10px] md:text-xs text-[var(--cream)]/50 italic text-center mt-4 tracking-wide">
-                Descansar · Trabajar · Compartir — secuencia conceptual del sistema TRÍPODE
+                {t.projects.tripode.videoCaption}
               </p>
             </div>
           </div>
@@ -715,12 +751,10 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
           <div className="space-y-6">
             <div className="max-w-3xl">
               <h3 className="display text-2xl md:text-3xl text-white mb-2">
-                El sistema sobre el objeto
+                {t.projects.tripode.systemTitle}
               </h3>
               <p className="text-sm text-[var(--cream)]/75 leading-relaxed">
-                En lugar de concebir el mobiliario como una suma de muebles independientes que
-                fragmentan el apartamento, TRÍPODE opera como un sistema unificado. Un solo volumen
-                regula las circulaciones y se convierte en el soporte de las actividades diarias.
+                {t.projects.tripode.systemDesc}
               </p>
             </div>
 
@@ -728,7 +762,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
               <div className="relative w-full aspect-[4/3] md:aspect-[16/9] overflow-hidden bg-white rounded-xl border border-white/10 shadow-2xl flex items-center justify-center p-4">
                 <img
                   src={tripodeConcept}
-                  alt="TRÍPODE como sistema arquitectónico unificado"
+                  alt={t.projects.tripode.sheetAlt}
                   className="max-w-full max-h-full object-contain"
                   loading="lazy"
                 />
@@ -745,20 +779,20 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                   }}
                   className="absolute bottom-4 right-4 bg-black/85 hover:bg-black/95 text-white text-[10px] px-4 py-2.5 rounded-full flex items-center gap-1.5 shadow-lg backdrop-blur-sm transition-all duration-300 font-mono tracking-wider border border-white/10 cursor-pointer"
                 >
-                  AMPLIAR LÁMINA
+                  {language === "en" ? "ENLARGE" : "AMPLIAR"} LÁMINA
                 </button>
               </div>
               <p className="text-xs text-[var(--cream)]/60 italic px-2">
-                TRÍPODE como sistema arquitectónico unificado
+                {t.projects.tripode.sheetAlt}
               </p>
             </div>
           </div>
 
           {/* 4. TRANSFORMACIÓN 01 */}
           <TransformationPair
-            title="Transformación y orden espacial"
-            subtitle="— Ángulo 01: Reconfiguración del Núcleo"
-            description="Del espacio fragmentado a un sistema que integra descanso, almacenamiento y uso cotidiano."
+            title={t.projects.tripode.trans1Title}
+            subtitle={t.projects.tripode.trans1Sub}
+            description={t.projects.tripode.trans1Desc}
             beforeImg={tripode1Antes}
             afterImg={tripode1Despues}
             beforeLabel="Estado existente"
@@ -777,9 +811,9 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
 
           {/* 5. TRANSFORMACIÓN 02 */}
           <TransformationPair
-            title="Redefinición de los límites"
-            subtitle="— Ángulo 02: Transición Funcional"
-            description="De la interferencia visual a una transición limpia y fluida que se adapta al ritmo de vida."
+            title={t.projects.tripode.trans2Title}
+            subtitle={t.projects.tripode.trans2Sub}
+            description={t.projects.tripode.trans2Desc}
             beforeImg={tripode2Antes}
             afterImg={tripode2Despues}
             beforeLabel="Estado existente"
@@ -801,20 +835,17 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start mt-8 pt-8 border-t border-[var(--cream)]/15">
               <div className="md:col-span-7 flex flex-col gap-6">
                 <p className="text-base text-[var(--cream)]/90 leading-relaxed font-light font-sans">
-                  TRÍPODE no busca simplemente aumentar los metros cuadrados útiles de una vivienda
-                  compacta; busca{" "}
-                  <strong>aumentar radicalmente la calidad del espacio habitable</strong> a través
-                  del diseño de alta precisión. El mobiliario deja de concebirse como un objeto
-                  estático o decorativo para convertirse en{" "}
-                  <strong>arquitectura activa y performativa</strong>.
+                  {t.projects.tripode.cierreDesc1}
+                  <strong>{t.projects.tripode.cierreDescBold1}</strong>
+                  {t.projects.tripode.cierreDesc2}
+                  <strong>{t.projects.tripode.cierreDescBold2}</strong>
+                  {t.projects.tripode.cierreDesc3}
                 </p>
               </div>
 
               <div className="md:col-span-5 flex flex-col justify-between h-full pt-4">
                 <p className="text-xs text-[var(--cream)]/60 leading-relaxed mb-6 font-sans">
-                  Este caso de estudio demuestra el potencial del diseño sistémico para reconfigurar
-                  el habitar contemporáneo, equilibrando las necesidades de trabajo y descanso en un
-                  mismo plano continuo.
+                  {t.projects.tripode.cierreRightText}
                 </p>
                 <button
                   onClick={() => {
@@ -825,22 +856,14 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                   }}
                   className="self-start text-xs tracking-[0.2em] uppercase border-b border-[var(--clay-light)] pb-1 text-[var(--clay-light)] hover:opacity-70 transition-opacity text-left font-semibold mt-2 cursor-pointer"
                 >
-                  Siguiente proyecto: Apto Cerezo →
+                  {t.projects.tripode.nextProjectLink}
                 </button>
               </div>
             </div>
 
             {/* Ficha inferior */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-[var(--cream)]/15 pt-10">
-              {[
-                {
-                  k: "Materiales",
-                  v: "Madera multilaminada de abedul, acero termolacado y textiles lavables",
-                },
-                { k: "Criterios de Diseño", v: "Flexibilidad, orden visual y zonificación" },
-                { k: "Pieza clave", v: "Estructura auto-portante unificada de triple apoyo" },
-                { k: "Áreas", v: "Dormitorio compacto · Oficina flexible · Estar social" },
-              ].map((d) => (
+              {t.projects.tripode.metadata.map((d) => (
                 <div key={d.k}>
                   <p className="eyebrow text-[var(--clay-light)] mb-2">{d.k}</p>
                   <p className="text-[var(--cream)]/90 text-sm">{d.v}</p>
@@ -861,14 +884,23 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
           {/* Header */}
           <div className="flex items-end justify-between gap-6 border-b border-[var(--cream)]/10 pb-10">
             <div>
-              <p className="eyebrow text-[var(--clay-light)] mb-3">Proyecto destacado · 02</p>
+              <p className="eyebrow text-[var(--clay-light)] mb-3">{t.projects.cerezo.tag}</p>
               <h3 className="display text-4xl md:text-6xl text-white leading-tight">
-                Apto <em className="italic text-[var(--clay-light)]">Cerezo</em>
+                {t.projects.cerezo.title.includes("Cerezo") ? (
+                  <>
+                    {t.projects.cerezo.title.split(" ")[0]}{" "}
+                    <em className="italic text-[var(--clay-light)]">
+                      {t.projects.cerezo.title.split(" ")[1]}
+                    </em>
+                  </>
+                ) : (
+                  t.projects.cerezo.title
+                )}
               </h3>
             </div>
             <div className="hidden md:block text-right text-sm text-[var(--cream)]/85 space-y-1">
-              <p>Diseño interior integral · Mobiliario personalizado</p>
-              <p>Bogotá · 2025</p>
+              <p>{t.projects.cerezo.concept}</p>
+              <p>{t.projects.cerezo.location}</p>
             </div>
           </div>
 
@@ -887,12 +919,11 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                 y="75%"
                 onClick={() =>
                   setActiveHotspot({
-                    project: "Apto Cerezo",
-                    title: "Biombo Divisor Flotante",
-                    decision: "Estructuración espacial porosa mediante biombo de madera",
-                    rationale:
-                      "En apartamentos pequeños, las paredes sólidas tradicionales restringen la luz e inducen una fatiga espacial claustrofóbica. Este divisor central actúa como diafragma espacial: permite ver a través de él para ampliar la percepción de profundidad (lo cual relaja el nervio óptico) mientras delimita zonas sin bloquear la ventilación ni la luz natural circadiana.",
-                    pillar: "Agencia Espacial y Fluidez Visual",
+                    project: t.projects.cerezo.title,
+                    title: t.projects.cerezo.hotspot1.title,
+                    decision: t.projects.cerezo.hotspot1.decision,
+                    rationale: t.projects.cerezo.hotspot1.rationale,
+                    pillar: t.projects.cerezo.hotspot1.pillar,
                   })
                 }
               />
@@ -902,13 +933,11 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                 y="38%"
                 onClick={() =>
                   setActiveHotspot({
-                    project: "Apto Cerezo",
-                    title: "Textura de Cerezo y Tonos Mate",
-                    decision:
-                      "Uso estratégico de melamina de madera clara y acabados de baja saturación",
-                    rationale:
-                      "Los contrastes visuales altos e intensos disparan micro-alertas en el cerebro de forma constante. La melamina de cerezo mate absorbe y dispersa la iluminación en lugar de reflejarla bruscamente. Esto activa el tacto visual de la corteza somatosensorial de forma equilibrada, promoviendo una sensación de serenidad física inmediata y disminuyendo los niveles basales de cortisol.",
-                    pillar: "Estimulación Sensorial Controlada",
+                    project: t.projects.cerezo.title,
+                    title: t.projects.cerezo.hotspot2.title,
+                    decision: t.projects.cerezo.hotspot2.decision,
+                    rationale: t.projects.cerezo.hotspot2.rationale,
+                    pillar: t.projects.cerezo.hotspot2.pillar,
                   })
                 }
               />
@@ -943,17 +972,12 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             <div className="md:col-span-7 flex flex-col gap-6">
               <div className="space-y-4">
                 <p className="text-[var(--cream)]/85 leading-relaxed">
-                  "Apto Cerezo" es un ejercicio de{" "}
-                  <strong>neuroarquitectura aplicada a espacios compactos</strong>. Nace del desafío
-                  de optimizar un apartamento reducido, estructurando el espacio para disminuir la
-                  fatiga visual y favorecer la calma mental a través de un biombo central
-                  multifuncional que divide sin obstruir.
+                  {t.projects.cerezo.desc1}
+                  <strong>{t.projects.cerezo.descBold1}</strong>
+                  {t.projects.cerezo.desc2}
                 </p>
                 <p className="text-[var(--cream)]/70 leading-relaxed text-sm">
-                  La elección de melamina de cerezo claro y texturas naturales fue estratégica:
-                  tonos y materialidades de baja saturación que reducen el cortisol en sangre,
-                  promoviendo el bienestar sensorial y respetando el ingreso de luz natural para
-                  regular los ritmos circadianos.
+                  {t.projects.cerezo.desc3}
                 </p>
               </div>
 
@@ -989,7 +1013,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                 }
                 className="self-start text-xs tracking-[0.2em] uppercase border-b border-[var(--clay-light)] pb-1 text-[var(--clay-light)] hover:opacity-70 transition-opacity text-left font-semibold mt-2"
               >
-                ¿Tienes un proyecto similar? →
+                {t.projects.cerezo.inquiryBtn}
               </button>
             </div>
           </div>
@@ -1017,14 +1041,24 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
         <div className="max-w-[1400px] mx-auto px-6 md:px-10 mb-10">
           <div className="flex items-end justify-between gap-6 border-b border-[var(--cream)]/10 pb-10">
             <div>
-              <p className="eyebrow text-[var(--clay-light)] mb-3">Proyecto destacado · 03</p>
+              <p className="eyebrow text-[var(--clay-light)] mb-3">{t.projects.orange.tag}</p>
               <h3 className="display text-4xl md:text-6xl text-white leading-tight">
-                Centro <em className="italic text-[var(--clay-light)]">Orange Hill</em>
+                {t.projects.orange.title.includes("Orange") ? (
+                  <>
+                    {t.projects.orange.title.split(" ")[0]}{" "}
+                    <em className="italic text-[var(--clay-light)]">
+                      {t.projects.orange.title.split(" ")[1]}{" "}
+                      {t.projects.orange.title.split(" ")[2]}
+                    </em>
+                  </>
+                ) : (
+                  t.projects.orange.title
+                )}
               </h3>
             </div>
             <div className="hidden md:block text-right text-sm text-[var(--cream)]/85 space-y-1">
-              <p>Equipamiento Paliativo · Neuroarquitectura</p>
-              <p>San Andrés Isla · 2025</p>
+              <p>{t.projects.orange.concept}</p>
+              <p>{t.projects.orange.location}</p>
             </div>
           </div>
         </div>
@@ -1078,18 +1112,12 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             <div className="md:col-span-7 flex flex-col gap-6">
               <div className="space-y-4">
                 <p className="text-[var(--cream)]/90 text-base md:text-lg leading-relaxed">
-                  "Centro Orange Hill" es un santuario de{" "}
-                  <strong>cuidados paliativos y sanación sensorial</strong> en San Andrés Isla. Nace
-                  de la necesidad de diseñar espacios que satisfagan las necesidades espirituales y
-                  emocionales de pacientes críticos, aliviando el sufrimiento mediante estímulos
-                  cognitivos y el entorno natural.
+                  {t.projects.orange.desc1}
+                  <strong>{t.projects.orange.descBold1}</strong>
+                  {t.projects.orange.desc2}
                 </p>
                 <p className="text-[var(--cream)]/75 text-sm md:text-base leading-relaxed">
-                  La propuesta integra cabañas modulares de madera elevadas sobre pilotes que
-                  reinterpretan la arquitectura isleña tradicional. Los volúmenes están
-                  estratégicamente rotados hacia el mar e incorporan patios internos con abundante
-                  vegetación (biofilia), lo cual reduce el cortisol en sangre y facilita la calma y
-                  la meditación profunda.
+                  {t.projects.orange.desc3}
                 </p>
               </div>
 
@@ -1114,7 +1142,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             <div className="md:col-span-5 flex flex-col gap-6">
               <div className="space-y-2">
                 <p className="text-[10px] text-[var(--clay-light)] uppercase tracking-widest font-mono font-bold">
-                  Atmósfera Sensorial: Brisa y atardecer
+                  {t.projects.orange.videoTitle}
                 </p>
                 <div className="relative overflow-hidden rounded-lg border border-[var(--cream)]/15 aspect-video shadow-lg group">
                   <AutoplayVideo
@@ -1123,7 +1151,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[rgba(20,10,5,0.4)] to-transparent flex items-end p-3">
                     <p className="text-[10px] font-mono text-[var(--cream)]/90 tracking-wide">
-                      San Andrés Isla · Entorno Natural
+                      {t.projects.orange.videoCaption}
                     </p>
                   </div>
                 </div>
@@ -1147,11 +1175,9 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div className="space-y-4">
                 <p className="eyebrow text-[var(--clay-light)] mb-2">
-                  — Análisis y Esquema Técnico
+                  {t.projects.orange.sheetsLabel}
                 </p>
-                <h3 className="display text-3xl md:text-4xl">
-                  Programa y Experiencia en el Espacio
-                </h3>
+                <h3 className="display text-3xl md:text-4xl">{t.projects.orange.sheetsTitle}</h3>
               </div>
               <p className="text-xs text-[var(--cream)]/60 max-w-sm leading-relaxed font-mono">
                 Haz clic sobre cualquiera de las láminas para ampliarla en alta definición y leer
@@ -1298,14 +1324,24 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
           {/* Header */}
           <div className="flex items-end justify-between gap-6 border-b border-[var(--cream)]/10 pb-10">
             <div>
-              <p className="eyebrow text-[var(--clay-light)] mb-3">Proyecto destacado · 04</p>
+              <p className="eyebrow text-[var(--clay-light)] mb-3">{t.projects.casino.tag}</p>
               <h3 className="display text-4xl md:text-6xl text-white leading-tight">
-                Casino <em className="italic text-[var(--clay-light)]">The Lounge</em>
+                {t.projects.casino.title.includes("Casino") ? (
+                  <>
+                    {t.projects.casino.title.split(" ")[0]}{" "}
+                    <em className="italic text-[var(--clay-light)]">
+                      {t.projects.casino.title.split(" ")[1]}{" "}
+                      {t.projects.casino.title.split(" ")[2]}
+                    </em>
+                  </>
+                ) : (
+                  t.projects.casino.title
+                )}
               </h3>
             </div>
             <div className="hidden md:block text-right text-sm text-[var(--cream)]/85 space-y-1">
-              <p>Fachada comercial e interiorismo integral</p>
-              <p>Bogotá · 2026</p>
+              <p>{t.projects.casino.concept}</p>
+              <p>{t.projects.tripode.location}</p>
             </div>
           </div>
 
@@ -1313,7 +1349,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
           <div className="grid md:grid-cols-2 gap-8 md:gap-12">
             <div className="space-y-4">
               <p className="text-[10px] text-[var(--clay-light)] uppercase tracking-widest font-mono font-bold">
-                — Fachada: Propuesta de Diseño (Render)
+                {t.projects.casino.facadeLabel}
               </p>
               <div className="relative w-full aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-lg border border-[var(--cream)]/10 shadow-lg bg-muted group">
                 <img
@@ -1356,13 +1392,13 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             </div>
             <div className="space-y-4">
               <p className="text-[10px] text-[var(--clay-light)] uppercase tracking-widest font-mono font-bold">
-                — Interior: Proceso vs Acabado Final
+                {t.projects.casino.interiorLabel}
               </p>
               <ComparisonSlider
                 beforeImg={casinoProcess}
                 afterImg={casinoInteriorFinished}
-                beforeLabel="En Proceso"
-                afterLabel="Mesa de Poker"
+                beforeLabel="{t.projects.casino.beforeLabel}"
+                afterLabel="{t.projects.casino.afterLabel}"
               />
             </div>
           </div>
@@ -1373,19 +1409,12 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             <div className="md:col-span-7 flex flex-col gap-6">
               <div className="space-y-4">
                 <p className="text-[var(--cream)]/85 leading-relaxed">
-                  "Casino The Lounge" es un proyecto de{" "}
-                  <strong>rediseño integral y comercial</strong>. El encargo consistió en
-                  transformar la fachada exterior y todo el interior de una edificación que
-                  funcionaba previamente como restaurante, convirtiéndola en un club de juego
-                  premium en Bogotá.
+                  {t.projects.casino.desc1}
+                  <strong>{t.projects.casino.descBold1}</strong>
+                  {t.projects.casino.desc2}
                 </p>
                 <p className="text-[var(--cream)]/70 leading-relaxed text-sm">
-                  La fachada se concibió con líneas orgánicas y celosías retroiluminadas con
-                  iluminación LED indirecta, logrando un impacto escénico nocturno único. El
-                  interiorismo maximiza la fluidez espacial, zonificando acústicamente las salas de
-                  juego y aplicando psicología ambiental a través de muros de cuarcita
-                  retroiluminada en tonos dorados/ámbar para promover la calma y el confort térmico
-                  y mental.
+                  {t.projects.casino.desc3}
                 </p>
               </div>
 
@@ -1421,7 +1450,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                 }
                 className="self-start text-xs tracking-[0.2em] uppercase border-b border-[var(--clay-light)] pb-1 text-[var(--clay-light)] hover:opacity-70 transition-opacity text-left font-semibold"
               >
-                ¿Quieres rediseñar tu espacio comercial? →
+                {t.projects.casino.inquiryBtn}
               </button>
             </div>
           </div>
@@ -1495,7 +1524,13 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                     <img
                       key={index}
                       src={src}
-                      alt={`Lámina Ampliada Parte ${index + 1}`}
+                      alt={
+                        language === "es"
+                          ? `Lámina Ampliada Parte ${index + 1}`
+                          : language === "pt"
+                            ? `Prancha Ampliada Parte ${index + 1}`
+                            : `Enlarged Sheet Part ${index + 1}`
+                      }
                       className="w-full h-auto block object-contain transition-all duration-300"
                       loading="eager"
                     />
@@ -1504,14 +1539,12 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
               </div>
               <div className="mt-4 pt-3 border-t border-black/10 flex flex-wrap gap-4 justify-between items-center text-[10px] font-mono text-black/60 uppercase tracking-wider">
                 <div className="flex flex-wrap items-center gap-4">
-                  <span className="hidden sm:inline">
-                    Desliza o usa [Ctrl + Rueda] para zoom libre (hasta 500%)
-                  </span>
+                  <span className="hidden sm:inline">{t.projects.zoomTitle}</span>
                   <div className="flex bg-black/5 rounded p-0.5 border border-black/10">
                     {[
-                      { val: 100, label: "100% (Ajustar)" },
-                      { val: 250, label: "250% (Zoom HD)" },
-                      { val: 400, label: "400% (Resolución Real)" },
+                      { val: 100, label: t.projects.zoomPercent100 },
+                      { val: 250, label: t.projects.zoomPercent250 },
+                      { val: 400, label: t.projects.zoomPercent400 },
                     ].map((opt) => (
                       <button
                         key={opt.val}
@@ -1531,7 +1564,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                   onClick={() => setLightboxImages(null)}
                   className="text-[var(--clay)] font-bold hover:underline"
                 >
-                  Cerrar vista [×]
+                  {t.projects.closeView}
                 </button>
               </div>
             </motion.div>
@@ -1559,7 +1592,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
               <div className="relative max-h-[70vh] flex items-center justify-center overflow-hidden bg-black/40 rounded-lg p-2 aspect-[4/3] md:aspect-[16/10] w-full">
                 <img
                   src={lightboxGallery[lightboxIndex]}
-                  alt={`Imagen de galería ${lightboxIndex + 1}`}
+                  alt={`Gallery Image ${lightboxIndex + 1}`}
                   className="max-w-full max-h-full object-contain select-none transition-all duration-300"
                   style={{ transform: `scale(${zoomPercent / 100})` }}
                 />
@@ -1573,7 +1606,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                         handlePrevImage();
                       }}
                       className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/60 hover:bg-black/85 text-white flex items-center justify-center border border-white/10 shadow-lg cursor-pointer transition-transform hover:scale-105 active:scale-95 text-lg font-bold"
-                      aria-label="Imagen anterior"
+                      aria-label={t.projects.prevImage}
                     >
                       ←
                     </button>
@@ -1583,7 +1616,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                         handleNextImage();
                       }}
                       className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/60 hover:bg-black/85 text-white flex items-center justify-center border border-white/10 shadow-lg cursor-pointer transition-transform hover:scale-105 active:scale-95 text-lg font-bold"
-                      aria-label="Imagen siguiente"
+                      aria-label={t.projects.nextImage}
                     >
                       →
                     </button>
@@ -1596,10 +1629,12 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                 <div className="flex flex-wrap items-center gap-4">
                   {lightboxGallery.length > 1 && (
                     <span className="text-[var(--clay-light)] font-bold">
-                      Imagen {lightboxIndex + 1} de {lightboxGallery.length}
+                      {t.projects.galleryStatus
+                        .replace("{index}", String(lightboxIndex + 1))
+                        .replace("{total}", String(lightboxGallery.length))}
                     </span>
                   )}
-                  <span className="hidden sm:inline">Usa las flechas [←] [→] o haz zoom</span>
+                  <span className="hidden sm:inline">{t.projects.galleryTip}</span>
                   <div className="flex bg-black/20 rounded p-0.5 border border-white/10">
                     {[
                       { val: 100, label: "100%" },
@@ -1624,7 +1659,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                   onClick={() => setLightboxGallery(null)}
                   className="text-[var(--clay-light)] font-bold hover:underline"
                 >
-                  Cerrar vista [×]
+                  {t.projects.closeView}
                 </button>
               </div>
             </motion.div>
@@ -1658,13 +1693,13 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                       {activeHotspot.project}
                     </span>
                     <p className="text-[var(--cream)]/60 text-[9px] font-mono tracking-[0.2em] uppercase mt-1">
-                      Punto Clave
+                      {t.projects.keyPoint}
                     </p>
                   </div>
                   <button
                     onClick={() => setActiveHotspot(null)}
                     className="w-10 h-10 rounded-full border border-white/10 hover:border-white/30 text-white flex items-center justify-center transition-colors text-lg"
-                    aria-label="Cerrar panel"
+                    aria-label={t.projects.closePanel}
                   >
                     ×
                   </button>
@@ -1673,7 +1708,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                 <div className="space-y-6">
                   <div>
                     <span className="eyebrow text-[var(--clay-light)] text-[10px]">
-                      Cómo Pienso la Solución
+                      {t.projects.howIThinkTitle}
                     </span>
                     <h3 className="display text-3xl md:text-4xl text-white mt-2 leading-[1.05]">
                       {activeHotspot.title}
@@ -1682,7 +1717,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
 
                   <div className="bg-white/5 p-4 rounded-lg border border-white/5 space-y-2">
                     <span className="text-[8px] font-mono uppercase tracking-widest text-[var(--clay-light)] block">
-                      Decisión Ejecutada:
+                      {t.projects.decisionExecuted}
                     </span>
                     <p className="text-sm font-semibold text-white leading-relaxed">
                       {activeHotspot.decision}
@@ -1691,7 +1726,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
 
                   <div className="space-y-2 pt-2">
                     <span className="text-[8px] font-mono uppercase tracking-widest text-[var(--cream)]/50 block">
-                      Racional Científico & Ambiental:
+                      {t.projects.scientificRationale}
                     </span>
                     <p className="text-sm text-[var(--cream)]/85 leading-relaxed">
                       {activeHotspot.rationale}
@@ -1703,7 +1738,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
               {/* Bottom area */}
               <div className="border-t border-white/10 pt-6 space-y-4">
                 <div className="flex justify-between items-center text-[10px] font-mono text-[var(--cream)]/40 uppercase">
-                  <span>Pilar Relacionado:</span>
+                  <span>{t.projects.relatedPillar}</span>
                   <span className="text-[var(--clay-light)] font-bold">{activeHotspot.pillar}</span>
                 </div>
                 <button
@@ -1716,7 +1751,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                   }}
                   className="w-full text-center text-xs tracking-[0.2em] uppercase border border-[var(--clay-light)] text-[var(--clay-light)] hover:bg-[var(--clay-light)] hover:text-[#1b1715] px-6 py-4.5 transition-all duration-300 font-semibold"
                 >
-                  Discutir este enfoque →
+                  {t.projects.discussApproach}
                 </button>
               </div>
             </motion.div>

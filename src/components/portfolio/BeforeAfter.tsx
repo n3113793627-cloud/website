@@ -2,8 +2,10 @@ import { useState, useRef, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import beforeImg from "@/assets/living-before.png";
 import afterImg from "@/assets/living-after.png";
+import { useLanguage } from "../../context/LanguageContext";
 
 export function BeforeAfter() {
+  const { t } = useLanguage();
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
@@ -49,16 +51,16 @@ export function BeforeAfter() {
       <div className="max-w-[1400px] mx-auto">
         <div ref={titleRef} className="grid md:grid-cols-12 gap-8 mb-8 items-end">
           <div className="md:col-span-6">
-            <p className="eyebrow mb-4">— Transformación</p>
+            <p className="eyebrow mb-4">{t.beforeAfter.label}</p>
             <h2 className="display text-5xl md:text-7xl">
-              El impacto del <em className="italic text-[var(--clay)]">bienestar</em>.
+              {t.beforeAfter.title}
+              <em className="italic text-[var(--clay)]">{t.beforeAfter.titleItalic}</em>
+              {t.beforeAfter.title2}
             </h2>
           </div>
           <div className="md:col-span-6">
             <p className="text-muted-foreground text-sm md:text-base max-w-md leading-relaxed">
-              Arrastra el selector central de izquierda a derecha para descubrir cómo la
-              neuroarquitectura transforma un espacio frío y desestructurado en un refugio
-              terapéutico diseñado para la calma.
+              {t.beforeAfter.description}
             </p>
           </div>
         </div>
@@ -78,12 +80,12 @@ export function BeforeAfter() {
           {/* AFTER Image (Base) */}
           <img
             src={afterImg}
-            alt="Espacio después del diseño"
+            alt={t.beforeAfter.altAfter}
             className="absolute inset-0 w-full h-full object-cover pointer-events-none"
             loading="lazy"
           />
           <div className="absolute bottom-6 right-6 z-10 bg-black/60 backdrop-blur-md text-[var(--cream)] px-4 py-1.5 text-xs font-mono tracking-widest rounded-full pointer-events-none uppercase shadow-md">
-            Después
+            {t.beforeAfter.after}
           </div>
 
           {/* BEFORE Image (Clipped overlay) */}
@@ -95,12 +97,12 @@ export function BeforeAfter() {
           >
             <img
               src={beforeImg}
-              alt="Espacio antes del diseño"
+              alt={t.beforeAfter.altBefore}
               className="absolute inset-0 w-full h-full object-cover pointer-events-none"
               loading="lazy"
             />
             <div className="absolute bottom-6 left-6 z-10 bg-black/60 backdrop-blur-md text-[var(--cream)] px-4 py-1.5 text-xs font-mono tracking-widest rounded-full pointer-events-none uppercase shadow-md">
-              Antes
+              {t.beforeAfter.before}
             </div>
           </div>
 
@@ -114,7 +116,7 @@ export function BeforeAfter() {
                 transition={{ delay: 0.8, duration: 0.4 }}
                 className="absolute top-1/2 left-1/2 z-30 pointer-events-none bg-black/75 backdrop-blur-md border border-white/10 text-[var(--cream)] px-5 py-2.5 text-xs font-mono tracking-[0.2em] rounded-md flex items-center gap-2 select-none shadow-2xl uppercase"
               >
-                <span>← Desliza para comparar →</span>
+                <span>{t.beforeAfter.tooltip}</span>
               </motion.div>
             )}
           </AnimatePresence>

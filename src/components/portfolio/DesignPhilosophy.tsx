@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "../../context/LanguageContext";
 
 interface Pillar {
   id: string;
@@ -13,228 +14,220 @@ interface Pillar {
   visualEffect: React.ReactNode;
 }
 
-const pillars: Pillar[] = [
-  {
-    id: "circadian",
-    n: "01",
-    t: "Luz y ritmos cotidianos",
-    subtitle: "ILUMINACIÓN Y ATMÓSFERA",
-    d: "La luz define la atmósfera, facilita las actividades y permite acompañar los distintos momentos del día.",
-    foundation:
-      "Considero la orientación, la entrada de luz natural, el deslumbramiento y la temperatura de color para equilibrar confort visual y carácter espacial.",
-    application:
-      "Diseño aperturas y diferentes escenas de iluminación según el uso, el horario y las necesidades de cada proyecto.",
-    decision: "La iluminación debe responder al uso del espacio, no imponerse sobre él.",
-    visualEffect: (
-      <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-tr from-[#1a0f0a] to-[#2d1b10] flex items-center justify-center p-8 border border-white/5 shadow-inner">
-        {/* Sun/Moon simulation */}
-        <motion.div
-          animate={{
-            scale: [1, 1.1, 1],
-            boxShadow: [
-              "0 0 20px rgba(230,175,120,0.2)",
-              "0 0 45px rgba(230,175,120,0.4)",
-              "0 0 20px rgba(230,175,120,0.2)",
-            ],
-            background: [
-              "radial-gradient(circle, #E6AF78 0%, rgba(230,175,120,0) 70%)",
-              "radial-gradient(circle, #F4D3B0 0%, rgba(230,175,120,0) 80%)",
-              "radial-gradient(circle, #E6AF78 0%, rgba(230,175,120,0) 70%)",
-            ],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute w-52 h-52 rounded-full"
-        />
-        <div className="relative z-10 flex flex-col items-center text-center">
-          <span className="font-mono text-[10px] text-[var(--clay-light)] uppercase tracking-[0.2em] mb-2">
-            Escenario lumínico
-          </span>
-          <span className="text-[var(--cream)]/80 text-xs font-mono">
-            Luz diurna → Luz cálida
-          </span>
-        </div>
-        <div className="absolute bottom-4 inset-x-4 flex justify-between text-[8px] font-mono text-[var(--cream)]/40 uppercase tracking-widest">
-          <span>Día</span>
-          <span>Tarde</span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: "biophilia",
-    n: "02",
-    t: "Biofilia y formas orgánicas",
-    subtitle: "NATURALEZA Y CONTINUIDAD VISUAL",
-    d: "La presencia de vegetación, materiales naturales y geometrías suaves puede reforzar la conexión visual con el entorno y aportar calidez.",
-    foundation:
-      "Integro recursos biofílicos cuando contribuyen a la orientación, la escala y la experiencia del lugar, evitando utilizarlos como decoración automática.",
-    application:
-      "En el Apto Cerezo, las curvas del mobiliario y la continuidad de los materiales organizan el recorrido y suavizan los encuentros.",
-    decision: "La naturaleza se integra como una relación espacial, material y visual.",
-    visualEffect: (
-      <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-[#121c16] to-[#1d2f25] flex items-center justify-center p-8 border border-white/5 shadow-inner">
-        {/* Organic waves animation */}
-        <svg
-          className="absolute inset-0 w-full h-full opacity-20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <motion.path
+export function DesignPhilosophy() {
+  const { language, t } = useLanguage();
+  const [activeTab, setActiveTab] = useState<string>("circadian");
+
+  const pillars: Pillar[] = [
+    {
+      id: "circadian",
+      n: "01",
+      t: t.enfoque.pillars.circadian.t,
+      subtitle: t.enfoque.pillars.circadian.subtitle,
+      d: t.enfoque.pillars.circadian.d,
+      foundation: t.enfoque.pillars.circadian.foundation,
+      application: t.enfoque.pillars.circadian.application,
+      decision: t.enfoque.pillars.circadian.decision,
+      visualEffect: (
+        <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-tr from-[#1a0f0a] to-[#2d1b10] flex items-center justify-center p-8 border border-white/5 shadow-inner">
+          {/* Sun/Moon simulation */}
+          <motion.div
             animate={{
-              d: [
-                "M-100,100 C100,50 200,150 400,100 C600,50 700,150 900,100 L900,300 L-100,300 Z",
-                "M-100,100 C150,150 100,50 350,100 C600,150 650,50 900,100 L900,300 L-100,300 Z",
-                "M-100,100 C100,50 200,150 400,100 C600,50 700,150 900,100 L900,300 L-100,300 Z",
+              scale: [1, 1.1, 1],
+              boxShadow: [
+                "0 0 20px rgba(230,175,120,0.2)",
+                "0 0 45px rgba(230,175,120,0.4)",
+                "0 0 20px rgba(230,175,120,0.2)",
+              ],
+              background: [
+                "radial-gradient(circle, #E6AF78 0%, rgba(230,175,120,0) 70%)",
+                "radial-gradient(circle, #F4D3B0 0%, rgba(230,175,120,0) 80%)",
+                "radial-gradient(circle, #E6AF78 0%, rgba(230,175,120,0) 70%)",
               ],
             }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-            fill="var(--clay)"
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute w-52 h-52 rounded-full"
           />
-        </svg>
-        <div className="relative z-10 flex flex-col items-center text-center">
-          <span className="font-mono text-[10px] text-emerald-400/80 uppercase tracking-[0.2em] mb-2">
-            Forma orgánica
-          </span>
-          <span className="text-[var(--cream)]/80 text-xs font-mono">
-            Curva
-          </span>
+          <div className="relative z-10 flex flex-col items-center text-center">
+            <span className="font-mono text-[10px] text-[var(--clay-light)] uppercase tracking-[0.2em] mb-2">
+              {t.enfoque.pillars.circadian.visualEffect.scene}
+            </span>
+            <span className="text-[var(--cream)]/80 text-xs font-mono">
+              {t.enfoque.pillars.circadian.visualEffect.detail}
+            </span>
+          </div>
+          <div className="absolute bottom-4 inset-x-4 flex justify-between text-[8px] font-mono text-[var(--cream)]/40 uppercase tracking-widest">
+            <span>{t.enfoque.pillars.circadian.visualEffect.day}</span>
+            <span>{t.enfoque.pillars.circadian.visualEffect.afternoon}</span>
+          </div>
         </div>
-        <div className="absolute bottom-4 inset-x-4 flex justify-between text-[8px] font-mono text-[var(--cream)]/40 uppercase tracking-widest">
-          <span>Continuidad</span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: "acoustics",
-    n: "03",
-    t: "Confort acústico",
-    subtitle: "ZONIFICACIÓN Y ABSORCIÓN",
-    d: "La distribución puede separar actividades ruidosas de las áreas que requieren descanso, privacidad o concentración.",
-    foundation:
-      "Considero las fuentes de ruido, los recorridos, los cerramientos y las superficies absorbentes para reducir la reverberación y mejorar el confort.",
-    application:
-      "Zonifico las áreas sociales y de descanso e incorporo separadores, textiles, paneles o materiales absorbentes según las necesidades del proyecto.",
-    decision: "El confort acústico comienza en la distribución y se refuerza mediante la materialidad.",
-    visualEffect: (
-      <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-tr from-[#0e1620] to-[#1a2533] flex items-center justify-center p-8 border border-white/5 shadow-inner">
-        {/* Sound dampening simulation */}
-        <div className="flex gap-1.5 items-end h-16 relative">
-          {[1.2, 0.4, 1.8, 0.6, 2.2, 0.5, 1.6, 0.3, 0.9, 0.2].map((height, i) => (
-            <motion.div
-              key={i}
+      ),
+    },
+    {
+      id: "biophilia",
+      n: "02",
+      t: t.enfoque.pillars.biophilia.t,
+      subtitle: t.enfoque.pillars.biophilia.subtitle,
+      d: t.enfoque.pillars.biophilia.d,
+      foundation: t.enfoque.pillars.biophilia.foundation,
+      application: t.enfoque.pillars.biophilia.application,
+      decision: t.enfoque.pillars.biophilia.decision,
+      visualEffect: (
+        <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-[#121c16] to-[#1d2f25] flex items-center justify-center p-8 border border-white/5 shadow-inner">
+          {/* Organic waves animation */}
+          <svg
+            className="absolute inset-0 w-full h-full opacity-20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <motion.path
               animate={{
-                height: [height * 20, height * 0.2 * 20, height * 20],
+                d: [
+                  "M-100,100 C100,50 200,150 400,100 C600,50 700,150 900,100 L900,300 L-100,300 Z",
+                  "M-100,100 C150,150 100,50 350,100 C600,150 650,50 900,100 L900,300 L-100,300 Z",
+                  "M-100,100 C100,50 200,150 400,100 C600,50 700,150 900,100 L900,300 L-100,300 Z",
+                ],
               }}
-              transition={{
-                duration: 2.5,
-                repeat: Infinity,
-                delay: i * 0.1,
-                ease: "easeInOut",
-              }}
-              className="w-1.5 bg-[var(--clay)] rounded-full"
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+              fill="var(--clay)"
             />
-          ))}
-          {/* Audio dampening line */}
-          <div className="absolute inset-y-0 left-1/2 w-0.5 bg-white/20" />
-          <div className="absolute top-[-24px] left-0 text-[7px] font-mono text-rose-400 uppercase tracking-widest">
-            Fuente sonora
+          </svg>
+          <div className="relative z-10 flex flex-col items-center text-center">
+            <span className="font-mono text-[10px] text-emerald-400/80 uppercase tracking-[0.2em] mb-2">
+              {t.enfoque.pillars.biophilia.visualEffect.shape}
+            </span>
+            <span className="text-[var(--cream)]/80 text-xs font-mono">
+              {t.enfoque.pillars.biophilia.visualEffect.detail}
+            </span>
           </div>
-          <div className="absolute top-[-24px] right-0 text-[7px] font-mono text-emerald-400 uppercase tracking-widest">
-            Absorción
+          <div className="absolute bottom-4 inset-x-4 flex justify-between text-[8px] font-mono text-[var(--cream)]/40 uppercase tracking-widest">
+            <span>{t.enfoque.pillars.biophilia.visualEffect.continuity}</span>
           </div>
         </div>
-        <div className="absolute bottom-4 inset-x-4 flex justify-between text-[8px] font-mono text-[var(--cream)]/40 uppercase tracking-widest">
-          <span>Mayor reverberación</span>
-          <span>Mayor control acústico</span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: "sensory",
-    n: "04",
-    t: "Equilibrio sensorial",
-    subtitle: "COLOR, TEXTURA Y MATERIALIDAD",
-    d: "El color, la textura, el brillo y la materialidad influyen en cómo percibimos la calidez, la escala y la luminosidad de un espacio.",
-    foundation:
-      "Selecciono paletas y acabados considerando la luz natural y artificial, el uso, el mantenimiento y la atmósfera buscada.",
-    application:
-      "Combino estucos, maderas claras y textiles con texturas visibles para aportar coherencia material y riqueza táctil.",
-    decision: "Cada decisión material debe responder tanto al uso como a la intención estética.",
-    visualEffect: (
-      <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-tr from-[#251e18] to-[#3a3026] flex items-center justify-center p-8 border border-white/5 shadow-inner">
-        {/* Soft light dispersion */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(230,175,120,0.08)_0%,transparent_60%)]" />
-        <div className="flex flex-col items-center">
-          <div className="grid grid-cols-3 gap-2 w-28 h-12 mb-3">
-            <div className="bg-[#DFCBB4] rounded border border-white/10" />
-            <div className="bg-[#B99A82] rounded border border-white/10" />
-            <div className="bg-[#7D6652] rounded border border-white/10" />
+      ),
+    },
+    {
+      id: "acoustics",
+      n: "03",
+      t: t.enfoque.pillars.acoustics.t,
+      subtitle: t.enfoque.pillars.acoustics.subtitle,
+      d: t.enfoque.pillars.acoustics.d,
+      foundation: t.enfoque.pillars.acoustics.foundation,
+      application: t.enfoque.pillars.acoustics.application,
+      decision: t.enfoque.pillars.acoustics.decision,
+      visualEffect: (
+        <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-tr from-[#0e1620] to-[#1a2533] flex items-center justify-center p-8 border border-white/5 shadow-inner">
+          {/* Sound dampening simulation */}
+          <div className="flex gap-1.5 items-end h-16 relative">
+            {[1.2, 0.4, 1.8, 0.6, 2.2, 0.5, 1.6, 0.3, 0.9, 0.2].map((height, i) => (
+              <motion.div
+                key={i}
+                animate={{
+                  height: [height * 20, height * 0.2 * 20, height * 20],
+                }}
+                transition={{
+                  duration: 2.5,
+                  repeat: Infinity,
+                  delay: i * 0.1,
+                  ease: "easeInOut",
+                }}
+                className="w-1.5 bg-[var(--clay)] rounded-full"
+              />
+            ))}
+            {/* Audio dampening line */}
+            <div className="absolute inset-y-0 left-1/2 w-0.5 bg-white/20" />
+            <div className="absolute top-[-24px] left-0 text-[7px] font-mono text-rose-400 uppercase tracking-widest">
+              {t.enfoque.pillars.acoustics.visualEffect.source}
+            </div>
+            <div className="absolute top-[-24px] right-0 text-[7px] font-mono text-emerald-400 uppercase tracking-widest">
+              {t.enfoque.pillars.acoustics.visualEffect.absorption}
+            </div>
           </div>
-          <span className="text-[var(--cream)]/80 text-[10px] font-mono tracking-widest uppercase">
-            Paleta y materialidad
-          </span>
+          <div className="absolute bottom-4 inset-x-4 flex justify-between text-[8px] font-mono text-[var(--cream)]/40 uppercase tracking-widest">
+            <span>{t.enfoque.pillars.acoustics.visualEffect.reverberation}</span>
+            <span>{t.enfoque.pillars.acoustics.visualEffect.control}</span>
+          </div>
         </div>
-        <div className="absolute bottom-4 inset-x-4 flex justify-between text-[8px] font-mono text-[var(--cream)]/40 uppercase tracking-widest">
-          <span>Saturación controlada</span>
-          <span>Textura visible</span>
+      ),
+    },
+    {
+      id: "sensory",
+      n: "04",
+      t: t.enfoque.pillars.sensory.t,
+      subtitle: t.enfoque.pillars.sensory.subtitle,
+      d: t.enfoque.pillars.sensory.d,
+      foundation: t.enfoque.pillars.sensory.foundation,
+      application: t.enfoque.pillars.sensory.application,
+      decision: t.enfoque.pillars.sensory.decision,
+      visualEffect: (
+        <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-tr from-[#251e18] to-[#3a3026] flex items-center justify-center p-8 border border-white/5 shadow-inner">
+          {/* Soft light dispersion */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(230,175,120,0.08)_0%,transparent_60%)]" />
+          <div className="flex flex-col items-center">
+            <div className="grid grid-cols-3 gap-2 w-28 h-12 mb-3">
+              <div className="bg-[#DFCBB4] rounded border border-white/10" />
+              <div className="bg-[#B99A82] rounded border border-white/10" />
+              <div className="bg-[#7D6652] rounded border border-white/10" />
+            </div>
+            <span className="text-[var(--cream)]/80 text-[10px] font-mono tracking-widest uppercase">
+              {t.enfoque.pillars.sensory.visualEffect.palette}
+            </span>
+          </div>
+          <div className="absolute bottom-4 inset-x-4 flex justify-between text-[8px] font-mono text-[var(--cream)]/40 uppercase tracking-widest">
+            <span>{t.enfoque.pillars.sensory.visualEffect.saturation}</span>
+            <span>{t.enfoque.pillars.sensory.visualEffect.texture}</span>
+          </div>
         </div>
-      </div>
-    ),
-  },
-  {
-    id: "agency",
-    n: "05",
-    t: "Flexibilidad y control",
-    subtitle: "ADAPTABILIDAD Y PRIVACIDAD",
-    d: "Un espacio flexible permite adaptar la privacidad, la distribución y el uso cuando cambian las necesidades de sus habitantes.",
-    foundation:
-      "Incorporo elementos móviles, corredizos o multifuncionales para que el espacio pueda evolucionar sin intervenciones complejas.",
-    application:
-      "Propongo paneles móviles, biombos-biblioteca u hojas deslizantes que permiten unir o separar ambientes según la actividad.",
-    decision: "Dar opciones al usuario mejora la funcionalidad y prolonga la utilidad del espacio.",
-    visualEffect: (
-      <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-[#1b1c20] to-[#2c2d35] flex items-center justify-center p-8 border border-white/5 shadow-inner">
-        {/* Slider interaction simulation */}
-        <div className="flex flex-col items-center gap-4">
-          <span className="text-[10px] font-mono text-[var(--cream)]/80 tracking-[0.2em] uppercase">
-            Privacidad ↔ Apertura
-          </span>
-          <div className="w-40 h-10 border border-white/10 rounded-full flex items-center px-2 relative bg-black/25">
-            <motion.div
-              animate={{
-                x: [0, 118, 0],
-              }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="w-8 h-8 rounded-full bg-[var(--clay)] shadow-lg flex items-center justify-center text-white"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="12"
-                height="12"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="3"
-                className="rotate-90"
+      ),
+    },
+    {
+      id: "agency",
+      n: "05",
+      t: t.enfoque.pillars.agency.t,
+      subtitle: t.enfoque.pillars.agency.subtitle,
+      d: t.enfoque.pillars.agency.d,
+      foundation: t.enfoque.pillars.agency.foundation,
+      application: t.enfoque.pillars.agency.application,
+      decision: t.enfoque.pillars.agency.decision,
+      visualEffect: (
+        <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-[#1b1c20] to-[#2c2d35] flex items-center justify-center p-8 border border-white/5 shadow-inner">
+          {/* Slider interaction simulation */}
+          <div className="flex flex-col items-center gap-4">
+            <span className="text-[10px] font-mono text-[var(--cream)]/80 tracking-[0.2em] uppercase">
+              {t.enfoque.pillars.agency.visualEffect.privacy}
+            </span>
+            <div className="w-40 h-10 border border-white/10 rounded-full flex items-center px-2 relative bg-black/25">
+              <motion.div
+                animate={{
+                  x: [0, 118, 0],
+                }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="w-8 h-8 rounded-full bg-[var(--clay)] shadow-lg flex items-center justify-center text-white"
               >
-                <path d="m9 18-6-6 6-6" />
-                <path d="m15 6 6 6-6 6" />
-              </svg>
-            </motion.div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  className="rotate-90"
+                >
+                  <path d="m9 18-6-6 6-6" />
+                  <path d="m15 6 6 6-6 6" />
+                </svg>
+              </motion.div>
+            </div>
+          </div>
+          <div className="absolute bottom-4 inset-x-4 flex justify-between text-[8px] font-mono text-[var(--cream)]/40 uppercase tracking-widest">
+            <span>{t.enfoque.pillars.agency.visualEffect.fixed}</span>
+            <span>{t.enfoque.pillars.agency.visualEffect.adaptable}</span>
           </div>
         </div>
-        <div className="absolute bottom-4 inset-x-4 flex justify-between text-[8px] font-mono text-[var(--cream)]/40 uppercase tracking-widest">
-          <span>Configuración fija</span>
-          <span>Configuración adaptable</span>
-        </div>
-      </div>
-    ),
-  },
-];
+      ),
+    },
+  ];
 
-export function DesignPhilosophy() {
-  const [activeTab, setActiveTab] = useState<string>("circadian");
   const activePillar = pillars.find((p) => p.id === activeTab) || pillars[0];
 
   return (
@@ -249,16 +242,16 @@ export function DesignPhilosophy() {
         {/* Intro Grid section */}
         <div className="grid md:grid-cols-12 gap-8 items-end mb-12 md:mb-16">
           <div className="md:col-span-7">
-            <p className="eyebrow text-[var(--clay-light)] mb-4">— ENFOQUE DE DISEÑO</p>
+            <p className="eyebrow text-[var(--clay-light)] mb-4">{t.enfoque.label}</p>
             <h2 className="display text-5xl md:text-7xl leading-[0.95]">
-              Cómo <em className="italic text-[var(--clay-light)]">pienso</em> el espacio:
-              <br />
-              cinco criterios para diseñar.
+              {t.enfoque.title1}
+              <em className="italic text-[var(--clay-light)]">{t.enfoque.titleItalic}</em>
+              {t.enfoque.title2}
             </h2>
           </div>
           <div className="md:col-span-5 md:pb-2">
             <p className="text-[var(--cream)]/75 text-sm md:text-base leading-relaxed">
-              No parto de fórmulas rígidas. Observo cómo la luz, la materialidad, el sonido, la escala y la posibilidad de adaptar un espacio influyen en la experiencia cotidiana de quienes lo habitan.
+              {t.enfoque.description}
             </p>
           </div>
         </div>
@@ -278,7 +271,7 @@ export function DesignPhilosophy() {
                     aria-expanded={isActive}
                     aria-controls={`panel-${p.id}`}
                     onClick={() => setActiveTab(p.id)}
-                    className={`group text-left p-5 md:p-6 rounded-xl border transition-all duration-300 flex items-start justify-between w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--clay-light)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ink)] ${
+                    className={`group text-left p-5 md:p-6 rounded-xl border transition-all duration-300 flex items-start justify-between w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--clay-light)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ink)] cursor-pointer ${
                       isActive
                         ? "bg-white/5 border-[var(--clay-light)] text-white shadow-lg"
                         : "border-white/10 bg-black/10 text-[var(--cream)]/75 hover:text-white hover:border-white/20"
@@ -367,6 +360,8 @@ export function DesignPhilosophy() {
 }
 
 function DetailsContent({ pillar }: { pillar: Pillar }) {
+  const { t } = useLanguage();
+
   return (
     <div className="w-full bg-[#1b1715] rounded-2xl p-6 md:p-10 border border-white/5 shadow-2xl flex flex-col justify-between">
       <div className="grid md:grid-cols-12 gap-8 items-start">
@@ -374,19 +369,15 @@ function DetailsContent({ pillar }: { pillar: Pillar }) {
         <div className="md:col-span-7 space-y-6">
           <div>
             <span className="eyebrow text-[var(--clay-light)] text-[10px] uppercase tracking-wider font-semibold">
-              El criterio de diseño
+              {t.enfoque.criterionLabel}
             </span>
-            <h4 className="display text-3xl md:text-4xl mt-2 mb-3 text-white">
-              {pillar.t}
-            </h4>
-            <p className="text-[var(--cream)]/85 text-sm leading-relaxed">
-              {pillar.d}
-            </p>
+            <h4 className="display text-3xl md:text-4xl mt-2 mb-3 text-white">{pillar.t}</h4>
+            <p className="text-[var(--cream)]/85 text-sm leading-relaxed">{pillar.d}</p>
           </div>
 
           <div className="border-t border-white/10 pt-4">
             <span className="eyebrow text-[var(--cream)]/60 text-[9px] uppercase tracking-wider font-semibold">
-              Por qué importa
+              {t.enfoque.whyItMatters}
             </span>
             <p className="text-[var(--cream)]/75 text-xs mt-2 leading-relaxed italic">
               "{pillar.foundation}"
@@ -403,7 +394,7 @@ function DetailsContent({ pillar }: { pillar: Pillar }) {
       <div className="grid md:grid-cols-12 gap-6 border-t border-white/10 pt-6 mt-8 items-end">
         <div className="md:col-span-7">
           <span className="eyebrow text-[var(--clay-light)] text-[9px] uppercase tracking-wider font-semibold">
-            Cómo lo aplico
+            {t.enfoque.howIApply}
           </span>
           <p className="text-[var(--cream)]/90 text-xs mt-2 leading-relaxed">
             {pillar.application}
@@ -411,7 +402,7 @@ function DetailsContent({ pillar }: { pillar: Pillar }) {
         </div>
         <div className="md:col-span-5 bg-black/20 p-4 rounded-xl border border-white/5 text-left">
           <span className="eyebrow text-[var(--cream)]/60 text-[8px] uppercase tracking-wider font-semibold block mb-1">
-            Decisión clave
+            {t.enfoque.keyDecision}
           </span>
           <p className="text-[10px] text-[var(--cream)]/80 italic leading-relaxed">
             "{pillar.decision}"

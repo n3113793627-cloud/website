@@ -1,8 +1,11 @@
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { useRef } from "react";
 import heroVideo from "@/assets/mp_.mp4";
+import { useLanguage } from "../../context/LanguageContext";
+import { CvDownloadMenu } from "./CvDownloadMenu";
 
 export function Hero() {
+  const { language, t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
 
@@ -57,19 +60,35 @@ export function Hero() {
         >
           <div className="flex items-center gap-3 mb-6">
             <span className="h-px w-12 bg-[var(--cream)]/70" />
-            <span className="eyebrow text-[var(--cream)]/90">PORTAFOLIO · 2026</span>
+            <span className="eyebrow text-[var(--cream)]/90">{t.hero.portfolio}</span>
           </div>
           <h1 className="hero-title display text-[var(--cream)]">
-            Arquitectura que{" "}
-            <span className="hero-accent italic text-[var(--accent-on-dark)]">cuida,</span>{" "}
-            <br className="hero-desktop-break" />
-            diseño que conecta.
+            {language === "es" && (
+              <>
+                Arquitectura que{" "}
+                <span className="hero-accent italic text-[var(--accent-on-dark)]">cuida,</span>{" "}
+                <br className="hero-desktop-break" />
+                diseño que conecta.
+              </>
+            )}
+            {language === "pt" && (
+              <>
+                Arquitetura que{" "}
+                <span className="hero-accent italic text-[var(--accent-on-dark)]">acolhe,</span>{" "}
+                <br className="hero-desktop-break" />
+                design que conecta.
+              </>
+            )}
+            {language === "en" && (
+              <>
+                Architecture that{" "}
+                <span className="hero-accent italic text-[var(--accent-on-dark)]">cares,</span>{" "}
+                <br className="hero-desktop-break" />
+                design that connects.
+              </>
+            )}
           </h1>
-          <p className="hero-paragraph text-[var(--cream)]/90">
-            Arquitecta y diseñadora de interiores con experiencia en documentación técnica, modelado
-            3D y coordinación interdisciplinaria. Trabajo con AutoCAD, Revit y SketchUp, con
-            especial interés en cómo el espacio influye en el bienestar.
-          </p>
+          <p className="hero-paragraph text-[var(--cream)]/90">{t.hero.description}</p>
           <div className="hero-buttons">
             <a
               href="#proyectos"
@@ -80,16 +99,12 @@ export function Hero() {
               }}
               className="inline-flex items-center justify-center text-[0.7rem] tracking-[0.2em] font-semibold uppercase px-8 py-4 bg-[var(--cream)] text-[var(--ink)] hover:bg-[#EFA07F] hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EFA07F] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ink)] transition-all duration-300 rounded-full min-h-[44px] min-w-[150px] cursor-pointer"
             >
-              VER PROYECTOS
+              {t.hero.viewProjects}
             </a>
-            <a
-              href="/documents/CV_Natalia_Ramirez_Diaz_ES.pdf"
-              download="CV_Natalia_Ramirez_Diaz_ES.pdf"
-              aria-label="Descargar currículum de Natalia Ramírez Díaz en PDF"
+            <CvDownloadMenu
+              align="left"
               className="inline-flex items-center justify-center text-[0.7rem] tracking-[0.2em] font-semibold uppercase px-8 py-4 border border-[var(--cream)]/40 text-[var(--cream)] hover:bg-[var(--cream)] hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EFA07F] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ink)] transition-all duration-300 rounded-full min-h-[44px] min-w-[150px] cursor-pointer"
-            >
-              DESCARGAR CV
-            </a>
+            />
           </div>
         </motion.div>
       </div>
@@ -106,7 +121,7 @@ export function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8, duration: 0.6, ease: "easeOut" }}
       >
-        ↓ EXPLORAR PROYECTOS
+        {t.hero.exploreProjects}
       </motion.a>
     </section>
   );

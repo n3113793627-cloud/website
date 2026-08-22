@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "../../context/LanguageContext";
 
 // --- ARCHITECTURAL PDFS ---
 import ar103Pdf from "@/assets/AR103.pdf";
@@ -39,138 +40,128 @@ interface Plano {
   previewImage: string;
 }
 
-const planosData: Plano[] = [
-  // --- ARQUITECTURA ---
-  {
-    id: "plano-ar103",
-    code: "AR-103",
-    title: "Planta Arquitectónica General",
-    category: "arquitectura",
-    categoryLabel: "Arquitectura",
-    description:
-      "Distribución de muros, accesos, zonificación de flujos y modulación del espacio para optimizar la luz natural.",
-    pdfUrl: ar103Pdf,
-    previewImage: imgFloorplan,
-  },
-  {
-    id: "plano-ar201",
-    code: "AR-201",
-    title: "Fachadas y Cortes Generales",
-    category: "arquitectura",
-    categoryLabel: "Arquitectura",
-    description:
-      "Secciones transversales que detallan las alturas, la relación con el terreno y la estrategia de ventilación cruzada.",
-    pdfUrl: ar201Pdf,
-    previewImage: imgSanAndres1,
-  },
-  {
-    id: "plano-ar301",
-    code: "AR-301",
-    title: "Detalles de Carpintería y Mobiliario",
-    category: "arquitectura",
-    categoryLabel: "Arquitectura",
-    description:
-      "Plano técnico detallado para la fabricación del mobiliario integrado y ensambles de carpintería fija.",
-    pdfUrl: ar301Pdf,
-    previewImage: imgSanAndres2,
-  },
-  {
-    id: "plano-ar302",
-    code: "AR-302",
-    title: "Especificación de Acabados y Cielorrasos",
-    category: "arquitectura",
-    categoryLabel: "Arquitectura",
-    description:
-      "Distribución de puntos de iluminación bio-compatible, selección de texturas mate y cielorrasos acústicos.",
-    pdfUrl: ar302Pdf,
-    previewImage: imgSanAndres3,
-  },
-
-  // --- ESTRUCTURAS ---
-  {
-    id: "plano-es604",
-    code: "ES-604",
-    title: "Cimentación y Vigas de Amarre",
-    category: "estructuras",
-    categoryLabel: "Estructuras",
-    description:
-      "Plano estructural de cimentación, zapatas, vigas de amarre y especificaciones de concreto reforzado.",
-    pdfUrl: es604Pdf,
-    previewImage: imgSanAndres4,
-  },
-  {
-    id: "plano-es606",
-    code: "ES-606",
-    title: "Pórticos Estructurales y Refuerzos",
-    category: "estructuras",
-    categoryLabel: "Estructuras",
-    description:
-      "Detalle de pórticos estructurales de carga, armadura de refuerzo y acero de alta resistencia.",
-    pdfUrl: es606Pdf,
-    previewImage: imgSanAndres5,
-  },
-  {
-    id: "plano-es609",
-    code: "ES-609",
-    title: "Detalles de Vigas y Nudos Constructivos",
-    category: "estructuras",
-    categoryLabel: "Estructuras",
-    description:
-      "Detalles y despieces de vigas principales, estribos y encuentros de nudos estructurales.",
-    pdfUrl: es609Pdf,
-    previewImage: imgSanAndres6,
-  },
-  {
-    id: "plano-es617",
-    code: "ES-617",
-    title: "Estructura y Modulación de Entrepiso / Cubierta",
-    category: "estructuras",
-    categoryLabel: "Estructuras",
-    description:
-      "Plano de apoyos estructurales, viguetas de madera de soporte y detalles de anclajes de cubierta.",
-    pdfUrl: es617Pdf,
-    previewImage: imgCasinoProcess,
-  },
-
-  // --- INSTALACIONES ---
-  {
-    id: "plano-el804",
-    code: "EL-804",
-    title: "Red de Tomacorrientes y Datos",
-    category: "instalaciones",
-    categoryLabel: "Instalaciones",
-    description:
-      "Plano de canalizaciones eléctricas de fuerza, tomas reguladas y distribución de red de datos estructurales.",
-    pdfUrl: el804Pdf,
-    previewImage: imgFloorplan,
-  },
-  {
-    id: "plano-el805",
-    code: "EL-805",
-    title: "Distribución de Alumbrado e Iluminación",
-    category: "instalaciones",
-    categoryLabel: "Instalaciones",
-    description:
-      "Zonificación de circuitos de iluminación, control de encendido y diseño lumínico bio-compatible y terapéutico.",
-    pdfUrl: el805Pdf,
-    previewImage: imgSanAndres1,
-  },
-  {
-    id: "plano-el806",
-    code: "EL-806",
-    title: "Diagrama Unifilar y Cuadro de Cargas",
-    category: "instalaciones",
-    categoryLabel: "Instalaciones",
-    description:
-      "Esquema unifilar del tablero de distribución eléctrica, balance de fases y especificaciones de cuadros de carga.",
-    pdfUrl: el806Pdf,
-    previewImage: imgSanAndres6,
-  },
-];
-
 export function TechnicalDrawings() {
+  const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<string>("todos");
   const [selectedPlano, setSelectedPlano] = useState<Plano | null>(null);
+
+  const planosData: Plano[] = [
+    // --- ARQUITECTURA ---
+    {
+      id: "plano-ar103",
+      code: "AR-103",
+      title: t.drawings.planos.ar103.title,
+      category: "arquitectura",
+      categoryLabel: t.drawings.filters.arquitectura,
+      description: t.drawings.planos.ar103.description,
+      pdfUrl: ar103Pdf,
+      previewImage: imgFloorplan,
+    },
+    {
+      id: "plano-ar201",
+      code: "AR-201",
+      title: t.drawings.planos.ar201.title,
+      category: "arquitectura",
+      categoryLabel: t.drawings.filters.arquitectura,
+      description: t.drawings.planos.ar201.description,
+      pdfUrl: ar201Pdf,
+      previewImage: imgSanAndres1,
+    },
+    {
+      id: "plano-ar301",
+      code: "AR-301",
+      title: t.drawings.planos.ar301.title,
+      category: "arquitectura",
+      categoryLabel: t.drawings.filters.arquitectura,
+      description: t.drawings.planos.ar301.description,
+      pdfUrl: ar301Pdf,
+      previewImage: imgSanAndres2,
+    },
+    {
+      id: "plano-ar302",
+      code: "AR-302",
+      title: t.drawings.planos.ar302.title,
+      category: "arquitectura",
+      categoryLabel: t.drawings.filters.arquitectura,
+      description: t.drawings.planos.ar302.description,
+      pdfUrl: ar302Pdf,
+      previewImage: imgSanAndres3,
+    },
+
+    // --- ESTRUCTURAS ---
+    {
+      id: "plano-es604",
+      code: "ES-604",
+      title: t.drawings.planos.es604.title,
+      category: "estructuras",
+      categoryLabel: t.drawings.filters.estructuras,
+      description: t.drawings.planos.es604.description,
+      pdfUrl: es604Pdf,
+      previewImage: imgSanAndres4,
+    },
+    {
+      id: "plano-es606",
+      code: "ES-606",
+      title: t.drawings.planos.es606.title,
+      category: "estructuras",
+      categoryLabel: t.drawings.filters.estructuras,
+      description: t.drawings.planos.es606.description,
+      pdfUrl: es606Pdf,
+      previewImage: imgSanAndres5,
+    },
+    {
+      id: "plano-es609",
+      code: "ES-609",
+      title: t.drawings.planos.es609.title,
+      category: "estructuras",
+      categoryLabel: t.drawings.filters.estructuras,
+      description: t.drawings.planos.es609.description,
+      pdfUrl: es609Pdf,
+      previewImage: imgSanAndres6,
+    },
+    {
+      id: "plano-es617",
+      code: "ES-617",
+      title: t.drawings.planos.es617.title,
+      category: "estructuras",
+      categoryLabel: t.drawings.filters.estructuras,
+      description: t.drawings.planos.es617.description,
+      pdfUrl: es617Pdf,
+      previewImage: imgCasinoProcess,
+    },
+
+    // --- INSTALACIONES ---
+    {
+      id: "plano-el804",
+      code: "EL-804",
+      title: t.drawings.planos.el804.title,
+      category: "instalaciones",
+      categoryLabel: t.drawings.filters.instalaciones,
+      description: t.drawings.planos.el804.description,
+      pdfUrl: el804Pdf,
+      previewImage: imgFloorplan,
+    },
+    {
+      id: "plano-el805",
+      code: "EL-805",
+      title: t.drawings.planos.el805.title,
+      category: "instalaciones",
+      categoryLabel: t.drawings.filters.instalaciones,
+      description: t.drawings.planos.el805.description,
+      pdfUrl: el805Pdf,
+      previewImage: imgSanAndres1,
+    },
+    {
+      id: "plano-el806",
+      code: "EL-806",
+      title: t.drawings.planos.el806.title,
+      category: "instalaciones",
+      categoryLabel: t.drawings.filters.instalaciones,
+      description: t.drawings.planos.el806.description,
+      pdfUrl: el806Pdf,
+      previewImage: imgSanAndres6,
+    },
+  ];
 
   const filteredPlanos = planosData.filter(
     (plano) => activeCategory === "todos" || plano.category === activeCategory,
@@ -180,29 +171,30 @@ export function TechnicalDrawings() {
     <section className="portfolio-planos relative overflow-hidden" id="planos-tecnicos">
       <div className="container mx-auto px-4 max-w-[1400px]">
         <div className="max-w-3xl mb-16">
-          <p className="eyebrow text-[var(--clay-light)] mb-4">— Rigor Técnico</p>
+          <p className="eyebrow text-[var(--clay-light)] mb-4">{t.drawings.label}</p>
           <h2 className="display text-5xl md:text-7xl text-white">
-            Planos y detalle:
+            {t.drawings.title1}
             <br />
-            Mi trabajo <em className="italic text-[var(--clay-light)]">técnico</em>.
+            {t.drawings.title1.includes("Planos") ? "Mi trabajo " : "Meu trabalho "}
+            <em className="italic text-[var(--clay-light)]">{t.drawings.titleItalic}</em>
+            {t.drawings.title2}
           </h2>
           <p className="text-[var(--cream)]/75 mt-6 text-sm md:text-base max-w-xl leading-relaxed">
-            Aquí comparto una selección de los últimos planos técnicos de distribución, estructuras
-            e instalaciones en los que he trabajado recientemente.
+            {t.drawings.description}
           </p>
         </div>
 
         {/* Filtros Modernos */}
         <div className="filters flex justify-center gap-4 flex-wrap mb-10">
           {[
-            { id: "todos", label: "Todos" },
-            { id: "arquitectura", label: "Arquitectura" },
-            { id: "estructuras", label: "Estructuras" },
-            { id: "instalaciones", label: "Instalaciones" },
+            { id: "todos", label: t.drawings.filters.todos },
+            { id: "arquitectura", label: t.drawings.filters.arquitectura },
+            { id: "estructuras", label: t.drawings.filters.estructuras },
+            { id: "instalaciones", label: t.drawings.filters.instalaciones },
           ].map((cat) => (
             <button
               key={cat.id}
-              className={`btn-filter ${activeCategory === cat.id ? "active" : ""}`}
+              className={`btn-filter ${activeCategory === cat.id ? "active" : ""} cursor-pointer`}
               onClick={() => setActiveCategory(cat.id)}
             >
               {cat.label}
@@ -245,7 +237,7 @@ export function TechnicalDrawings() {
                     </p>
                   </div>
                   <div className="flex items-center gap-2 text-xs font-mono text-[var(--clay-light)] uppercase tracking-wider group-hover:text-white transition-colors mt-auto">
-                    <span>Visualizar plano →</span>
+                    <span>{t.drawings.viewDrawing}</span>
                   </div>
                 </motion.div>
               ))
@@ -255,7 +247,7 @@ export function TechnicalDrawings() {
                 animate={{ opacity: 1 }}
                 className="col-span-full text-center py-16 text-[var(--cream)]/50 font-mono text-sm"
               >
-                Próximamente planos para esta categoría.
+                {t.drawings.comingSoon}
               </motion.div>
             )}
           </AnimatePresence>
@@ -270,14 +262,14 @@ export function TechnicalDrawings() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 md:p-8"
+            className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 md:p-8 cursor-zoom-out"
             onClick={() => setSelectedPlano(null)}
           >
             {/* Botón de cierre */}
             <button
-              className="absolute top-6 right-6 text-white bg-black/50 hover:bg-black/80 transition-colors w-12 h-12 rounded-full flex items-center justify-center text-3xl font-mono shadow-2xl z-[120]"
+              className="absolute top-6 right-6 text-white bg-black/50 hover:bg-black/80 transition-colors w-12 h-12 rounded-full flex items-center justify-center text-3xl font-mono shadow-2xl z-[120] cursor-pointer"
               onClick={() => setSelectedPlano(null)}
-              aria-label="Cerrar"
+              aria-label={t.drawings.close}
             >
               ×
             </button>
@@ -295,7 +287,8 @@ export function TechnicalDrawings() {
               <div className="p-5 border-b border-white/10 flex flex-wrap gap-4 items-center justify-between bg-[#1b1715]">
                 <div>
                   <span className="text-xs font-mono text-[var(--clay-light)] font-bold tracking-wider uppercase">
-                    Visor de Plano Técnico · {selectedPlano.code}
+                    {t.drawings.viewerTitle}
+                    {selectedPlano.code}
                   </span>
                   <h3 className="text-xl font-display text-white mt-1">{selectedPlano.title}</h3>
                 </div>
@@ -321,7 +314,7 @@ export function TechnicalDrawings() {
                       <path d="M10 14 21 3" />
                       <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                     </svg>
-                    <span>Abrir PDF Completo</span>
+                    <span>{t.drawings.openPdf}</span>
                   </a>
                 </div>
               </div>
@@ -337,8 +330,7 @@ export function TechnicalDrawings() {
 
               {/* Pie del visor */}
               <div className="p-4 bg-[#1b1715] border-t border-white/10 text-center text-xs text-[var(--cream)]/65 font-mono">
-                Puedes hacer zoom, imprimir o guardar el plano utilizando los controles nativos del
-                visor PDF.
+                {t.drawings.viewerTip}
               </div>
             </motion.div>
           </motion.div>
