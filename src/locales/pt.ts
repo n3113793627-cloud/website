@@ -366,18 +366,21 @@ export const pt = {
         alcance: "Escopo",
         alcanceVal: "Design espacial e de mobiliário",
       },
-      videoTitle: "Registro conceitual animado",
+      videoTag: "TRÍPODE · VÍDEO CONCEITUAL",
+      videoTitle: "O sistema em movimento",
       videoDesc:
-        "O sistema se origina a partir de três ações cotidianas e essenciais da moradia: descansar, trabalhar e compartilhar. Essas funções se conectam por meio de uma única estrutura que otimiza o espaço e unifica a linguagem formal.",
-      videoCaption:
-        "Descansar · Trabalhar · Compartilhar — sequência conceitual do sistema TRÍPODE",
+        "Uma breve sequência mostra como o TRÍPODE articula descanso, trabalho e convivência em uma única estrutura.",
+      videoCaption: "Animação conceitual · 10 s",
       videoAria: "Vídeo conceitual do sistema TRÍPODE",
       videoBtnAria: "Reproduzir vídeo conceitual de TRÍPODE",
-      systemTitle: "O sistema sobre o objeto",
+      systemTitle: "Do objeto ao sistema",
       systemDesc:
-        "Em vez de conceber o mobiliário como uma soma de móveis independentes que fragmentam o apartamento, o TRÍPODE opera como um sistema unificado. Um único volume regula a circulação e se torna o suporte para as atividades diárias.",
-      sheetExpand: "AMPLIAR PRANCHA",
-      sheetAlt: "TRÍPODE como sistema arquitetônico unificado",
+        "O TRÍPODE não é concebido como uma soma de móveis independentes, mas como uma estrutura única que organiza o espaço, articula os percursos e oferece suporte a diferentes atividades cotidianas.",
+      sheetTag: "Prancha-síntese · Sistema TRÍPODE",
+      sheetBtn: "Ampliar prancha",
+      sheetLangWarning:
+        "Prancha original do projeto em espanhol. A síntese do conteúdo está disponível nesta página em português.",
+      sheetAlt: "Prancha-síntese do sistema de mobiliário arquitetônico TRÍPODE.",
       trans1Title: "Transformação e ordenação espacial",
       trans1Sub: "— Ângulo 01: Reconfiguração do Núcleo",
       trans1Desc:

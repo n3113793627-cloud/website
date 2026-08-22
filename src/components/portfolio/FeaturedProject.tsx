@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { useLanguage } from "../../context/LanguageContext";
 import aptoCerezo from "@/assets/apto-cerezo.png";
 import detailImg from "@/assets/project-detail-1.jpg";
@@ -408,6 +409,8 @@ function TripodeVideoPlayer() {
   const [posterFailed, setPosterFailed] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
   const [showPlayButton, setShowPlayButton] = useState(true);
+  const [hasAudio, setHasAudio] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
@@ -439,7 +442,7 @@ function TripodeVideoPlayer() {
         }
       },
       {
-        threshold: 0.5,
+        threshold: 0.3,
       },
     );
 
@@ -452,20 +455,46 @@ function TripodeVideoPlayer() {
     };
   }, [shouldReduceMotion]);
 
-  const handlePlayClick = () => {
+  // Detect whether the video file actually contains an audio track
+  const handleLoadedMetadata = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    video
-      .play()
-      .then(() => {
-        setIsPlaying(true);
-        setShowPlayButton(false);
-        setHasStarted(true);
-      })
-      .catch((err) => {
-        console.error("Play failed:", err);
-      });
+    interface ExtendedHTMLVideoElement {
+      audioTracks?: { length: number };
+      webkitAudioDecodedByteCount?: number;
+      mozHasAudio?: boolean;
+    }
+    const extVideo = video as unknown as ExtendedHTMLVideoElement;
+    const hasAudioTrack = !!extVideo.audioTracks && extVideo.audioTracks.length > 0;
+    const hasWebkitAudio =
+      typeof extVideo.webkitAudioDecodedByteCount === "number" &&
+      extVideo.webkitAudioDecodedByteCount > 0;
+    const hasMozAudio = !!extVideo.mozHasAudio;
+
+    if (hasAudioTrack || hasWebkitAudio || hasMozAudio) {
+      setHasAudio(true);
+    }
+  };
+
+  const handlePlayToggle = () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isPlaying) {
+      video.pause();
+      setIsPlaying(false);
+    } else {
+      video
+        .play()
+        .then(() => {
+          setIsPlaying(true);
+          setHasStarted(true);
+        })
+        .catch((err) => {
+          console.error("Play failed:", err);
+        });
+    }
   };
 
   const handleVideoPlay = () => {
@@ -481,12 +510,20 @@ function TripodeVideoPlayer() {
 
   const handleVideoError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
     setHasError(true);
-    console.error("Error loading video from path: /media/tripode/tripode-conceptual.mp4", e);
+    console.error("Error loading video from path: /media/tripode-concepto.mp4", e);
+  };
+
+  const handleVolumeToggle = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = !video.muted;
+    setIsMuted(video.muted);
   };
 
   if (hasError) {
     return (
-      <div className="flex flex-col items-center justify-center p-6 bg-[#120e0c] border border-[var(--primary)]/20 rounded-2xl w-full max-w-[1280px] mx-auto text-center space-y-4 min-h-[220px]">
+      <div className="flex flex-col items-center justify-center p-6 bg-[#120e0c]/60 border border-[var(--primary)]/20 rounded-2xl w-full text-center space-y-4 min-h-[220px]">
         <p className="text-[var(--cream)]/90 font-medium">El video no pudo cargarse.</p>
         <button
           onClick={() => {
@@ -511,54 +548,115 @@ function TripodeVideoPlayer() {
   return (
     <div
       ref={containerRef}
-      className="relative mx-auto w-full max-w-[1280px] rounded-2xl border border-[var(--primary)]/20 bg-[#120e0c] overflow-hidden shadow-2xl flex items-center justify-center"
-      style={{
-        aspectRatio: "1/1",
-        maxHeight: "72svh",
-      }}
+      className="relative w-full rounded-2xl border border-white/5 bg-[#120e0c]/40 overflow-hidden shadow-md flex items-center justify-center group"
     >
       <video
         ref={videoRef}
-        src="/media/tripode/tripode-conceptual.mp4"
-        muted
+        src="/media/tripode-concepto.mp4"
+        muted={isMuted}
         playsInline
         loop
         preload="metadata"
-        controls
         aria-label={t.projects.tripode.videoAria}
         onError={handleVideoError}
         onPlay={handleVideoPlay}
         onPause={handleVideoPause}
-        className="w-full h-full object-contain max-h-[72svh] z-0"
+        onLoadedMetadata={handleLoadedMetadata}
+        className="w-full h-auto block object-contain rounded-2xl z-0"
       />
 
       {!hasStarted && !posterFailed && (
         <img
-          src="/media/tripode/tripode-poster.jpg"
+          src="/media/tripode-poster.jpg"
           onError={() => setPosterFailed(true)}
           alt=""
-          className="absolute inset-0 w-full h-full object-contain z-10 pointer-events-none"
+          className="absolute inset-0 w-full h-full object-contain z-10 pointer-events-none rounded-2xl"
         />
       )}
 
-      {showPlayButton && !isPlaying && (
+      {/* Center play icon overlay (when paused/stopped) */}
+      {!isPlaying && showPlayButton && (
         <button
-          onClick={handlePlayClick}
-          className="absolute w-16 h-16 rounded-full bg-[var(--primary)] hover:bg-[#EFA07F] text-white flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-105 border border-white/20 z-20 focus-visible:ring-4 focus-visible:ring-[#EFA07F] focus-visible:outline-none min-w-[44px] min-h-[44px] cursor-pointer"
-          aria-label={t.projects.tripode.videoBtnAria}
+          onClick={handlePlayToggle}
+          className="absolute w-14 h-14 rounded-full bg-black/60 hover:bg-black/85 text-white flex items-center justify-center shadow-lg transition-transform hover:scale-105 border border-white/10 z-20 focus-visible:ring-2 focus-visible:ring-[#EFA07F] focus-visible:outline-none min-w-[44px] min-h-[44px] cursor-pointer"
+          aria-label={isPlaying ? "Pausar video" : "Reproducir video"}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="20"
+            height="20"
             viewBox="0 0 24 24"
             fill="currentColor"
-            className="translate-x-0.5 text-white"
           >
             <path d="M8 5v14l11-7z" />
           </svg>
         </button>
       )}
+
+      {/* Action control bar on hover */}
+      <div className="absolute bottom-4 right-4 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+        {hasAudio && (
+          <button
+            onClick={handleVolumeToggle}
+            className="w-10 h-10 rounded-full bg-black/60 hover:bg-black/80 text-white border border-white/10 flex items-center justify-center transition-colors focus-visible:ring-2 focus-visible:ring-[#EFA07F] focus-visible:outline-none min-w-[44px] min-h-[44px] cursor-pointer"
+            aria-label={isMuted ? "Activar sonido" : "Silenciar"}
+          >
+            {isMuted ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M11 5 6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6" />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M11 5 6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14" />
+              </svg>
+            )}
+          </button>
+        )}
+
+        <button
+          onClick={handlePlayToggle}
+          className="w-10 h-10 rounded-full bg-black/60 hover:bg-black/80 text-white border border-white/10 flex items-center justify-center transition-colors focus-visible:ring-2 focus-visible:ring-[#EFA07F] focus-visible:outline-none min-w-[44px] min-h-[44px] cursor-pointer"
+          aria-label={isPlaying ? "Pausar" : "Reproducir"}
+        >
+          {isPlaying ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          )}
+        </button>
+      </div>
     </div>
   );
 }
@@ -570,6 +668,20 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
   const [lightboxIndex, setLightboxIndex] = useState<number>(0);
   const [zoomPercent, setZoomPercent] = useState<number>(100);
   const [activeHotspot, setActiveHotspot] = useState<HotspotData | null>(null);
+  const [boardSrc, setBoardSrc] = useState<string>(tripodeConcept);
+  const [isSheetLightboxOpen, setIsSheetLightboxOpen] = useState(false);
+
+  useEffect(() => {
+    const localizedPath = `/media/tripode-board-${language}.png`;
+    const img = new Image();
+    img.src = localizedPath;
+    img.onload = () => {
+      setBoardSrc(localizedPath);
+    };
+    img.onerror = () => {
+      setBoardSrc(tripodeConcept);
+    };
+  }, [language]);
 
   const lightboxContainerRef = useRef<HTMLDivElement>(null);
 
@@ -729,28 +841,36 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             </div>
           </div>
 
-          {/* 2. VIDEO CONCEPTUAL */}
-          <div className="space-y-6 py-12 md:py-16">
-            <div className="max-w-[850px] mx-auto text-left">
-              <h3 className="display text-2xl md:text-3xl text-white mb-4">
-                {t.projects.tripode.videoTitle}
-              </h3>
-              <p className="text-sm text-[var(--cream)]/75 leading-relaxed">
-                {t.projects.tripode.videoDesc}
-              </p>
-            </div>
-            <div className="mt-6 md:mt-8">
-              <TripodeVideoPlayer />
-              <p className="text-[10px] md:text-xs text-[var(--cream)]/50 italic text-center mt-4 tracking-wide">
-                {t.projects.tripode.videoCaption}
-              </p>
+          {/* 2. VIDEO CONCEPTUAL - Grid editorial de dos columnas */}
+          <div className="py-12 md:py-20 border-b border-[var(--cream)]/10">
+            <div className="max-w-[1400px] mx-auto px-6 md:px-10 grid md:grid-cols-12 gap-8 md:gap-16 items-center">
+              {/* Columna Izquierda: 35–40% del ancho (5 columnas) */}
+              <div className="md:col-span-5 space-y-5 text-left">
+                <span className="text-[10px] tracking-[0.2em] uppercase font-mono text-[var(--clay-light)] font-bold block">
+                  {t.projects.tripode.videoTag}
+                </span>
+                <h3 className="display text-3xl md:text-4xl text-white leading-tight">
+                  {t.projects.tripode.videoTitle}
+                </h3>
+                <p className="text-sm text-[var(--cream)]/75 leading-relaxed">
+                  {t.projects.tripode.videoDesc}
+                </p>
+                <div className="text-[10px] font-mono text-[var(--cream)]/40 uppercase tracking-widest pt-2 border-t border-white/5">
+                  {t.projects.tripode.videoCaption}
+                </div>
+              </div>
+
+              {/* Columna Derecha: 60–65% del ancho (7 columnas) */}
+              <div className="md:col-span-7 flex justify-center w-full">
+                <TripodeVideoPlayer />
+              </div>
             </div>
           </div>
 
           {/* 3. LÁMINA DEL SISTEMA */}
-          <div className="space-y-6">
-            <div className="max-w-3xl">
-              <h3 className="display text-2xl md:text-3xl text-white mb-2">
+          <div className="space-y-8 max-w-[1550px] mx-auto w-full pt-6">
+            <div className="max-w-2xl text-left space-y-4">
+              <h3 className="display text-3xl md:text-4xl text-white leading-tight">
                 {t.projects.tripode.systemTitle}
               </h3>
               <p className="text-sm text-[var(--cream)]/75 leading-relaxed">
@@ -758,33 +878,43 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
               </p>
             </div>
 
-            <div className="space-y-3">
-              <div className="relative w-full aspect-[4/3] md:aspect-[16/9] overflow-hidden bg-white rounded-xl border border-white/10 shadow-2xl flex items-center justify-center p-4">
-                <img
-                  src={tripodeConcept}
-                  alt={t.projects.tripode.sheetAlt}
-                  className="max-w-full max-h-full object-contain"
-                  loading="lazy"
-                />
+            <div className="space-y-4">
+              {/* Barra Editorial Superior */}
+              <div className="border-b border-white/10 pb-3 flex items-center justify-between gap-4">
+                <span className="text-[10px] md:text-xs font-mono uppercase tracking-widest text-[var(--cream)]/70">
+                  {t.projects.tripode.sheetTag}
+                </span>
                 <button
-                  onClick={() => {
-                    setLightboxGallery([
-                      tripodeConcept,
-                      tripode1Antes,
-                      tripode1Despues,
-                      tripode2Antes,
-                      tripode2Despues,
-                    ]);
-                    setLightboxIndex(0);
-                  }}
-                  className="absolute bottom-4 right-4 bg-black/85 hover:bg-black/95 text-white text-[10px] px-4 py-2.5 rounded-full flex items-center gap-1.5 shadow-lg backdrop-blur-sm transition-all duration-300 font-mono tracking-wider border border-white/10 cursor-pointer"
+                  type="button"
+                  onClick={() => setIsSheetLightboxOpen(true)}
+                  className="px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-full transition-all duration-300 font-mono text-[10px] tracking-wider border border-white/10 cursor-pointer min-h-[44px] flex items-center justify-center font-bold"
                 >
-                  {language === "en" ? "ENLARGE" : "AMPLIAR"} LÁMINA
+                  {t.projects.tripode.sheetBtn}
                 </button>
               </div>
-              <p className="text-xs text-[var(--cream)]/60 italic px-2">
-                {t.projects.tripode.sheetAlt}
-              </p>
+
+              {/* Aclaración de Idioma (sólo para PT y EN) */}
+              {t.projects.tripode.sheetLangWarning && (
+                <p className="text-[11px] text-[var(--cream)]/50 font-serif italic text-left -mt-2">
+                  {t.projects.tripode.sheetLangWarning}
+                </p>
+              )}
+
+              {/* Lámina con Marco Blanco Optimizado */}
+              <div
+                onClick={() => setIsSheetLightboxOpen(true)}
+                className="relative w-full bg-white rounded-2xl border border-white/10 shadow-lg p-1 md:p-1.5 cursor-zoom-in group overflow-hidden"
+              >
+                <img
+                  src={boardSrc}
+                  alt={t.projects.tripode.sheetAlt}
+                  className="w-full h-auto block object-contain rounded-xl transition-all duration-300 group-hover:opacity-95"
+                  loading="lazy"
+                />
+
+                {/* Visual hover tip */}
+                <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-xl" />
+              </div>
             </div>
           </div>
 
@@ -1758,6 +1888,154 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Lightbox Dedicado de la Lámina */}
+      <SheetLightbox
+        isOpen={isSheetLightboxOpen}
+        onClose={() => setIsSheetLightboxOpen(false)}
+        imageSrc={boardSrc}
+        imageAlt={t.projects.tripode.sheetAlt}
+      />
     </div>
+  );
+}
+
+interface SheetLightboxProps {
+  isOpen: boolean;
+  onClose: () => void;
+  imageSrc: string;
+  imageAlt: string;
+}
+
+function SheetLightbox({ isOpen, onClose, imageSrc, imageAlt }: SheetLightboxProps) {
+  const [zoom, setZoom] = useState(100);
+  const [isMounted, setIsMounted] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Lock page scrolling when open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  // Handle Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    if (isOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+
+  if (!isOpen || !isMounted) return null;
+
+  const handleZoomIn = () => setZoom((prev) => Math.min(300, prev + 25));
+  const handleZoomOut = () => setZoom((prev) => Math.max(50, prev - 25));
+  const handleZoomReset = () => setZoom(100);
+
+  return createPortal(
+    <div
+      className="fixed inset-0 z-[99999] bg-black/95 backdrop-blur-md flex flex-col justify-between p-4 md:p-6 select-none animate-in fade-in duration-200"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Image viewer"
+    >
+      {/* Top Header / Bar */}
+      <div className="flex items-center justify-between text-[var(--cream)]/80 text-xs font-mono pb-2 border-b border-white/10 z-30">
+        <span>{imageAlt}</span>
+        <button
+          onClick={onClose}
+          className="text-2xl hover:text-white font-bold transition-colors w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 cursor-pointer"
+          aria-label="Cerrar vista"
+        >
+          ×
+        </button>
+      </div>
+
+      {/* Main Container */}
+      <div
+        ref={containerRef}
+        onClick={onClose}
+        className="flex-1 w-full flex items-center justify-center overflow-auto p-4 md:p-8 cursor-zoom-out"
+      >
+        <div
+          className="flex items-center justify-center transition-all duration-200"
+          style={{
+            width: `${zoom}%`,
+            minWidth: zoom > 100 ? `${zoom}%` : "auto",
+            maxWidth: zoom <= 100 ? "100%" : "none",
+          }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <img
+            ref={imgRef}
+            src={imageSrc}
+            alt={imageAlt}
+            className={`max-w-full h-auto block object-contain rounded-lg shadow-2xl transition-all duration-200 select-none ${
+              zoom > 100 ? "cursor-grab active:cursor-grabbing" : "cursor-zoom-in"
+            }`}
+            onClick={zoom <= 100 ? handleZoomIn : undefined}
+          />
+        </div>
+      </div>
+
+      {/* Controls Footer */}
+      <div className="flex flex-wrap items-center justify-between gap-4 pt-3 border-t border-white/10 z-30">
+        {/* Zoom Controls */}
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleZoomOut}
+            disabled={zoom <= 50}
+            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 disabled:opacity-40 text-white flex items-center justify-center border border-white/10 transition-colors cursor-pointer min-h-[44px] min-w-[44px]"
+            aria-label="Disminuir zoom"
+          >
+            －
+          </button>
+          <span className="text-[10px] font-mono text-[var(--cream)] w-12 text-center">
+            {zoom}%
+          </span>
+          <button
+            onClick={handleZoomIn}
+            disabled={zoom >= 300}
+            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 disabled:opacity-40 text-white flex items-center justify-center border border-white/10 transition-colors cursor-pointer min-h-[44px] min-w-[44px]"
+            aria-label="Aumentar zoom"
+          >
+            ＋
+          </button>
+          <button
+            onClick={handleZoomReset}
+            className="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white text-[10px] font-mono border border-white/10 transition-colors cursor-pointer min-h-[44px] flex items-center justify-center"
+          >
+            100%
+          </button>
+        </div>
+
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="px-6 py-2 rounded-full bg-[var(--primary)] hover:bg-[#EFA07F] text-white hover:text-[var(--ink)] text-[10px] font-mono transition-colors font-bold cursor-pointer min-h-[44px] flex items-center justify-center"
+        >
+          CERRAR
+        </button>
+      </div>
+    </div>,
+    document.body,
   );
 }
