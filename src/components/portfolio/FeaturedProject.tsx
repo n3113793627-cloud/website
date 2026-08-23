@@ -277,7 +277,7 @@ function TransformationPair({
       </div>
 
       {/* Main Grid: stack on mobile (<900px), grid minmax(0, 1fr) 72px minmax(0, 1fr) on desktop */}
-      <div className="w-full max-w-[1550px] mx-auto flex flex-col min-[900px]:grid min-[900px]:grid-cols-[minmax(0,_1fr)_72px_minmax(0,_1fr)] min-[900px]:items-start gap-6 min-[900px]:gap-0">
+      <div className="w-full max-w-[1550px] mx-auto flex flex-col min-[900px]:grid min-[900px]:grid-cols-[minmax(0,_1fr)_88px_minmax(0,_1fr)] min-[900px]:items-start gap-6 min-[900px]:gap-0">
         {/* Card Left: Before */}
         <div className="w-full flex flex-col space-y-3">
           {/* Card Header outside */}
@@ -307,11 +307,11 @@ function TransformationPair({
         </div>
 
         {/* Connector: Arrow indicator */}
-        <div className="flex flex-col items-center justify-center w-full min-[900px]:h-full px-2 py-4 min-[900px]:py-0 select-none">
-          <span className="text-[8px] font-mono tracking-widest text-[#EFA07F] uppercase mb-2 font-bold whitespace-nowrap">
+        <div className="flex flex-col items-center justify-center w-full min-[900px]:self-stretch px-3 py-4 min-[900px]:py-0 select-none min-[900px]:w-[88px]">
+          <span className="text-[9px] font-mono tracking-[0.22em] text-[#ffc8b2] uppercase mb-3 font-bold whitespace-nowrap text-center">
             {labelTrans}
           </span>
-          <div className="relative flex items-center justify-center w-full min-[900px]:w-[72px]">
+          <div className="relative flex items-center justify-center w-full min-[900px]:w-full">
             {/* Line extending animation */}
             <motion.div
               className="absolute h-px bg-[#EFA07F]/20 left-0 right-0 hidden min-[900px]:block"
