@@ -391,7 +391,7 @@ export const es = {
       trans2Title: "Redefinición de los límites",
       trans2Sub: "— Ángulo 02: Transición Funcional",
       trans2Desc:
-        "De la interferencia visual a una transición limpia y fluida que se adapta al ritmo de vida.",
+        "De un ambiente fragmentado a una estructura continua que organiza trabajo, descanso, almacenamiento y privacidad.",
       cierreDesc1:
         "TRÍPODE no busca simplemente aumentar los metros cuadrados útiles de una vivienda compacta; busca ",
       cierreDescBold1: "aumentar radicalmente la calidad del espacio habitable",

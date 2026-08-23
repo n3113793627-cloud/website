@@ -22,10 +22,6 @@ import beachVideo from "@/assets/troque_a_primeira_cena_das_cab.mp4";
 
 // TRÍPODE project assets
 import tripodeConcept from "@/assets/TRÍPODE.png";
-import tripode1Antes from "@/assets/TRÍPODE (1)_antes.png";
-import tripode1Despues from "@/assets/TRÍPODE (1)_despues.png";
-import tripode2Antes from "@/assets/TRÍPODE (2)_antes.png";
-import tripode2Despues from "@/assets/TRÍPODE (2)_despues.png";
 import tripode1 from "@/assets/TRÍPODE (1).png";
 import tripode2 from "@/assets/TRÍPODE (2).png";
 
@@ -237,8 +233,6 @@ interface TransformationPairProps {
   description?: string;
   beforeImg: string;
   afterImg: string;
-  beforeLabel?: string;
-  afterLabel?: string;
   onOpenImage: (img: string) => void;
 }
 
@@ -248,86 +242,79 @@ function TransformationPair({
   description,
   beforeImg,
   afterImg,
-  beforeLabel,
-  afterLabel,
   onOpenImage,
 }: TransformationPairProps) {
-  const { language, t } = useLanguage();
+  const { language } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
-  const defBefore =
-    language === "es"
-      ? "Estado existente"
-      : language === "pt"
-        ? "Estado existente"
-        : "Existing state";
-  const defAfter =
-    language === "es"
-      ? "Propuesta TRÍPODE"
-      : language === "pt"
-        ? "Proposta TRÍPODE"
-        : "TRÍPODE Proposal";
-  const bLabel = beforeLabel || defBefore;
-  const aLabel = afterLabel || defAfter;
+
+  const labelBefore = language === "en" ? "01 · Existing condition" : "01 · Estado existente";
+  const labelAfter =
+    language === "pt"
+      ? "02 · Proposta TRÍPODE"
+      : language === "en"
+        ? "02 · TRÍPODE proposal"
+        : "02 · Propuesta TRÍPODE";
+
+  const labelTrans =
+    language === "pt" ? "TRANSFORMAÇÃO" : language === "en" ? "TRANSFORMATION" : "TRANSFORMACIÓN";
+
+  const labelEnlarge =
+    language === "pt" ? "Ampliar imagem" : language === "en" ? "Enlarge image" : "Ampliar imagen";
 
   return (
     <div className="space-y-8 pt-10 border-t border-[var(--cream)]/10">
       {/* Header and description outside */}
-      <div className="space-y-2">
+      <div className="space-y-3">
         <p className="eyebrow text-[var(--clay-light)] tracking-widest text-xs uppercase">
           {subtitle}
         </p>
         <h3 className="display text-3xl md:text-4xl text-white font-medium">{title}</h3>
         {description && (
-          <p className="text-sm text-[var(--cream)]/75 max-w-3xl font-sans mt-1">{description}</p>
+          <p className="text-sm text-[var(--cream)]/75 max-w-2xl font-sans mt-1 leading-relaxed">
+            {description}
+          </p>
         )}
       </div>
 
       {/* Main Grid: stack on mobile (<900px), grid minmax(0, 1fr) 72px minmax(0, 1fr) on desktop */}
-      <div className="w-full max-w-[1550px] mx-auto flex flex-col min-[900px]:grid min-[900px]:grid-cols-[1fr_72px_1fr] items-center gap-6 min-[900px]:gap-0">
+      <div className="w-full max-w-[1550px] mx-auto flex flex-col min-[900px]:grid min-[900px]:grid-cols-[minmax(0,_1fr)_72px_minmax(0,_1fr)] min-[900px]:items-start gap-6 min-[900px]:gap-0">
         {/* Card Left: Before */}
         <div className="w-full flex flex-col space-y-3">
           {/* Card Header outside */}
           <div className="flex items-baseline gap-2 font-mono">
-            <span className="text-xs text-[var(--cream)]/40">01</span>
             <span className="text-[10px] text-[var(--cream)]/60 uppercase tracking-wider font-semibold">
-              {beforeLabel}
+              {labelBefore}
             </span>
           </div>
           {/* Image Wrapper */}
           <button
             onClick={() => onOpenImage(beforeImg)}
-            className="w-full relative overflow-hidden rounded-xl border border-white/10 bg-black/20 flex items-center justify-center cursor-zoom-in group transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EFA07F] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ink)]"
-            aria-label={
-              language === "es"
-                ? `Ampliar ${bLabel}`
-                : language === "pt"
-                  ? `Ampliar ${bLabel}`
-                  : `Enlarge ${bLabel}`
-            }
+            className="w-full relative overflow-hidden rounded-xl border border-white/10 bg-[#120e0c]/40 flex items-start justify-center cursor-zoom-in group transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EFA07F] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ink)]"
+            aria-label={`${labelEnlarge}: ${labelBefore}`}
           >
             <img
               src={beforeImg}
-              alt={bLabel}
-              className="w-full h-auto max-h-[500px] object-contain rounded-xl transition-transform duration-500 group-hover:scale-[1.01]"
+              alt={labelBefore}
+              className="w-full h-auto block object-contain rounded-xl transition-all duration-300 group-hover:opacity-95"
               loading="lazy"
             />
             {/* Soft border styling */}
             <div className="absolute inset-0 rounded-xl border border-white/5 pointer-events-none" />
-            <div className="absolute bottom-3 right-3 bg-black/75 text-[var(--cream)] text-[9px] font-mono px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              {language === "en" ? "ENLARGE" : "AMPLIAR"}
+            <div className="absolute bottom-3 right-3 bg-black/75 text-[var(--cream)] text-[9px] font-mono px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-bold uppercase tracking-wider">
+              {labelEnlarge}
             </div>
           </button>
         </div>
 
         {/* Connector: Arrow indicator */}
         <div className="flex flex-col items-center justify-center w-full min-[900px]:h-full px-2 py-4 min-[900px]:py-0 select-none">
-          <span className="text-[8px] font-mono tracking-widest text-[#EFA07F] uppercase mb-2 font-bold">
-            TRANSFORMACIÓN
+          <span className="text-[8px] font-mono tracking-widest text-[#EFA07F] uppercase mb-2 font-bold whitespace-nowrap">
+            {labelTrans}
           </span>
           <div className="relative flex items-center justify-center w-full min-[900px]:w-[72px]">
             {/* Line extending animation */}
             <motion.div
-              className="absolute h-px bg-[#EFA07F]/30 left-0 right-0 hidden min-[900px]:block"
+              className="absolute h-px bg-[#EFA07F]/20 left-0 right-0 hidden min-[900px]:block"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
@@ -335,7 +322,7 @@ function TransformationPair({
             />
             {/* Line extending animation vertical for mobile */}
             <motion.div
-              className="absolute w-px bg-[#EFA07F]/30 top-0 bottom-0 min-[900px]:hidden"
+              className="absolute w-px bg-[#EFA07F]/20 top-0 bottom-0 min-[900px]:hidden"
               initial={{ scaleY: 0 }}
               whileInView={{ scaleY: 1 }}
               viewport={{ once: true }}
@@ -343,7 +330,7 @@ function TransformationPair({
             />
             {/* Circle and simple arrow */}
             <motion.div
-              className="relative z-10 w-11 h-11 rounded-full bg-[#1c1411] border border-[#EFA07F]/40 flex items-center justify-center text-[#EFA07F] font-bold text-base shadow-md"
+              className="relative z-10 w-9 h-9 rounded-full bg-[#1c1411] border border-[#EFA07F]/40 flex items-center justify-center text-[#EFA07F] text-sm shadow-md"
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
@@ -354,7 +341,6 @@ function TransformationPair({
               }}
               aria-hidden="true"
             >
-              {/* Desktop arrow right, mobile arrow down */}
               <span className="hidden min-[900px]:inline">→</span>
               <span className="min-[900px]:hidden">↓</span>
             </motion.div>
@@ -365,33 +351,26 @@ function TransformationPair({
         <div className="w-full flex flex-col space-y-3">
           {/* Card Header outside */}
           <div className="flex items-baseline gap-2 font-mono">
-            <span className="text-xs text-[#EFA07F]">02</span>
             <span className="text-[10px] text-[#EFA07F] uppercase tracking-wider font-semibold">
-              {afterLabel}
+              {labelAfter}
             </span>
           </div>
           {/* Image Wrapper */}
           <button
             onClick={() => onOpenImage(afterImg)}
-            className="w-full relative overflow-hidden rounded-xl border border-white/10 bg-black/20 flex items-center justify-center cursor-zoom-in group transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EFA07F] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ink)]"
-            aria-label={
-              language === "es"
-                ? `Ampliar ${aLabel}`
-                : language === "pt"
-                  ? `Ampliar ${aLabel}`
-                  : `Enlarge ${aLabel}`
-            }
+            className="w-full relative overflow-hidden rounded-xl border border-white/10 bg-[#120e0c]/40 flex items-start justify-center cursor-zoom-in group transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EFA07F] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ink)]"
+            aria-label={`${labelEnlarge}: ${labelAfter}`}
           >
             <img
               src={afterImg}
-              alt={aLabel}
-              className="w-full h-auto max-h-[500px] object-contain rounded-xl transition-transform duration-500 group-hover:scale-[1.01]"
+              alt={labelAfter}
+              className="w-full h-auto block object-contain rounded-xl transition-all duration-300 group-hover:opacity-95"
               loading="lazy"
             />
             {/* Soft border styling */}
             <div className="absolute inset-0 rounded-xl border border-white/5 pointer-events-none" />
-            <div className="absolute bottom-3 right-3 bg-black/75 text-[var(--cream)] text-[9px] font-mono px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              {language === "en" ? "ENLARGE" : "AMPLIAR"}
+            <div className="absolute bottom-3 right-3 bg-black/75 text-[var(--cream)] text-[9px] font-mono px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-bold uppercase tracking-wider">
+              {labelEnlarge}
             </div>
           </button>
         </div>
@@ -670,6 +649,8 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
   const [activeHotspot, setActiveHotspot] = useState<HotspotData | null>(null);
   const [boardSrc, setBoardSrc] = useState<string>(tripodeConcept);
   const [isSheetLightboxOpen, setIsSheetLightboxOpen] = useState(false);
+  const [lightboxImageSrc, setLightboxImageSrc] = useState<string | null>(null);
+  const [lightboxImageAlt, setLightboxImageAlt] = useState<string>("");
 
   useEffect(() => {
     const localizedPath = `/media/tripode-board-${language}.png`;
@@ -923,19 +904,11 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             title={t.projects.tripode.trans1Title}
             subtitle={t.projects.tripode.trans1Sub}
             description={t.projects.tripode.trans1Desc}
-            beforeImg={tripode1Antes}
-            afterImg={tripode1Despues}
-            beforeLabel="Estado existente"
-            afterLabel="Propuesta TRÍPODE"
+            beforeImg="/media/tripode-angle-01-before.jpg"
+            afterImg="/media/tripode-angle-01-after.jpg"
             onOpenImage={(img) => {
-              setLightboxGallery([
-                tripodeConcept,
-                tripode1Antes,
-                tripode1Despues,
-                tripode2Antes,
-                tripode2Despues,
-              ]);
-              setLightboxIndex(img === tripode1Antes ? 1 : 2);
+              setLightboxImageSrc(img);
+              setLightboxImageAlt(t.projects.tripode.trans1Title);
             }}
           />
 
@@ -944,19 +917,11 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             title={t.projects.tripode.trans2Title}
             subtitle={t.projects.tripode.trans2Sub}
             description={t.projects.tripode.trans2Desc}
-            beforeImg={tripode2Antes}
-            afterImg={tripode2Despues}
-            beforeLabel="Estado existente"
-            afterLabel="Propuesta TRÍPODE"
+            beforeImg="/media/tripode-angle-02-before.png"
+            afterImg="/media/tripode-angle-02-after.jpg"
             onOpenImage={(img) => {
-              setLightboxGallery([
-                tripodeConcept,
-                tripode1Antes,
-                tripode1Despues,
-                tripode2Antes,
-                tripode2Despues,
-              ]);
-              setLightboxIndex(img === tripode2Antes ? 3 : 4);
+              setLightboxImageSrc(img);
+              setLightboxImageAlt(t.projects.tripode.trans2Title);
             }}
           />
 
@@ -1895,6 +1860,14 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
         onClose={() => setIsSheetLightboxOpen(false)}
         imageSrc={boardSrc}
         imageAlt={t.projects.tripode.sheetAlt}
+      />
+
+      {/* Lightbox Genérico para las Imágenes del Díptico */}
+      <SheetLightbox
+        isOpen={lightboxImageSrc !== null}
+        onClose={() => setLightboxImageSrc(null)}
+        imageSrc={lightboxImageSrc || ""}
+        imageAlt={lightboxImageAlt}
       />
     </div>
   );

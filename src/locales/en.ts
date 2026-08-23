@@ -386,7 +386,7 @@ export const en = {
       trans2Title: "Redefining limits",
       trans2Sub: "— Angle 02: Functional Transition",
       trans2Desc:
-        "From visual interference to a clean and fluid transition that adapts to the rhythm of life.",
+        "From a fragmented interior to a continuous structure that organizes work, rest, storage, and privacy.",
       cierreDesc1:
         "TRÍPODE does not simply aim to increase the useful square meters of a compact home; it aims to ",
       cierreDescBold1: "radically increase the quality of the living space",
