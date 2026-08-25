@@ -14,75 +14,64 @@ export function Process() {
     <section
       id="proceso"
       ref={ref}
-      className="py-32 md:py-40 px-6 md:px-10 bg-[var(--cherry)] text-[var(--cream)]"
+      className="py-24 md:py-32 px-6 md:px-10 bg-[var(--cherry)] text-[var(--cream)] scroll-mt-28"
     >
       <div className="max-w-[1400px] mx-auto">
-        <div className="max-w-3xl mb-20">
-          <p className="eyebrow text-[var(--cream)]/80 mb-4">{t.process.label}</p>
-          <h2 className="display text-5xl md:text-7xl leading-[0.95]">
-            {t.process.title1}
-            <em className="italic">{t.process.titleItalic1}</em>
-            {t.process.title2}
-            <em className="italic text-[var(--cream)]">{t.process.titleItalic2}</em>
-            {t.process.title3}
+        {/* Header Section */}
+        <div className="max-w-3xl mb-12">
+          <p className="eyebrow text-[var(--cream)]/75 mb-3">{t.process.label}</p>
+          <h2 className="display text-3xl md:text-5xl font-bold leading-tight text-white max-w-2xl">
+            {t.process.title}
           </h2>
+          <p className="text-[var(--cream)]/85 text-base md:text-lg max-w-3xl mt-4 leading-relaxed font-sans">
+            {t.process.intro}
+          </p>
         </div>
 
-        {/* Desktop: horizontal timeline */}
-        <div className="hidden md:block">
-          <div className="relative mb-0">
-            {/* track */}
-            <div className="absolute top-2 left-0 right-0 h-px bg-[var(--cream)]/20" />
-            {/* animated fill */}
-            <motion.div
-              style={{ width: lineWidth }}
-              className="absolute top-2 left-0 h-px bg-[var(--clay)]"
-            />
-            <div className="grid grid-cols-4 gap-10 pt-10">
-              {steps.map((s, i) => (
+        {/* Timeline & Steps Grid */}
+        <div className="relative">
+          {/* Timeline track (only on desktop/large screens) */}
+          <div className="absolute top-2 left-0 right-0 h-px bg-[var(--cream)]/15 hidden lg:block" />
+          {/* Animated fill (only on desktop/large screens) */}
+          <motion.div
+            style={{ width: lineWidth }}
+            className="absolute top-2 left-0 h-px bg-[var(--clay-light)] hidden lg:block"
+          />
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 pt-4 lg:pt-10">
+            {steps.map((s, i) => (
+              <motion.div
+                key={s.n}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="relative pt-6 sm:pt-0 border-t border-[var(--cream)]/15 sm:border-t-0 first:border-t-0"
+              >
+                {/* dot (only on desktop/large screens) */}
                 <motion.div
-                  key={s.n}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: i * 0.12 }}
-                  className="relative"
-                >
-                  {/* dot */}
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.12, duration: 0.3, type: "spring" }}
-                    className="absolute -top-[2.35rem] left-0 w-2 h-2 rounded-full bg-[var(--clay)]"
-                  />
-                  <span className="display text-6xl text-[var(--cream)]/25 block mb-4">{s.n}</span>
-                  <h3 className="display text-3xl mb-3">{s.t}</h3>
-                  <p className="text-[var(--cream)]/90 leading-relaxed text-sm">{s.d}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
+                  transition={{ delay: i * 0.1, duration: 0.3, type: "spring" }}
+                  className="absolute -top-[2.35rem] left-0 w-2 h-2 rounded-full bg-[var(--clay-light)] hidden lg:block"
+                />
 
-        {/* Mobile: vertical list */}
-        <div className="md:hidden flex flex-col gap-14">
-          {steps.map((s, i) => (
-            <motion.div
-              key={s.n}
-              initial={{ opacity: 0, x: -24 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.08 }}
-              className="border-t border-[var(--cream)]/25 pt-6 flex gap-6"
-            >
-              <span className="display text-5xl text-[var(--cream)]/30">{s.n}</span>
-              <div>
-                <h3 className="display text-3xl mb-3">{s.t}</h3>
-                <p className="text-[var(--cream)]/80 leading-relaxed max-w-md">{s.d}</p>
-              </div>
-            </motion.div>
-          ))}
+                <div className="flex flex-col gap-2">
+                  {/* High contrast step numbers */}
+                  <span className="display text-4xl lg:text-5xl text-[var(--cream)]/40 font-bold font-mono leading-none">
+                    {s.n}
+                  </span>
+                  <h3 className="display text-xl lg:text-2xl text-white font-bold leading-tight mt-1">
+                    {s.t}
+                  </h3>
+                  <p className="text-[var(--cream)]/80 leading-relaxed text-sm font-sans mt-1">
+                    {s.d}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

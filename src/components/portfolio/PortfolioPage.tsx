@@ -14,7 +14,6 @@ const DesignPhilosophy = lazy(() =>
 const FeaturedProject = lazy(() =>
   import("./FeaturedProject").then((m) => ({ default: m.FeaturedProject })),
 );
-const BeforeAfter = lazy(() => import("./BeforeAfter").then((m) => ({ default: m.BeforeAfter })));
 const TechnicalDrawings = lazy(() =>
   import("./TechnicalDrawings").then((m) => ({
     default: m.TechnicalDrawings,
@@ -63,10 +62,6 @@ export function PortfolioPage() {
 
       <Suspense fallback={<div className="h-[1200px] bg-[var(--ink)] animate-pulse" />}>
         <FeaturedProject onInquire={handlePrefillMessage} />
-      </Suspense>
-
-      <Suspense fallback={<div className="h-[500px] bg-background animate-pulse" />}>
-        <BeforeAfter />
       </Suspense>
 
       <Process />
