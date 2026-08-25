@@ -5,14 +5,23 @@ import { useLanguage } from "../../context/LanguageContext";
 interface CvDownloadMenuProps {
   className?: string;
   align?: "left" | "right";
+  onOpenChange?: (open: boolean) => void;
 }
 
-export function CvDownloadMenu({ className = "", align = "right" }: CvDownloadMenuProps) {
+export function CvDownloadMenu({
+  className = "",
+  align = "right",
+  onOpenChange,
+}: CvDownloadMenuProps) {
   const { language } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const [isMounted, setIsMounted] = useState(false);
   const [coords, setCoords] = useState({ top: 0, left: 0 });
+
+  useEffect(() => {
+    onOpenChange?.(isOpen);
+  }, [isOpen, onOpenChange]);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);

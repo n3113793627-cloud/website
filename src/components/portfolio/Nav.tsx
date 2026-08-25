@@ -1,5 +1,5 @@
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "../../context/LanguageContext";
 import { CvDownloadMenu } from "./CvDownloadMenu";
 
@@ -12,6 +12,9 @@ export function Nav() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [isCvMenuOpen, setIsCvMenuOpen] = useState(false);
+  const [hasFocus, setHasFocus] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
 
   const links = [
     { href: "#about", label: t.nav.about },
@@ -41,25 +44,27 @@ export function Nav() {
     setLastScrollY(latest);
   });
 
-  const handleFocus = () => {
-    setIsVisible(true);
-  };
-
   return (
     <>
       <header
-        onFocus={handleFocus}
+        ref={headerRef}
+        onFocus={() => setHasFocus(true)}
+        onBlur={(e) => {
+          if (!headerRef.current?.contains(e.relatedTarget as Node)) {
+            setHasFocus(false);
+          }
+        }}
         className={`fixed inset-x-0 z-50 flex justify-center ${
           isScrolled ? "top-4 px-4" : "top-0 px-0"
-        } ${isVisible || open ? "translate-y-0" : "-translate-y-full"} ${
+        } ${isVisible || open || mobileLangOpen || isCvMenuOpen || hasFocus ? "translate-y-0" : "-translate-y-full"} ${
           prefersReducedMotion ? "" : "transition-all duration-500 ease-out"
         }`}
       >
         <div
           className={`flex items-center justify-between transition-all duration-500 ease-out ${
             isScrolled
-              ? "w-full max-w-5xl bg-[var(--cream)]/85 backdrop-blur-xl border border-black/5 shadow-[0_8px_30px_rgba(0,0,0,0.06)] rounded-full px-6 md:px-8 py-3"
-              : "w-full max-w-[1400px] bg-transparent px-6 md:px-10 py-6"
+              ? "w-full max-w-5xl bg-[var(--cream)]/85 backdrop-blur-xl border border-black/5 shadow-[0_8px_30px_rgba(0,0,0,0.06)] rounded-full px-6 md:px-8 py-2.5 md:py-3"
+              : "w-full max-w-[1400px] bg-transparent px-6 md:px-10 py-4 md:py-6"
           }`}
         >
           <a
@@ -133,6 +138,7 @@ export function Nav() {
           </div>
 
           <CvDownloadMenu
+            onOpenChange={setIsCvMenuOpen}
             align="right"
             className={`hidden md:inline-flex text-[0.65rem] tracking-[0.2em] uppercase px-5 py-2.5 rounded-full transition-all duration-300 ${
               isScrolled
@@ -209,6 +215,7 @@ export function Nav() {
                 className="self-start"
               >
                 <CvDownloadMenu
+                  onOpenChange={setIsCvMenuOpen}
                   align="left"
                   className="text-xs tracking-[0.2em] uppercase border border-foreground/30 px-5 py-3 hover:bg-foreground hover:text-background transition-colors rounded-full flex items-center justify-center gap-1.5 cursor-pointer min-h-[44px]"
                 />

@@ -436,27 +436,55 @@ export const es = {
       altKitchen: "Cocina",
       altBedroom: "Zona de descanso",
       desc1: '"Apto Cerezo" es un ejercicio de ',
-      descBold1: "neuroarquitectura aplicada a espacios compactos",
+      descBold1: "optimización de espacios compactos y mobiliario a medida",
       desc2:
-        ". Nace del desafío de optimizar un apartamento reducido, estructurando el espacio para disminuir la fatiga visual y favorecer la calma mental a través de un biombo central multifuncional que divide sin obstruir.",
+        ", enfocado en la organización espacial y la continuidad visual. Nace del desafío de reconfigurar un apartamento reducido para favorecer el bienestar y la funcionalidad diaria a través de un biombo central multifuncional que divide sin obstruir.",
       desc3:
-        "La elección de melamina de cerezo claro y texturas naturales fue estratégica: tonos y materialidades de baja saturación que reducen el cortisol en sangre, promoviendo el bienestar sensorial y respetando el ingreso de luz natural para regular los ritmos circadianos.",
+        "La elección de melamina de cerezo claro y texturas naturales aporta una materialidad cálida: tonos de baja saturación que promueven la calma visual, respetando el ingreso de luz natural y optimizando la distribución.",
       stats: [
-        { label: "Área", value: "68 m²" },
-        { label: "Duración", value: "4 meses" },
-        { label: "Piezas", value: "11 módulos" },
+        { label: "Tipología", value: "Vivienda compacta" },
+        { label: "Alcance", value: "Diseño interior integral" },
+        { label: "Desarrollo", value: "Mobiliario a medida" },
       ],
       rightDesc:
-        "El biombo central divisor actúa como regulador espacial y visual, permitiendo la reconfiguración del espacio según la hora del día y la necesidad de privacidad o integración de la usuaria.",
+        "El biombo central organiza la transición entre el área social, la oficina y el dormitorio, aportando privacidad sin cerrar completamente el espacio.",
       inquiryPrefill:
-        "Hola Natalia, estuve revisando tu portafolio y en especial el proyecto del Apto Cerezo. Me pareció excelente tu enfoque en neuroarquitectura para espacios reducidos. Me gustaría que nos pusiéramos en contacto para conversar sobre una oportunidad de colaboración.",
+        "Hola Natalia, estuve revisando tu portafolio y en especial el proyecto del Apto Cerezo. Me pareció excelente tu enfoque en optimización de espacios compactos y mobiliario a medida. Me gustaría que nos pusiéramos en contacto para conversar sobre una oportunidad de colaboración.",
       inquiryBtn: "¿Tienes un proyecto similar? →",
+      viewBoardBtn: "Ampliar lámina",
+      sheetLegend: "Lámina técnica original del proyecto",
+      galleryHeader: {
+        title: "ATMÓSFERA Y MATERIALIDAD",
+        subtitle: "Cuatro espacios, un mismo lenguaje",
+        description:
+          "La madera en tono cerezo conecta cocina, área social, oficina y dormitorio mediante una identidad cálida y continua.",
+      },
       metadata: [
-        { k: "Materiales", v: "Melamina cerezo, linos y texturas de baja saturación" },
-        { k: "Enfoque Neuro", v: "Regulación circadiana, fluidez visual y biophilic design" },
-        { k: "Pieza clave", v: "Biombo-biblioteca divisor flotante" },
-        { k: "Áreas", v: "Cocina · Sala · Zona social · Baño" },
+        {
+          k: "Criterios de Diseño",
+          v: "Continuidad visual, aprovechamiento de la luz natural y organización espacial.",
+        },
+        { k: "Pieza clave", v: "Biombo-biblioteca central multifuncional." },
+        { k: "Áreas", v: "Cocina · Área social · Oficina · Dormitorio." },
+        {
+          k: "Materiales",
+          v: "Melamina RH en tono cerezo claro, superficies neutras y texturas de baja saturación.",
+        },
       ],
+      gallery: {
+        kitchenTitle: "Cocina integrada",
+        kitchenDesc:
+          "Mobiliario a medida optimizado para el almacenamiento vertical, logrando continuidad material en melamina cerezo.",
+        socialTitle: "Biombo central",
+        socialDesc:
+          "Estructura multifuncional que organiza la transición entre zonas sin obstruir la luminosidad.",
+        officeTitle: "Oficina integrada",
+        officeDesc:
+          "Espacio de trabajo compacto con estanterías de piso a techo que maximizan la funcionalidad.",
+        bedroomTitle: "Dormitorio principal",
+        bedroomDesc:
+          "Habitación con armario de puertas espejadas para amplificar visualmente el espacio y la luz.",
+      },
     },
     orange: {
       tag: "Proyecto destacado · 03",

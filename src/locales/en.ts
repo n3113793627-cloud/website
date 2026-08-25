@@ -428,27 +428,55 @@ export const en = {
       altKitchen: "Kitchen",
       altBedroom: "Resting area",
       desc1: '"Apto Cerezo" is an exercise in ',
-      descBold1: "neuroarchitecture applied to compact spaces",
+      descBold1: "compact space optimization and custom furniture design",
       desc2:
-        ". It was born from the challenge of optimizing a small apartment, structuring the space to reduce visual fatigue and promote mental calm through a multifunctional central screen that divides without obstructing.",
+        ", focusing on spatial organization and visual continuity. It was born from the challenge of reconfiguring a small apartment to enhance well-being and daily functionality through a multifunctional central screen that divides without obstructing.",
       desc3:
-        "The choice of light cherry melamine and natural textures was strategic: low-saturation tones and materials that reduce cortisol levels, promoting sensory well-being and respecting natural light entry to regulate circadian rhythms.",
+        "The choice of light cherry melamine and natural textures provides a warm materiality: low-saturation tones that promote visual calm, respecting natural light entry while optimizing the layout.",
       stats: [
-        { label: "Area", value: "68 m²" },
-        { label: "Duration", value: "4 months" },
-        { label: "Pieces", value: "11 modules" },
+        { label: "Typology", value: "Compact living" },
+        { label: "Scope", value: "Comprehensive interior design" },
+        { label: "Development", value: "Custom furniture" },
       ],
       rightDesc:
-        "The central folding screen acts as a spatial and visual regulator, allowing the reconfiguration of the space according to the time of day and the user's need for privacy or integration.",
+        "The central screen organizes the transition between the social area, the home office, and the bedroom, providing privacy without completely closing the space.",
       inquiryPrefill:
-        "Hello Natalia, I was reviewing your portfolio and especially the Apto Cerezo project. I found your neuroarchitecture approach to small spaces excellent. I would like to get in touch to talk about a collaboration opportunity.",
+        "Hello Natalia, I was reviewing your portfolio and especially the Apto Cerezo project. I found your approach to compact space optimization and custom furniture excellent. I would like to get in touch to talk about a collaboration opportunity.",
       inquiryBtn: "Have a similar project? →",
+      viewBoardBtn: "View full board",
+      sheetLegend: "Original project presentation board · Spanish content",
+      galleryHeader: {
+        title: "ATMOSPHERE AND MATERIALITY",
+        subtitle: "Four spaces, one visual language",
+        description:
+          "Cherry-toned wood connects the kitchen, living area, home office, and bedroom through a warm, continuous visual identity.",
+      },
       metadata: [
-        { k: "Materials", v: "Cherry melamine, linens, and low saturation textures" },
-        { k: "Neuro Focus", v: "Circadian regulation, visual fluidity, and biophilic design" },
-        { k: "Key piece", v: "Floating bookcase-divider screen" },
-        { k: "Areas", v: "Kitchen · Living Room · Social Area · Bathroom" },
+        {
+          k: "Design Criteria",
+          v: "Visual continuity, natural light integration, and spatial organization.",
+        },
+        { k: "Key piece", v: "Multifunctional central partition-bookcase." },
+        { k: "Areas", v: "Kitchen · Social Area · Home Office · Bedroom." },
+        {
+          k: "Materials",
+          v: "Moisture-resistant (MR) melamine in light cherry tone, neutral surfaces, and low-saturation textures.",
+        },
       ],
+      gallery: {
+        kitchenTitle: "Integrated kitchen",
+        kitchenDesc:
+          "Custom furniture optimized for vertical storage, achieving material continuity in cherry melamine.",
+        socialTitle: "Central screen",
+        socialDesc:
+          "Multifunctional structure that organizes the transition between zones without obstructing natural light.",
+        officeTitle: "Integrated office",
+        officeDesc:
+          "Compact workspace featuring floor-to-ceiling shelving that maximizes functionality.",
+        bedroomTitle: "Master bedroom",
+        bedroomDesc:
+          "Bedroom with mirrored-door wardrobe to visually amplify the sense of space and light.",
+      },
     },
     orange: {
       tag: "Featured project · 03",

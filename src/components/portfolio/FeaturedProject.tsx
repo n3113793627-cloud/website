@@ -3,9 +3,10 @@ import { useRef, useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useLanguage } from "../../context/LanguageContext";
 import aptoCerezo from "@/assets/apto-cerezo.png";
-import detailImg from "@/assets/project-detail-1.jpg";
-import kitchenImg from "@/assets/project-kitchen.jpg";
-import bedroomImg from "@/assets/project-bedroom.jpg";
+import cerezoKitchen from "@/assets/cerezo-kitchen.jpg";
+import cerezoSocial from "@/assets/cerezo-social.jpg";
+import cerezoOffice from "@/assets/cerezo-office.jpg";
+import cerezoBedroom from "@/assets/cerezo-bedroom.jpg";
 import sanAndresRender from "@/assets/diseño.png";
 import sanAndresInfo1Part1 from "@/assets/san-andres-info-1-part1.png";
 import sanAndresInfo1Part2 from "@/assets/san-andres-info-1-part2.png";
@@ -999,128 +1000,171 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 md:gap-6 items-start">
-            {/* Left: main image (collage) with hotspots */}
-            <div className="relative overflow-hidden bg-[var(--cherry)] rounded-lg border border-[var(--cream)]/10 shadow-lg group">
-              <img
-                src={aptoCerezo}
-                alt="Apto Cerezo Plano y Collage"
-                className="w-full h-auto"
-                loading="lazy"
-              />
-
-              <Hotspot
-                x="25%"
-                y="75%"
-                onClick={() =>
-                  setActiveHotspot({
-                    project: t.projects.cerezo.title,
-                    title: t.projects.cerezo.hotspot1.title,
-                    decision: t.projects.cerezo.hotspot1.decision,
-                    rationale: t.projects.cerezo.hotspot1.rationale,
-                    pillar: t.projects.cerezo.hotspot1.pillar,
-                  })
-                }
-              />
-
-              <Hotspot
-                x="62%"
-                y="38%"
-                onClick={() =>
-                  setActiveHotspot({
-                    project: t.projects.cerezo.title,
-                    title: t.projects.cerezo.hotspot2.title,
-                    decision: t.projects.cerezo.hotspot2.decision,
-                    rationale: t.projects.cerezo.hotspot2.rationale,
-                    pillar: t.projects.cerezo.hotspot2.pillar,
-                  })
-                }
-              />
+          {/* Fila Introductoria: Textos descriptivos y Stats */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start border-b border-[var(--cream)]/10 pb-8">
+            <div className="lg:col-span-8 space-y-4">
+              <p className="text-[var(--cream)]/85 leading-relaxed">
+                {t.projects.cerezo.desc1}
+                <strong>{t.projects.cerezo.descBold1}</strong>
+                {t.projects.cerezo.desc2}
+              </p>
+              <p className="text-[var(--cream)]/70 leading-relaxed text-sm">
+                {t.projects.cerezo.desc3}
+              </p>
             </div>
-
-            {/* Right: sub-images grid (Detail, Kitchen, Bedroom) next to it */}
-            <div className="grid grid-cols-2 grid-rows-2 gap-2 min-h-[320px] md:min-h-[450px]">
-              <ParallaxImg
-                src={detailImg}
-                alt="Detalle carpintería"
-                speed={10}
-                className="col-span-2 row-span-1 h-full rounded"
-              />
-              <ParallaxImg
-                src={kitchenImg}
-                alt="Cocina"
-                speed={12}
-                className="col-span-1 row-span-1 h-full rounded"
-              />
-              <ParallaxImg
-                src={bedroomImg}
-                alt="Zona de descanso"
-                speed={8}
-                className="col-span-1 row-span-1 h-full rounded"
-              />
+            <div className="lg:col-span-4 grid grid-cols-3 gap-4 lg:border-l lg:border-[var(--cream)]/15 lg:pl-8">
+              {t.projects.cerezo.stats.map((item) => (
+                <div key={item.label}>
+                  <p className="text-[10px] text-[var(--cream)]/65 uppercase tracking-widest mb-1">
+                    {item.label}
+                  </p>
+                  <p className="display text-2xl text-[var(--cream)]">{item.value}</p>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Fila del Medio: Textos descriptivos y CTA */}
-          <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start mt-8">
-            {/* Columna Izquierda: Textos descriptivos (ocupa 7 columnas en md) */}
-            <div className="md:col-span-7 flex flex-col gap-6">
-              <div className="space-y-4">
-                <p className="text-[var(--cream)]/85 leading-relaxed">
-                  {t.projects.cerezo.desc1}
-                  <strong>{t.projects.cerezo.descBold1}</strong>
-                  {t.projects.cerezo.desc2}
-                </p>
-                <p className="text-[var(--cream)]/70 leading-relaxed text-sm">
-                  {t.projects.cerezo.desc3}
-                </p>
+          {/* Bloque Editorial de Dos Columnas: Lámina Técnica (40%) y Render Destacado (60%) */}
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch w-full">
+            {/* Columna Izquierda (Lámina): 40% del ancho */}
+            <div
+              onClick={() => {
+                setLightboxImageSrc(aptoCerezo);
+                setLightboxImageAlt(t.projects.cerezo.sheetLegend);
+              }}
+              className="w-full lg:w-[40%] flex flex-col justify-between bg-[#FAF8F5] rounded-xl border border-black/5 p-3 md:p-4 shadow-md max-h-[65vh] lg:max-h-[75vh] overflow-hidden cursor-zoom-in group transition-transform duration-300 hover:scale-[1.01]"
+            >
+              <div className="flex-1 flex items-center justify-center overflow-hidden">
+                <div className="relative w-full">
+                  <img
+                    src={aptoCerezo}
+                    alt={t.projects.cerezo.altMain}
+                    className="w-full h-auto block rounded shadow-sm max-h-[48vh] lg:max-h-[55vh] object-contain transition-opacity duration-300 group-hover:opacity-95"
+                    loading="lazy"
+                  />
+                </div>
               </div>
-
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-4 border-t border-[var(--cream)]/15 pt-5">
-                {[
-                  { label: "Área", value: "68 m²" },
-                  { label: "Duración", value: "4 meses" },
-                  { label: "Piezas", value: "11 módulos" },
-                ].map((item) => (
-                  <div key={item.label}>
-                    <p className="text-[10px] text-[var(--cream)]/65 uppercase tracking-widest mb-1">
-                      {item.label}
-                    </p>
-                    <p className="display text-2xl text-[var(--cream)]">{item.value}</p>
-                  </div>
-                ))}
+              <div className="mt-4 pt-3 border-t border-black/5 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <p className="text-[11px] text-black/60 font-serif italic leading-snug">
+                  {t.projects.cerezo.sheetLegend}
+                </p>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setLightboxImageSrc(aptoCerezo);
+                    setLightboxImageAlt(t.projects.cerezo.sheetLegend);
+                  }}
+                  className="px-4 py-2 bg-[var(--primary)] hover:bg-[#EFA07F] active:bg-[#D47055] text-white hover:text-[var(--ink)] text-xs font-mono tracking-wider rounded-full transition-colors cursor-pointer min-h-[44px] min-w-[125px] flex items-center justify-center font-bold border border-transparent focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                >
+                  {t.projects.cerezo.viewBoardBtn.toUpperCase()}
+                </button>
               </div>
             </div>
 
-            {/* Columna Derecha: CTA */}
-            <div className="md:col-span-5 flex flex-col justify-between h-full pt-4">
-              <p className="text-xs text-[var(--cream)]/60 leading-relaxed mb-6">
-                El biombo central divisor actúa como regulador espacial y visual, permitiendo la
-                reconfiguración del espacio según la hora del día y la necesidad de privacidad o
-                integración de la usuaria.
-              </p>
-              <button
-                onClick={() =>
-                  onInquire(
-                    "Hola Natalia, estuve revisando tu portafolio y en especial el proyecto del Apto Cerezo. Me pareció excelente tu enfoque en neuroarquitectura para espacios reducidos. Me gustaría que nos pusiéramos en contacto para conversar sobre una oportunidad de colaboración.",
-                  )
-                }
-                className="self-start text-xs tracking-[0.2em] uppercase border-b border-[var(--clay-light)] pb-1 text-[var(--clay-light)] hover:opacity-70 transition-opacity text-left font-semibold mt-2"
+            {/* Columna Derecha (Render destacado): 60% del ancho */}
+            <div className="w-full lg:w-[60%] flex flex-col justify-between gap-6">
+              <div
+                onClick={() => {
+                  setLightboxImageSrc(cerezoSocial);
+                  setLightboxImageAlt(t.projects.cerezo.gallery.socialTitle);
+                }}
+                className="flex-1 relative overflow-hidden rounded-xl border border-[var(--cream)]/10 shadow-lg cursor-zoom-in group bg-[#1A1A1A]/40 flex items-center justify-center p-2 min-h-[300px] lg:max-h-[55vh]"
               >
-                {t.projects.cerezo.inquiryBtn}
-              </button>
+                <img
+                  src={cerezoSocial}
+                  alt={t.projects.cerezo.gallery.socialTitle}
+                  className="w-auto h-auto max-w-full max-h-[40vh] lg:max-h-[46vh] object-contain block transition-all duration-300 group-hover:opacity-90 rounded"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              </div>
+              <div className="space-y-4">
+                <p className="text-xs text-[var(--clay-light)] font-mono uppercase tracking-wider">
+                  {t.projects.cerezo.concept} · {t.projects.cerezo.location}
+                </p>
+                <p className="text-sm text-[var(--cream)]/85 leading-relaxed">
+                  {t.projects.cerezo.rightDesc}
+                </p>
+                <button
+                  onClick={() => onInquire(t.projects.cerezo.inquiryPrefill)}
+                  className="self-start text-xs tracking-[0.2em] uppercase border-b border-[var(--clay-light)] pb-1 text-[var(--clay-light)] hover:opacity-70 transition-opacity text-left font-semibold mt-2 cursor-pointer"
+                >
+                  {t.projects.cerezo.inquiryBtn}
+                </button>
+              </div>
             </div>
+          </div>
+
+          {/* Introducción de la Galería */}
+          <div className="pt-12 border-t border-[var(--cream)]/10 text-center max-w-2xl mx-auto space-y-3">
+            <p className="text-[10px] uppercase font-mono tracking-widest text-[var(--clay-light)]">
+              {t.projects.cerezo.galleryHeader.title}
+            </p>
+            <h4 className="display text-2xl md:text-3xl text-white font-serif">
+              {t.projects.cerezo.galleryHeader.subtitle}
+            </h4>
+            <p className="text-sm text-[var(--cream)]/75 leading-relaxed font-sans">
+              {t.projects.cerezo.galleryHeader.description}
+            </p>
+          </div>
+
+          {/* Galería Editorial 2x2 con Renders Completos y Leyendas */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+            {[
+              {
+                id: "kitchen",
+                src: cerezoKitchen,
+                title: t.projects.cerezo.gallery.kitchenTitle,
+                desc: t.projects.cerezo.gallery.kitchenDesc,
+              },
+              {
+                id: "social",
+                src: cerezoSocial,
+                title: t.projects.cerezo.gallery.socialTitle,
+                desc: t.projects.cerezo.gallery.socialDesc,
+              },
+              {
+                id: "office",
+                src: cerezoOffice,
+                title: t.projects.cerezo.gallery.officeTitle,
+                desc: t.projects.cerezo.gallery.officeDesc,
+              },
+              {
+                id: "bedroom",
+                src: cerezoBedroom,
+                title: t.projects.cerezo.gallery.bedroomTitle,
+                desc: t.projects.cerezo.gallery.bedroomDesc,
+              },
+            ].map((img) => (
+              <div key={img.id} className="flex flex-col gap-3">
+                <div
+                  onClick={() => {
+                    setLightboxImageSrc(img.src);
+                    setLightboxImageAlt(img.title);
+                  }}
+                  className="relative w-full rounded-lg border border-[var(--cream)]/10 shadow-lg cursor-zoom-in group overflow-hidden bg-black/20"
+                >
+                  <img
+                    src={img.src}
+                    alt={img.title}
+                    className="w-full h-auto block object-contain transition-all duration-300 group-hover:opacity-90"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                </div>
+                <div className="space-y-1.5 mt-2">
+                  <p className="text-[15px] font-bold text-white tracking-wide">{img.title}</p>
+                  <p className="text-[15px] text-[var(--cream)]/80 leading-[1.45] font-sans">
+                    {img.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
 
           {/* Metadata footer */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-[var(--cream)]/15 pt-10">
-            {[
-              { k: "Materiales", v: "Melamina cerezo, linos y texturas de baja saturación" },
-              { k: "Enfoque Neuro", v: "Regulación circadiana, fluidez visual y biophilic design" },
-              { k: "Pieza clave", v: "Biombo-biblioteca divisor flotante" },
-              { k: "Áreas", v: "Cocina · Sala · Zona social · Baño" },
-            ].map((d) => (
+            {t.projects.cerezo.metadata.map((d) => (
               <div key={d.k}>
                 <p className="eyebrow text-[var(--clay-light)] mb-2">{d.k}</p>
                 <p className="text-[var(--cream)]/90 text-sm">{d.v}</p>
@@ -1881,6 +1925,8 @@ interface SheetLightboxProps {
 }
 
 function SheetLightbox({ isOpen, onClose, imageSrc, imageAlt }: SheetLightboxProps) {
+  const { language, t } = useLanguage();
+  const [isFitMode, setIsFitMode] = useState(true);
   const [zoom, setZoom] = useState(100);
   const [isMounted, setIsMounted] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -1917,11 +1963,50 @@ function SheetLightbox({ isOpen, onClose, imageSrc, imageAlt }: SheetLightboxPro
     };
   }, [isOpen, onClose]);
 
+  // Reset zoom & scroll when opening
+  useEffect(() => {
+    if (isOpen) {
+      setIsFitMode(true);
+      setZoom(100);
+      if (containerRef.current) {
+        containerRef.current.scrollTop = 0;
+        containerRef.current.scrollLeft = 0;
+      }
+    }
+  }, [isOpen]);
+
   if (!isOpen || !isMounted) return null;
 
-  const handleZoomIn = () => setZoom((prev) => Math.min(300, prev + 25));
-  const handleZoomOut = () => setZoom((prev) => Math.max(50, prev - 25));
-  const handleZoomReset = () => setZoom(100);
+  const handleZoomIn = () => {
+    if (isFitMode) {
+      setIsFitMode(false);
+      setZoom(125);
+    } else {
+      setZoom((prev) => Math.min(300, prev + 25));
+    }
+  };
+
+  const handleZoomOut = () => {
+    if (!isFitMode) {
+      const nextZoom = zoom - 25;
+      if (nextZoom < 100) {
+        setIsFitMode(true);
+        setZoom(100);
+      } else {
+        setZoom(nextZoom);
+      }
+    }
+  };
+
+  const handleZoomReset = () => {
+    setIsFitMode(false);
+    setZoom(100);
+  };
+
+  const getFitText = () => {
+    if (language === "en") return "FIT";
+    return "AJUSTAR";
+  };
 
   return createPortal(
     <div
@@ -1946,25 +2031,37 @@ function SheetLightbox({ isOpen, onClose, imageSrc, imageAlt }: SheetLightboxPro
       <div
         ref={containerRef}
         onClick={onClose}
-        className="flex-1 w-full flex items-center justify-center overflow-auto p-4 md:p-8 cursor-zoom-out"
+        className={`flex-1 w-full flex overflow-auto p-4 md:p-8 cursor-zoom-out justify-center ${
+          isFitMode ? "items-center" : "items-start"
+        }`}
       >
         <div
-          className="flex items-center justify-center transition-all duration-200"
-          style={{
-            width: `${zoom}%`,
-            minWidth: zoom > 100 ? `${zoom}%` : "auto",
-            maxWidth: zoom <= 100 ? "100%" : "none",
-          }}
+          className={`flex justify-center transition-all duration-200 ${
+            isFitMode
+              ? "items-center w-auto h-auto max-h-[calc(100vh-140px)] max-w-[92vw]"
+              : "items-start"
+          }`}
+          style={
+            isFitMode
+              ? {}
+              : {
+                  width: `${zoom}%`,
+                  minWidth: `${zoom}%`,
+                  transformOrigin: "top center",
+                }
+          }
           onClick={(e) => e.stopPropagation()}
         >
           <img
             ref={imgRef}
             src={imageSrc}
             alt={imageAlt}
-            className={`max-w-full h-auto block object-contain rounded-lg shadow-2xl transition-all duration-200 select-none ${
-              zoom > 100 ? "cursor-grab active:cursor-grabbing" : "cursor-zoom-in"
+            className={`block object-contain rounded-lg shadow-2xl transition-all duration-200 select-none ${
+              isFitMode
+                ? "max-h-[calc(100vh-140px)] max-w-[92vw] w-auto h-auto cursor-zoom-in"
+                : "w-full h-auto cursor-zoom-out"
             }`}
-            onClick={zoom <= 100 ? handleZoomIn : undefined}
+            onClick={isFitMode ? handleZoomIn : onClose}
           />
         </div>
       </div>
@@ -1975,18 +2072,18 @@ function SheetLightbox({ isOpen, onClose, imageSrc, imageAlt }: SheetLightboxPro
         <div className="flex items-center gap-2">
           <button
             onClick={handleZoomOut}
-            disabled={zoom <= 50}
+            disabled={isFitMode}
             className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 disabled:opacity-40 text-white flex items-center justify-center border border-white/10 transition-colors cursor-pointer min-h-[44px] min-w-[44px]"
             aria-label="Disminuir zoom"
           >
             －
           </button>
-          <span className="text-[10px] font-mono text-[var(--cream)] w-12 text-center">
-            {zoom}%
+          <span className="text-[10px] font-mono text-[var(--cream)] w-16 text-center">
+            {isFitMode ? getFitText() : `${zoom}%`}
           </span>
           <button
             onClick={handleZoomIn}
-            disabled={zoom >= 300}
+            disabled={!isFitMode && zoom >= 300}
             className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 disabled:opacity-40 text-white flex items-center justify-center border border-white/10 transition-colors cursor-pointer min-h-[44px] min-w-[44px]"
             aria-label="Aumentar zoom"
           >
@@ -1994,9 +2091,19 @@ function SheetLightbox({ isOpen, onClose, imageSrc, imageAlt }: SheetLightboxPro
           </button>
           <button
             onClick={handleZoomReset}
-            className="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white text-[10px] font-mono border border-white/10 transition-colors cursor-pointer min-h-[44px] flex items-center justify-center"
+            className={`px-4 py-2 rounded-full text-white text-[10px] font-mono border border-white/10 transition-colors cursor-pointer min-h-[44px] flex items-center justify-center ${
+              !isFitMode && zoom === 100 ? "bg-white/30" : "bg-white/10 hover:bg-white/20"
+            }`}
           >
             100%
+          </button>
+          <button
+            onClick={() => setIsFitMode(true)}
+            className={`px-4 py-2 rounded-full text-white text-[10px] font-mono border border-white/10 transition-colors cursor-pointer min-h-[44px] flex items-center justify-center ${
+              isFitMode ? "bg-white/30" : "bg-white/10 hover:bg-white/20"
+            }`}
+          >
+            {getFitText()}
           </button>
         </div>
 
@@ -2005,7 +2112,7 @@ function SheetLightbox({ isOpen, onClose, imageSrc, imageAlt }: SheetLightboxPro
           onClick={onClose}
           className="px-6 py-2 rounded-full bg-[var(--primary)] hover:bg-[#EFA07F] text-white hover:text-[var(--ink)] text-[10px] font-mono transition-colors font-bold cursor-pointer min-h-[44px] flex items-center justify-center"
         >
-          CERRAR
+          {t.drawings.close.toUpperCase()}
         </button>
       </div>
     </div>,
