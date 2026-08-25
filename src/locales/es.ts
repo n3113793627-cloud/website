@@ -540,56 +540,43 @@ export const es = {
       ],
     },
     casino: {
-      tag: "Proyecto destacado · 04",
+      tag: "Proyecto comercial · 04",
       title: "Casino The Lounge",
-      concept: "Fachada comercial e interiorismo integral",
-      location: "Bogotá · 2026",
-      facadeLabel: "— Fachada: Propuesta de Diseño (Render)",
+      concept: "Propuesta de fachada y adecuación interior",
+      location: "Bogotá · 2025",
+      facadeLabel: "Propuesta de fachada (Render)",
       altFacade: "Propuesta de Fachada (Render)",
       hotspot1: {
-        title: "Fachada Paramétrica en Ondas",
-        decision: "Celosía de paneles de aluminio compuesto ondulado",
+        title: "Geometría curva e iluminación lineal",
+        decision: "Propuesta de fachada con volumetría orgánica y bandas LED integradas.",
         rationale:
-          "Evolutivamente, el cerebro asocia las formas de líneas duras y esquinas afiladas con amenazas (objetos punzantes o dientes). Las fachadas orgánicas curvas estimulan el giro de la mirada sin sobresaltos. En un contexto comercial de ocio nocturno, esto disminuye las barreras defensivas subconscientes y genera una transición fluida hacia el interior.",
-        pillar: "Geometría de Curvas Orgánicas",
+          "Las formas curvas suavizan el impacto visual de la esquina comercial, mientras que las líneas de iluminación guían el recorrido peatonal de forma natural.",
+        pillar: "Identidad e Iluminación",
       },
       hotspot2: {
-        title: "Iluminación LED Indirecta",
-        decision: "Luminarias LED integradas y retroiluminación en fachada comercial",
+        title: "Acceso jerarquizado y fachada de alto contraste",
+        decision: "Punto de acceso con marcos dorados metálicos sobre fondos oscuros.",
         rationale:
-          "La iluminación directa dura genera cansancio mental e incomodidad social. Diseñé un esquema de luz indirecta de baja intensidad en tonos ámbar. La luz ámbar y cálida (2700K o menos) estimula las glándulas que inducen a la calma, promoviendo una experiencia social elegante, segura y de mayor permanencia voluntaria.",
-        pillar: "Ritmos de Luz y Psicología Ambiental",
+          "El contraste jerarquiza el ingreso, creando una transición elegante y un punto de interés visual claro desde la calle.",
+        pillar: "Transición Comercial",
       },
-      interiorLabel: "— Interior: Proceso vs Acabado Final",
-      beforeLabel: "En Proceso",
-      afterLabel: "Mesa de Poker",
-      desc1: '"Casino The Lounge" es un proyecto de ',
-      descBold1: "rediseño integral y comercial",
-      desc2:
-        ". El encargo consistió en transformar la fachada exterior y todo el interior de una edificación que funcionaba previamente como restaurante, convirtiéndola en un club de juego premium en Bogotá.",
-      desc3:
-        "La fachada se concibió con líneas orgánicas y celosías retroiluminadas con iluminación LED indirecta, logrando un impacto escénico nocturno único. El interiorismo maximiza la fluidez espacial, zonificando acústicamente las salas de juego y aplicando psicología ambiental a través de muros de cuarcita retroiluminada en tonos dorados/ámbar para promover la calma y el confort térmico y mental.",
-      stats: [
-        { label: "Área", value: "420 m²" },
-        { label: "Ubicación", value: "Bogotá" },
-        { label: "Tipo", value: "Fachada & Interior" },
-      ],
-      rightDesc:
-        "El paso de restaurante a casino implicó una reingeniería acústica y una planificación lumínica circadiana social, reduciendo la estimulación invasiva para favorecer una experiencia inmersiva elegante y controlada.",
+      processLabel: "01 · Proceso de adecuación",
+      processDesc:
+        "Seguimiento de acabados, geometrías curvas y elementos de iluminación durante la adecuación interior.",
+      resultLabel: "02 · Resultado final",
+      resultDesc:
+        "Interior finalizado con una atmósfera cálida y envolvente, definida por arcos, contrastes oscuros y acentos dorados.",
+      presentation:
+        "Durante mi experiencia en Buró Verde participé en el desarrollo de la propuesta de fachada y en el seguimiento de la adecuación interior de The Lounge Casino. El proyecto buscó consolidar una identidad nocturna, envolvente y reconocible mediante geometrías curvas, iluminación cálida de acento y acabados de alto contraste.",
       inquiryPrefill:
-        "Hola Natalia, estuve revisando tu portafolio y en especial el proyecto del Casino The Lounge en Bogotá. Me pareció excelente el diseño de la fachada frontal y el interiorismo. Me gustaría que nos pusiéramos en contacto para conversar sobre una oportunidad de colaboración.",
-      inquiryBtn: "¿Quieres rediseñar tu espacio comercial? →",
+        "Hola Natalia, estuve revisando tu portafolio y en especial el proyecto de Casino The Lounge. Me interesó mucho tu participación en la propuesta de fachada y el seguimiento de obra. Me gustaría que nos pusiéramos en contacto para conversar.",
+      inquiryBtn: "¿Tienes un proyecto similar? →",
       metadata: [
-        {
-          k: "Materiales",
-          v: "Paneles de aluminio compuesto, cuarcita retroiluminada, maderas nobles y cuero",
-        },
-        {
-          k: "Enfoque Neuro",
-          v: "Psicología del color ámbar, zonificación acústica activa y ritmos sociales",
-        },
-        { k: "Pieza clave", v: "Fachada de ondas paramétricas y paneles de luz de cuarcita" },
-        { k: "Áreas", v: "Fachada principal · Salón de Poker · Barra de tragos · Zona VIP" },
+        { k: "ROL", v: "Apoyo en diseño y seguimiento de obra" },
+        { k: "ALCANCE", v: "Fachada comercial y adecuación interior" },
+        { k: "ENFOQUE", v: "Identidad espacial y experiencia del usuario" },
+        { k: "UBICACIÓN", v: "Bogotá, Colombia" },
+        { k: "AÑO", v: "2025" },
       ],
     },
   },

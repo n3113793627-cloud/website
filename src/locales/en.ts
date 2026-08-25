@@ -532,56 +532,43 @@ export const en = {
       ],
     },
     casino: {
-      tag: "Featured project · 04",
+      tag: "Commercial project · 04",
       title: "Casino The Lounge",
-      concept: "Commercial facade and comprehensive interior design",
-      location: "Bogotá · 2026",
-      facadeLabel: "— Facade: Design Proposal (Render)",
+      concept: "Facade proposal and interior build-out",
+      location: "Bogotá · 2025",
+      facadeLabel: "Facade proposal (Render)",
       altFacade: "Facade Proposal (Render)",
       hotspot1: {
-        title: "Parametric Wave Facade",
-        decision: "Louver of corrugated aluminum composite panels",
+        title: "Curved geometry and linear lighting",
+        decision: "Facade proposal with organic volume and integrated LED strips.",
         rationale:
-          "Evolutionarily, the brain associates hard lines and sharp corners with threats (sharp objects or teeth). Organic curved facades stimulate eye movement without sudden jumps. In a commercial nightlife context, this lowers subconscious defensive barriers and generates a fluid transition to the interior.",
-        pillar: "Organic Curves Geometry",
+          "Curved shapes soften the visual impact of the commercial corner, while lighting lines guide the pedestrian path naturally.",
+        pillar: "Identity and Lighting",
       },
       hotspot2: {
-        title: "Indirect LED Lighting",
-        decision: "Integrated LED fixtures and backlighting on commercial facade",
+        title: "Hierarchical entrance and high-contrast facade",
+        decision: "Entrance point with metallic gold frames on dark backgrounds.",
         rationale:
-          "Harsh direct lighting generates mental fatigue and social discomfort. I designed a low-intensity indirect lighting scheme in amber tones. Warm amber light (2700K or less) stimulates glands that induce calm, promoting an elegant, safe social experience and longer voluntary stay.",
-        pillar: "Light Rhythms and Environmental Psychology",
+          "The contrast highlights the entrance, creating an elegant transition and a clear visual point of interest from the street.",
+        pillar: "Commercial Transition",
       },
-      interiorLabel: "— Interior: Process vs Final Finish",
-      beforeLabel: "In Progress",
-      afterLabel: "Poker Table",
-      desc1: '"Casino The Lounge" is a comprehensive ',
-      descBold1: "commercial redesign project",
-      desc2:
-        ". The commission consisted of transforming the exterior facade and the entire interior of a building that previously operated as a restaurant, converting it into a premium gaming club in Bogotá.",
-      desc3:
-        "The facade was conceived with organic lines and back-lit louvers with indirect LED lighting, achieving a unique nocturnal scenic impact. The interior design maximizes spatial fluidity, acoustically zoning the gaming rooms and applying environmental psychology through back-lit quartzite walls in gold/amber tones to promote calm and thermal, mental comfort.",
-      stats: [
-        { label: "Area", value: "420 m²" },
-        { label: "Location", value: "Bogotá" },
-        { label: "Type", value: "Facade & Interior" },
-      ],
-      rightDesc:
-        "The transition from restaurant to casino involved acoustic re-engineering and social circadian lighting planning, reducing invasive stimulation to foster an elegant, controlled immersive experience.",
+      processLabel: "01 · Build-out process",
+      processDesc:
+        "Supervision of finishes, curved geometries, and lighting elements during the interior build-out.",
+      resultLabel: "02 · Final result",
+      resultDesc:
+        "Completed interior with a warm, enveloping atmosphere defined by arches, dark contrasts, and golden accents.",
+      presentation:
+        "During my experience at Buró Verde, I participated in the development of the facade proposal and the supervision of the interior build-out of The Lounge Casino. The project sought to consolidate a nocturnal, enveloping, and recognizable identity through curved geometries, warm accent lighting, and high-contrast finishes.",
       inquiryPrefill:
-        "Hello Natalia, I was reviewing your portfolio and especially the Casino The Lounge project in Bogotá. I found the design of the front facade and the interior design excellent. I would like to get in touch to talk about a collaboration opportunity.",
-      inquiryBtn: "Want to redesign your commercial space? →",
+        "Hello Natalia, I was reviewing your portfolio and especially the Casino The Lounge project. I found your design of the front facade and interior build-out support very interesting. I would like to get in touch to discuss further.",
+      inquiryBtn: "Have a similar project? →",
       metadata: [
-        {
-          k: "Materials",
-          v: "Aluminum composite panels, backlit quartzite, noble woods, and leather",
-        },
-        {
-          k: "Neuro Focus",
-          v: "Amber color psychology, active acoustic zoning, and social rhythms",
-        },
-        { k: "Key piece", v: "Parametric wave facade and quartzite light panels" },
-        { k: "Areas", v: "Main facade · Poker Room · Cocktail Bar · VIP Area" },
+        { k: "ROLE", v: "Design support and site supervision" },
+        { k: "SCOPE", v: "Commercial facade and interior build-out" },
+        { k: "FOCUS", v: "Spatial identity and user experience" },
+        { k: "LOCATION", v: "Bogotá, Colombia" },
+        { k: "YEAR", v: "2025" },
       ],
     },
   },

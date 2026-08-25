@@ -1458,7 +1458,11 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
       </section>
 
       {/* Proyecto 04: Casino The Lounge */}
-      <section ref={ref4} className="py-12 md:py-16 px-6 md:px-10">
+      <section
+        id="casino-the-lounge"
+        ref={ref4}
+        className="py-12 md:py-16 px-6 md:px-10 scroll-mt-28"
+      >
         <div className="max-w-[1400px] mx-auto space-y-10">
           {/* Header */}
           <div className="flex items-end justify-between gap-6 border-b border-[var(--cream)]/10 pb-10">
@@ -1480,137 +1484,141 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             </div>
             <div className="hidden md:block text-right text-sm text-[var(--cream)]/85 space-y-1">
               <p>{t.projects.casino.concept}</p>
-              <p>{t.projects.tripode.location}</p>
+              <p>{t.projects.casino.location}</p>
             </div>
           </div>
 
-          {/* Fila Superior: Comparaciones de Antes y Después en Grid de 2 Columnas */}
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12">
-            <div className="space-y-4">
-              <p className="text-[10px] text-[var(--clay-light)] uppercase tracking-widest font-mono font-bold">
-                {t.projects.casino.facadeLabel}
-              </p>
-              <div className="relative w-full aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-lg border border-[var(--cream)]/10 shadow-lg bg-muted group">
-                <img
-                  src={casinoRender}
-                  alt="Propuesta de Fachada (Render)"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
+          {/* Imagen Protagonista: Fachada Comercial */}
+          <div className="space-y-4">
+            <p className="text-[10px] text-[var(--clay-light)] uppercase tracking-widest font-mono font-bold">
+              {t.projects.casino.facadeLabel}
+            </p>
+            <div
+              className="relative w-full overflow-hidden rounded-xl border border-[var(--cream)]/10 shadow-lg bg-[#1A1A1A]/40 flex items-center justify-center p-2 cursor-zoom-in group"
+              onClick={() => {
+                setLightboxImageSrc(casinoRender);
+                setLightboxImageAlt(t.projects.casino.facadeLabel);
+              }}
+            >
+              <img
+                src={casinoRender}
+                alt={t.projects.casino.altFacade}
+                className="w-full h-auto block rounded object-contain max-h-[60vh] transition-all duration-300 group-hover:opacity-95"
+                loading="lazy"
+              />
 
-                <Hotspot
-                  x="38%"
-                  y="45%"
-                  onClick={() =>
-                    setActiveHotspot({
-                      project: "Casino The Lounge",
-                      title: "Fachada Paramétrica en Ondas",
-                      decision: "Celosía de paneles de aluminio compuesto ondulado",
-                      rationale:
-                        "Evolutivamente, el cerebro asocia las formas de líneas duras y esquinas afiladas con amenazas (objetos punzantes o dientes). Las fachadas orgánicas curvas estimulan el giro de la mirada sin sobresaltos. En un contexto comercial de ocio nocturno, esto disminuye las barreras defensivas subconscientes y genera una transición fluida hacia el interior.",
-                      pillar: "Geometría de Curvas Orgánicas",
-                    })
-                  }
-                />
+              <Hotspot
+                x="38%"
+                y="45%"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveHotspot({
+                    project: t.projects.casino.title,
+                    title: t.projects.casino.hotspot1.title,
+                    decision: t.projects.casino.hotspot1.decision,
+                    rationale: t.projects.casino.hotspot1.rationale,
+                    pillar: t.projects.casino.hotspot1.pillar,
+                  });
+                }}
+              />
 
-                <Hotspot
-                  x="68%"
-                  y="62%"
-                  onClick={() =>
-                    setActiveHotspot({
-                      project: "Casino The Lounge",
-                      title: "Iluminación LED Indirecta",
-                      decision: "Luminarias LED integradas y retroiluminación en fachada comercial",
-                      rationale:
-                        "La iluminación directa dura genera cansancio mental e incomodidad social. Diseñé un esquema de luz indirecta de baja intensidad en tonos ámbar. La luz ámbar y cálida (2700K o menos) estimula las glándulas que inducen a la calma, promoviendo una experiencia social elegante, segura y de mayor permanencia voluntaria.",
-                      pillar: "Ritmos de Luz y Psicología Ambiental",
-                    })
-                  }
-                />
-              </div>
-            </div>
-            <div className="space-y-4">
-              <p className="text-[10px] text-[var(--clay-light)] uppercase tracking-widest font-mono font-bold">
-                {t.projects.casino.interiorLabel}
-              </p>
-              <ComparisonSlider
-                beforeImg={casinoProcess}
-                afterImg={casinoInteriorFinished}
-                beforeLabel="{t.projects.casino.beforeLabel}"
-                afterLabel="{t.projects.casino.afterLabel}"
+              <Hotspot
+                x="68%"
+                y="62%"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveHotspot({
+                    project: t.projects.casino.title,
+                    title: t.projects.casino.hotspot2.title,
+                    decision: t.projects.casino.hotspot2.decision,
+                    rationale: t.projects.casino.hotspot2.rationale,
+                    pillar: t.projects.casino.hotspot2.pillar,
+                  });
+                }}
               />
             </div>
           </div>
 
-          {/* Fila del Medio: Textos y CTA */}
-          <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start mt-8">
-            {/* Columna Izquierda: Textos descriptivos (ocupa 7 columnas) */}
-            <div className="md:col-span-7 flex flex-col gap-6">
-              <div className="space-y-4">
-                <p className="text-[var(--cream)]/85 leading-relaxed">
-                  {t.projects.casino.desc1}
-                  <strong>{t.projects.casino.descBold1}</strong>
-                  {t.projects.casino.desc2}
-                </p>
-                <p className="text-[var(--cream)]/70 leading-relaxed text-sm">
-                  {t.projects.casino.desc3}
-                </p>
-              </div>
-
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-4 border-t border-[var(--cream)]/15 pt-5">
-                {[
-                  { label: "Área", value: "420 m²" },
-                  { label: "Ubicación", value: "Bogotá" },
-                  { label: "Tipo", value: "Fachada & Interior" },
-                ].map((item) => (
-                  <div key={item.label}>
-                    <p className="text-[10px] text-[var(--cream)]/65 uppercase tracking-widest mb-1">
-                      {item.label}
-                    </p>
-                    <p className="display text-xl text-[var(--cream)] font-bold">{item.value}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Columna Derecha: CTA */}
-            <div className="md:col-span-5 flex flex-col justify-between h-full pt-4">
-              <p className="text-xs text-[var(--cream)]/60 leading-relaxed mb-6">
-                El paso de restaurante a casino implicó una reingeniería acústica y una
-                planificación lumínica circadiana social, reduciendo la estimulación invasiva para
-                favorecer una experiencia inmersiva elegante y controlada.
+          {/* Presentación Profesional y CTA */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-6 border-b border-[var(--cream)]/10 pb-8">
+            <div className="lg:col-span-8">
+              <p className="text-[var(--cream)]/85 leading-relaxed text-base font-sans">
+                {t.projects.casino.presentation}
               </p>
+            </div>
+            <div className="lg:col-span-4 flex flex-col justify-end lg:items-end h-full pt-2">
               <button
-                onClick={() =>
-                  onInquire(
-                    "Hola Natalia, estuve revisando tu portafolio y en especial el proyecto del Casino The Lounge en Bogotá. Me pareció excelente el diseño de la fachada frontal y el interiorismo. Me gustaría que nos pusiéramos en contacto para conversar sobre una oportunidad de colaboración.",
-                  )
-                }
-                className="self-start text-xs tracking-[0.2em] uppercase border-b border-[var(--clay-light)] pb-1 text-[var(--clay-light)] hover:opacity-70 transition-opacity text-left font-semibold"
+                onClick={() => onInquire(t.projects.casino.inquiryPrefill)}
+                className="self-start lg:self-end text-xs tracking-[0.2em] uppercase border-b border-[var(--clay-light)] pb-1 text-[var(--clay-light)] hover:opacity-70 transition-opacity text-left font-semibold cursor-pointer"
               >
                 {t.projects.casino.inquiryBtn}
               </button>
             </div>
           </div>
 
-          {/* Metadata footer */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-[var(--cream)]/15 pt-10">
-            {[
-              {
-                k: "Materiales",
-                v: "Paneles de aluminio compuesto, cuarcita retroiluminada, maderas nobles y cuero",
-              },
-              {
-                k: "Enfoque Neuro",
-                v: "Psicología del color ámbar, zonificación acústica activa y ritmos sociales",
-              },
-              { k: "Pieza clave", v: "Fachada de ondas paramétricas y paneles de luz de cuarcita" },
-              { k: "Áreas", v: "Fachada principal · Salón de Poker · Barra de tragos · Zona VIP" },
-            ].map((d) => (
+          {/* Proceso y Resultado Final (Tarjetas independientes) */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 pt-4">
+            {/* Card 1: Proceso */}
+            <div className="flex flex-col gap-4">
+              <div
+                onClick={() => {
+                  setLightboxImageSrc(casinoProcess);
+                  setLightboxImageAlt(t.projects.casino.processLabel);
+                }}
+                className="relative w-full rounded-xl border border-[var(--cream)]/10 shadow-lg cursor-zoom-in group overflow-hidden bg-[#121212]/90 flex items-center justify-center p-2 min-h-[280px] aspect-[4/3] md:aspect-[16/10]"
+              >
+                <img
+                  src={casinoProcess}
+                  alt={t.projects.casino.processLabel}
+                  className="w-full h-full object-contain rounded transition-all duration-300 group-hover:opacity-90"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              </div>
+              <div className="space-y-1.5 mt-2">
+                <p className="text-[15px] font-bold text-white tracking-wide">
+                  {t.projects.casino.processLabel}
+                </p>
+                <p className="text-[15px] text-[var(--cream)]/80 leading-[1.45] font-sans">
+                  {t.projects.casino.processDesc}
+                </p>
+              </div>
+            </div>
+
+            {/* Card 2: Resultado */}
+            <div className="flex flex-col gap-4">
+              <div
+                onClick={() => {
+                  setLightboxImageSrc(casinoInteriorFinished);
+                  setLightboxImageAlt(t.projects.casino.resultLabel);
+                }}
+                className="relative w-full rounded-xl border border-[var(--cream)]/10 shadow-lg cursor-zoom-in group overflow-hidden bg-[#121212]/90 flex items-center justify-center p-2 min-h-[280px] aspect-[4/3] md:aspect-[16/10]"
+              >
+                <img
+                  src={casinoInteriorFinished}
+                  alt={t.projects.casino.resultLabel}
+                  className="w-full h-full object-contain rounded transition-all duration-300 group-hover:opacity-90"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              </div>
+              <div className="space-y-1.5 mt-2">
+                <p className="text-[15px] font-bold text-white tracking-wide">
+                  {t.projects.casino.resultLabel}
+                </p>
+                <p className="text-[15px] text-[var(--cream)]/80 leading-[1.45] font-sans">
+                  {t.projects.casino.resultDesc}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Ficha Breve / Metadata footer */}
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 border-t border-[var(--cream)]/15 pt-10">
+            {t.projects.casino.metadata.map((d) => (
               <div key={d.k}>
                 <p className="eyebrow text-[var(--clay-light)] mb-2">{d.k}</p>
-                <p className="text-[var(--cream)]/90 text-sm">{d.v}</p>
+                <p className="text-[var(--cream)]/90 text-sm leading-relaxed">{d.v}</p>
               </div>
             ))}
           </div>
