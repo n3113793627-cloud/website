@@ -1000,39 +1000,15 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             </div>
           </div>
 
-          {/* Fila Introductoria: Textos descriptivos y Stats */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start border-b border-[var(--cream)]/10 pb-8">
-            <div className="lg:col-span-8 space-y-4">
-              <p className="text-[var(--cream)]/85 leading-relaxed">
-                {t.projects.cerezo.desc1}
-                <strong>{t.projects.cerezo.descBold1}</strong>
-                {t.projects.cerezo.desc2}
-              </p>
-              <p className="text-[var(--cream)]/70 leading-relaxed text-sm">
-                {t.projects.cerezo.desc3}
-              </p>
-            </div>
-            <div className="lg:col-span-4 grid grid-cols-3 gap-4 lg:border-l lg:border-[var(--cream)]/15 lg:pl-8">
-              {t.projects.cerezo.stats.map((item) => (
-                <div key={item.label}>
-                  <p className="text-[10px] text-[var(--cream)]/65 uppercase tracking-widest mb-1">
-                    {item.label}
-                  </p>
-                  <p className="display text-2xl text-[var(--cream)]">{item.value}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Bloque Editorial de Dos Columnas: Lámina Técnica (40%) y Render Destacado (60%) */}
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch w-full">
-            {/* Columna Izquierda (Lámina): 40% del ancho */}
+          {/* Bloque Superior de Dos Columnas: Lámina Técnica (43%) e Información del Proyecto (57%) */}
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 lg:items-center w-full">
+            {/* Columna Izquierda (Lámina): 43% del ancho */}
             <div
               onClick={() => {
                 setLightboxImageSrc(aptoCerezo);
                 setLightboxImageAlt(t.projects.cerezo.sheetLegend);
               }}
-              className="w-full lg:w-[40%] flex flex-col justify-between bg-[#FAF8F5] rounded-xl border border-black/5 p-3 md:p-4 shadow-md max-h-[65vh] lg:max-h-[75vh] overflow-hidden cursor-zoom-in group transition-transform duration-300 hover:scale-[1.01]"
+              className="w-full lg:w-[43%] flex flex-col justify-between bg-[#FAF8F5] rounded-xl border border-black/5 p-3 md:p-4 shadow-md max-h-[65vh] lg:max-h-[75vh] overflow-hidden cursor-zoom-in group transition-transform duration-300 hover:scale-[1.01]"
             >
               <div className="flex-1 flex items-center justify-center overflow-hidden">
                 <div className="relative w-full">
@@ -1061,33 +1037,38 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
               </div>
             </div>
 
-            {/* Columna Derecha (Render destacado): 60% del ancho */}
-            <div className="w-full lg:w-[60%] flex flex-col justify-between gap-6">
-              <div
-                onClick={() => {
-                  setLightboxImageSrc(cerezoSocial);
-                  setLightboxImageAlt(t.projects.cerezo.gallery.socialTitle);
-                }}
-                className="flex-1 relative overflow-hidden rounded-xl border border-[var(--cream)]/10 shadow-lg cursor-zoom-in group bg-[#1A1A1A]/40 flex items-center justify-center p-2 min-h-[300px] lg:max-h-[55vh]"
-              >
-                <img
-                  src={cerezoSocial}
-                  alt={t.projects.cerezo.gallery.socialTitle}
-                  className="w-auto h-auto max-w-full max-h-[40vh] lg:max-h-[46vh] object-contain block transition-all duration-300 group-hover:opacity-90 rounded"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+            {/* Columna Derecha (Información): 57% del ancho */}
+            <div className="w-full lg:w-[57%] flex flex-col justify-center space-y-6 py-4">
+              <div className="space-y-3">
+                <p className="text-[10px] md:text-xs text-[var(--clay-light)] font-mono uppercase tracking-[0.15em] leading-relaxed">
+                  {t.projects.cerezo.infoLabel}
+                </p>
+                <h4 className="display text-3xl md:text-4xl lg:text-5xl text-white leading-tight">
+                  {t.projects.cerezo.infoTitle}
+                </h4>
               </div>
-              <div className="space-y-4">
-                <p className="text-xs text-[var(--clay-light)] font-mono uppercase tracking-wider">
-                  {t.projects.cerezo.concept} · {t.projects.cerezo.location}
+              <p className="text-sm md:text-base text-[var(--cream)]/85 leading-relaxed font-sans">
+                {t.projects.cerezo.infoText}
+              </p>
+
+              <div className="pt-2 space-y-3">
+                <p className="text-[10px] uppercase font-mono tracking-widest text-[var(--clay-light)] font-bold">
+                  {t.projects.cerezo.scopeTitle}
                 </p>
-                <p className="text-sm text-[var(--cream)]/85 leading-relaxed">
-                  {t.projects.cerezo.rightDesc}
-                </p>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-xs md:text-sm text-[var(--cream)]/80">
+                  {t.projects.cerezo.scopeItems.map((item) => (
+                    <li key={item} className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[var(--clay-light)] shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="pt-2">
                 <button
                   onClick={() => onInquire(t.projects.cerezo.inquiryPrefill)}
-                  className="self-start text-xs tracking-[0.2em] uppercase border-b border-[var(--clay-light)] pb-1 text-[var(--clay-light)] hover:opacity-70 transition-opacity text-left font-semibold mt-2 cursor-pointer"
+                  className="self-start text-xs tracking-[0.2em] uppercase border-b border-[var(--clay-light)] pb-1 text-[var(--clay-light)] hover:opacity-70 transition-opacity text-left font-semibold cursor-pointer"
                 >
                   {t.projects.cerezo.inquiryBtn}
                 </button>
@@ -1108,8 +1089,89 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             </p>
           </div>
 
-          {/* Galería Editorial 2x2 con Renders Completos y Leyendas */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+          {/* Galería Editorial Responsiva con Renders Completos y Leyendas */}
+          {/* En escritorio (lg): fila superior de 3 columnas y fila inferior centrada */}
+          <div className="hidden lg:flex flex-col gap-10">
+            {/* Fila 1: cocina, biombo central, oficina */}
+            <div className="grid grid-cols-3 gap-8">
+              {[
+                {
+                  id: "kitchen",
+                  src: cerezoKitchen,
+                  title: t.projects.cerezo.gallery.kitchenTitle,
+                  desc: t.projects.cerezo.gallery.kitchenDesc,
+                },
+                {
+                  id: "social",
+                  src: cerezoSocial,
+                  title: t.projects.cerezo.gallery.socialTitle,
+                  desc: t.projects.cerezo.gallery.socialDesc,
+                },
+                {
+                  id: "office",
+                  src: cerezoOffice,
+                  title: t.projects.cerezo.gallery.officeTitle,
+                  desc: t.projects.cerezo.gallery.officeDesc,
+                },
+              ].map((img) => (
+                <div key={img.id} className="flex flex-col gap-3">
+                  <div
+                    onClick={() => {
+                      setLightboxImageSrc(img.src);
+                      setLightboxImageAlt(img.title);
+                    }}
+                    className="relative w-full rounded-lg border border-[var(--cream)]/10 shadow-lg cursor-zoom-in group overflow-hidden bg-black/20"
+                  >
+                    <img
+                      src={img.src}
+                      alt={img.title}
+                      className="w-full h-auto block object-contain transition-all duration-300 group-hover:opacity-90"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                  </div>
+                  <div className="space-y-1.5 mt-2">
+                    <p className="text-[15px] font-bold text-white tracking-wide">{img.title}</p>
+                    <p className="text-xs md:text-sm text-[var(--cream)]/80 leading-[1.45] font-sans">
+                      {img.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Fila 2: dormitorio centrado con un ancho máximo de 1000px */}
+            <div className="flex justify-center w-full">
+              <div className="w-full max-w-[1000px] flex flex-col gap-3">
+                <div
+                  onClick={() => {
+                    setLightboxImageSrc(cerezoBedroom);
+                    setLightboxImageAlt(t.projects.cerezo.gallery.bedroomTitle);
+                  }}
+                  className="relative w-full rounded-lg border border-[var(--cream)]/10 shadow-lg cursor-zoom-in group overflow-hidden bg-black/20"
+                >
+                  <img
+                    src={cerezoBedroom}
+                    alt={t.projects.cerezo.gallery.bedroomTitle}
+                    className="w-full h-auto block object-contain transition-all duration-300 group-hover:opacity-90"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                </div>
+                <div className="space-y-1.5 mt-2">
+                  <p className="text-[15px] font-bold text-white tracking-wide">
+                    {t.projects.cerezo.gallery.bedroomTitle}
+                  </p>
+                  <p className="text-xs md:text-sm text-[var(--cream)]/80 leading-[1.45] font-sans">
+                    {t.projects.cerezo.gallery.bedroomDesc}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* En móvil y tablet: cuadrícula de 2 columnas en md y 1 en móvil */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:hidden">
             {[
               {
                 id: "kitchen",
@@ -1154,7 +1216,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                 </div>
                 <div className="space-y-1.5 mt-2">
                   <p className="text-[15px] font-bold text-white tracking-wide">{img.title}</p>
-                  <p className="text-[15px] text-[var(--cream)]/80 leading-[1.45] font-sans">
+                  <p className="text-xs md:text-sm text-[var(--cream)]/80 leading-[1.45] font-sans">
                     {img.desc}
                   </p>
                 </div>

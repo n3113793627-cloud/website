@@ -407,14 +407,14 @@ export const es = {
         title: "Biombo Divisor Flotante",
         decision: "Estructuración espacial porosa mediante biombo de madera",
         rationale:
-          "En apartamentos pequeños, las paredes sólidas tradicionales restringen la luz e inducen una fatiga espacial claustrofóbica. Este divisor central actúa como diafragma espacial: permite ver a través de él para ampliar la percepción de profundidad (lo cual relaja el nervio óptico) mientras delimita zonas sin bloquear la ventilación ni la luz natural circadiana.",
+          "En apartamentos pequeños, las paredes sólidas tradicionales restringen la luz y la ventilación. Este divisor central actúa como diafragma espacial: permite ver a través de él para ampliar la percepción de profundidad mientras delimita zonas sin bloquear la ventilación ni el paso de la luz natural.",
         pillar: "Agencia Espacial y Fluidez Visual",
       },
       hotspot2: {
         title: "Textura de Cerezo y Tonos Mate",
         decision: "Uso estratégico de melamina de madera clara y acabados de baja saturación",
         rationale:
-          "Los contrastes visuales altos e intensos disparan micro-alertas en el cerebro de forma constante. La melamina de cerezo mate absorbe y dispersa la iluminación en lugar de reflejarla bruscamente. Esto activa el tacto visual de la corteza somatosensorial de forma equilibrada, promoviendo una sensación de serenidad física inmediata y disminuyendo los niveles basales de cortisol.",
+          "El uso estratégico de melamina de madera clara y texturas naturales aporta calidez y confort visual. La melamina de cerezo mate absorbe y dispersa la iluminación de forma suave, promoviendo un ambiente sereno y equilibrado.",
         pillar: "Estimulación Sensorial Controlada",
       },
       altDetail: "Detalle carpintería",
@@ -433,16 +433,27 @@ export const es = {
       ],
       rightDesc:
         "El biombo central organiza la transición entre el área social, la oficina y el dormitorio, aportando privacidad sin cerrar completamente el espacio.",
+      infoLabel: "DISEÑO INTERIOR INTEGRAL · MOBILIARIO A MEDIDA · BOGOTÁ · 2025",
+      infoTitle: "Un elemento central que organiza el habitar",
+      infoText:
+        "“Apto Cerezo reorganiza un apartamento compacto mediante un elemento central de almacenamiento y transición. La propuesta conecta cocina, zona social, oficina y dormitorio con una materialidad cálida y continua, manteniendo libres la entrada de luz y los recorridos.”",
+      scopeTitle: "ALCANCE DEL PROYECTO",
+      scopeItems: [
+        "Distribución espacial",
+        "Mobiliario a medida",
+        "Visualización 3D",
+        "Documentación técnica",
+      ],
       inquiryPrefill:
         "Hola Natalia, estuve revisando tu portafolio y en especial el proyecto del Apto Cerezo. Me pareció excelente tu enfoque en optimización de espacios compactos y mobiliario a medida. Me gustaría que nos pusiéramos en contacto para conversar sobre una oportunidad de colaboración.",
-      inquiryBtn: "¿Tienes un proyecto similar? →",
+      inquiryBtn: "¿TIENES UN PROYECTO SIMILAR? →",
       viewBoardBtn: "Ampliar lámina",
       sheetLegend: "Lámina técnica original del proyecto",
       galleryHeader: {
         title: "ATMÓSFERA Y MATERIALIDAD",
-        subtitle: "Cuatro espacios, un mismo lenguaje",
+        subtitle: "Una materialidad que recorre el proyecto",
         description:
-          "La madera en tono cerezo conecta cocina, área social, oficina y dormitorio mediante una identidad cálida y continua.",
+          "La madera en tono cerezo articula cocina, área social, oficina y dormitorio mediante una identidad cálida, continua y funcional.",
       },
       metadata: [
         {

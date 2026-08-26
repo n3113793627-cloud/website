@@ -399,14 +399,14 @@ export const en = {
         title: "Floating Folding Screen",
         decision: "Porous spatial structuring through wooden screen",
         rationale:
-          "In small apartments, traditional solid walls restrict light and induce claustrophobic spatial fatigue. This central divider acts as a spatial diaphragm: it allows you to see through it to expand the perception of depth (which relaxes the optic nerve) while delimiting zones without blocking ventilation or natural circadian light.",
+          "In small apartments, traditional solid walls restrict light and ventilation. This central divider acts as a spatial diaphragm: it allows you to see through it to expand the perception of depth while delimiting zones without blocking ventilation or the passage of natural light.",
         pillar: "Spatial Agency and Visual Fluidity",
       },
       hotspot2: {
         title: "Cherry Texture and Matte Tones",
         decision: "Strategic use of light wood melamine and low saturation finishes",
         rationale:
-          "High and intense visual contrasts constantly trigger micro-alerts in the brain. Matte cherry melamine absorbs and disperses lighting instead of reflecting it sharply. This activates the visual touch of the somatosensory cortex in a balanced way, promoting an immediate sense of physical serenity and lowering basal cortisol levels.",
+          "The strategic use of light wood melamine and natural textures brings warmth and visual comfort. Matte cherry melamine absorbs and softly disperses lighting, promoting a serene and balanced environment.",
         pillar: "Controlled Sensory Stimulation",
       },
       altDetail: "Carpentry detail",
@@ -425,16 +425,27 @@ export const en = {
       ],
       rightDesc:
         "The central screen organizes the transition between the social area, the home office, and the bedroom, providing privacy without completely closing the space.",
+      infoLabel: "INTEGRATED INTERIOR DESIGN · CUSTOM FURNITURE · BOGOTÁ · 2025",
+      infoTitle: "A central element that organizes everyday living",
+      infoText:
+        "“Apto Cerezo reorganizes a compact apartment through a central storage and transition element. The proposal connects the kitchen, social area, home office, and bedroom through a warm and continuous material language while preserving natural light and circulation.”",
+      scopeTitle: "PROJECT SCOPE",
+      scopeItems: [
+        "Spatial planning",
+        "Custom furniture",
+        "3D visualization",
+        "Technical documentation",
+      ],
       inquiryPrefill:
         "Hello Natalia, I was reviewing your portfolio and especially the Apto Cerezo project. I found your approach to compact space optimization and custom furniture excellent. I would like to get in touch to talk about a collaboration opportunity.",
-      inquiryBtn: "Have a similar project? →",
+      inquiryBtn: "DO YOU HAVE A SIMILAR PROJECT? →",
       viewBoardBtn: "View full board",
       sheetLegend: "Original project presentation board · Spanish content",
       galleryHeader: {
         title: "ATMOSPHERE AND MATERIALITY",
-        subtitle: "Four spaces, one visual language",
+        subtitle: "A materiality that runs through the project",
         description:
-          "Cherry-toned wood connects the kitchen, living area, home office, and bedroom through a warm, continuous visual identity.",
+          "Cherry-toned wood connects the kitchen, social area, home office, and bedroom through a warm, continuous, and functional identity.",
       },
       metadata: [
         {

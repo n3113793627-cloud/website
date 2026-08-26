@@ -406,14 +406,14 @@ export const pt = {
         title: "Biombo Divisório Flutuante",
         decision: "Estruturação espacial porosa através de biombo de madeira",
         rationale:
-          "Em apartamentos pequenos, as paredes sólidas tradicionais restringem a luz e induzem uma fadiga espacial claustrofóbica. Esta divisória central atua como diafragma espacial: permite ver através dela para ampliar a percepção de profundidade (o que relaxa o nervio óptico) enquanto delimita zonas sem bloquear a ventilação nem a luz natural circadiana.",
+          "Em apartamentos pequenos, as paredes sólidas tradicionais restringem a luz e a ventilação. Esta divisória central atua como diafragma espacial: permite ver através dela para ampliar a percepção de profundidade enquanto delimita zonas sem bloquear a ventilação nem a passagem da luz natural.",
         pillar: "Agência Espacial e Fluidez Visual",
       },
       hotspot2: {
         title: "Textura de Cerejeira e Tons Foscos",
         decision: "Uso estratégico de melamina de madeira clara e acabamentos de baixa saturação",
         rationale:
-          "Os contrastes visuais altos e intensos disparam microalertas no cérebro constantemente. A melamina de cerejeira fosca absorve e dispersa a iluminação em vez de refleti-la bruscamente. Isso ativa o tato visual do córtex somatossensorial de forma equilibrada, promovendo uma sensação de serenidade física imediata e diminuindo os níveis basais de cortisol.",
+          "O uso estratégico de melamina de madeira clara e texturas naturais traz calor e conforto visual. A melamina de cerejeira fosca absorve e dispersa suavemente a iluminação, promovendo um ambiente sereno e equilibrado.",
         pillar: "Estimulação Sensorial Controlada",
       },
       altDetail: "Detalhe de marcenaria",
@@ -432,21 +432,32 @@ export const pt = {
       ],
       rightDesc:
         "O biombo central organiza a transição entre a área social, o escritório e o quarto, proporcionando privacidade sem fechar completamente o espaço.",
+      infoLabel: "DESIGN DE INTERIORES INTEGRADO · MOBILIÁRIO SOB MEDIDA · BOGOTÁ · 2025",
+      infoTitle: "Um elemento central que organiza o habitar",
+      infoText:
+        "“O Apto Cerezo reorganiza um apartamento compacto por meio de um elemento central de armazenamento e transição. A proposta conecta cozinha, área social, escritório e dormitório com uma materialidade acolhedora e contínua, preservando a entrada de luz e os percursos.”",
+      scopeTitle: "ESCOPO DO PROJETO",
+      scopeItems: [
+        "Distribuição espacial",
+        "Mobiliário sob medida",
+        "Visualização 3D",
+        "Documentação técnica",
+      ],
       inquiryPrefill:
         "Olá Natalia, estive revisando seu portfólio e especialmente o projeto do Apto Cerezo. Achei excelente sua abordagem em otimização de espaços compactos e mobiliário sob medida. Gostaria de entrar em contato para conversarmos sobre uma oportunidade de colaboração.",
-      inquiryBtn: "Tem um projeto semelhante? →",
+      inquiryBtn: "VOCÊ TEM UM PROJETO SEMELHANTE? →",
       viewBoardBtn: "Ampliar prancha",
       sheetLegend: "Prancha técnica original do projeto · Conteúdo em espanhol",
       galleryHeader: {
         title: "ATMOSFERA E MATERIALIDADE",
-        subtitle: "Quatro espaços, uma mesma linguagem",
+        subtitle: "Uma materialidade que percorre o projeto",
         description:
-          "A madeira em tom cerejeira conecta cozinha, área social, escritório e quarto por meio de uma identidade acolhedora e contínua.",
+          "A madeira em tom cerejeira articula cozinha, área social, escritório e quarto por meio de uma identidade acolhedora, contínua e funcional.",
       },
       metadata: [
         {
           k: "Criterios de Design",
-          v: "Continuidade visual, aproveitamento da luz natural e organização espacial.",
+          v: "Continuidade visual, aproveitamento de la luz natural e organização espacial.",
         },
         { k: "Peça-chave", v: "Biombo-biblioteca central multifuncional." },
         { k: "Áreas", v: "Cozinha · Área social · Escritório · Quarto." },
