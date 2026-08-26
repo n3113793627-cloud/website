@@ -1510,8 +1510,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
               <Hotspot
                 x="38%"
                 y="45%"
-                onClick={(e) => {
-                  e.stopPropagation();
+                onClick={() => {
                   setActiveHotspot({
                     project: t.projects.casino.title,
                     title: t.projects.casino.hotspot1.title,
@@ -1525,8 +1524,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
               <Hotspot
                 x="68%"
                 y="62%"
-                onClick={(e) => {
-                  e.stopPropagation();
+                onClick={() => {
                   setActiveHotspot({
                     project: t.projects.casino.title,
                     title: t.projects.casino.hotspot2.title,
