@@ -445,7 +445,7 @@ export const en = {
         title: "ATMOSPHERE AND MATERIALITY",
         subtitle: "A materiality that runs through the project",
         description:
-          "Cherry-toned wood connects the kitchen, social area, home office, and bedroom through a warm, continuous, and functional identity.",
+          "Cherry-toned wood connects the different spaces through a warm, continuous, and functional identity.",
       },
       metadata: [
         {

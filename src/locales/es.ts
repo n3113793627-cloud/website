@@ -453,7 +453,7 @@ export const es = {
         title: "ATMÓSFERA Y MATERIALIDAD",
         subtitle: "Una materialidad que recorre el proyecto",
         description:
-          "La madera en tono cerezo articula cocina, área social, oficina y dormitorio mediante una identidad cálida, continua y funcional.",
+          "La madera en tono cerezo articula los distintos ambientes mediante una identidad cálida, continua y funcional.",
       },
       metadata: [
         {

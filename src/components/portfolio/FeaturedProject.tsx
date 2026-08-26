@@ -1090,88 +1090,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
           </div>
 
           {/* Galería Editorial Responsiva con Renders Completos y Leyendas */}
-          {/* En escritorio (lg): fila superior de 3 columnas y fila inferior centrada */}
-          <div className="hidden lg:flex flex-col gap-10">
-            {/* Fila 1: cocina, biombo central, oficina */}
-            <div className="grid grid-cols-3 gap-8">
-              {[
-                {
-                  id: "kitchen",
-                  src: cerezoKitchen,
-                  title: t.projects.cerezo.gallery.kitchenTitle,
-                  desc: t.projects.cerezo.gallery.kitchenDesc,
-                },
-                {
-                  id: "social",
-                  src: cerezoSocial,
-                  title: t.projects.cerezo.gallery.socialTitle,
-                  desc: t.projects.cerezo.gallery.socialDesc,
-                },
-                {
-                  id: "office",
-                  src: cerezoOffice,
-                  title: t.projects.cerezo.gallery.officeTitle,
-                  desc: t.projects.cerezo.gallery.officeDesc,
-                },
-              ].map((img) => (
-                <div key={img.id} className="flex flex-col gap-3">
-                  <div
-                    onClick={() => {
-                      setLightboxImageSrc(img.src);
-                      setLightboxImageAlt(img.title);
-                    }}
-                    className="relative w-full rounded-lg border border-[var(--cream)]/10 shadow-lg cursor-zoom-in group overflow-hidden bg-black/20"
-                  >
-                    <img
-                      src={img.src}
-                      alt={img.title}
-                      className="w-full h-auto block object-contain transition-all duration-300 group-hover:opacity-90"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                  </div>
-                  <div className="space-y-1.5 mt-2">
-                    <p className="text-[15px] font-bold text-white tracking-wide">{img.title}</p>
-                    <p className="text-xs md:text-sm text-[var(--cream)]/80 leading-[1.45] font-sans">
-                      {img.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Fila 2: dormitorio centrado con un ancho máximo de 1000px */}
-            <div className="flex justify-center w-full">
-              <div className="w-full max-w-[1000px] flex flex-col gap-3">
-                <div
-                  onClick={() => {
-                    setLightboxImageSrc(cerezoBedroom);
-                    setLightboxImageAlt(t.projects.cerezo.gallery.bedroomTitle);
-                  }}
-                  className="relative w-full rounded-lg border border-[var(--cream)]/10 shadow-lg cursor-zoom-in group overflow-hidden bg-black/20"
-                >
-                  <img
-                    src={cerezoBedroom}
-                    alt={t.projects.cerezo.gallery.bedroomTitle}
-                    className="w-full h-auto block object-contain transition-all duration-300 group-hover:opacity-90"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                </div>
-                <div className="space-y-1.5 mt-2">
-                  <p className="text-[15px] font-bold text-white tracking-wide">
-                    {t.projects.cerezo.gallery.bedroomTitle}
-                  </p>
-                  <p className="text-xs md:text-sm text-[var(--cream)]/80 leading-[1.45] font-sans">
-                    {t.projects.cerezo.gallery.bedroomDesc}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* En móvil y tablet: cuadrícula de 2 columnas en md y 1 en móvil */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:hidden">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
             {[
               {
                 id: "kitchen",
@@ -1190,12 +1109,6 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                 src: cerezoOffice,
                 title: t.projects.cerezo.gallery.officeTitle,
                 desc: t.projects.cerezo.gallery.officeDesc,
-              },
-              {
-                id: "bedroom",
-                src: cerezoBedroom,
-                title: t.projects.cerezo.gallery.bedroomTitle,
-                desc: t.projects.cerezo.gallery.bedroomDesc,
               },
             ].map((img) => (
               <div key={img.id} className="flex flex-col gap-3">

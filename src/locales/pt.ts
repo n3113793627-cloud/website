@@ -452,7 +452,7 @@ export const pt = {
         title: "ATMOSFERA E MATERIALIDADE",
         subtitle: "Uma materialidade que percorre o projeto",
         description:
-          "A madeira em tom cerejeira articula cozinha, área social, escritório e quarto por meio de uma identidade acolhedora, contínua e funcional.",
+          "A madeira em tom cerejeira articula os diferentes ambientes por meio de uma identidade acolhedora, contínua e funcional.",
       },
       metadata: [
         {
