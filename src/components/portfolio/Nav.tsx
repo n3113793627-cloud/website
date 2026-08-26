@@ -75,13 +75,19 @@ export function Nav() {
               if (el) el.scrollIntoView({ behavior: "smooth" });
             }}
             className={`display tracking-tight transition-all duration-500 ${
-              isScrolled ? "text-xl text-ink" : "text-2xl text-white drop-shadow-md"
+              isScrolled ? "text-xl" : "text-2xl"
+            } ${
+              open ? "text-[var(--ink)]" : isScrolled ? "text-ink" : "text-white drop-shadow-md"
             }`}
           >
             Natalia{" "}
             <span
               className={`italic transition-colors duration-500 ${
-                isScrolled ? "text-[oklch(0.38_0.11_40)]" : "text-white/90"
+                open
+                  ? "text-[var(--primary)]"
+                  : isScrolled
+                    ? "text-[oklch(0.38_0.11_40)]"
+                    : "text-white/90"
               }`}
             >
               Ramírez
