@@ -23,8 +23,10 @@ import beachVideo from "@/assets/troque_a_primeira_cena_das_cab.mp4";
 
 // TRÍPODE project assets
 import tripodeConcept from "@/assets/TRÍPODE.png";
-import tripode1 from "@/assets/TRÍPODE (1).png";
-import tripode2 from "@/assets/TRÍPODE (2).png";
+import tripodeBeforeAngle01 from "@/assets/tripode-before-angle-01.png";
+import tripodeAfterAngle01 from "@/assets/tripode-after-angle-01.png";
+import tripodeBeforeAngle02 from "@/assets/tripode-before-angle-02.png";
+import tripodeAfterAngle02 from "@/assets/tripode-after-angle-02.png";
 
 function AutoplayVideo({ src, className }: { src: string; className?: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -234,7 +236,7 @@ interface TransformationPairProps {
   description?: string;
   beforeImg: string;
   afterImg: string;
-  onOpenImage: (img: string) => void;
+  onOpenImage: (img: string, label: string) => void;
 }
 
 function TransformationPair({
@@ -248,13 +250,16 @@ function TransformationPair({
   const { language } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
 
-  const labelBefore = language === "en" ? "01 · Existing condition" : "01 · Estado existente";
-  const labelAfter =
+  const rawLabelBefore = language === "en" ? "Existing condition" : "Estado existente";
+  const rawLabelAfter =
     language === "pt"
-      ? "02 · Proposta TRÍPODE"
+      ? "Proposta TRÍPODE"
       : language === "en"
-        ? "02 · TRÍPODE proposal"
-        : "02 · Propuesta TRÍPODE";
+        ? "TRÍPODE proposal"
+        : "Propuesta TRÍPODE";
+
+  const labelBefore = `01 · ${rawLabelBefore}`;
+  const labelAfter = `02 · ${rawLabelAfter}`;
 
   const labelTrans =
     language === "pt" ? "TRANSFORMAÇÃO" : language === "en" ? "TRANSFORMATION" : "TRANSFORMACIÓN";
@@ -277,8 +282,8 @@ function TransformationPair({
         )}
       </div>
 
-      {/* Main Grid: stack on mobile (<900px), grid minmax(0, 1fr) 72px minmax(0, 1fr) on desktop */}
-      <div className="w-full max-w-[1550px] mx-auto flex flex-col min-[900px]:grid min-[900px]:grid-cols-[minmax(0,_1fr)_88px_minmax(0,_1fr)] min-[900px]:items-start gap-6 min-[900px]:gap-0">
+      {/* Main Grid: stack on mobile (<900px), grid minmax(0, 1fr) 88px minmax(0, 1fr) on desktop */}
+      <div className="w-full max-w-[1550px] mx-auto flex flex-col min-[900px]:grid min-[900px]:grid-cols-[minmax(0,_1fr)_88px_minmax(0,_1fr)] min-[900px]:items-center gap-6 min-[900px]:gap-0">
         {/* Card Left: Before */}
         <div className="w-full flex flex-col space-y-3">
           {/* Card Header outside */}
@@ -287,33 +292,36 @@ function TransformationPair({
               {labelBefore}
             </span>
           </div>
-          {/* Image Wrapper */}
+          {/* Image Wrapper: aspect ratio 4:5 exact */}
           <button
-            onClick={() => onOpenImage(beforeImg)}
-            className="w-full relative overflow-hidden rounded-xl border border-white/10 bg-[#120e0c]/40 flex items-start justify-center cursor-zoom-in group transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EFA07F] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ink)]"
-            aria-label={`${labelEnlarge}: ${labelBefore}`}
+            type="button"
+            onClick={() => onOpenImage(beforeImg, rawLabelBefore)}
+            className="w-full relative aspect-[4/5] overflow-hidden rounded-xl border border-white/10 bg-[#120e0c]/40 flex items-center justify-center cursor-zoom-in group transition-transform duration-300 hover:border-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EFA07F] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ink)]"
+            style={{ aspectRatio: "4 / 5" }}
+            aria-label={`${labelEnlarge}: ${rawLabelBefore}`}
           >
             <img
               src={beforeImg}
-              alt={labelBefore}
-              className="w-full h-auto block object-contain rounded-xl transition-all duration-300 group-hover:opacity-95"
+              alt={rawLabelBefore}
+              className="w-full h-full block object-cover object-center rounded-xl transition-all duration-300 group-hover:opacity-95"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
               loading="lazy"
             />
-            {/* Soft border styling */}
-            <div className="absolute inset-0 rounded-xl border border-white/5 pointer-events-none" />
-            <div className="absolute bottom-3 right-3 bg-black/75 text-[var(--cream)] text-[9px] font-mono px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-bold uppercase tracking-wider">
-              {labelEnlarge}
-            </div>
           </button>
         </div>
 
         {/* Connector: Arrow indicator */}
-        <div className="flex flex-col items-center justify-center w-full min-[900px]:self-stretch px-3 py-4 min-[900px]:py-0 select-none min-[900px]:w-[88px]">
+        <div className="flex flex-col items-center justify-center w-full min-[900px]:self-center min-[900px]:pt-8 px-2 py-4 min-[900px]:py-0 select-none min-[900px]:w-[88px]">
           <span className="text-[9px] font-mono tracking-[0.22em] text-[#ffc8b2] uppercase mb-3 font-bold whitespace-nowrap text-center">
             {labelTrans}
           </span>
           <div className="relative flex items-center justify-center w-full min-[900px]:w-full">
-            {/* Line extending animation */}
+            {/* Line extending animation horizontal on desktop */}
             <motion.div
               className="absolute h-px bg-[#EFA07F]/20 left-0 right-0 hidden min-[900px]:block"
               initial={{ scaleX: 0 }}
@@ -321,7 +329,7 @@ function TransformationPair({
               viewport={{ once: true }}
               transition={{ duration: shouldReduceMotion ? 0 : 0.6, ease: "easeOut" }}
             />
-            {/* Line extending animation vertical for mobile */}
+            {/* Line extending animation vertical on mobile */}
             <motion.div
               className="absolute w-px bg-[#EFA07F]/20 top-0 bottom-0 min-[900px]:hidden"
               initial={{ scaleY: 0 }}
@@ -356,23 +364,26 @@ function TransformationPair({
               {labelAfter}
             </span>
           </div>
-          {/* Image Wrapper */}
+          {/* Image Wrapper: aspect ratio 4:5 exact */}
           <button
-            onClick={() => onOpenImage(afterImg)}
-            className="w-full relative overflow-hidden rounded-xl border border-white/10 bg-[#120e0c]/40 flex items-start justify-center cursor-zoom-in group transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EFA07F] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ink)]"
-            aria-label={`${labelEnlarge}: ${labelAfter}`}
+            type="button"
+            onClick={() => onOpenImage(afterImg, rawLabelAfter)}
+            className="w-full relative aspect-[4/5] overflow-hidden rounded-xl border border-white/10 bg-[#120e0c]/40 flex items-center justify-center cursor-zoom-in group transition-transform duration-300 hover:border-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EFA07F] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ink)]"
+            style={{ aspectRatio: "4 / 5" }}
+            aria-label={`${labelEnlarge}: ${rawLabelAfter}`}
           >
             <img
               src={afterImg}
-              alt={labelAfter}
-              className="w-full h-auto block object-contain rounded-xl transition-all duration-300 group-hover:opacity-95"
+              alt={rawLabelAfter}
+              className="w-full h-full block object-cover object-center rounded-xl transition-all duration-300 group-hover:opacity-95"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
               loading="lazy"
             />
-            {/* Soft border styling */}
-            <div className="absolute inset-0 rounded-xl border border-white/5 pointer-events-none" />
-            <div className="absolute bottom-3 right-3 bg-black/75 text-[var(--cream)] text-[9px] font-mono px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-bold uppercase tracking-wider">
-              {labelEnlarge}
-            </div>
           </button>
         </div>
       </div>
@@ -905,11 +916,11 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             title={t.projects.tripode.trans1Title}
             subtitle={t.projects.tripode.trans1Sub}
             description={t.projects.tripode.trans1Desc}
-            beforeImg="/media/tripode-angle-01-before.jpg"
-            afterImg="/media/tripode-angle-01-after.jpg"
-            onOpenImage={(img) => {
+            beforeImg={tripodeBeforeAngle01}
+            afterImg={tripodeAfterAngle01}
+            onOpenImage={(img, label) => {
               setLightboxImageSrc(img);
-              setLightboxImageAlt(t.projects.tripode.trans1Title);
+              setLightboxImageAlt(label);
             }}
           />
 
@@ -918,11 +929,11 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             title={t.projects.tripode.trans2Title}
             subtitle={t.projects.tripode.trans2Sub}
             description={t.projects.tripode.trans2Desc}
-            beforeImg="/media/tripode-angle-02-before.png"
-            afterImg="/media/tripode-angle-02-after.jpg"
-            onOpenImage={(img) => {
+            beforeImg={tripodeBeforeAngle02}
+            afterImg={tripodeAfterAngle02}
+            onOpenImage={(img, label) => {
               setLightboxImageSrc(img);
-              setLightboxImageAlt(t.projects.tripode.trans2Title);
+              setLightboxImageAlt(label);
             }}
           />
 
