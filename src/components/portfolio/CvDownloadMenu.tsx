@@ -32,21 +32,24 @@ export function CvDownloadMenu({
       code: "es",
       langLabel: "Español",
       description: "CV en español · PDF",
-      fileName: "natalia-ramirez-cv-es.pdf",
+      fileName: "Natalia-Ramirez-CV-ES-2026.pdf",
+      downloadName: "Natalia-Ramirez-CV-ES.pdf",
       ariaLabel: "Descargar currículum de Natalia Ramírez en Español",
     },
     {
       code: "pt",
       langLabel: "Português",
       description: "Currículo em português · PDF",
-      fileName: "natalia-ramirez-cv-pt.pdf",
+      fileName: "Natalia-Ramirez-CV-PT-2026.pdf",
+      downloadName: "Natalia-Ramirez-CV-PT.pdf",
       ariaLabel: "Baixar currículo de Natalia Ramírez em Português",
     },
     {
       code: "en",
       langLabel: "English",
       description: "CV in English · PDF",
-      fileName: "natalia-ramirez-cv-en.pdf",
+      fileName: "Natalia-Ramirez-CV-EN-2026.pdf",
+      downloadName: "Natalia-Ramirez-CV-EN.pdf",
       ariaLabel: "Download Natalia Ramírez's CV in English",
     },
   ];
@@ -204,7 +207,7 @@ export function CvDownloadMenu({
           <a
             key={opt.code}
             href={`/cv/${opt.fileName}`}
-            download={opt.fileName}
+            download={opt.downloadName}
             role="menuitem"
             tabIndex={focusedIndex === i ? 0 : -1}
             onClick={() => setIsOpen(false)}
