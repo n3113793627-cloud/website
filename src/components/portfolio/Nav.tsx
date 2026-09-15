@@ -198,93 +198,118 @@ export function Nav() {
                 </motion.a>
               ))}
             </nav>
-            <div className="mt-14 flex flex-col gap-6 sm:flex-row sm:items-center">
-              <motion.a
-                href="#contacto"
-                onClick={() => setOpen(false)}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-                className="self-start text-xs tracking-[0.2em] uppercase border border-foreground/30 px-5 py-3 hover:bg-foreground hover:text-background transition-colors rounded-full"
-              >
-                {language === "es"
-                  ? "Trabajemos juntos"
-                  : language === "pt"
-                    ? "Vamos trabalhar juntos"
-                    : "Let's work together"}
-              </motion.a>
-
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.42 }}
-                className="self-start"
-              >
-                <CvDownloadMenu
-                  onOpenChange={setIsCvMenuOpen}
-                  align="left"
-                  className="text-xs tracking-[0.2em] uppercase border border-foreground/30 px-5 py-3 hover:bg-foreground hover:text-background transition-colors rounded-full flex items-center justify-center gap-1.5 cursor-pointer min-h-[44px]"
-                />
-              </motion.div>
-
-              {/* Mobile Language Selector Dropdown */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.45 }}
-                className="relative self-start"
-              >
-                <button
-                  onClick={() => setMobileLangOpen(!mobileLangOpen)}
-                  aria-label="Seleccionar idioma / Select language / Selecionar idioma"
-                  aria-haspopup="listbox"
-                  aria-expanded={mobileLangOpen}
-                  className="flex items-center gap-2 text-xs tracking-[0.2em] uppercase border border-foreground/30 px-5 py-3 rounded-full hover:bg-foreground hover:text-background transition-colors min-h-[44px] cursor-pointer"
+            <div className="mt-10 flex flex-col gap-5">
+              <div className="flex flex-wrap gap-3 items-center">
+                <motion.a
+                  href="#contacto"
+                  onClick={() => setOpen(false)}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.4 }}
+                  className="text-xs tracking-[0.2em] uppercase border border-foreground/30 px-5 py-3 hover:bg-foreground hover:text-background transition-colors rounded-full"
                 >
-                  IDIOMA · {language.toUpperCase()}
-                </button>
-                <AnimatePresence>
-                  {mobileLangOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      className="absolute bottom-full mb-3 left-0 bg-[var(--cream)] border border-foreground/15 rounded-xl shadow-xl py-2 min-w-[160px] z-50"
-                    >
-                      <div role="listbox" aria-label="Idiomas disponibles">
-                        {(
-                          [
-                            { code: "es", label: "Español" },
-                            { code: "pt", label: "Português" },
-                            { code: "en", label: "English" },
-                          ] as const
-                        ).map((item) => {
-                          const isActive = language === item.code;
-                          return (
-                            <button
-                              key={item.code}
-                              role="option"
-                              aria-selected={isActive}
-                              onClick={() => {
-                                setLanguage(item.code);
-                                setMobileLangOpen(false);
-                                setOpen(false);
-                              }}
-                              className={`w-full text-left px-5 py-3 text-xs uppercase tracking-wider transition-colors min-h-[44px] flex items-center justify-between cursor-pointer ${
-                                isActive
-                                  ? "bg-[var(--clay)] text-white font-bold"
-                                  : "text-foreground hover:bg-black/5"
-                              }`}
-                            >
-                              <span>{item.label}</span>
-                              {isActive && <span className="font-sans">✓</span>}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                  {t.contact.workTogether}
+                </motion.a>
+
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.42 }}
+                >
+                  <CvDownloadMenu
+                    onOpenChange={setIsCvMenuOpen}
+                    align="left"
+                    className="text-xs tracking-[0.2em] uppercase border border-foreground/30 px-5 py-3 hover:bg-foreground hover:text-background transition-colors rounded-full flex items-center justify-center gap-1.5 cursor-pointer min-h-[44px]"
+                  />
+                </motion.div>
+
+                {/* Mobile Language Selector Dropdown */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.45 }}
+                  className="relative"
+                >
+                  <button
+                    onClick={() => setMobileLangOpen(!mobileLangOpen)}
+                    aria-label="Seleccionar idioma / Select language / Selecionar idioma"
+                    aria-haspopup="listbox"
+                    aria-expanded={mobileLangOpen}
+                    className="flex items-center gap-2 text-xs tracking-[0.2em] uppercase border border-foreground/30 px-5 py-3 rounded-full hover:bg-foreground hover:text-background transition-colors min-h-[44px] cursor-pointer"
+                  >
+                    IDIOMA · {language.toUpperCase()}
+                  </button>
+                  <AnimatePresence>
+                    {mobileLangOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        className="absolute bottom-full mb-3 left-0 bg-[var(--cream)] border border-foreground/15 rounded-xl shadow-xl py-2 min-w-[160px] z-50"
+                      >
+                        <div role="listbox" aria-label="Idiomas disponibles">
+                          {(
+                            [
+                              { code: "es", label: "Español" },
+                              { code: "pt", label: "Português" },
+                              { code: "en", label: "English" },
+                            ] as const
+                          ).map((item) => {
+                            const isActive = language === item.code;
+                            return (
+                              <button
+                                key={item.code}
+                                role="option"
+                                aria-selected={isActive}
+                                onClick={() => {
+                                  setLanguage(item.code);
+                                  setMobileLangOpen(false);
+                                  setOpen(false);
+                                }}
+                                className={`w-full text-left px-5 py-3 text-xs uppercase tracking-wider transition-colors min-h-[44px] flex items-center justify-between cursor-pointer ${
+                                  isActive
+                                    ? "bg-[var(--clay)] text-white font-bold"
+                                    : "text-foreground hover:bg-black/5"
+                                }`}
+                              >
+                                <span>{item.label}</span>
+                                {isActive && <span className="font-sans">✓</span>}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="pt-6 border-t border-foreground/15 flex flex-wrap gap-4 text-xs font-mono"
+              >
+                <a
+                  href="https://wa.me/573118383064"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-foreground/20 hover:border-[var(--primary)] hover:text-[var(--primary)] transition-colors min-h-[44px]"
+                  aria-label={`${t.contact.whatsappAction}: +57 311 838 3064`}
+                >
+                  <span className="font-sans font-semibold text-[var(--clay)]">WhatsApp</span>
+                  <span>+57 311 838 3064</span>
+                </a>
+                <a
+                  href="tel:+573118383064"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-foreground/20 hover:border-[var(--primary)] hover:text-[var(--primary)] transition-colors min-h-[44px]"
+                  aria-label={`${t.contact.callAction}: +57 311 838 3064`}
+                >
+                  <span className="font-sans font-semibold text-[var(--clay)]">
+                    {t.contact.callAction}
+                  </span>
+                  <span>+57 311 838 3064</span>
+                </a>
               </motion.div>
             </div>
           </motion.div>

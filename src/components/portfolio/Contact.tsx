@@ -141,6 +141,22 @@ export function Contact({ prefilledMessage = "" }: ContactProps) {
                     >
                       nataliaramirez1799@gmail.com
                     </a>
+                    {" · "}
+                    <a
+                      href="https://wa.me/573118383064"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline hover:text-[var(--primary)] font-semibold"
+                    >
+                      WhatsApp (+57 311 838 3064)
+                    </a>
+                    {" · "}
+                    <a
+                      href="tel:+573118383064"
+                      className="underline hover:text-[var(--primary)] font-semibold"
+                    >
+                      tel: +57 311 838 3064
+                    </a>
                   </p>
                 </motion.div>
               )}
@@ -178,12 +194,21 @@ export function Contact({ prefilledMessage = "" }: ContactProps) {
             <div>
               <p className="eyebrow mb-2">{t.contact.whatsapp}</p>
               <a
-                href="https://wa.me/5513978103416"
+                href="https://wa.me/573118383064"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="display text-xl md:text-2xl hover:text-[var(--primary)] transition-colors focus-visible:text-[var(--primary)] focus-visible:outline-none"
               >
-                +55 (13) 97810-3416
+                +57 311 838 3064
+              </a>
+            </div>
+            <div>
+              <p className="eyebrow mb-2">{t.contact.phone}</p>
+              <a
+                href="tel:+573118383064"
+                className="display text-xl md:text-2xl hover:text-[var(--primary)] transition-colors focus-visible:text-[var(--primary)] focus-visible:outline-none"
+              >
+                +57 311 838 3064
               </a>
             </div>
             <div>

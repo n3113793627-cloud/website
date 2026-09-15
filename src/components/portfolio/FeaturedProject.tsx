@@ -544,6 +544,8 @@ function TripodeVideoPlayer() {
       <video
         ref={videoRef}
         src="/media/tripode-concepto.mp4"
+        poster="/media/tripode-poster.jpg"
+        autoPlay
         muted={isMuted}
         playsInline
         loop
@@ -836,9 +838,9 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
 
           {/* 2. VIDEO CONCEPTUAL - Grid editorial de dos columnas */}
           <div className="py-12 md:py-20 border-b border-[var(--cream)]/10">
-            <div className="max-w-[1400px] mx-auto px-6 md:px-10 grid md:grid-cols-12 gap-8 md:gap-16 items-center">
-              {/* Columna Izquierda: 35–40% del ancho (5 columnas) */}
-              <div className="md:col-span-5 space-y-5 text-left">
+            <div className="max-w-[1400px] mx-auto px-6 md:px-10 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-center">
+              {/* Columna Izquierda: 35–40% del ancho (5 columnas) - en celular texto primero (order-1) ocupando el ancho disponible */}
+              <div className="order-1 md:col-span-5 space-y-5 text-left w-full">
                 <span className="text-[10px] tracking-[0.2em] uppercase font-mono text-[var(--clay-light)] font-bold block">
                   {t.projects.tripode.videoTag}
                 </span>
@@ -853,8 +855,8 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                 </div>
               </div>
 
-              {/* Columna Derecha: 60–65% del ancho (7 columnas) */}
-              <div className="md:col-span-7 flex justify-center w-full">
+              {/* Columna Derecha: 60–65% del ancho (7 columnas) - en celular video después (order-2) ocupando el ancho disponible */}
+              <div className="order-2 md:col-span-7 flex justify-center w-full">
                 <TripodeVideoPlayer />
               </div>
             </div>
