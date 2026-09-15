@@ -1,5 +1,22 @@
 {
   "buildCommand": "npm run build",
   "framework": null,
-  "installCommand": "npm install"
+  "installCommand": "npm install",
+  "redirects": [
+    {
+      "source": "/cv/natalia-ramirez-cv-es.pdf",
+      "destination": "/cv/Natalia-Ramirez-CV-ES-2026.pdf",
+      "permanent": false
+    },
+    {
+      "source": "/cv/natalia-ramirez-cv-pt.pdf",
+      "destination": "/cv/Natalia-Ramirez-CV-PT-2026.pdf",
+      "permanent": false
+    },
+    {
+      "source": "/cv/natalia-ramirez-cv-en.pdf",
+      "destination": "/cv/Natalia-Ramirez-CV-EN-2026.pdf",
+      "permanent": false
+    }
+  ]
 }
