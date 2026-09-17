@@ -107,7 +107,7 @@ function RootShell({ children }: { children: ReactNode }) {
 
   let lang = "es";
   if (pathname.startsWith("/pt")) {
-    lang = "pt";
+    lang = "pt-BR";
   } else if (pathname.startsWith("/en")) {
     lang = "en";
   }

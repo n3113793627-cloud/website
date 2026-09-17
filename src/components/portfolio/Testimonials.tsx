@@ -126,7 +126,7 @@ export function Testimonials() {
                 className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                   i === index ? "w-8 bg-[var(--clay)]" : "w-1.5 bg-foreground/15"
                 }`}
-                aria-label={`Go to testimonial ${i + 1}`}
+                aria-label={`${t.testimonials.goToTestimonial} ${i + 1}`}
               />
             ))}
           </div>

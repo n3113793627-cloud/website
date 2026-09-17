@@ -76,22 +76,16 @@ export function Nav() {
             }}
             className={`display tracking-tight transition-all duration-500 ${
               isScrolled ? "text-xl" : "text-2xl"
-            } ${
-              open ? "text-[var(--ink)]" : isScrolled ? "text-ink" : "text-white drop-shadow-md"
-            }`}
+            } ${open || isScrolled ? "" : "drop-shadow-md"}`}
           >
-            Natalia{" "}
             <span
-              className={`italic transition-colors duration-500 ${
-                open
-                  ? "text-[var(--primary)]"
-                  : isScrolled
-                    ? "text-[oklch(0.38_0.11_40)]"
-                    : "text-white/90"
+              className={`transition-colors duration-500 ${
+                open || isScrolled ? "text-[var(--ink)]" : "text-white"
               }`}
             >
-              Ramírez
-            </span>
+              Natalia
+            </span>{" "}
+            <span className="italic logo-ramirez text-[var(--primary)]">Ramírez</span>
           </a>
 
           <nav className="hidden md:flex gap-8 text-[0.75rem] uppercase tracking-widest font-medium">
@@ -156,7 +150,7 @@ export function Nav() {
           <button
             onClick={() => setOpen((v) => !v)}
             className="md:hidden flex flex-col gap-[5px] p-2 z-60"
-            aria-label={open ? "Cerrar menú" : "Abrir menú"}
+            aria-label={open ? t.nav.menuClose : t.nav.menuOpen}
           >
             <motion.span
               animate={open ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
@@ -232,12 +226,12 @@ export function Nav() {
                 >
                   <button
                     onClick={() => setMobileLangOpen(!mobileLangOpen)}
-                    aria-label="Seleccionar idioma / Select language / Selecionar idioma"
+                    aria-label={t.nav.availableLanguages}
                     aria-haspopup="listbox"
                     aria-expanded={mobileLangOpen}
                     className="flex items-center gap-2 text-xs tracking-[0.2em] uppercase border border-foreground/30 px-5 py-3 rounded-full hover:bg-foreground hover:text-background transition-colors min-h-[44px] cursor-pointer"
                   >
-                    IDIOMA · {language.toUpperCase()}
+                    {t.nav.languageLabel.toUpperCase()} · {language.toUpperCase()}
                   </button>
                   <AnimatePresence>
                     {mobileLangOpen && (
@@ -247,7 +241,7 @@ export function Nav() {
                         exit={{ opacity: 0, y: 10 }}
                         className="absolute bottom-full mb-3 left-0 bg-[var(--cream)] border border-foreground/15 rounded-xl shadow-xl py-2 min-w-[160px] z-50"
                       >
-                        <div role="listbox" aria-label="Idiomas disponibles">
+                        <div role="listbox" aria-label={t.nav.availableLanguages}>
                           {(
                             [
                               { code: "es", label: "Español" },

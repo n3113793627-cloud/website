@@ -9,7 +9,7 @@ interface ContactProps {
 }
 
 export function Contact({ prefilledMessage = "" }: ContactProps) {
-  const { language, t } = useLanguage();
+  const { t } = useLanguage();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -54,21 +54,9 @@ export function Contact({ prefilledMessage = "" }: ContactProps) {
         <div className="col-span-1 row-start-1 md:col-span-5 md:col-start-1 md:row-start-1 self-start space-y-6">
           <p className="eyebrow">{t.contact.label}</p>
           <h2 className="contact-title display text-foreground">
-            {language === "es" && (
-              <>
-                ¿Trabajamos <span className="italic text-[var(--primary)]">juntos</span>?
-              </>
-            )}
-            {language === "pt" && (
-              <>
-                Vamos trabalhar <span className="italic text-[var(--primary)]">juntos</span>?
-              </>
-            )}
-            {language === "en" && (
-              <>
-                Let's work <span className="italic text-[var(--primary)]">together</span>.
-              </>
-            )}
+            {t.contact.title}
+            <span className="italic text-[var(--primary)]">{t.contact.titleItalic}</span>
+            {t.contact.title2}
           </h2>
           <p className="text-foreground/80 text-base md:text-lg leading-relaxed max-w-[450px]">
             {t.contact.description}

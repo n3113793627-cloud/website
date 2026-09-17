@@ -5,7 +5,7 @@ import { useLanguage } from "../../context/LanguageContext";
 import { CvDownloadMenu } from "./CvDownloadMenu";
 
 export function Hero() {
-  const { language, t } = useLanguage();
+  const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
 
@@ -63,30 +63,12 @@ export function Hero() {
             <span className="eyebrow text-[var(--cream)]/90">{t.hero.portfolio}</span>
           </div>
           <h1 className="hero-title display text-[var(--cream)]">
-            {language === "es" && (
-              <>
-                Arquitectura que{" "}
-                <span className="hero-accent italic text-[var(--accent-on-dark)]">cuida,</span>{" "}
-                <br className="hero-desktop-break" />
-                diseño que conecta.
-              </>
-            )}
-            {language === "pt" && (
-              <>
-                Arquitetura que{" "}
-                <span className="hero-accent italic text-[var(--accent-on-dark)]">acolhe,</span>{" "}
-                <br className="hero-desktop-break" />
-                design que conecta.
-              </>
-            )}
-            {language === "en" && (
-              <>
-                Architecture that{" "}
-                <span className="hero-accent italic text-[var(--accent-on-dark)]">cares,</span>{" "}
-                <br className="hero-desktop-break" />
-                design that connects.
-              </>
-            )}
+            {t.hero.titlePart1}
+            <span className="hero-accent italic text-[var(--accent-on-dark)]">
+              {t.hero.titleAccent}
+            </span>{" "}
+            <br className="hero-desktop-break" />
+            {t.hero.titlePart2}
           </h1>
           <p className="hero-paragraph text-[var(--cream)]/90">{t.hero.description}</p>
           <div className="hero-buttons">

@@ -61,6 +61,12 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --color-clay-light: var(--clay-light);
   --color-accent-on-dark: var(--accent-on-dark);
+  --color-ink: var(--ink);
+}
+
+/* Header logo terracotta accent */
+.logo-ramirez {
+  color: var(--primary) !important;
 }
 
 :root {

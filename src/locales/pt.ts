@@ -6,14 +6,22 @@ export const pt = {
     process: "Processo",
     contact: "Contato",
     downloadCv: "Baixar CV",
+    menuOpen: "Abrir menu",
+    menuClose: "Fechar menu",
+    languageLabel: "Idioma",
+    availableLanguages: "Idiomas disponíveis",
   },
   hero: {
     portfolio: "PORTFÓLIO · 2026",
     title: "Arquitetura que acolhe, design que conecta.",
+    titlePart1: "Arquitetura que ",
+    titleAccent: "acolhe,",
+    titlePart2: "design que conecta.",
     description:
-      "Arquiteta e designer de interiores com experiência em documentação técnica, modelagem 3D e coordenação interdisciplinar. Trabalho com AutoCAD, Revit e SketchUp, com interesse especial em como o espaço influencia o bem-estar.",
-    viewProjects: "Ver Projetos",
+      "Arquiteta e designer de interiores com experiência em documentação técnica, modelagem 3D e coordenação interdisciplinar. Trabalho com AutoCAD, Revit e SketchUp, com especial interesse em como os espaços influenciam o bem-estar.",
+    viewProjects: "Ver projetos",
     downloadCv: "Baixar CV",
+    downloadCvOptions: "Opções de download do currículo",
     exploreProjects: "↓ Explorar Projetos",
   },
   about: {
@@ -22,6 +30,9 @@ export const pt = {
     paraDisenar: " para projetar,",
     precision: "precisão",
     paraConstruir: " para construir.",
+    introPrefix: "Sou ",
+    introSuffix:
+      ", arquiteta colombiana radicada no Brasil, com experiência em projeto arquitetônico, interiores e documentação técnica para projetos residenciais, comerciais e institucionais.",
     description1:
       "Sou Natalia Ramírez Díaz, arquiteta colombiana radicada no Brasil, com experiência em projeto arquitetônico, interiores e documentação técnica para projetos residenciais, comerciais e institucionais.",
     description2:
@@ -213,6 +224,7 @@ export const pt = {
       "A melhor prova do design é a vida diária de quem confia no estudo. Testemunhos reais de projetos terminados.",
     prev: "Testemunho anterior",
     next: "Testemunho seguinte",
+    goToTestimonial: "Ir para o depoimento",
     items: [
       {
         quote:
@@ -256,6 +268,13 @@ export const pt = {
     relatedPillar: "Pilar Relacionado:",
     discussApproach: "Discutir esta abordagem →",
     closePanel: "Fechar painel",
+    hotspotAriaLabel: "Ver decisão de projeto",
+    hotspotTooltip: "Decisão de Projeto",
+    zoomIn: "Aumentar zoom",
+    zoomOut: "Diminuir zoom",
+    fitText: "AJUSTAR",
+    closeButton: "FECHAR",
+    imageViewer: "Visualizador de imagens",
     tripode: {
       tag: "PROJETO EM DESTAQUE · 01",
       title: "TRÍPODE",
@@ -296,8 +315,10 @@ export const pt = {
       trans1Sub: "— Ângulo 01: Reconfiguração do Núcleo",
       trans1Desc:
         "Do espaço fragmentado a um sistema que integra descanso, armazenamento e uso diário.",
-      beforeLabel: "Estado existente",
+      beforeLabel: "Condição existente",
       afterLabel: "Proposta TRÍPODE",
+      transBadge: "TRANSFORMAÇÃO",
+      enlargeImage: "Ampliar imagem",
       trans2Title: "Redefinição dos limites",
       trans2Sub: "— Ângulo 02: Transição Funcional",
       trans2Desc:
@@ -424,7 +445,7 @@ export const pt = {
         title: "Pátios Internos de Biofilia",
         decision: "Jardins internos integrados com vegetação local e ventilação cruzada",
         rationale:
-          "O contato visual direto e o aroma de la vegetação nativa estimulam o nervo vago e reduzem drasticamente as ondas beta (associadas à ansiedade) em favor das ondas alfa (relaxamento). Nos cuidados paliativos, isso funciona como um analgésico ambiental, reduzindo a percepção da dor física e induzindo a meditação espontânea.",
+          "O contato visual direto e o aroma da vegetação nativa estimulam o nervo vago e reduzem drasticamente as ondas beta (associadas à ansiedade) em favor das ondas alfa (relaxamento). Nos cuidados paliativos, isso funciona como um analgésico ambiental, reduzindo a percepção da dor física e induzindo a meditação espontânea.",
         pillar: "Biofilia e Recuperação Sensorial",
       },
       desc1: '"Centro Orange Hill" é um santuário de ',
@@ -435,7 +456,7 @@ export const pt = {
         "A proposta integra cabanas modulares de madeira elevadas sobre pilotis que reinterpretam a arquitetura tradicional da ilha. Os volumes são estrategicamente rotacionados em direção ao mar e incorporam pátios internos com abundante vegetação (biofilia), o que reduz o cortisol no sangue e facilita a calma e a meditação profunda.",
       stats: [
         { label: "Área", value: "5.233 m²" },
-        { label: "Distribuição", value: "4 zones" },
+        { label: "Distribuição", value: "4 zonas" },
         { label: "Cabanas", value: "Modulares" },
       ],
       videoTitle: "Atmosfera Sensorial: Brisa e pôr do sol",
@@ -530,6 +551,10 @@ export const pt = {
       inquiryBtn: "TEM UM PROJETO PARA VISUALIZAR? →",
       inquiryPrefill:
         "Olá Natalia, estive revisando seu portfólio e especialmente o estudo de caso 'Da ideia ao espaço'. Achei excelente o processo de visualização conceitual e tomada de decisões de projeto. Gostaria de conversar sobre uma oportunidade de colaboração.",
+      methodologyTag: "METODOLOGIA DE DESIGN",
+      methodologyDesc:
+        "Diagnóstico do local existente, interpretação conceitual por esboço e moodboard, e validação lumínica dia/noite.",
+      coverTag: "Capa",
       metadata: [
         { k: "TIPOLOGIA", v: "Visualização arquitetônica · Estudo conceitual" },
         { k: "PROCESSO", v: "Diagnóstico inicial → Esboço e moodboard → Renders dia / noite" },

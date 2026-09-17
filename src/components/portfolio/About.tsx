@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useLanguage } from "../../context/LanguageContext";
 
 export function About() {
-  const { language, t } = useLanguage();
+  const { t } = useLanguage();
 
   return (
     <section id="about" className="relative py-32 md:py-40 px-6 md:px-10 bg-background">
@@ -20,27 +20,9 @@ export function About() {
         <div className="md:col-span-7 md:pt-4">
           <div className="space-y-6 text-lg leading-relaxed text-foreground/85 max-w-xl">
             <p>
-              {language === "es" && (
-                <>
-                  Soy <strong>Natalia Ramírez Díaz</strong>, arquitecta colombiana radicada en
-                  Brasil, con experiencia en diseño arquitectónico, interiores y documentación
-                  técnica para proyectos residenciales, comerciales e institucionales.
-                </>
-              )}
-              {language === "pt" && (
-                <>
-                  Sou <strong>Natalia Ramírez Díaz</strong>, arquiteta colombiana radicada no
-                  Brasil, com experiência em projeto arquitetônico, interiores e documentação
-                  técnica para projetos residenciais, comerciais e institucionais.
-                </>
-              )}
-              {language === "en" && (
-                <>
-                  I am <strong>Natalia Ramírez Díaz</strong>, a Colombian architect based in Brazil,
-                  with experience in architectural design, interiors, and technical documentation
-                  for residential, commercial, and institutional projects.
-                </>
-              )}
+              {t.about.introPrefix}
+              <strong>Natalia Ramírez Díaz</strong>
+              {t.about.introSuffix}
             </p>
             <p>{t.about.description2}</p>
             <p className="text-muted-foreground text-base">{t.about.locationText}</p>

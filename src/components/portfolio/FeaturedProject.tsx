@@ -214,6 +214,7 @@ interface HotspotData {
 }
 
 function Hotspot({ x, y, onClick }: { x: string; y: string; onClick: () => void }) {
+  const { t } = useLanguage();
   return (
     <button
       onClick={(e) => {
@@ -222,7 +223,7 @@ function Hotspot({ x, y, onClick }: { x: string; y: string; onClick: () => void 
       }}
       style={{ left: x, top: y }}
       className="absolute z-20 -translate-x-1/2 -translate-y-1/2 cursor-pointer p-2 flex items-center justify-center group/btn"
-      aria-label="Ver decisión de diseño"
+      aria-label={t.projects.hotspotAriaLabel}
     >
       <span className="relative flex h-6 w-6">
         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--clay)] opacity-75"></span>
@@ -231,7 +232,7 @@ function Hotspot({ x, y, onClick }: { x: string; y: string; onClick: () => void 
         </span>
       </span>
       <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2.5 py-1 bg-black/85 text-[var(--cream)] text-[8px] font-mono tracking-widest rounded uppercase whitespace-nowrap opacity-0 pointer-events-none transition-opacity duration-300 group-hover/btn:opacity-100 shadow-md">
-        Decisión de Diseño
+        {t.projects.hotspotTooltip}
       </span>
     </button>
   );
@@ -254,25 +255,16 @@ function TransformationPair({
   afterImg,
   onOpenImage,
 }: TransformationPairProps) {
-  const { language } = useLanguage();
+  const { t } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
 
-  const rawLabelBefore = language === "en" ? "Existing condition" : "Estado existente";
-  const rawLabelAfter =
-    language === "pt"
-      ? "Proposta TRÍPODE"
-      : language === "en"
-        ? "TRÍPODE proposal"
-        : "Propuesta TRÍPODE";
+  const rawLabelBefore = t.projects.tripode.beforeLabel;
+  const rawLabelAfter = t.projects.tripode.afterLabel;
 
   const labelBefore = `01 · ${rawLabelBefore}`;
   const labelAfter = `02 · ${rawLabelAfter}`;
 
-  const labelTrans =
-    language === "pt" ? "TRANSFORMAÇÃO" : language === "en" ? "TRANSFORMATION" : "TRANSFORMACIÓN";
-
-  const labelEnlarge =
-    language === "pt" ? "Ampliar imagem" : language === "en" ? "Enlarge image" : "Ampliar imagen";
+  const labelEnlarge = t.projects.tripode.enlargeImage;
 
   return (
     <div className="space-y-8 pt-10 border-t border-[var(--cream)]/10">
@@ -289,8 +281,8 @@ function TransformationPair({
         )}
       </div>
 
-      {/* Main Grid: stack on mobile (<900px), grid minmax(0, 1fr) 88px minmax(0, 1fr) on desktop */}
-      <div className="w-full max-w-[1550px] mx-auto flex flex-col min-[900px]:grid min-[900px]:grid-cols-[minmax(0,_1fr)_88px_minmax(0,_1fr)] min-[900px]:items-center gap-6 min-[900px]:gap-0">
+      {/* Main Grid: stacked on mobile, 2 equal columns + 64px center on desktop, max-width 1200px */}
+      <div className="w-full max-w-[1200px] mx-auto flex flex-col md:grid md:grid-cols-[1fr_64px_1fr] md:items-center gap-6 md:gap-0">
         {/* Card Left: Before */}
         <div className="w-full flex flex-col space-y-3">
           {/* Card Header outside */}
@@ -322,15 +314,19 @@ function TransformationPair({
           </button>
         </div>
 
-        {/* Connector: Arrow indicator */}
-        <div className="flex flex-col items-center justify-center w-full min-[900px]:self-center min-[900px]:pt-8 px-2 py-4 min-[900px]:py-0 select-none min-[900px]:w-[88px]">
-          <span className="text-[9px] font-mono tracking-[0.22em] text-[#ffc8b2] uppercase mb-3 font-bold whitespace-nowrap text-center">
-            {labelTrans}
-          </span>
-          <div className="relative flex items-center justify-center w-full min-[900px]:w-full">
+        {/* Connector: Arrow indicator centered vertically between images, no transformation label */}
+        <div className="flex flex-col items-center justify-center w-full md:w-[64px] md:self-stretch px-2 py-2 md:py-0 select-none">
+          {/* Desktop spacer matching card header height so arrow is centered vertically with the images */}
+          <div
+            className="hidden md:flex items-baseline gap-2 font-mono invisible mb-3"
+            aria-hidden="true"
+          >
+            <span className="text-[10px] uppercase tracking-wider font-semibold">&nbsp;</span>
+          </div>
+          <div className="relative flex-1 flex items-center justify-center w-full">
             {/* Line extending animation horizontal on desktop */}
             <motion.div
-              className="absolute h-px bg-[#EFA07F]/20 left-0 right-0 hidden min-[900px]:block"
+              className="absolute h-px bg-[#EFA07F]/20 left-0 right-0 hidden md:block"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
@@ -338,7 +334,7 @@ function TransformationPair({
             />
             {/* Line extending animation vertical on mobile */}
             <motion.div
-              className="absolute w-px bg-[#EFA07F]/20 top-0 bottom-0 min-[900px]:hidden"
+              className="absolute w-px bg-[#EFA07F]/20 top-0 bottom-0 md:hidden"
               initial={{ scaleY: 0 }}
               whileInView={{ scaleY: 1 }}
               viewport={{ once: true }}
@@ -357,8 +353,8 @@ function TransformationPair({
               }}
               aria-hidden="true"
             >
-              <span className="hidden min-[900px]:inline">→</span>
-              <span className="min-[900px]:hidden">↓</span>
+              <span className="hidden md:inline">→</span>
+              <span className="md:hidden">↓</span>
             </motion.div>
           </div>
         </div>
@@ -953,12 +949,11 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             y="72%"
             onClick={() =>
               setActiveHotspot({
-                project: "Centro Orange Hill",
-                title: "Cabañas Flotantes sobre Pilotes",
-                decision: "Elevación volumétrica de madera estructural sobre pilotes",
-                rationale:
-                  "Separar la cabaña del suelo natural no solo responde a criterios hidráulicos de la isla, sino que psicológicamente produce levedad y desconexión del ruido terrestre. Elevar las unidades genera una perspectiva aérea que aminora la sensación de vulnerabilidad, estimulando la sensación de resguardo y control del habitante.",
-                pillar: "Territorialidad and Amplitud Aérea",
+                project: t.projects.orange.title,
+                title: t.projects.orange.hotspot1.title,
+                decision: t.projects.orange.hotspot1.decision,
+                rationale: t.projects.orange.hotspot1.rationale,
+                pillar: t.projects.orange.hotspot1.pillar,
               })
             }
           />
@@ -968,13 +963,11 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
             y="40%"
             onClick={() =>
               setActiveHotspot({
-                project: "Centro Orange Hill",
-                title: "Patios Internos de Biofilia",
-                decision:
-                  "Jardines interiores integrados con vegetación local y ventilación cruzada",
-                rationale:
-                  "El contacto visual directo y el aroma de la vegetación nativa estimulan el nervio vago y reducen de manera drástica las ondas beta (asociadas a la ansiedad) a favor de las ondas alfa (relaxación). En cuidados paliativos, esto funciona como un analgésico ambiental, reduciendo la percepción del dolor físico e induciendo la meditación espontánea.",
-                pillar: "Biofilia y Recuperación Sensorial",
+                project: t.projects.orange.title,
+                title: t.projects.orange.hotspot2.title,
+                decision: t.projects.orange.hotspot2.decision,
+                rationale: t.projects.orange.hotspot2.rationale,
+                pillar: t.projects.orange.hotspot2.pillar,
               })
             }
           />
@@ -999,11 +992,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
 
               {/* Stats */}
               <div className="grid grid-cols-3 gap-4 border-t border-[var(--cream)]/15 pt-5">
-                {[
-                  { label: "Área", value: "5.233 m²" },
-                  { label: "Distribución", value: "4 zonas" },
-                  { label: "Cabañas", value: "Modulares" },
-                ].map((item) => (
+                {t.projects.orange.stats.map((item) => (
                   <div key={item.label}>
                     <p className="text-[10px] text-[var(--cream)]/65 uppercase tracking-widest mb-1">
                       {item.label}
@@ -1034,14 +1023,10 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
               </div>
 
               <button
-                onClick={() =>
-                  onInquire(
-                    "Hola Natalia, estuve revisando tu portafolio y en especial el proyecto de San Andrés (Centro Orange Hill). Me pareció increíble cómo integras la neuroarquitectura y la biofilia para el cuidado de la salud. Me gustaría que nos pusiéramos en contacto para conversar sobre una oportunidad de colaboración.",
-                  )
-                }
-                className="self-start text-xs tracking-[0.2em] uppercase border-b border-[var(--clay-light)] pb-1 text-[var(--clay-light)] hover:opacity-70 transition-opacity text-left font-semibold mt-2"
+                onClick={() => onInquire(t.projects.orange.inquiryPrefill)}
+                className="self-start text-xs tracking-[0.2em] uppercase border-b border-[var(--clay-light)] pb-1 text-[var(--clay-light)] hover:opacity-70 transition-opacity text-left font-semibold mt-2 cursor-pointer"
               >
-                ¿Colaboramos en este proyecto? →
+                {t.projects.orange.inquiryBtn}
               </button>
             </div>
           </div>
@@ -1056,8 +1041,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                 <h3 className="display text-3xl md:text-4xl">{t.projects.orange.sheetsTitle}</h3>
               </div>
               <p className="text-xs text-[var(--cream)]/60 max-w-sm leading-relaxed font-mono">
-                Haz clic sobre cualquiera de las láminas para ampliarla en alta definición y leer
-                detenidamente el análisis clínico-espacial.
+                {t.projects.orange.sheetsDesc}
               </p>
             </div>
 
@@ -1077,17 +1061,17 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                   <div className="w-full flex flex-col gap-0 rounded-lg shadow-md overflow-hidden max-h-[70vh] md:max-h-[78vh] relative bg-white">
                     <img
                       src={sanAndresInfo1Part1}
-                      alt="Lámina de Análisis Clínico-Espacial - Parte 1"
+                      alt={t.projects.orange.altSheet1}
                       className="w-full h-auto block"
                     />
                     <img
                       src={sanAndresInfo1Part2}
-                      alt="Lámina de Análisis Clínico-Espacial - Parte 2"
+                      alt={t.projects.orange.altSheet1}
                       className="w-full h-auto block"
                     />
                     <img
                       src={sanAndresInfo1Part3}
-                      alt="Lámina de Análisis Clínico-Espacial - Parte 3"
+                      alt={t.projects.orange.altSheet1}
                       className="w-full h-auto block"
                     />
                     {/* Fade overlay */}
@@ -1110,7 +1094,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                       <circle cx="11" cy="11" r="8"></circle>
                       <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
-                    <span>Clic para ampliar</span>
+                    <span>{t.projects.orange.sheetClickToExpand}</span>
                   </div>
                 </div>
 
@@ -1128,17 +1112,17 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                   <div className="w-full flex flex-col gap-0 rounded-lg shadow-md overflow-hidden max-h-[70vh] md:max-h-[78vh] relative bg-white">
                     <img
                       src={sanAndresInfo2Part1}
-                      alt="Lámina de Análisis Clínico-Espacial - Parte 2"
+                      alt={t.projects.orange.altSheet2}
                       className="w-full h-auto block"
                     />
                     <img
                       src={sanAndresInfo2Part2}
-                      alt="Lámina de Análisis Clínico-Espacial - Parte 2"
+                      alt={t.projects.orange.altSheet2}
                       className="w-full h-auto block"
                     />
                     <img
                       src={sanAndresInfo2Part3}
-                      alt="Lámina de Análisis Clínico-Espacial - Parte 2"
+                      alt={t.projects.orange.altSheet2}
                       className="w-full h-auto block"
                     />
                     {/* Fade overlay */}
@@ -1161,7 +1145,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                       <circle cx="11" cy="11" r="8"></circle>
                       <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
-                    <span>Clic para ampliar</span>
+                    <span>{t.projects.orange.sheetClickToExpand}</span>
                   </div>
                 </div>
               </div>
@@ -1170,21 +1154,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
 
           {/* Metadata footer */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-[var(--cream)]/15 pt-10">
-            {[
-              {
-                k: "Materiales",
-                v: "Madera estructural local, celosías tradicionales y ventilación cruzada",
-              },
-              {
-                k: "Enfoque Neuro",
-                v: "Biofilia activa, reducción de cortisol y psicología del color",
-              },
-              { k: "Pieza clave", v: "Módulos habitacionales elevados y patios de meditación" },
-              {
-                k: "Áreas",
-                v: "Terapia espiritual · Módulos habitacionales · Senderos y paisajismo",
-              },
-            ].map((d) => (
+            {t.projects.orange.metadata.map((d) => (
               <div key={d.k}>
                 <p className="eyebrow text-[var(--clay-light)] mb-2">{d.k}</p>
                 <p className="text-[var(--cream)]/90 text-sm">{d.v}</p>
@@ -1397,18 +1367,10 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
               <div className="md:col-span-4 flex flex-col justify-end md:items-end h-full pt-2 gap-4">
                 <div className="bg-white/5 p-4 rounded-lg border border-white/5 w-full">
                   <span className="text-[9px] text-[var(--clay-light)] uppercase tracking-widest font-mono block mb-1">
-                    {language === "es"
-                      ? "METODOLOGÍA DE DISEÑO"
-                      : language === "pt"
-                        ? "METODOLOGIA DE DESIGN"
-                        : "DESIGN METHODOLOGY"}
+                    {t.projects.narqVisualization.methodologyTag}
                   </span>
                   <p className="text-xs text-[var(--cream)]/80 leading-relaxed font-sans">
-                    {language === "es"
-                      ? "Diagnóstico del sitio existente, interpretación conceptual mediante boceto y moodboard, y validación lumínica día/noche."
-                      : language === "pt"
-                        ? "Diagnóstico do local existente, interpretação conceitual por esboço e moodboard, e validação lumínica dia/noite."
-                        : "Existing site diagnostic, conceptual interpretation via sketch & moodboard, and day/night lighting validation."}
+                    {t.projects.narqVisualization.methodologyDesc}
                   </p>
                 </div>
                 <button
@@ -1594,7 +1556,7 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
                       {t.projects.narqVisualization.img5Label}
                     </span>
                     <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-[var(--clay)]/30 text-[var(--clay-light)] uppercase tracking-wider font-bold">
-                      {language === "es" ? "Portada" : language === "pt" ? "Capa" : "Cover"}
+                      {t.projects.narqVisualization.coverTag}
                     </span>
                   </div>
                   <button
@@ -1976,7 +1938,7 @@ function SheetLightbox({
   hasNext,
   stepInfo,
 }: SheetLightboxProps) {
-  const { language } = useLanguage();
+  const { t } = useLanguage();
   const [isFitMode, setIsFitMode] = useState(true);
   const [zoom, setZoom] = useState(100);
   const [isMounted, setIsMounted] = useState(false);
@@ -2058,23 +2020,12 @@ function SheetLightbox({
     setZoom(100);
   };
 
-  const getFitText = () => {
-    if (language === "en") return "FIT";
-    return "AJUSTAR";
-  };
-
-  const getCloseText = () => {
-    if (language === "es") return "CERRAR";
-    if (language === "pt") return "FECHAR";
-    return "CLOSE";
-  };
-
   return createPortal(
     <div
       className="fixed inset-0 z-[99999] bg-black/95 backdrop-blur-md flex flex-col justify-between p-4 md:p-6 select-none animate-in fade-in duration-200"
       role="dialog"
       aria-modal="true"
-      aria-label="Image viewer"
+      aria-label={t.projects.imageViewer}
     >
       {/* Top Header / Bar */}
       <div className="flex items-center justify-between text-[var(--cream)]/80 text-xs font-mono pb-2 border-b border-white/10 z-30">
@@ -2089,7 +2040,7 @@ function SheetLightbox({
         <button
           onClick={onClose}
           className="text-2xl hover:text-white font-bold transition-colors w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 cursor-pointer"
-          aria-label="Cerrar vista"
+          aria-label={t.projects.closeView}
         >
           ×
         </button>
@@ -2143,7 +2094,7 @@ function SheetLightbox({
             onPrev();
           }}
           className="fixed left-3 md:left-6 top-1/2 -translate-y-1/2 z-40 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/70 hover:bg-black/90 text-white flex items-center justify-center text-3xl border border-white/20 transition-all cursor-pointer backdrop-blur-md shadow-2xl hover:scale-105"
-          aria-label="Anterior imagen"
+          aria-label={t.projects.prevImage}
         >
           ‹
         </button>
@@ -2156,7 +2107,7 @@ function SheetLightbox({
             onNext();
           }}
           className="fixed right-3 md:right-6 top-1/2 -translate-y-1/2 z-40 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/70 hover:bg-black/90 text-white flex items-center justify-center text-3xl border border-white/20 transition-all cursor-pointer backdrop-blur-md shadow-2xl hover:scale-105"
-          aria-label="Siguiente imagen"
+          aria-label={t.projects.nextImage}
         >
           ›
         </button>
@@ -2170,18 +2121,18 @@ function SheetLightbox({
             onClick={handleZoomOut}
             disabled={isFitMode}
             className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 disabled:opacity-40 text-white flex items-center justify-center border border-white/10 transition-colors cursor-pointer min-h-[44px] min-w-[44px]"
-            aria-label="Disminuir zoom"
+            aria-label={t.projects.zoomOut}
           >
             －
           </button>
           <span className="text-[10px] font-mono text-[var(--cream)] w-16 text-center">
-            {isFitMode ? getFitText() : `${zoom}%`}
+            {isFitMode ? t.projects.fitText : `${zoom}%`}
           </span>
           <button
             onClick={handleZoomIn}
             disabled={!isFitMode && zoom >= 300}
             className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 disabled:opacity-40 text-white flex items-center justify-center border border-white/10 transition-colors cursor-pointer min-h-[44px] min-w-[44px]"
-            aria-label="Aumentar zoom"
+            aria-label={t.projects.zoomIn}
           >
             ＋
           </button>
@@ -2199,7 +2150,7 @@ function SheetLightbox({
               isFitMode ? "bg-white/30" : "bg-white/10 hover:bg-white/20"
             }`}
           >
-            {getFitText()}
+            {t.projects.fitText}
           </button>
         </div>
 
@@ -2208,7 +2159,7 @@ function SheetLightbox({
           onClick={onClose}
           className="px-6 py-2 rounded-full bg-[var(--primary)] hover:bg-[#EFA07F] text-white hover:text-[var(--ink)] text-[10px] font-mono transition-colors font-bold cursor-pointer min-h-[44px] flex items-center justify-center"
         >
-          {getCloseText()}
+          {t.projects.closeButton}
         </button>
       </div>
     </div>,

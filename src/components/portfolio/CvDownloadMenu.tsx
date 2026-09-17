@@ -13,7 +13,7 @@ export function CvDownloadMenu({
   align = "right",
   onOpenChange,
 }: CvDownloadMenuProps) {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const [isMounted, setIsMounted] = useState(false);
@@ -55,14 +55,7 @@ export function CvDownloadMenu({
   ];
 
   const getTriggerLabel = () => {
-    switch (language) {
-      case "pt":
-        return "Baixar CV";
-      case "en":
-        return "Download CV";
-      default:
-        return "Descargar CV";
-    }
+    return t.hero.downloadCv;
   };
 
   // Enable client-side mounting for Portal
@@ -198,7 +191,7 @@ export function CvDownloadMenu({
       }}
       className="w-[290px] rounded-xl bg-[var(--cream)] border border-foreground/15 shadow-xl z-[9999] py-2 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
       role="menu"
-      aria-label="CV Download Options"
+      aria-label={t.hero.downloadCvOptions}
       onKeyDown={handleKeyDown}
     >
       {options.map((opt, i) => {
@@ -239,7 +232,7 @@ export function CvDownloadMenu({
         onClick={() => setIsOpen((prev) => !prev)}
         aria-haspopup="menu"
         aria-expanded={isOpen}
-        aria-label={`${getTriggerLabel()} Options`}
+        aria-label={t.hero.downloadCvOptions}
         className={`${className} flex items-center justify-center gap-1.5 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--clay)] focus-visible:ring-offset-2`}
       >
         <span>{getTriggerLabel()}</span>

@@ -32,6 +32,13 @@ export function LanguageProvider({
     }
   }, [currentLang, lang]);
 
+  // Update document lang attribute dynamically to es, pt-BR, or en
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      document.documentElement.lang = lang === "pt" ? "pt-BR" : lang;
+    }
+  }, [lang]);
+
   const setLanguage = (newLang: Language) => {
     if (newLang === lang) return;
 

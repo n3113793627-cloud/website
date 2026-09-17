@@ -6,14 +6,22 @@ export const en = {
     process: "Process",
     contact: "Contact",
     downloadCv: "Download CV",
+    menuOpen: "Open menu",
+    menuClose: "Close menu",
+    languageLabel: "Language",
+    availableLanguages: "Available languages",
   },
   hero: {
     portfolio: "PORTFOLIO · 2026",
-    title: "Architecture that cares, design that connects.",
+    title: "Architecture that welcomes, design that connects.",
+    titlePart1: "Architecture that ",
+    titleAccent: "welcomes,",
+    titlePart2: "design that connects.",
     description:
-      "Architect and interior designer with experience in technical documentation, 3D modeling, and interdisciplinary coordination. I work with AutoCAD, Revit, and SketchUp, with a particular interest in how spaces influence well-being.",
-    viewProjects: "View Projects",
+      "Architect and interior designer with experience in technical documentation, 3D modeling, and interdisciplinary coordination. I work with AutoCAD, Revit, and SketchUp, with a special interest in how spaces influence well-being.",
+    viewProjects: "View projects",
     downloadCv: "Download CV",
+    downloadCvOptions: "CV download options",
     exploreProjects: "↓ Explore Projects",
   },
   about: {
@@ -22,6 +30,9 @@ export const en = {
     paraDisenar: " to design,",
     precision: "precision",
     paraConstruir: " to build.",
+    introPrefix: "I am ",
+    introSuffix:
+      ", a Colombian architect based in Brazil, with experience in architectural design, interiors, and technical documentation for residential, commercial, and institutional projects.",
     description1:
       "I am Natalia Ramírez Díaz, a Colombian architect based in Brazil, with experience in architectural design, interiors, and technical documentation for residential, commercial, and institutional projects.",
     description2:
@@ -211,6 +222,7 @@ export const en = {
       "The best proof of design is the daily life of those who trust the studio. Real testimonials from finished projects.",
     prev: "Previous testimonial",
     next: "Next testimonial",
+    goToTestimonial: "Go to testimonial",
     items: [
       {
         quote:
@@ -254,6 +266,13 @@ export const en = {
     relatedPillar: "Related Pillar:",
     discussApproach: "Discuss this approach →",
     closePanel: "Close panel",
+    hotspotAriaLabel: "View design decision",
+    hotspotTooltip: "Design Decision",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
+    fitText: "FIT",
+    closeButton: "CLOSE",
+    imageViewer: "Image viewer",
     tripode: {
       tag: "FEATURED PROJECT · 01",
       title: "TRÍPODE",
@@ -293,8 +312,10 @@ export const en = {
       trans1Title: "Transformation and spatial order",
       trans1Sub: "— Angle 01: Core Reconfiguration",
       trans1Desc: "From fragmented space to a system integrating rest, storage, and daily use.",
-      beforeLabel: "Existing state",
-      afterLabel: "TRÍPODE Proposal",
+      beforeLabel: "Existing condition",
+      afterLabel: "TRÍPODE proposal",
+      transBadge: "TRANSFORMATION",
+      enlargeImage: "Enlarge image",
       trans2Title: "Redefining limits",
       trans2Sub: "— Angle 02: Functional Transition",
       trans2Desc:
@@ -524,6 +545,10 @@ export const en = {
       inquiryBtn: "HAVE A PROJECT TO VISUALIZE? →",
       inquiryPrefill:
         "Hello Natalia, I was reviewing your portfolio and especially the 'From idea to space' case study. I really appreciated the conceptual visualization process and design decision-making. I'd love to connect to discuss a collaboration opportunity.",
+      methodologyTag: "DESIGN METHODOLOGY",
+      methodologyDesc:
+        "Existing site diagnostic, conceptual interpretation via sketch & moodboard, and day/night lighting validation.",
+      coverTag: "Cover",
       metadata: [
         { k: "TYPOLOGY", v: "Architectural visualization · Concept study" },
         { k: "PROCESS", v: "Initial diagnosis → Sketch & moodboard → Day / night renders" },
