@@ -161,84 +161,6 @@ export const es = {
       },
     ],
   },
-  drawings: {
-    label: "— Rigor Técnico",
-    title1: "Planos y detalle:",
-    titleItalic: "técnico",
-    title2: ".",
-    description:
-      "Aquí comparto una selección de los últimos planos técnicos de distribución, estructuras e instalaciones en los que he trabajado recientemente.",
-    filters: {
-      todos: "Todos",
-      arquitectura: "Arquitectura",
-      estructuras: "Estructuras",
-      instalaciones: "Instalaciones",
-    },
-    viewDrawing: "Visualizar plano →",
-    comingSoon: "Próximamente planos para esta categoría.",
-    viewerTitle: "Visor de Plano Técnico · ",
-    openPdf: "Abrir PDF Completo",
-    viewerTip:
-      "Puedes hacer zoom, imprimir o guardar el plano utilizando los controles nativos del visor PDF.",
-    close: "Cerrar",
-    planos: {
-      ar103: {
-        title: "Planta Arquitectónica General",
-        description:
-          "Distribución de muros, accesos, zonificación de flujos y modulación del espacio para optimizar la luz natural.",
-      },
-      ar201: {
-        title: "Fachadas y Cortes Generales",
-        description:
-          "Secciones transversales que detallan las alturas, la relación con el terreno y la estrategia de ventilación cruzada.",
-      },
-      ar301: {
-        title: "Detalles de Carpintería y Mobiliario",
-        description:
-          "Plano técnico detallado para la fabricación del mobiliario integrado y ensambles de carpintería fija.",
-      },
-      ar302: {
-        title: "Especificación de Acabados y Cielorrasos",
-        description:
-          "Distribución de puntos de iluminación bio-compatible, selección de texturas mate y cielorrasos acústicos.",
-      },
-      es604: {
-        title: "Cimentación y Vigas de Amarre",
-        description:
-          "Plano estructural de cimentación, zapatas, vigas de amarre y especificaciones de concreto reforzado.",
-      },
-      es606: {
-        title: "Pórticos Estructurales y Refuerzos",
-        description:
-          "Detalle de pórticos estructurales de carga, armadura de refuerzo y acero de alta resistencia.",
-      },
-      es609: {
-        title: "Detalles de Vigas y Nudos Constructivos",
-        description:
-          "Detalles y despieces de vigas principales, estribos y encuentros de nudos estructurales.",
-      },
-      es617: {
-        title: "Estructura y Modulación de Entrepiso / Cubierta",
-        description:
-          "Plano de apoyos estructurales, viguetas de madera de soporte y detalles de anclajes de cubierta.",
-      },
-      el804: {
-        title: "Red de Tomacorrientes y Datos",
-        description:
-          "Plano de canalizaciones eléctricas de fuerza, tomas reguladas y distribución de red de datos estructurales.",
-      },
-      el805: {
-        title: "Distribución de Alumbrado e Iluminación",
-        description:
-          "Zonificación de circuitos de iluminación, control de encendido y diseño lumínico bio-compatible y terapéutico.",
-      },
-      el806: {
-        title: "Diagrama Unifilar y Cuadro de Cargas",
-        description:
-          "Esquema unifilar del tablero de distribución eléctrica, balance de fases y especificaciones de cuadros de carga.",
-      },
-    },
-  },
   contact: {
     label: "— HABLEMOS",
     title: "¿Trabajamos ",
@@ -577,6 +499,44 @@ export const es = {
         { k: "ENFOQUE", v: "Identidad espacial y experiencia del usuario" },
         { k: "UBICACIÓN", v: "Bogotá, Colombia" },
         { k: "AÑO", v: "2025" },
+      ],
+    },
+    narqVisualization: {
+      tag: "Proyecto destacado · 05",
+      title: "De la idea al espacio",
+      category: "Visualización arquitectónica · Desarrollo conceptual",
+      location: "Estudio conceptual · NARQ",
+      year: "2026",
+      description:
+        "Una propuesta de visualización que transforma un espacio existente y el boceto inicial del cliente en una atmósfera definida. El proceso permite anticipar decisiones de materialidad, iluminación y uso antes de construir.",
+      step1Tag: "EL PUNTO DE PARTIDA",
+      step1Title: "El espacio existente",
+      step1Desc:
+        "Un corredor abierto y sin uso definido se convierte en el punto de partida para imaginar una nueva experiencia.",
+      img1Label: "El espacio existente",
+      step2Tag: "INTERPRETAR LA IDEA",
+      step2Title: "Del boceto a la materialidad",
+      step2Text:
+        "Un boceto espontáneo define la intención inicial. El moodboard traduce esa intención en materiales cálidos, vegetación, texturas naturales y una iluminación acogedora.",
+      img2Label: "La idea del cliente",
+      img3Label: "Atmósfera y materialidad",
+      step3Tag: "VISUALIZAR ANTES DE CONSTRUIR",
+      step3Title: "Comprobación lumínica y espacial",
+      step3Text:
+        "La visualización permite comprobar cómo cambia el espacio con la luz natural y artificial, y tomar mejores decisiones antes de llevar la propuesta a obra.",
+      img4Label: "Atmósfera nocturna",
+      img5Label: "Luz natural",
+      viewEnlargeBtn: "Ampliar imagen",
+      openProjectBtn: "Abrir proyecto",
+      inquiryBtn: "¿TIENES UN PROYECTO PARA VISUALIZAR? →",
+      inquiryPrefill:
+        "Hola Natalia, estuve revisando tu portafolio y en especial el caso de estudio 'De la idea al espacio'. Me pareció excelente el proceso de visualización conceptual y toma de decisiones de diseño. Me gustaría que conversáramos sobre una oportunidad de colaboración.",
+      metadata: [
+        { k: "TIPOLOGÍA", v: "Visualización arquitectónica · Estudio conceptual" },
+        { k: "PROCESO", v: "Diagnóstico inicial → Boceto y moodboard → Renders día / noche" },
+        { k: "MATERIALIDAD", v: "Madera cálida, vegetación natural y luminarias escenográficas" },
+        { k: "AUTORÍA", v: "NARQ · Diseñar para habitar" },
+        { k: "AÑO", v: "2026" },
       ],
     },
   },

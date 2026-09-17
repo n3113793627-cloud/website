@@ -14,11 +14,6 @@ const DesignPhilosophy = lazy(() =>
 const FeaturedProject = lazy(() =>
   import("./FeaturedProject").then((m) => ({ default: m.FeaturedProject })),
 );
-const TechnicalDrawings = lazy(() =>
-  import("./TechnicalDrawings").then((m) => ({
-    default: m.TechnicalDrawings,
-  })),
-);
 const Contact = lazy(() => import("./Contact").then((m) => ({ default: m.Contact })));
 
 function ScrollProgress() {
@@ -65,10 +60,6 @@ export function PortfolioPage() {
       </Suspense>
 
       <Process />
-
-      <Suspense fallback={<div className="h-[700px] bg-[var(--ink)] animate-pulse" />}>
-        <TechnicalDrawings />
-      </Suspense>
 
       <Suspense fallback={<div className="h-[600px] bg-background animate-pulse" />}>
         <Contact prefilledMessage={prefilledMessage} />

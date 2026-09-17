@@ -159,83 +159,6 @@ export const en = {
       },
     ],
   },
-  drawings: {
-    label: "— Technical Rigor",
-    title1: "Drawings and details:",
-    titleItalic: "technical",
-    title2: " work.",
-    description:
-      "Here I share a selection of the latest technical drawings for layout, structures, and installations that I have worked on recently.",
-    filters: {
-      todos: "All",
-      arquitectura: "Architecture",
-      estructuras: "Structures",
-      instalaciones: "Installations",
-    },
-    viewDrawing: "View drawing →",
-    comingSoon: "Drawings for this category coming soon.",
-    viewerTitle: "Technical Drawing Viewer · ",
-    openPdf: "Open Full PDF",
-    viewerTip: "You can zoom, print, or save the drawing using the PDF viewer's native controls.",
-    close: "Close",
-    planos: {
-      ar103: {
-        title: "General Architectural Layout",
-        description:
-          "Distribution of walls, accesses, flow zoning, and space modulation to optimize natural light.",
-      },
-      ar201: {
-        title: "General Elevations and Sections",
-        description:
-          "Cross sections detailing heights, terrain relationship, and cross ventilation strategy.",
-      },
-      ar301: {
-        title: "Carpentry and Custom Furniture Details",
-        description:
-          "Detailed technical drawing for custom furniture manufacturing and fixed carpentry joins.",
-      },
-      ar302: {
-        title: "Finishes and Ceilings Specification",
-        description:
-          "Distribution of bio-compatible lighting points, selection of matte textures, and acoustic ceilings.",
-      },
-      es604: {
-        title: "Foundation and Tie Beams",
-        description:
-          "Structural layout of foundation, footings, tie beams, and reinforced concrete specifications.",
-      },
-      es606: {
-        title: "Structural Porticos and Reinforcements",
-        description:
-          "Detail of load-bearing structural frames, reinforcement rebar, and high-strength steel.",
-      },
-      es609: {
-        title: "Beam Details and Construction Nodes",
-        description:
-          "Details and schedules of main beams, stirrups, and structural node connections.",
-      },
-      es617: {
-        title: "Slab / Roof Structure and Modulation",
-        description:
-          "Structural support layout, supporting wooden joists, and roof anchorage details.",
-      },
-      el804: {
-        title: "Power Outlets and Data Network",
-        description:
-          "Power conduit layout, regulated outlets, and structured data network distribution.",
-      },
-      el805: {
-        title: "Lighting Distribution",
-        description:
-          "Zoning of lighting circuits, switching control, and bio-compatible and therapeutic lighting design.",
-      },
-      el806: {
-        title: "Single-line Diagram and Load Schedule",
-        description:
-          "Single-line diagram of the electrical distribution board, phase balancing, and load schedule specifications.",
-      },
-    },
-  },
   contact: {
     label: "— LET'S TALK",
     title: "Let's work ",
@@ -569,6 +492,44 @@ export const en = {
         { k: "FOCUS", v: "Spatial identity and user experience" },
         { k: "LOCATION", v: "Bogotá, Colombia" },
         { k: "YEAR", v: "2025" },
+      ],
+    },
+    narqVisualization: {
+      tag: "Featured Project · 05",
+      title: "From idea to space",
+      category: "Architectural visualization · Concept development",
+      location: "Concept study · NARQ",
+      year: "2026",
+      description:
+        "A visualization study that transforms an existing space and the client’s initial sketch into a defined atmosphere. The process helps anticipate decisions about materials, lighting, and use before construction.",
+      step1Tag: "THE STARTING POINT",
+      step1Title: "The existing space",
+      step1Desc:
+        "An open corridor without a defined use becomes the starting point for imagining a new experience.",
+      img1Label: "The existing space",
+      step2Tag: "INTERPRETING THE IDEA",
+      step2Title: "From sketch to materiality",
+      step2Text:
+        "A spontaneous sketch defines the initial intention. The moodboard translates it into warm materials, greenery, natural textures, and inviting lighting.",
+      img2Label: "The client’s idea",
+      img3Label: "Atmosphere and materiality",
+      step3Tag: "VISUALIZE BEFORE BUILDING",
+      step3Title: "Lighting and spatial validation",
+      step3Text:
+        "The visualization shows how the space changes under natural and artificial light, supporting better decisions before construction.",
+      img4Label: "Night atmosphere",
+      img5Label: "Natural light",
+      viewEnlargeBtn: "Enlarge image",
+      openProjectBtn: "Open project",
+      inquiryBtn: "HAVE A PROJECT TO VISUALIZE? →",
+      inquiryPrefill:
+        "Hello Natalia, I was reviewing your portfolio and especially the 'From idea to space' case study. I really appreciated the conceptual visualization process and design decision-making. I'd love to connect to discuss a collaboration opportunity.",
+      metadata: [
+        { k: "TYPOLOGY", v: "Architectural visualization · Concept study" },
+        { k: "PROCESS", v: "Initial diagnosis → Sketch & moodboard → Day / night renders" },
+        { k: "MATERIALITY", v: "Warm wood, natural vegetation, and scenographic lighting" },
+        { k: "AUTHORSHIP", v: "NARQ · Diseñar para habitar" },
+        { k: "YEAR", v: "2026" },
       ],
     },
   },

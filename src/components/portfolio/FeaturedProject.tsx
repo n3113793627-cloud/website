@@ -28,6 +28,13 @@ import tripodeAfterAngle01 from "@/assets/tripode-after-angle-01.png";
 import tripodeBeforeAngle02 from "@/assets/tripode-before-angle-02.png";
 import tripodeAfterAngle02 from "@/assets/tripode-after-angle-02.png";
 
+// NARQ "De la idea al espacio" project assets
+import narqImg1Existing from "@/assets/narq-visualization-01-existing-space.png";
+import narqImg2Sketch from "@/assets/narq-visualization-02-client-sketch.png";
+import narqImg3Moodboard from "@/assets/narq-visualization-03-moodboard.png";
+import narqImg4Night from "@/assets/narq-visualization-04-night-render.png";
+import narqImg5Day from "@/assets/narq-visualization-05-day-render.png";
+
 function AutoplayVideo({ src, className }: { src: string; className?: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -503,6 +510,37 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
     offset: ["start end", "end start"],
   });
   const yLeft4 = useTransform(scroll4, [0, 1], ["0%", "-8%"]);
+
+  const ref5 = useRef<HTMLDivElement>(null);
+  const [narqActiveIndex, setNarqActiveIndex] = useState<number | null>(null);
+
+  const narqGallery = [
+    {
+      src: narqImg1Existing,
+      label: t.projects.narqVisualization.img1Label,
+      stepTag: t.projects.narqVisualization.step1Tag,
+    },
+    {
+      src: narqImg2Sketch,
+      label: t.projects.narqVisualization.img2Label,
+      stepTag: t.projects.narqVisualization.step2Tag,
+    },
+    {
+      src: narqImg3Moodboard,
+      label: t.projects.narqVisualization.img3Label,
+      stepTag: t.projects.narqVisualization.step2Tag,
+    },
+    {
+      src: narqImg4Night,
+      label: t.projects.narqVisualization.img4Label,
+      stepTag: t.projects.narqVisualization.step3Tag,
+    },
+    {
+      src: narqImg5Day,
+      label: t.projects.narqVisualization.img5Label,
+      stepTag: t.projects.narqVisualization.step3Tag,
+    },
+  ];
 
   return (
     <div id="proyectos" className="bg-[var(--ink)] text-[var(--cream)]">
@@ -1322,6 +1360,276 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
         </div>
       </section>
 
+      {/* Proyecto 05: De la idea al espacio */}
+      <section
+        id="de-la-idea-al-espacio"
+        ref={ref5}
+        className="py-12 md:py-20 px-6 md:px-10 border-t border-[var(--cream)]/10 scroll-mt-28"
+      >
+        <div className="max-w-[1400px] mx-auto space-y-16 md:space-y-24">
+          {/* 1. ENCABEZADO */}
+          <div className="space-y-8">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[var(--cream)]/10 pb-8">
+              <div>
+                <p className="eyebrow text-[var(--clay-light)] mb-3">
+                  {t.projects.narqVisualization.tag}
+                </p>
+                <h3 className="display text-4xl md:text-6xl text-white leading-tight">
+                  {t.projects.narqVisualization.title.split(" ").slice(0, -1).join(" ")}{" "}
+                  <em className="italic text-[var(--clay-light)]">
+                    {t.projects.narqVisualization.title.split(" ").slice(-1)[0]}
+                  </em>
+                </h3>
+              </div>
+              <div className="text-left md:text-right text-sm text-[var(--cream)]/85 space-y-1 font-mono">
+                <p>{t.projects.narqVisualization.category}</p>
+                <p className="text-[var(--clay-light)]">{t.projects.narqVisualization.location}</p>
+              </div>
+            </div>
+
+            {/* Descripción principal traducida y CTA */}
+            <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start pt-2">
+              <div className="md:col-span-8 space-y-4">
+                <h4 className="display text-2xl md:text-3xl text-white leading-relaxed italic font-light">
+                  "{t.projects.narqVisualization.description}"
+                </h4>
+              </div>
+              <div className="md:col-span-4 flex flex-col justify-end md:items-end h-full pt-2 gap-4">
+                <div className="bg-white/5 p-4 rounded-lg border border-white/5 w-full">
+                  <span className="text-[9px] text-[var(--clay-light)] uppercase tracking-widest font-mono block mb-1">
+                    {language === "es"
+                      ? "METODOLOGÍA DE DISEÑO"
+                      : language === "pt"
+                        ? "METODOLOGIA DE DESIGN"
+                        : "DESIGN METHODOLOGY"}
+                  </span>
+                  <p className="text-xs text-[var(--cream)]/80 leading-relaxed font-sans">
+                    {language === "es"
+                      ? "Diagnóstico del sitio existente, interpretación conceptual mediante boceto y moodboard, y validación lumínica día/noche."
+                      : language === "pt"
+                        ? "Diagnóstico do local existente, interpretação conceitual por esboço e moodboard, e validação lumínica dia/noite."
+                        : "Existing site diagnostic, conceptual interpretation via sketch & moodboard, and day/night lighting validation."}
+                  </p>
+                </div>
+                <button
+                  onClick={() => onInquire(t.projects.narqVisualization.inquiryPrefill)}
+                  className="self-start md:self-end text-xs tracking-[0.2em] uppercase border-b border-[var(--clay-light)] pb-1 text-[var(--clay-light)] hover:opacity-70 transition-opacity text-left font-semibold cursor-pointer"
+                >
+                  {t.projects.narqVisualization.inquiryBtn}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* 2. SECCIÓN: EL PUNTO DE PARTIDA */}
+          <div className="pt-2 pb-2">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              {/* Columna Izquierda (~40%): Etiqueta, Título, Descripción y Botón */}
+              <div className="lg:col-span-5 space-y-5">
+                <div>
+                  <span className="text-[10px] md:text-xs font-mono uppercase tracking-widest text-[var(--clay-light)] block mb-1.5">
+                    01 · {t.projects.narqVisualization.step1Tag}
+                  </span>
+                  <h4 className="display text-2xl md:text-3xl lg:text-4xl text-white font-light leading-tight">
+                    {t.projects.narqVisualization.step1Title}
+                  </h4>
+                </div>
+
+                <p className="text-base text-[var(--cream)]/85 leading-relaxed font-sans">
+                  {t.projects.narqVisualization.step1Desc}
+                </p>
+
+                <div className="pt-1">
+                  <button
+                    type="button"
+                    onClick={() => setNarqActiveIndex(0)}
+                    className="self-start px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-full transition-all duration-300 font-mono text-[10px] tracking-wider border border-white/10 cursor-pointer min-h-[42px] flex items-center justify-center font-bold"
+                  >
+                    {t.projects.narqVisualization.viewEnlargeBtn.toUpperCase()}
+                  </button>
+                </div>
+              </div>
+
+              {/* Columna Derecha (~60%): Imagen compacta 1:1 */}
+              <div className="lg:col-span-7 flex justify-center lg:justify-end w-full">
+                <div
+                  onClick={() => setNarqActiveIndex(0)}
+                  className="relative w-full max-w-[520px] lg:max-w-[580px] aspect-square bg-[#141414] rounded-2xl border border-white/10 shadow-xl overflow-hidden cursor-zoom-in group p-2 md:p-3 flex items-center justify-center transition-all duration-300 hover:border-white/20"
+                >
+                  <img
+                    src={narqImg1Existing}
+                    alt={t.projects.narqVisualization.img1Label}
+                    className="w-full h-full object-contain select-none transition-transform duration-500 group-hover:scale-[1.01]"
+                    loading="lazy"
+                    style={{ aspectRatio: "1 / 1" }}
+                  />
+                  <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 3. SECCIÓN: INTERPRETAR LA IDEA */}
+          <div className="space-y-6 pt-10 md:pt-12 border-t border-[var(--cream)]/10">
+            <div className="space-y-3">
+              <span className="text-[10px] md:text-xs font-mono uppercase tracking-widest text-[var(--clay-light)] block">
+                02 · {t.projects.narqVisualization.step2Tag}
+              </span>
+              <h4 className="display text-2xl md:text-3xl text-white font-light">
+                {t.projects.narqVisualization.step2Title}
+              </h4>
+              <p className="text-base text-[var(--cream)]/85 leading-relaxed font-sans max-w-3xl">
+                {t.projects.narqVisualization.step2Text}
+              </p>
+            </div>
+
+            {/* 2 Columnas iguales en desktop, apiladas en móvil */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 pt-2">
+              {/* Imagen 02: La idea del cliente */}
+              <div className="space-y-3">
+                <div className="flex items-center justify-between text-xs font-mono text-[var(--cream)]/75 pb-2 border-b border-white/10">
+                  <span className="font-semibold text-white tracking-wide">
+                    {t.projects.narqVisualization.img2Label}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setNarqActiveIndex(1)}
+                    className="text-[10px] uppercase tracking-widest text-[var(--clay-light)] hover:text-white transition-colors cursor-pointer"
+                  >
+                    {t.projects.narqVisualization.viewEnlargeBtn}
+                  </button>
+                </div>
+                <div
+                  onClick={() => setNarqActiveIndex(1)}
+                  className="relative w-full aspect-square bg-[#141414] rounded-2xl border border-white/10 shadow-xl overflow-hidden cursor-zoom-in group p-2 md:p-3 flex items-center justify-center transition-all duration-300 hover:border-white/20"
+                >
+                  <img
+                    src={narqImg2Sketch}
+                    alt={t.projects.narqVisualization.img2Label}
+                    className="w-full h-full object-contain select-none transition-transform duration-500 group-hover:scale-[1.01]"
+                    loading="lazy"
+                    style={{ aspectRatio: "1 / 1" }}
+                  />
+                  <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
+                </div>
+              </div>
+
+              {/* Imagen 03: Atmósfera y materialidad */}
+              <div className="space-y-3">
+                <div className="flex items-center justify-between text-xs font-mono text-[var(--cream)]/75 pb-2 border-b border-white/10">
+                  <span className="font-semibold text-white tracking-wide">
+                    {t.projects.narqVisualization.img3Label}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setNarqActiveIndex(2)}
+                    className="text-[10px] uppercase tracking-widest text-[var(--clay-light)] hover:text-white transition-colors cursor-pointer"
+                  >
+                    {t.projects.narqVisualization.viewEnlargeBtn}
+                  </button>
+                </div>
+                <div
+                  onClick={() => setNarqActiveIndex(2)}
+                  className="relative w-full aspect-square bg-[#141414] rounded-2xl border border-white/10 shadow-xl overflow-hidden cursor-zoom-in group p-2 md:p-3 flex items-center justify-center transition-all duration-300 hover:border-white/20"
+                >
+                  <img
+                    src={narqImg3Moodboard}
+                    alt={t.projects.narqVisualization.img3Label}
+                    className="w-full h-full object-contain select-none transition-transform duration-500 group-hover:scale-[1.01]"
+                    loading="lazy"
+                    style={{ aspectRatio: "1 / 1" }}
+                  />
+                  <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 4. SECCIÓN: VISUALIZAR ANTES DE CONSTRUIR */}
+          <div className="space-y-6 pt-6 border-t border-[var(--cream)]/10">
+            <div className="space-y-3">
+              <span className="text-[10px] md:text-xs font-mono uppercase tracking-widest text-[var(--clay-light)] block">
+                03 · {t.projects.narqVisualization.step3Tag}
+              </span>
+              <h4 className="display text-2xl md:text-3xl text-white font-light">
+                {t.projects.narqVisualization.step3Title}
+              </h4>
+              <p className="text-base text-[var(--cream)]/85 leading-relaxed font-sans max-w-3xl">
+                {t.projects.narqVisualization.step3Text}
+              </p>
+            </div>
+
+            {/* 2 Columnas iguales en desktop, apiladas en móvil: Render nocturno (04) & Render diurno (05) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 pt-2">
+              {/* Imagen 04: Atmósfera nocturna */}
+              <div className="space-y-3">
+                <div className="flex items-center justify-between text-xs font-mono text-[var(--cream)]/75 pb-2 border-b border-white/10">
+                  <span className="font-semibold text-white tracking-wide">
+                    {t.projects.narqVisualization.img4Label}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setNarqActiveIndex(3)}
+                    className="text-[10px] uppercase tracking-widest text-[var(--clay-light)] hover:text-white transition-colors cursor-pointer"
+                  >
+                    {t.projects.narqVisualization.viewEnlargeBtn}
+                  </button>
+                </div>
+                <div onClick={() => setNarqActiveIndex(3)} className="narq-render-container group">
+                  <img
+                    src={narqImg4Night}
+                    alt={t.projects.narqVisualization.img4Label}
+                    className="narq-render-img"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
+                </div>
+              </div>
+
+              {/* Imagen 05: Luz natural (Portada del proyecto) */}
+              <div className="space-y-3">
+                <div className="flex items-center justify-between text-xs font-mono text-[var(--cream)]/75 pb-2 border-b border-white/10">
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold text-white tracking-wide">
+                      {t.projects.narqVisualization.img5Label}
+                    </span>
+                    <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-[var(--clay)]/30 text-[var(--clay-light)] uppercase tracking-wider font-bold">
+                      {language === "es" ? "Portada" : language === "pt" ? "Capa" : "Cover"}
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setNarqActiveIndex(4)}
+                    className="text-[10px] uppercase tracking-widest text-[var(--clay-light)] hover:text-white transition-colors cursor-pointer"
+                  >
+                    {t.projects.narqVisualization.viewEnlargeBtn}
+                  </button>
+                </div>
+                <div onClick={() => setNarqActiveIndex(4)} className="narq-render-container group">
+                  <img
+                    src={narqImg5Day}
+                    alt={t.projects.narqVisualization.img5Label}
+                    className="narq-render-img"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Ficha Breve / Metadata footer */}
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 border-t border-[var(--cream)]/15 pt-10">
+            {t.projects.narqVisualization.metadata.map((d) => (
+              <div key={d.k}>
+                <p className="eyebrow text-[var(--clay-light)] mb-2">{d.k}</p>
+                <p className="text-[var(--cream)]/90 text-sm leading-relaxed">{d.v}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Lightbox / Visor de Imagen a Pantalla Completa */}
       <AnimatePresence>
         {lightboxImages && (
@@ -1618,6 +1926,29 @@ export function FeaturedProject({ onInquire }: { onInquire: (msg: string) => voi
         imageSrc={lightboxImageSrc || ""}
         imageAlt={lightboxImageAlt}
       />
+
+      {/* Lightbox Dedicado para 'De la idea al espacio' (Secuencia 01 a 05) */}
+      {narqActiveIndex !== null && (
+        <SheetLightbox
+          isOpen={true}
+          onClose={() => setNarqActiveIndex(null)}
+          imageSrc={narqGallery[narqActiveIndex].src}
+          imageAlt={narqGallery[narqActiveIndex].label}
+          onPrev={() =>
+            setNarqActiveIndex((prev) =>
+              prev !== null && prev > 0 ? prev - 1 : narqGallery.length - 1,
+            )
+          }
+          onNext={() =>
+            setNarqActiveIndex((prev) =>
+              prev !== null && prev < narqGallery.length - 1 ? prev + 1 : 0,
+            )
+          }
+          hasPrev={true}
+          hasNext={true}
+          stepInfo={`${narqActiveIndex + 1} / ${narqGallery.length}`}
+        />
+      )}
     </div>
   );
 }
@@ -1627,10 +1958,25 @@ interface SheetLightboxProps {
   onClose: () => void;
   imageSrc: string;
   imageAlt: string;
+  onPrev?: () => void;
+  onNext?: () => void;
+  hasPrev?: boolean;
+  hasNext?: boolean;
+  stepInfo?: string;
 }
 
-function SheetLightbox({ isOpen, onClose, imageSrc, imageAlt }: SheetLightboxProps) {
-  const { language, t } = useLanguage();
+function SheetLightbox({
+  isOpen,
+  onClose,
+  imageSrc,
+  imageAlt,
+  onPrev,
+  onNext,
+  hasPrev,
+  hasNext,
+  stepInfo,
+}: SheetLightboxProps) {
+  const { language } = useLanguage();
   const [isFitMode, setIsFitMode] = useState(true);
   const [zoom, setZoom] = useState(100);
   const [isMounted, setIsMounted] = useState(false);
@@ -1653,11 +1999,15 @@ function SheetLightbox({ isOpen, onClose, imageSrc, imageAlt }: SheetLightboxPro
     };
   }, [isOpen]);
 
-  // Handle Escape key
+  // Handle Escape key and Arrow navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         onClose();
+      } else if (e.key === "ArrowLeft" && onPrev) {
+        onPrev();
+      } else if (e.key === "ArrowRight" && onNext) {
+        onNext();
       }
     };
     if (isOpen) {
@@ -1666,9 +2016,9 @@ function SheetLightbox({ isOpen, onClose, imageSrc, imageAlt }: SheetLightboxPro
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, onPrev, onNext]);
 
-  // Reset zoom & scroll when opening
+  // Reset zoom & scroll when opening or when imageSrc changes
   useEffect(() => {
     if (isOpen) {
       setIsFitMode(true);
@@ -1678,7 +2028,7 @@ function SheetLightbox({ isOpen, onClose, imageSrc, imageAlt }: SheetLightboxPro
         containerRef.current.scrollLeft = 0;
       }
     }
-  }, [isOpen]);
+  }, [isOpen, imageSrc]);
 
   if (!isOpen || !isMounted) return null;
 
@@ -1713,6 +2063,12 @@ function SheetLightbox({ isOpen, onClose, imageSrc, imageAlt }: SheetLightboxPro
     return "AJUSTAR";
   };
 
+  const getCloseText = () => {
+    if (language === "es") return "CERRAR";
+    if (language === "pt") return "FECHAR";
+    return "CLOSE";
+  };
+
   return createPortal(
     <div
       className="fixed inset-0 z-[99999] bg-black/95 backdrop-blur-md flex flex-col justify-between p-4 md:p-6 select-none animate-in fade-in duration-200"
@@ -1722,7 +2078,14 @@ function SheetLightbox({ isOpen, onClose, imageSrc, imageAlt }: SheetLightboxPro
     >
       {/* Top Header / Bar */}
       <div className="flex items-center justify-between text-[var(--cream)]/80 text-xs font-mono pb-2 border-b border-white/10 z-30">
-        <span>{imageAlt}</span>
+        <div className="flex items-center gap-3">
+          {stepInfo && (
+            <span className="px-2.5 py-1 rounded-full bg-white/10 text-[var(--clay-light)] font-bold text-[10px] tracking-wider border border-white/10">
+              {stepInfo}
+            </span>
+          )}
+          <span className="font-semibold text-white tracking-wide">{imageAlt}</span>
+        </div>
         <button
           onClick={onClose}
           className="text-2xl hover:text-white font-bold transition-colors w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 cursor-pointer"
@@ -1771,6 +2134,34 @@ function SheetLightbox({ isOpen, onClose, imageSrc, imageAlt }: SheetLightboxPro
         </div>
       </div>
 
+      {/* Navigation Arrows for sequential galleries */}
+      {onPrev && (
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onPrev();
+          }}
+          className="fixed left-3 md:left-6 top-1/2 -translate-y-1/2 z-40 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/70 hover:bg-black/90 text-white flex items-center justify-center text-3xl border border-white/20 transition-all cursor-pointer backdrop-blur-md shadow-2xl hover:scale-105"
+          aria-label="Anterior imagen"
+        >
+          ‹
+        </button>
+      )}
+      {onNext && (
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onNext();
+          }}
+          className="fixed right-3 md:right-6 top-1/2 -translate-y-1/2 z-40 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/70 hover:bg-black/90 text-white flex items-center justify-center text-3xl border border-white/20 transition-all cursor-pointer backdrop-blur-md shadow-2xl hover:scale-105"
+          aria-label="Siguiente imagen"
+        >
+          ›
+        </button>
+      )}
+
       {/* Controls Footer */}
       <div className="flex flex-wrap items-center justify-between gap-4 pt-3 border-t border-white/10 z-30">
         {/* Zoom Controls */}
@@ -1817,7 +2208,7 @@ function SheetLightbox({ isOpen, onClose, imageSrc, imageAlt }: SheetLightboxPro
           onClick={onClose}
           className="px-6 py-2 rounded-full bg-[var(--primary)] hover:bg-[#EFA07F] text-white hover:text-[var(--ink)] text-[10px] font-mono transition-colors font-bold cursor-pointer min-h-[44px] flex items-center justify-center"
         >
-          {t.drawings.close.toUpperCase()}
+          {getCloseText()}
         </button>
       </div>
     </div>,
