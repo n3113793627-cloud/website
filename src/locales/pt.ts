@@ -144,32 +144,122 @@ export const pt = {
     },
   },
   process: {
-    label: "PROCESSO",
+    label: "— PROCESSO",
     title: "Do diagnóstico espacial a uma proposta clara e construível.",
     intro:
-      "Cada projeto começa por compreender o espaço existente, as rotinas de quem o habita e os seus condicionantes técnicos. A partir dessa análise, desenvolvo soluções funcionais, sensíveis e viáveis.",
-    steps: [
+      "Meu método de projeto combina rigor técnico, validação estética e análise de viabilidade ao longo de sete etapas consecutivas.",
+    keyIdeaLabel: "Ideia principal",
+    stageBadgePrefix: "ETAPA",
+    visualCaptions: {
+      s01: "01 · Levantamento fotográfico e condições existentes",
+      s02: "02 · Base técnica BIM: dimensões reais e quantitativos",
+      s03: "03 · Moodboard de direção estética e referências sensoriais",
+      s04: "04 · Estudo comparativo de layout e marcenaria",
+      s06: "06 · Proposta final: consolidação de decisões validadas",
+    },
+    matrix: {
+      title: "Matriz de decisão comparável",
+      subtitle: "Dados BIM · 3 Critérios",
+      criterionLabel: "Critério",
+      c1Title: "Materiais",
+      c1Sub: "Validação e durabilidade",
+      c2Title: "Quantitativos",
+      c2Sub: "Levantamento métrico real",
+      c3Title: "Custo Estimado",
+      c3Sub: "Previsibilidade sem imprevistos",
+    },
+    roadmap: {
+      title: "Roteiro de materialização",
+      subtitle: "Continuidade técnica",
+      steps: [
+        { num: "01", step: "Documentação", sub: "Plantas e detalhamentos" },
+        { num: "02", step: "Compras", sub: "Especificações técnicas" },
+        { num: "03", step: "Coordenação", sub: "Gestão de fornecedores" },
+        { num: "04", step: "Execução", sub: "Acompanhamento de obra" },
+      ],
+    },
+    stages: [
       {
+        id: "01",
         n: "01",
-        t: "Levantamento e diagnóstico",
-        d: "Analizo dimensões, circulações, iluminação, usos, necessidades e condicionantes do espaço para definir prioridades claras.",
+        title: "Entender o espaço",
+        shortTag: "Levantamento e preexistências",
+        description:
+          "Reúno fotografias, medidas, alturas, portas, janelas, instalações e condições existentes.",
+        keyIdea: "Projetar sobre informações reais, não sobre suposições.",
+        image: "/process/01-entender-el-espacio.png",
       },
       {
+        id: "02",
         n: "02",
-        t: "Conceito e distribuição",
-        d: "Desenvolvo alternativas de zoneamento, fluxos e mobiliário que respondam à funcionalidade e à experiência buscada.",
+        title: "Modelar antes de projetar",
+        shortTag: "Base técnica BIM no Revit",
+        description:
+          "Construo um modelo base no Revit com dimensões reais para organizar áreas, elementos e materiais.",
+        keyIdea:
+          "O modelo não apenas representa o espaço: também organiza as informações do projeto.",
+        image: "/process/02-modelar-antes-de-disenar.png",
       },
       {
+        id: "03",
         n: "03",
-        t: "Design e visualização",
-        d: "Modelo a proposta em 3D e defino materialidade, iluminação, cor e mobiliário sob medida para comunicar o projeto com clareza.",
+        title: "Entender o cliente",
+        shortTag: "Moodboard e direção estética",
+        description:
+          "Utilizo um moodboard para definir cores, texturas, materiais, referências e sensações antes de desenhar em detalhe.",
+        keyIdea: "Primeiro alinho a visão; depois desenvolvo o design.",
+        image: "/process/03-entender-al-cliente.png",
       },
       {
+        id: "04",
         n: "04",
-        t: "Documentação técnica",
-        d: "Preparo desenhos técnicos, detalhes e especificações necessários para coordenar o projeto e facilitar a sua correta execução.",
+        title: "Explorar alternativas",
+        shortTag: "Distribuição e marcenaria",
+        description:
+          "Desenvolvo diferentes opções de distribuição, mobiliário, circulação e armazenamento.",
+        keyIdea: "Comparar alternativas ajuda a tomar decisões com maior clareza.",
+        image: "/process/04-explorar-alternativas.png",
+      },
+      {
+        id: "05",
+        n: "05",
+        title: "Decidir com informação",
+        shortTag: "Critérios quantitativos e custos",
+        description:
+          "Comparo materiais, quantidades e custos estimados para que o cliente possa tomar decisões claras.",
+        keyIdea: "O design se torna mais útil quando ajuda a decidir.",
+        itemsLabel: "Critérios comparáveis",
+        items: ["Materiais", "Quantidades", "Custo estimado"],
+        image: "/process/05-decidir-con-informacion.png",
+      },
+      {
+        id: "06",
+        n: "06",
+        title: "Definir a proposta final",
+        shortTag: "Consolidação de decisões validadas",
+        description:
+          "A proposta final é construída a partir de decisões revisadas e validadas: design, materiais, quantidades, orçamento estimado e modelo.",
+        keyIdea:
+          "A definição final não começa do zero: é construída a partir de decisões já validadas.",
+        itemsLabel: "Entregáveis validados",
+        items: ["Design", "Materiais", "Quantidades", "Orçamento estimado", "Modelo"],
+        image: "/process/06-definir-propuesta-final.png",
+      },
+      {
+        id: "07",
+        n: "07",
+        title: "O que vem a seguir",
+        shortTag: "Continuidade rumo à execução",
+        description:
+          "Após definir a proposta continuam a documentação, as compras, a coordenação e a execução.",
+        keyIdea: "Continuidade técnica da prancheta até a obra concluída.",
+        itemsLabel: "Próximas etapas",
+        items: ["Documentação", "Compras", "Coordenação", "Execução"],
+        image: "/process/07-lo-que-sigue.png",
       },
     ],
+    zoomPrompt: "Ampliar slide",
+    closeLightbox: "Fechar visualizador",
   },
   contact: {
     label: "— VAMOS CONVERSAR",

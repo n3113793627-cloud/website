@@ -145,32 +145,122 @@ export const es = {
     },
   },
   process: {
-    label: "PROCESO",
+    label: "— PROCESO",
     title: "Del diagnóstico espacial a una propuesta clara y construible.",
     intro:
-      "Cada proyecto comienza por comprender el espacio existente, las rutinas de quienes lo habitan y sus condicionantes técnicos. A partir de ese análisis desarrollo soluciones funcionales, sensibles y viables.",
-    steps: [
+      "Mi método de diseño combina rigurosidad técnica, validación estética y análisis de viabilidad a lo largo de siete etapas consecutivas.",
+    keyIdeaLabel: "Idea principal",
+    stageBadgePrefix: "ETAPA",
+    visualCaptions: {
+      s01: "01 · Levantamiento fotográfico y condiciones existentes",
+      s02: "02 · Base técnica BIM: dimensiones reales y cubicación",
+      s03: "03 · Moodboard de dirección estética y referencias sensoriales",
+      s04: "04 · Estudio comparativo de zonificación y mobiliario",
+      s06: "06 · Propuesta final: consolidación de decisiones validadas",
+    },
+    matrix: {
+      title: "Matriz de decisión comparable",
+      subtitle: "Datos BIM · 3 Criterios",
+      criterionLabel: "Criterio",
+      c1Title: "Materiales",
+      c1Sub: "Validación y durabilidad",
+      c2Title: "Cantidades",
+      c2Sub: "Cómputo métrico real",
+      c3Title: "Costo Estimado",
+      c3Sub: "Previsibilidad sin sorpresas",
+    },
+    roadmap: {
+      title: "Ruta de materialización",
+      subtitle: "Continuidad técnica",
+      steps: [
+        { num: "01", step: "Documentación", sub: "Planos y detalles" },
+        { num: "02", step: "Compras", sub: "Especificaciones" },
+        { num: "03", step: "Coordinación", sub: "Gestión de gremios" },
+        { num: "04", step: "Ejecución", sub: "Supervisión en obra" },
+      ],
+    },
+    stages: [
       {
+        id: "01",
         n: "01",
-        t: "Levantamiento y diagnóstico",
-        d: "Analizo dimensiones, circulaciones, iluminación, usos, necesidades y condicionantes del espacio para definir prioridades claras.",
+        title: "Entender el espacio",
+        shortTag: "Levantamiento y preexistencias",
+        description:
+          "Recopilo fotografías, medidas, alturas, puertas, ventanas, instalaciones y condiciones existentes.",
+        keyIdea: "Diseñar sobre información real, no sobre suposiciones.",
+        image: "/process/01-entender-el-espacio.png",
       },
       {
+        id: "02",
         n: "02",
-        t: "Concepto y distribución",
-        d: "Desarrollo alternativas de zonificación, recorridos y mobiliario que respondan a la funcionalidad y a la experiencia buscada.",
+        title: "Modelar antes de diseñar",
+        shortTag: "Base técnica BIM en Revit",
+        description:
+          "Construyo un modelo base en Revit con dimensiones reales para organizar áreas, elementos y materiales.",
+        keyIdea:
+          "El modelo no solo representa el espacio: también organiza la información del proyecto.",
+        image: "/process/02-modelar-antes-de-disenar.png",
       },
       {
+        id: "03",
         n: "03",
-        t: "Diseño y visualización",
-        d: "Modelo la propuesta en 3D y defino materialidad, iluminación, color y mobiliario a medida para comunicar el proyecto con claridad.",
+        title: "Entender al cliente",
+        shortTag: "Moodboard y dirección estética",
+        description:
+          "Utilizo un moodboard para definir colores, texturas, materiales, referencias y sensaciones antes de diseñar en detalle.",
+        keyIdea: "Primero alineo la visión; después desarrollo el diseño.",
+        image: "/process/03-entender-al-cliente.png",
       },
       {
+        id: "04",
         n: "04",
-        t: "Documentación técnica",
-        d: "Preparo planos, detalles y especificaciones necesarios para coordinar el proyecto y facilitar su correcta ejecución.",
+        title: "Explorar alternativas",
+        shortTag: "Distribución y mobiliario",
+        description:
+          "Desarrollo diferentes opciones de distribución, mobiliario, circulación y almacenamiento.",
+        keyIdea: "Comparar alternativas ayuda a tomar decisiones con mayor claridad.",
+        image: "/process/04-explorar-alternativas.png",
+      },
+      {
+        id: "05",
+        n: "05",
+        title: "Decidir con información",
+        shortTag: "Criterios cuantitativos y costos",
+        description:
+          "Comparo materiales, cantidades y costos estimados para que el cliente pueda tomar decisiones claras.",
+        keyIdea: "El diseño se vuelve más útil cuando ayuda a decidir.",
+        itemsLabel: "Criterios comparables",
+        items: ["Materiales", "Cantidades", "Costo estimado"],
+        image: "/process/05-decidir-con-informacion.png",
+      },
+      {
+        id: "06",
+        n: "06",
+        title: "Definir la propuesta final",
+        shortTag: "Consolidación sobre decisiones validadas",
+        description:
+          "La propuesta final se construye a partir de decisiones revisadas y validadas: diseño, materiales, cantidades, presupuesto estimado y modelo.",
+        keyIdea:
+          "La definición final no empieza desde cero: se construye a partir de decisiones ya validadas.",
+        itemsLabel: "Entregables validados",
+        items: ["Diseño", "Materiales", "Cantidades", "Presupuesto estimado", "Modelo"],
+        image: "/process/06-definir-propuesta-final.png",
+      },
+      {
+        id: "07",
+        n: "07",
+        title: "Lo que sigue",
+        shortTag: "Continuidad hacia la ejecución",
+        description:
+          "Después de definir la propuesta continúan la documentación, las compras, la coordinación y la ejecución.",
+        keyIdea: "Continuidad técnica desde el plano hasta la obra terminada.",
+        itemsLabel: "Fases siguientes",
+        items: ["Documentación", "Compras", "Coordinación", "Ejecución"],
+        image: "/process/07-lo-que-sigue.png",
       },
     ],
+    zoomPrompt: "Ampliar diapositiva",
+    closeLightbox: "Cerrar visor",
   },
   contact: {
     label: "— HABLEMOS",
