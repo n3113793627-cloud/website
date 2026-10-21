@@ -18,7 +18,7 @@ export const en = {
     titleAccent: "welcomes,",
     titlePart2: "design that connects.",
     description:
-      "Architect and interior designer with experience in technical documentation, 3D modeling, and interdisciplinary coordination. I work with AutoCAD, Revit, and SketchUp, with a special interest in how spaces influence well-being.",
+      "Architect and interior designer with experience in technical documentation, 3D modeling, and interdisciplinary coordination. I work with AutoCAD and Revit, with a special interest in how spaces influence well-being.",
     viewProjects: "View projects",
     downloadCv: "Download CV",
     downloadCvOptions: "CV download options",
@@ -36,7 +36,7 @@ export const en = {
     description1:
       "I am Natalia Ramírez Díaz, a Colombian architect based in Brazil, with experience in architectural design, interiors, and technical documentation for residential, commercial, and institutional projects.",
     description2:
-      "My work combines spatial sensitivity and technical rigor. I develop plans, construction details, 3D models, and design proposals with AutoCAD, Revit, and SketchUp. I am particularly interested in understanding how spaces influence well-being and the daily experience of people.",
+      "My work combines spatial sensitivity and technical rigor. I develop plans, construction details, 3D models, and design proposals with AutoCAD and Revit. I am particularly interested in understanding how spaces influence well-being and the daily experience of people.",
     locationText: "Brazil · Available for on-site or remote opportunities",
     credentials: [
       { year: "2023", label: "Architect · Universidad de América" },
